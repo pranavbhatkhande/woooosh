@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>woooosh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Fun Color Palette */
+            --primary-bg: #FDF6FD; /* Very light lavender/pink */
+            --card-bg: #FFFFFF;
+            --primary-text: #4A4A6A; /* Dark, slightly desaturated purple */
+            --secondary-text: #787890; /* Lighter purple-grey */
+            
+            --accent-main: #FF6B6B; /* Lively Coral */
+            --accent-main-hover: #FF4F4F; /* Darker Coral */
+            
+            --accent-secondary: #4ECDC4; /* Bright Teal/Turquoise */
+            --accent-secondary-hover: #3AA9A1; /* Darker Teal */
+
+            --input-focus-border: var(--accent-main);
+            --danger-color: #F746A2; /* Bright Pink for danger */
+            --danger-hover: #D9006C;
+
+            /* Status Colors - Fun & Bright */
+            --status-idea: #FFD166;      /* Sunny Yellow */
+            --status-action: #06D6A0;    /* Bright Mint Green */
+            --status-inProgress: #118AB2;/* Strong Cerulean Blue */
+            --status-scheduled: #7F5AF0; /* Vibrant Violet */
+            --status-completed: #BFC0C0; /* Cool, light Grey */
+            
+            --border-color: #EAEAF2; /* Light grey with a hint of purple */
+            --shadow-small: 0 2px 4px rgba(74,74,106,0.1);
+            --shadow-medium: 0 4px 8px rgba(74,74,106,0.12);
+            --shadow-large: 0 6px 12px rgba(74,74,106,0.15);
+        }
+
+        body {
+            font-family: 'Poppins', 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            margin: 0;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 30px 35px;
+            border-radius: 16px; /* More rounded */
+            box-shadow: var(--shadow-large);
+            width: 100%;
+            max-width: 780px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent-main);
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 3em; /* Bigger and bolder */
+            letter-spacing: -1px;
+        }
+
+        .input-area {
+            display: flex;
+            margin-bottom: 30px;
+            gap: 12px;
+        }
+
+        .input-area input[type="text"] {
+            flex-grow: 1;
+            padding: 15px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px; /* Rounded input */
+            font-size: 1.05em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .input-area input[type="text"]::placeholder {
+            color: var(--secondary-text);
+            opacity: 0.8;
+        }
+        .input-area input[type="text"]:focus {
+            outline: none;
+            border-color: var(--input-focus-border);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25); /* Coral focus ring */
+        }
+
+        .input-area button {
+            padding: 15px 28px;
+            background: linear-gradient(45deg, var(--accent-main), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.05em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-medium);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .input-area button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-large);
+        }
+        
+        .task-filters {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .task-filters button {
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            color: var(--accent-secondary);
+            border: 2px solid var(--accent-secondary);
+            border-radius: 25px; /* Pill shape */
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .task-filters button:hover {
+            background-color: var(--accent-secondary);
+            color: white;
+            transform: translateY(-1px);
+        }
+        .task-filters button.active {
+            background-color: var(--accent-secondary);
+            color: white;
+            border-color: var(--accent-secondary);
+            box-shadow: var(--shadow-small);
+        }
+
+        ul#taskList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li.task-item {
+            background-color: var(--card-bg);
+            padding: 20px 22px;
+            border-left: 5px solid; /* Status indicator border */
+            border-color: var(--border-color); /* Default before status specific */
+            border-radius: 10px;
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: var(--shadow-medium);
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        li.task-item:hover {
+            box-shadow: var(--shadow-large);
+            transform: translateY(-2px);
+        }
+        /* Specific border colors for task items based on status */
+        li.task-item.status-idea { border-left-color: var(--status-idea); }
+        li.task-item.status-action { border-left-color: var(--status-action); }
+        li.task-item.status-inProgress { border-left-color: var(--status-inProgress); }
+        li.task-item.status-scheduled { border-left-color: var(--status-scheduled); }
+        li.task-item.status-completed { border-left-color: var(--status-completed); }
+        
+        .task-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
+            gap: 12px;
+        }
+
+        .task-text {
+            flex-grow: 1;
+            font-size: 1.1em; /* Slightly larger task text */
+            color: var(--primary-text);
+            word-break: break-word;
+            line-height: 1.55;
+        }
+        
+        .task-text.editing {
+            border: 1px solid var(--input-focus-border);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 1.05em; 
+        }
+        .task-text.status-completed {
+            text-decoration: line-through;
+            color: var(--secondary-text);
+            opacity: 0.8;
+        }
+
+        .task-status {
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            color: white;
+            white-space: nowrap;
+            align-self: flex-start; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-idea { background-color: var(--status-idea); color: #503E00; } /* Darker text for yellow */
+        .status-action { background-color: var(--status-action); }
+        .status-inProgress { background-color: var(--status-inProgress); }
+        .status-scheduled { background-color: var(--status-scheduled); }
+        .status-completed { background-color: var(--status-completed); color: #4A4A6A;}
+
+        .task-actions {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 10px; 
+            align-items: center; 
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color); 
+            margin-top: 10px;
+        }
+        
+        .task-actions button {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 8px; /* Softer buttons */
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease-in-out;
+            color: white; 
+            box-shadow: var(--shadow-small);
+        }
+        .task-actions button:hover {
+            transform: translateY(-1px) scale(1.02);
+            opacity: 0.9;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .task-actions .btn-edit { background-color: #FFAB00; /* Vivid Amber */ }
+        .task-actions .btn-save { background-color: #00C853; /* Vivid Green */ }
+        .task-actions .btn-actionize { background-color: #2979FF; /* Vivid Blue */ }
+        .task-actions .btn-start { background-color: var(--status-inProgress); }
+        .task-actions .btn-schedule { background-color: var(--status-scheduled); }
+        .task-actions .btn-complete { background-color: var(--accent-secondary); }
+        .task-actions .btn-delete { background-color: var(--danger-color); }
+        
+        .schedule-details {
+            font-size: 0.9em;
+            color: var(--secondary-text);
+            padding: 8px 0;
+            background-color: #FAF8FA;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .schedule-input-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            align-items: center;
+            padding: 12px;
+            background-color: #FDF6FD; /* Match primary bg or slightly different */
+            border-radius: 8px;
+        }
+        .schedule-input-area input[type="datetime-local"] {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.95em;
+            flex-grow: 1;
+        }
+        .schedule-input-area input[type="datetime-local"]:focus {
+             outline: none;
+             border-color: var(--input-focus-border);
+        }
+        .schedule-input-area button {
+            padding: 10px 18px;
+            font-size: 0.9em;
+            font-weight: 600;
+            background-color: var(--accent-secondary); 
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .schedule-input-area button:last-of-type { /* Cancel button */
+            background-color: var(--secondary-text);
+        }
+        .schedule-input-area button:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        .no-tasks {
+            text-align: center;
+            color: var(--secondary-text);
+            padding: 35px 25px;
+            font-style: italic;
+            font-size: 1.15em;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-small);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>woooosh</h1>
+
+        <div class="input-area">
+            <input type="text" id="taskInput" placeholder="Woooosh in a new idea...">
+            <button onclick="addTask()">Add</button>
+        </div>
+        
+        <div class="task-filters">
+            <button id="filterAll" class="active" onclick="setFilter('all')">All</button>
+            <button id="filterIdea" onclick="setFilter('idea')">Ideas</button>
+            <button id="filterAction" onclick="setFilter('action')">Actions</button>
+            <button id="filterInProgress" onclick="setFilter('inProgress')">In Progress</button>
+            <button id="filterScheduled" onclick="setFilter('scheduled')">Scheduled</button>
+            <button id="filterCompleted" onclick="setFilter('completed')">Completed</button>
+        </div>
+
+        <ul id="taskList">
+            </ul>
+         <p id="noTasksMessage" class="no-tasks" style="display: none;">Nothing to woooosh about yet!</p>
+    </div>
+
+    <script>
+        let tasks = [];
+        let currentFilter = 'all'; 
+
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+        const noTasksMessage = document.getElementById('noTasksMessage');
+
+        function saveTasks() {
+            localStorage.setItem('wooooshTasks', JSON.stringify(tasks));
+        }
+
+        function loadTasks() {
+            const storedTasks = localStorage.getItem('wooooshTasks');
+            if (storedTasks) {
+                tasks = JSON.parse(storedTasks);
+                tasks.forEach(task => {
+                    task.isEditing = false;
+                    task.isScheduling = false; 
+                });
+            }
+        }
+        
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.task-filters button').forEach(btn => btn.classList.remove('active'));
+            const activeFilterButton = document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1));
+            if (activeFilterButton) { 
+                activeFilterButton.classList.add('active');
+            }
+            renderTasks();
+        }
+
+        function addTask() {
+            const text = taskInput.value.trim();
+            if (text === "") {
+                alert("Please woooosh in some text for your task!");
+                return;
+            }
+            const newTask = {
+                id: Date.now(),
+                text: text,
+                status: "idea",
+                created: new Date().toISOString(),
+                scheduledFor: null,
+                isEditing: false,
+                isScheduling: false
+            };
+            tasks.unshift(newTask);
+            taskInput.value = "";
+            saveAndRender();
+        }
+
+        function deleteTask(id) {
+            if (confirm("Are you sure you want to delete this woooosh?")) {
+                tasks = tasks.filter(task => task.id !== id);
+                saveAndRender();
+            }
+        }
+
+        function toggleEdit(id) {
+            tasks.forEach(t => { if (t.id !== id) t.isEditing = false; t.isScheduling = false; });
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.isEditing = !task.isEditing;
+                saveAndRender();
+                 if (task.isEditing) { // If entering edit mode, focus the input
+                    setTimeout(() => { // Timeout ensures element is in DOM and visible
+                        const editInput = document.querySelector(`.task-item[data-id='${id}'] .task-text.editing`);
+                        if(editInput) editInput.focus();
+                    }, 0);
+                }
+            }
+        }
+
+        function updateTaskText(id, newText) {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.text = newText.trim();
+                if(task.text === "") {
+                    alert("Woooosh text cannot be empty.");
+                    task.isEditing = true; 
+                } else {
+                    task.isEditing = false;
+                }
+                saveAndRender();
+            }
+        }
+        
+        function changeStatus(id, newStatus) {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.status = newStatus;
+                task.isEditing = false;
+                task.isScheduling = false;
+                if (newStatus !== 'scheduled') {
+                    task.scheduledFor = null;
+                }
+                saveAndRender();
+            }
+        }
+
+        function openScheduleInterface(id) {
+            tasks.forEach(t => { if (t.id !== id) t.isScheduling = false; t.isEditing = false; });
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.isScheduling = true;
+                saveAndRender();
+            }
+        }
+        
+        function confirmSchedule(id, datetimeValue) {
+            const task = tasks.find(t => t.id === id);
+            if (task && datetimeValue) {
+                task.status = "scheduled";
+                task.scheduledFor = new Date(datetimeValue).toISOString();
+                task.isScheduling = false;
+                saveAndRender();
+            } else if (task && !datetimeValue) {
+                alert("Please select a date and time for your woooosh.");
+            }
+        }
+        
+        function cancelScheduling(id) {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.isScheduling = false;
+                saveAndRender();
+            }
+        }
+
+        function saveAndRender() {
+            saveTasks();
+            renderTasks();
+        }
+
+        function renderTasks() {
+            taskList.innerHTML = ""; 
+
+            const filteredTasks = tasks.filter(task => {
+                if (currentFilter === 'all') return true;
+                return task.status === currentFilter;
+            }).sort((a,b) => { 
+                if (a.status === 'completed' && b.status !== 'completed') return 1;
+                if (a.status !== 'completed' && b.status === 'completed') return -1;
+                return new Date(b.created) - new Date(a.created); 
+            });
+
+            if (filteredTasks.length === 0) {
+                let message = "No wooooshes in this view. Try a different filter or add a new woooosh!";
+                if (currentFilter === 'all' && tasks.length === 0) {
+                    message = "Nothing to woooosh about yet! Add your first idea.";
+                }
+                noTasksMessage.textContent = message;
+                noTasksMessage.style.display = 'block';
+                taskList.style.display = 'none';
+                return;
+            }
+            noTasksMessage.style.display = 'none';
+            taskList.style.display = 'block';
+
+
+            filteredTasks.forEach(task => {
+                const li = document.createElement('li');
+                li.className = `task-item status-${task.status}`;
+                li.dataset.id = task.id;
+
+                let taskHTML = `<div class="task-content">`;
+                
+                if (task.isEditing) {
+                    taskHTML += `<input type="text" class="task-text editing" value="${escapeHTML(task.text)}" onblur="updateTaskText(${task.id}, this.value)" onkeypress="if(event.key === 'Enter') { this.blur(); return false; } else if (event.key === 'Escape') { toggleEdit(${task.id}); return false; }">`;
+                } else {
+                    taskHTML += `<span class="task-text ${task.status === 'completed' ? 'status-completed' : ''}">${escapeHTML(task.text)}</span>`;
+                }
+                
+                taskHTML += `<span class="task-status status-${task.status}">${getFriendlyStatus(task.status)}</span>
+                             </div>`;
+
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'task-actions';
+
+                if (!task.isEditing) {
+                    actionsDiv.innerHTML += `<button class="btn-edit" onclick="toggleEdit(${task.id})">Edit</button>`;
+                } else {
+                    actionsDiv.innerHTML += `<button class="btn-save" onclick="updateTaskText(${task.id}, this.closest('.task-item').querySelector('.task-text.editing').value)">Save</button>`;
+                }
+
+                if (task.status === 'idea') {
+                    actionsDiv.innerHTML += `<button class="btn-actionize" onclick="changeStatus(${task.id}, 'action')">Actionize</button>`;
+                }
+                if (task.status === 'action' && !task.isScheduling) {
+                    actionsDiv.innerHTML += `<button class="btn-start" onclick="changeStatus(${task.id}, 'inProgress')">Start Now</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">Schedule</button>`;
+                }
+                if (task.status === 'inProgress' && !task.isScheduling) {
+                    actionsDiv.innerHTML += `<button class="btn-complete" onclick="changeStatus(${task.id}, 'completed')">Complete</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">Schedule</button>`; 
+                }
+                if (task.status === 'scheduled' && !task.isScheduling) {
+                    actionsDiv.innerHTML += `<button class="btn-start" onclick="changeStatus(${task.id}, 'inProgress')">Start Now</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-complete" onclick="changeStatus(${task.id}, 'completed')">Complete</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">Reschedule</button>`;
+                }
+                if (task.status === 'completed') {
+                    actionsDiv.innerHTML += `<button class="btn-actionize" onclick="changeStatus(${task.id}, 'action')">Re-open</button>`;
+                }
+                
+                if(!task.isEditing && !task.isScheduling) {
+                    actionsDiv.innerHTML += `<button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>`;
+                }
+                
+                taskHTML += actionsDiv.outerHTML;
+
+                if (task.status === 'scheduled' && task.scheduledFor && !task.isScheduling) {
+                    taskHTML += `<div class="schedule-details">Scheduled: ${new Date(task.scheduledFor).toLocaleString()}</div>`;
+                }
+                
+                if (task.isScheduling) {
+                     const now = new Date();
+                     const currentScheduled = task.scheduledFor ? new Date(task.scheduledFor) : new Date(now.getTime() + (60*60*1000)); 
+                     
+                     const pad = (num) => String(num).padStart(2, '0');
+                     const defaultDateTime = `${currentScheduled.getFullYear()}-${pad(currentScheduled.getMonth() + 1)}-${pad(currentScheduled.getDate())}T${pad(currentScheduled.getHours())}:${pad(currentScheduled.getMinutes())}`;
+
+                    taskHTML += `
+                        <div class="schedule-input-area">
+                            <input type="datetime-local" id="scheduleTime-${task.id}" value="${defaultDateTime}">
+                            <button onclick="confirmSchedule(${task.id}, document.getElementById('scheduleTime-${task.id}').value)">Set</button>
+                            <button onclick="cancelScheduling(${task.id})">Cancel</button>
+                        </div>`;
+                }
+
+                li.innerHTML = taskHTML;
+                taskList.appendChild(li);
+            });
+        }
+        
+        function getFriendlyStatus(status) {
+            const map = {
+                'idea': 'Idea', 'action': 'Action!', 'inProgress': 'Doing It!',
+                'scheduled': 'Scheduled', 'completed': 'Woooosh\'d!'
+            };
+            return map[status] || status;
+        }
+
+        function escapeHTML(str) {
+            const p = document.createElement("p");
+            p.textContent = str; 
+            return p.innerHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTasks();
+            const initialFilterButton = document.getElementById('filterAll'); 
+            if (initialFilterButton) initialFilterButton.classList.add('active');
+            renderTasks();
+        });
+    </script>
+
+</body>
+</html>
