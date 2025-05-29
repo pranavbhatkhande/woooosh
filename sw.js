@@ -1,11 +1,10 @@
-const CACHE_NAME = 'woooosh-cache-v1';
-// Define the assets to cache
+const CACHE_NAME = 'woooosh-cache-v1'; // Or your current cache name
 const ASSETS_TO_CACHE = [
-  './index.html',   // Your main app file
-  './manifest.json',  // The web app manifest
-  './images/icon-192x192.png', // Main icons
+  './',                 // Caches the root directory (which serves index.html)
+  './index.html',       // Explicitly caching index.html is also good
+  './manifest.json',
+  './images/icon-192x192.png',
   './images/icon-512x512.png'
-  // If you had separate CSS or JS files, you'd list them here too.
 ];
 
 // Install event: Open a cache and add core assets to it.
