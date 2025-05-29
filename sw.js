@@ -1,4 +1,4 @@
-const CACHE_NAME = 'woooosh-cache-v1'; // If you change assets, consider updating to 'woooosh-cache-v2' etc.
+const CACHE_NAME = 'woooosh-cache-v2'; // If you change assets, consider updating to 'woooosh-cache-v2' etc.
 const ASSETS_TO_CACHE = [
   './',                         // This entry is key! It caches the root of your site.
                                 // When start_url is "/", this cached version of index.html will be served.
