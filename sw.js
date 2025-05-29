@@ -1,11 +1,15 @@
-const CACHE_NAME = 'woooosh-cache-v1'; // Or your current cache name
+const CACHE_NAME = 'woooosh-cache-v1'; // If you change assets, consider updating to 'woooosh-cache-v2' etc.
 const ASSETS_TO_CACHE = [
-  './',                 // Caches the root directory (which serves index.html)
-  './index.html',       // Explicitly caching index.html is also good
-  './manifest.json',
-  './images/icon-192x192.png',
-  './images/icon-512x512.png'
+  './',                         // This entry is key! It caches the root of your site.
+                                // When start_url is "/", this cached version of index.html will be served.
+  './index.html',               // It's also good practice to explicitly cache index.html by its name.
+                                // This provides robustness.
+  './manifest.json',            // Your PWA manifest file.
+  './images/icon-192x192.png',  // Your primary PWA icon.
+  './images/icon-512x512.png',  // Your larger PWA icon.
 ];
+
+// ... rest of your sw.js code (install, activate, fetch listeners)
 
 // Install event: Open a cache and add core assets to it.
 self.addEventListener('install', event => {
