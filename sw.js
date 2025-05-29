@@ -1,7 +1,7 @@
 const CACHE_NAME = 'woooosh-cache-v1';
 // Define the assets to cache
 const ASSETS_TO_CACHE = [
-  './woooosh.html',   // Your main app file
+  './index.html',   // Your main app file
   './manifest.json',  // The web app manifest
   './images/icon-192x192.png', // Main icons
   './images/icon-512x512.png'
