@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>woooosh</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
+    <link rel="manifest" href="manifest.json">
+   <style>
         :root {
             /* Fun Color Palette */
             --primary-bg: #FDF6FD; /* Very light lavender/pink */
@@ -595,6 +596,18 @@
             renderTasks();
         });
     </script>
-
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js') // Path to your service worker file
+            .then(registration => {
+            console.log('woooosh ServiceWorker registration successful, scope: ', registration.scope);
+            })
+            .catch(error => {
+            console.log('woooosh ServiceWorker registration failed: ', error);
+            });
+        });
+    }
+    </script>
 </body>
 </html>
