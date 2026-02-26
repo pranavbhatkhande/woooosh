@@ -23,6 +23,7 @@
             --status-action: #06D6A0;
             --status-inProgress: #118AB2;
             --status-scheduled: #7F5AF0;
+            --status-reminder: #FF9F1C;
             --status-completed: #BFC0C0;
             --border-color: #EAEAF2;
             --shadow-small: 0 2px 4px rgba(74,74,106,0.1);
@@ -393,7 +394,91 @@
             box-shadow: var(--shadow-small);
         }
 
-         @media (max-width: 700px) {
+         li.task-item.status-reminder { border-left-color: var(--status-reminder); }
+        .task-status.status-reminder { background-color: var(--status-reminder); color: #3D2600; }
+        .task-actions .btn-reminder { background-color: var(--status-reminder); color: #3D2600; }
+
+        /* Toast notifications */
+        #toastContainer {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+        .toast {
+            background: var(--primary-text);
+            color: white;
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-size: 0.92em;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.28s ease, transform 0.28s ease;
+            max-width: 320px;
+            box-shadow: var(--shadow-large);
+            pointer-events: auto;
+        }
+        .toast.show { opacity: 1; transform: translateX(0); }
+        .toast.toast-error { background: #c0392b; }
+        .toast.toast-success { background: #1a9e68; }
+        .toast.toast-info { background: var(--status-inProgress); }
+
+        /* Animations */
+        @keyframes taskSlideIn {
+            from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0)    scale(1);    }
+        }
+        .task-item-new { animation: taskSlideIn 0.28s ease both; }
+
+        @keyframes confettiFall {
+            0%   { transform: translateY(0)     rotate(0deg);   opacity: 1; }
+            100% { transform: translateY(220px) rotate(720deg); opacity: 0; }
+        }
+
+        @keyframes inputShake {
+            0%,100% { transform: translateX(0); }
+            20%     { transform: translateX(-6px); }
+            40%     { transform: translateX(6px); }
+            60%     { transform: translateX(-4px); }
+            80%     { transform: translateX(4px); }
+        }
+        .input-shake { animation: inputShake 0.4s ease; }
+
+        /* Filter count badge */
+        .filter-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 19px;
+            height: 19px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 0 5px;
+            font-size: 0.78em;
+            font-weight: 700;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+        .task-filters button.active .filter-count { background-color: rgba(255,255,255,0.45); }
+
+        /* Stats bar */
+        .stats-bar {
+            text-align: center;
+            font-size: 0.82em;
+            color: var(--secondary-text);
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+        .stats-bar strong { color: var(--accent-main); }
+
+        @media (max-width: 700px) {
+            body { padding: 12px; }
+            .container { padding: 20px 16px; }
             .header-area {
                 flex-direction: column;
                 align-items: center;
@@ -404,12 +489,24 @@
                 margin-bottom: 10px; 
             }
             .how-to-toggle-button {
-                margin-left: 0; /* Remove left margin when stacked */
-                margin-bottom: 15px; /* Add space below button when stacked */
+                margin-left: 0;
+                margin-bottom: 15px;
             }
             .how-to-box {
-                max-width: 100%; /* Allow box to be full width on small screens */
+                max-width: 100%;
                 margin-top: 0;
+            }
+            .input-area {
+                flex-direction: column;
+            }
+            .input-area input[type="text"],
+            .input-area button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .task-actions button {
+                padding: 10px 14px;
+                font-size: 0.85em;
             }
         }
 
@@ -426,11 +523,11 @@
 
         <div id="howToBox" class="how-to-box hidden"> <h3>How to Woooosh!</h3>
             <ol>
-                <li>Capture Ideas</li>
-                <li>Turn ideas into actions</li>
-                <li>Start working on them right away</li>
-                <li>Only if you can't - then schedule them</li>
-                <li>Done? One woooosh! complete!</li>
+                <li>Capture Ideas 💡</li>
+                <li>Turn ideas into actions ⚡</li>
+                <li>Start working on them right away 🔥 <em>or</em> set a Reminder 🔔</li>
+                <li>Only if you can't start now — Schedule them 📅</li>
+                <li>Done? One woooosh! complete! ✅</li>
             </ol>
         </div>
         <div class="input-area">
@@ -440,11 +537,12 @@
         
         <div class="task-filters">
             <button id="filterAll" class="active" onclick="setFilter('all')">All</button>
-            <button id="filterIdea" onclick="setFilter('idea')">Captured Ideas</button>
-            <button id="filterAction" onclick="setFilter('action')">Actionized Ideas</button>
-            <button id="filterInProgress" onclick="setFilter('inProgress')">Started</button>
-            <button id="filterScheduled" onclick="setFilter('scheduled')">Scheduled</button>
-            <button id="filterCompleted" onclick="setFilter('completed')">Done</button>
+            <button id="filterIdea" onclick="setFilter('idea')">💡 Ideas</button>
+            <button id="filterAction" onclick="setFilter('action')">⚡ Actions</button>
+            <button id="filterInProgress" onclick="setFilter('inProgress')">🔥 Started</button>
+            <button id="filterReminder" onclick="setFilter('reminder')">🔔 Reminders</button>
+            <button id="filterScheduled" onclick="setFilter('scheduled')">📅 Scheduled</button>
+            <button id="filterCompleted" onclick="setFilter('completed')">✅ Done</button>
         </div>
 
         <button id="deleteAllButton" onclick="deleteAllTasks()">Delete All Wooooshes</button>
@@ -454,153 +552,231 @@
          <p id="noTasksMessage" class="no-tasks" style="display: none;">Nothing to woooosh about yet!</p>
     </div>
 
+    <div id="toastContainer"></div>
+
     <script>
-        // (Your existing JavaScript for tasks array, loadTasks, saveTasks, addTask, etc. goes here)
-        // I'm including the full JS again from the working PWA version for completeness.
         let tasks = [];
-        let currentFilter = 'all'; 
+        let currentFilter = 'all';
+        let _editCancelled = false; // Flag for Escape-key cancel-without-save
 
         const taskInput = document.getElementById('taskInput');
         const taskList = document.getElementById('taskList');
         const noTasksMessage = document.getElementById('noTasksMessage');
 
-        // NEW JAVASCRIPT FOR TOGGLING HOW-TO BOX
         const toggleHowToBtn = document.getElementById('toggleHowToBtn');
         const howToBox = document.getElementById('howToBox');
-
         if (toggleHowToBtn && howToBox) {
             toggleHowToBtn.addEventListener('click', () => {
                 howToBox.classList.toggle('hidden');
             });
         }
-        // END NEW JAVASCRIPT
 
+        // Enter key shortcut to add task
+        taskInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') addTask();
+        });
+
+        // ── Toast notifications ─────────────────────────────────────────────
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => toast.classList.add('show'));
+            });
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 320);
+            }, 3000);
+        }
+
+        // ── Confetti on task completion ──────────────────────────────────────
+        function launchConfetti() {
+            const colors = ['#FF6B6B','#4ECDC4','#FFD166','#7F5AF0','#06D6A0','#FF9F1C'];
+            const container = document.querySelector('.container');
+            const rect = container.getBoundingClientRect();
+            for (let i = 0; i < 28; i++) {
+                const piece = document.createElement('div');
+                const size = Math.random() * 9 + 5;
+                piece.style.cssText = [
+                    'position:fixed',
+                    `width:${size}px`,
+                    `height:${size}px`,
+                    `background:${colors[Math.floor(Math.random() * colors.length)]}`,
+                    `left:${rect.left + Math.random() * rect.width}px`,
+                    `top:${rect.top + 60}px`,
+                    `border-radius:${Math.random() > 0.5 ? '50%' : '2px'}`,
+                    'pointer-events:none',
+                    'z-index:9999',
+                    `animation:confettiFall ${(Math.random() * 0.8 + 0.7).toFixed(2)}s ease-out forwards`,
+                    `animation-delay:${(Math.random() * 0.3).toFixed(2)}s`
+                ].join(';');
+                document.body.appendChild(piece);
+                setTimeout(() => piece.remove(), 2200);
+            }
+        }
+
+        // ── Persistence ──────────────────────────────────────────────────────
         function saveTasks() {
-            localStorage.setItem('wooooshTasks', JSON.stringify(tasks));
+            // Strip transient _isNew flag before persisting
+            const toSave = tasks.map(({ _isNew, ...rest }) => rest);
+            localStorage.setItem('wooooshTasks', JSON.stringify(toSave));
         }
 
         function loadTasks() {
-            const storedTasks = localStorage.getItem('wooooshTasks');
-            if (storedTasks) {
-                tasks = JSON.parse(storedTasks);
-                tasks.forEach(task => {
-                    task.isEditing = false;
-                    task.isScheduling = false; 
-                });
+            const stored = localStorage.getItem('wooooshTasks');
+            if (stored) {
+                tasks = JSON.parse(stored);
+                tasks.forEach(t => { t.isEditing = false; t.isScheduling = false; });
             }
         }
-        
+
+        // ── Filter ───────────────────────────────────────────────────────────
         function setFilter(filter) {
             currentFilter = filter;
             document.querySelectorAll('.task-filters button').forEach(btn => btn.classList.remove('active'));
-            const activeFilterButton = document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1));
-            if (activeFilterButton) { 
-                activeFilterButton.classList.add('active');
-            }
+            const btn = document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1));
+            if (btn) btn.classList.add('active');
             renderTasks();
         }
 
+        // ── CRUD ─────────────────────────────────────────────────────────────
         function addTask() {
             const text = taskInput.value.trim();
-            if (text === "") {
-                alert("Please woooosh in some text for your task!");
+            if (text === '') {
+                taskInput.classList.remove('input-shake');
+                void taskInput.offsetWidth; // reflow to restart animation
+                taskInput.classList.add('input-shake');
+                taskInput.addEventListener('animationend', () => taskInput.classList.remove('input-shake'), { once: true });
+                showToast('Please woooosh in some text first!', 'error');
+                taskInput.focus();
                 return;
             }
             const newTask = {
                 id: Date.now(),
-                text: text,
-                status: "idea",
+                text,
+                status: 'idea',
                 created: new Date().toISOString(),
                 scheduledFor: null,
                 isEditing: false,
-                isScheduling: false
+                isScheduling: false,
+                _isNew: true
             };
             tasks.unshift(newTask);
-            taskInput.value = "";
+            taskInput.value = '';
             saveAndRender();
         }
 
         function deleteTask(id) {
-            if (confirm("Are you sure you want to delete this woooosh?")) {
-                tasks = tasks.filter(task => task.id !== id);
+            if (confirm('Are you sure you want to delete this woooosh?')) {
+                tasks = tasks.filter(t => t.id !== id);
                 saveAndRender();
             }
         }
-        
+
         function deleteAllTasks() {
             if (tasks.length === 0) {
-                alert("There are no wooooshes to delete!");
+                showToast('There are no wooooshes to delete!', 'info');
                 return;
             }
-            if (confirm("Are you sure you want to delete ALL wooooshes? This action cannot be undone.")) {
-                tasks = []; 
-                saveAndRender(); 
+            if (confirm('Are you sure you want to delete ALL wooooshes? This action cannot be undone.')) {
+                tasks = [];
+                saveAndRender();
             }
         }
 
+        // ── Edit ─────────────────────────────────────────────────────────────
         function toggleEdit(id) {
-            tasks.forEach(t => { if (t.id !== id) t.isEditing = false; t.isScheduling = false; });
+            // BUG FIX: added {} so both statements are inside the if
+            tasks.forEach(t => { if (t.id !== id) { t.isEditing = false; t.isScheduling = false; } });
             const task = tasks.find(t => t.id === id);
             if (task) {
                 task.isEditing = !task.isEditing;
                 saveAndRender();
-                 if (task.isEditing) { 
-                    setTimeout(() => { 
-                        const editInput = document.querySelector(`.task-item[data-id='${id}'] .task-text.editing`);
-                        if(editInput) editInput.focus();
+                if (task.isEditing) {
+                    setTimeout(() => {
+                        const el = document.querySelector(`.task-item[data-id='${id}'] .task-text.editing`);
+                        if (el) el.focus();
                     }, 0);
                 }
+            }
+        }
+
+        function handleEditBlur(id, value) {
+            if (_editCancelled) {
+                _editCancelled = false;
+                cancelEdit(id);
+            } else {
+                updateTaskText(id, value);
+            }
+        }
+
+        function cancelEdit(id) {
+            // Close edit mode without saving (used by Escape key)
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.isEditing = false;
+                saveAndRender();
             }
         }
 
         function updateTaskText(id, newText) {
             const task = tasks.find(t => t.id === id);
             if (task) {
-                task.text = newText.trim();
-                if(task.text === "") {
-                    alert("Woooosh text cannot be empty.");
-                    task.isEditing = true; 
+                const trimmed = newText.trim();
+                if (trimmed === '') {
+                    showToast('Woooosh text cannot be empty.', 'error');
+                    task.isEditing = true;
                 } else {
+                    task.text = trimmed;
                     task.isEditing = false;
                 }
                 saveAndRender();
             }
         }
-        
+
+        // ── Status changes ───────────────────────────────────────────────────
         function changeStatus(id, newStatus) {
             const task = tasks.find(t => t.id === id);
             if (task) {
                 task.status = newStatus;
                 task.isEditing = false;
                 task.isScheduling = false;
-                if (newStatus !== 'scheduled') {
-                    task.scheduledFor = null;
-                }
+                if (newStatus !== 'scheduled') task.scheduledFor = null;
                 saveAndRender();
+                if (newStatus === 'completed') {
+                    launchConfetti();
+                    showToast('Woooosh! Task completed! 🎉', 'success');
+                }
             }
         }
 
+        // ── Scheduling ───────────────────────────────────────────────────────
         function openScheduleInterface(id) {
-            tasks.forEach(t => { if (t.id !== id) t.isScheduling = false; t.isEditing = false; });
+            // BUG FIX: added {} so both statements are inside the if
+            tasks.forEach(t => { if (t.id !== id) { t.isScheduling = false; t.isEditing = false; } });
             const task = tasks.find(t => t.id === id);
             if (task) {
                 task.isScheduling = true;
                 saveAndRender();
             }
         }
-        
+
         function confirmSchedule(id, datetimeValue) {
             const task = tasks.find(t => t.id === id);
             if (task && datetimeValue) {
-                task.status = "scheduled";
+                task.status = 'scheduled';
                 task.scheduledFor = new Date(datetimeValue).toISOString();
                 task.isScheduling = false;
                 saveAndRender();
+                showToast('Woooosh scheduled! 📅', 'success');
             } else if (task && !datetimeValue) {
-                alert("Please select a date and time for your woooosh.");
+                showToast('Please select a date and time for your woooosh.', 'error');
             }
         }
-        
+
         function cancelScheduling(id) {
             const task = tasks.find(t => t.id === id);
             if (task) {
@@ -609,52 +785,76 @@
             }
         }
 
+        // ── Render ───────────────────────────────────────────────────────────
         function saveAndRender() {
             saveTasks();
             renderTasks();
         }
 
+        function updateFilterBadges() {
+            const counts = { all: tasks.length, idea: 0, action: 0, inProgress: 0, reminder: 0, scheduled: 0, completed: 0 };
+            tasks.forEach(t => { if (counts[t.status] !== undefined) counts[t.status]++; });
+            const map = {
+                all:        ['filterAll',        'All'],
+                idea:       ['filterIdea',       '💡 Ideas'],
+                action:     ['filterAction',     '⚡ Actions'],
+                inProgress: ['filterInProgress', '🔥 Started'],
+                reminder:   ['filterReminder',   '🔔 Reminders'],
+                scheduled:  ['filterScheduled',  '📅 Scheduled'],
+                completed:  ['filterCompleted',  '✅ Done'],
+            };
+            Object.entries(map).forEach(([status, [btnId, label]]) => {
+                const btn = document.getElementById(btnId);
+                if (!btn) return;
+                const n = counts[status] || 0;
+                btn.innerHTML = n > 0 ? `${label} <span class="filter-count">${n}</span>` : label;
+            });
+        }
+
         function renderTasks() {
-            taskList.innerHTML = ""; 
+            taskList.innerHTML = '';
 
             const filteredTasks = tasks.filter(task => {
                 if (currentFilter === 'all') return true;
                 return task.status === currentFilter;
-            }).sort((a,b) => { 
+            }).sort((a, b) => {
                 if (a.status === 'completed' && b.status !== 'completed') return 1;
                 if (a.status !== 'completed' && b.status === 'completed') return -1;
-                return new Date(b.created) - new Date(a.created); 
+                return new Date(b.created) - new Date(a.created);
             });
-            
-            if (tasks.length === 0) { 
-                 noTasksMessage.textContent = "Nothing to woooosh about yet! Add your first idea.";
-                 noTasksMessage.style.display = 'block';
-                 taskList.style.display = 'none';
-            } else if (filteredTasks.length === 0 && tasks.length > 0) { 
-                 noTasksMessage.textContent = "No wooooshes in this view. Try a different filter!";
-                 noTasksMessage.style.display = 'block';
-                 taskList.style.display = 'none';
+
+            updateFilterBadges();
+
+            if (tasks.length === 0) {
+                noTasksMessage.textContent = 'Nothing to woooosh about yet! Add your first idea. 💡';
+                noTasksMessage.style.display = 'block';
+                taskList.style.display = 'none';
+            } else if (filteredTasks.length === 0) {
+                noTasksMessage.textContent = 'No wooooshes in this view. Try a different filter!';
+                noTasksMessage.style.display = 'block';
+                taskList.style.display = 'none';
             } else {
                 noTasksMessage.style.display = 'none';
                 taskList.style.display = 'block';
             }
 
-
             filteredTasks.forEach(task => {
                 const li = document.createElement('li');
-                li.className = `task-item status-${task.status}`;
+                li.className = `task-item status-${task.status}${task._isNew ? ' task-item-new' : ''}`;
                 li.dataset.id = task.id;
+                if (task._isNew) task._isNew = false; // clear after first render
 
                 let taskHTML = `<div class="task-content">`;
-                
+
                 if (task.isEditing) {
-                    taskHTML += `<input type="text" class="task-text editing" value="${escapeHTML(task.text)}" onblur="updateTaskText(${task.id}, this.value)" onkeypress="if(event.key === 'Enter') { this.blur(); return false; } else if (event.key === 'Escape') { toggleEdit(${task.id}); return false; }">`;
+                    taskHTML += `<input type="text" class="task-text editing" value="${escapeHTML(task.text)}"
+                        onkeydown="if(event.key==='Enter'){_editCancelled=false;this.blur();}else if(event.key==='Escape'){event.preventDefault();_editCancelled=true;this.blur();}"
+                        onblur="handleEditBlur(${task.id},this.value)">`;
                 } else {
                     taskHTML += `<span class="task-text ${task.status === 'completed' ? 'status-completed' : ''}">${escapeHTML(task.text)}</span>`;
                 }
-                
-                taskHTML += `<span class="task-status status-${task.status}">${getFriendlyStatus(task.status)}</span>
-                             </div>`;
+
+                taskHTML += `<span class="task-status status-${task.status}">${getFriendlyStatus(task.status)}</span></div>`;
 
                 const actionsDiv = document.createElement('div');
                 actionsDiv.className = 'task-actions';
@@ -662,50 +862,53 @@
                 if (!task.isEditing) {
                     actionsDiv.innerHTML += `<button class="btn-edit" onclick="toggleEdit(${task.id})">Edit</button>`;
                 } else {
-                    actionsDiv.innerHTML += `<button class="btn-save" onclick="updateTaskText(${task.id}, this.closest('.task-item').querySelector('.task-text.editing').value)">Save</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-save" onclick="updateTaskText(${task.id},this.closest('.task-item').querySelector('.task-text.editing').value)">Save</button>`;
                 }
 
                 if (task.status === 'idea') {
-                    actionsDiv.innerHTML += `<button class="btn-actionize" onclick="changeStatus(${task.id}, 'action')">Actionize</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-actionize" onclick="changeStatus(${task.id},'action')">⚡ Actionize</button>`;
                 }
                 if (task.status === 'action' && !task.isScheduling) {
-                    actionsDiv.innerHTML += `<button class="btn-start" onclick="changeStatus(${task.id}, 'inProgress')">Start Now</button>`;
-                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">Schedule</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-start" onclick="changeStatus(${task.id},'inProgress')">🔥 Start Now</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-reminder" onclick="changeStatus(${task.id},'reminder')">🔔 Reminder</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">📅 Schedule</button>`;
                 }
                 if (task.status === 'inProgress' && !task.isScheduling) {
-                    actionsDiv.innerHTML += `<button class="btn-complete" onclick="changeStatus(${task.id}, 'completed')">Complete</button>`;
-                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">Schedule</button>`; 
+                    actionsDiv.innerHTML += `<button class="btn-complete" onclick="changeStatus(${task.id},'completed')">✅ Complete</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">📅 Schedule</button>`;
+                }
+                if (task.status === 'reminder') {
+                    actionsDiv.innerHTML += `<button class="btn-start" onclick="changeStatus(${task.id},'inProgress')">🔥 Start Now</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-complete" onclick="changeStatus(${task.id},'completed')">✅ Complete</button>`;
                 }
                 if (task.status === 'scheduled' && !task.isScheduling) {
-                    actionsDiv.innerHTML += `<button class="btn-start" onclick="changeStatus(${task.id}, 'inProgress')">Start Now</button>`;
-                    actionsDiv.innerHTML += `<button class="btn-complete" onclick="changeStatus(${task.id}, 'completed')">Complete</button>`;
-                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">Reschedule</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-start" onclick="changeStatus(${task.id},'inProgress')">🔥 Start Now</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-complete" onclick="changeStatus(${task.id},'completed')">✅ Complete</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-schedule" onclick="openScheduleInterface(${task.id})">📅 Reschedule</button>`;
                 }
                 if (task.status === 'completed') {
-                    actionsDiv.innerHTML += `<button class="btn-actionize" onclick="changeStatus(${task.id}, 'action')">Re-open</button>`;
+                    actionsDiv.innerHTML += `<button class="btn-actionize" onclick="changeStatus(${task.id},'action')">↩ Re-open</button>`;
                 }
-                
-                if(!task.isEditing && !task.isScheduling) {
+
+                if (!task.isEditing && !task.isScheduling) {
                     actionsDiv.innerHTML += `<button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>`;
                 }
-                
+
                 taskHTML += actionsDiv.outerHTML;
 
                 if (task.status === 'scheduled' && task.scheduledFor && !task.isScheduling) {
-                    taskHTML += `<div class="schedule-details">Scheduled: ${new Date(task.scheduledFor).toLocaleString()}</div>`;
+                    taskHTML += `<div class="schedule-details">📅 Scheduled: ${new Date(task.scheduledFor).toLocaleString()}</div>`;
                 }
-                
-                if (task.isScheduling) {
-                     const now = new Date();
-                     const currentScheduled = task.scheduledFor ? new Date(task.scheduledFor) : new Date(now.getTime() + (60*60*1000)); 
-                     
-                     const pad = (num) => String(num).padStart(2, '0');
-                     const defaultDateTime = `${currentScheduled.getFullYear()}-${pad(currentScheduled.getMonth() + 1)}-${pad(currentScheduled.getDate())}T${pad(currentScheduled.getHours())}:${pad(currentScheduled.getMinutes())}`;
 
+                if (task.isScheduling) {
+                    const now = new Date();
+                    const ref = task.scheduledFor ? new Date(task.scheduledFor) : new Date(now.getTime() + 3600000);
+                    const pad = n => String(n).padStart(2, '0');
+                    const defaultDT = `${ref.getFullYear()}-${pad(ref.getMonth()+1)}-${pad(ref.getDate())}T${pad(ref.getHours())}:${pad(ref.getMinutes())}`;
                     taskHTML += `
                         <div class="schedule-input-area">
-                            <input type="datetime-local" id="scheduleTime-${task.id}" value="${defaultDateTime}">
-                            <button onclick="confirmSchedule(${task.id}, document.getElementById('scheduleTime-${task.id}').value)">Set</button>
+                            <input type="datetime-local" id="scheduleTime-${task.id}" value="${defaultDT}">
+                            <button onclick="confirmSchedule(${task.id},document.getElementById('scheduleTime-${task.id}').value)">Set</button>
                             <button onclick="cancelScheduling(${task.id})">Cancel</button>
                         </div>`;
                 }
@@ -714,37 +917,35 @@
                 taskList.appendChild(li);
             });
         }
-        
+
         function getFriendlyStatus(status) {
             const map = {
-                'idea': 'Idea', 'action': 'Action!', 'inProgress': 'Doing It!',
-                'scheduled': 'Scheduled', 'completed': 'Woooosh\'d!'
+                'idea':       '💡 Idea',
+                'action':     '⚡ Action!',
+                'inProgress': '🔥 Doing It!',
+                'reminder':   '🔔 Reminder',
+                'scheduled':  '📅 Scheduled',
+                'completed':  '✅ Woooosh\'d!'
             };
             return map[status] || status;
         }
 
         function escapeHTML(str) {
-            const p = document.createElement("p");
-            p.textContent = str; 
+            const p = document.createElement('p');
+            p.textContent = str;
             return p.innerHTML;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             loadTasks();
-            const initialFilterButton = document.getElementById('filterAll'); 
-            if (initialFilterButton) initialFilterButton.classList.add('active');
             renderTasks();
         });
-        
+
         if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
             window.addEventListener('load', () => {
-              navigator.serviceWorker.register('./sw.js') 
-                .then(registration => {
-                  console.log('woooosh ServiceWorker registration successful, scope: ', registration.scope);
-                })
-                .catch(error => {
-                  console.log('woooosh ServiceWorker registration failed: ', error);
-                });
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('woooosh ServiceWorker registered, scope:', reg.scope))
+                    .catch(err => console.log('woooosh ServiceWorker registration failed:', err));
             });
         }
     </script>
