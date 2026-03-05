@@ -1,5 +1,5 @@
 // In sw.js
-const CACHE_NAME = 'woooosh-cache-v6'; // <-- IMPORTANT: Increment the cache version!
+const CACHE_NAME = 'woooosh-cache-v7'; // <-- IMPORTANT: Increment the cache version!
 const ASSETS_TO_CACHE = [
   './',                         // For start_url: "/"
   './index.html',               // Explicit cache for index.html
