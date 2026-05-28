@@ -1178,10 +1178,11 @@
         (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3001'
             : '');  // empty = same-origin on Netlify; /sync/:id served by the function
-    let syncAccountId = null;   // 32-char hex (first 16 bytes of key) — sent to server
-    let syncAesKey    = null;   // CryptoKey (full 32 bytes) — never leaves device
-    let syncEnabled   = false;
-    let _syncTimer    = null;
+    let syncAccountId    = null;   // 32-char hex (first 16 bytes of key) — sent to server
+    let syncAesKey       = null;   // CryptoKey (full 32 bytes) — never leaves device
+    let syncEnabled      = false;
+    let _syncTimer       = null;
+    let _syncInProgress  = false;  // prevents concurrent syncNow/syncToServer overlap
 
     const taskInput      = document.getElementById('taskInput');
     const taskList       = document.getElementById('taskList');
@@ -1331,6 +1332,8 @@
     }
     async function syncToServer() {
         if (!syncEnabled || !syncAccountId) return;
+        if (_syncInProgress) return;   // a full syncNow is running — it will push
+        _syncInProgress = true;
         try {
             setSyncStatus('syncing');
             const version   = Date.now();
@@ -1344,6 +1347,7 @@
             localStorage.setItem('wooooshSyncVersion', String(version));
             setSyncStatus('synced');
         } catch { setSyncStatus('offline'); }
+        finally { _syncInProgress = false; }
     }
 
     // ── Sync: merge — per-task last-write-wins by updatedAt ───────────
@@ -1361,9 +1365,13 @@
     // ── Sync: pull + merge + push (manual Sync button) ────────────────
     async function syncNow({ silent = false } = {}) {
         if (!syncEnabled || !syncAccountId) return;
+        if (_syncInProgress) return;   // already running
+        _syncInProgress = true;
+        clearTimeout(_syncTimer);      // cancel any pending auto-push
         setSyncStatus('syncing');
         try {
             const res  = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`);
+            if (!res.ok) throw new Error('fetch error');
             const data = await res.json();
 
             if (data.exists) {
@@ -1377,15 +1385,21 @@
             // Push merged result (or local-only if nothing was on server)
             const version   = Date.now();
             const encrypted = await encryptTasks(tasks);
-            await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
+            const putRes = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...encrypted, version }),
             });
+            if (!putRes.ok) throw new Error('put error');
             localStorage.setItem('wooooshSyncVersion', String(version));
             setSyncStatus('synced');
             if (!silent) showToast('Synced ✓', 'success');
-        } catch { setSyncStatus('offline'); }
+        } catch (err) {
+            console.error('[woooosh] syncNow failed:', err);
+            setSyncStatus('offline');
+        } finally {
+            _syncInProgress = false;
+        }
     }
 
     // ── Toast notifications ───────────────────────────────────────────
