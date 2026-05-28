@@ -624,6 +624,31 @@
         font-weight: 600;
         color: var(--text-primary);
         letter-spacing: -0.3px;
+        flex: 1;
+    }
+    .mobile-sync-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid var(--border);
+        background: none;
+        border-radius: 6px;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 500;
+        font-family: inherit;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: background 0.12s, color 0.12s;
+    }
+    .mobile-sync-btn:hover { background: var(--bg-hover); }
+    .mobile-sync-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #9CA3AF;
+        flex-shrink: 0;
+        transition: background 0.4s;
     }
 
     /* Mobile sidebar overlay */
@@ -834,7 +859,17 @@
         align-items: center;
         gap: 7px;
         margin-bottom: 10px;
+        padding: 7px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.12s;
+        border: 1px solid var(--border);
+        background: none;
+        width: 100%;
+        font-family: inherit;
+        text-align: left;
     }
+    .sync-status-bar:hover { background: var(--bg-hover); }
     .sync-dot-indicator {
         width: 7px;
         height: 7px;
@@ -843,23 +878,25 @@
         transition: background 0.4s;
     }
     .sync-label-text {
-        font-size: 11px;
-        color: var(--text-tertiary);
+        font-size: 12px;
+        color: var(--text-secondary);
         flex: 1;
     }
     .sync-settings-btn {
         border: none;
         background: none;
-        font-size: 13px;
+        font-size: 11px;
         cursor: pointer;
         color: var(--text-tertiary);
         padding: 2px 4px;
         border-radius: 4px;
         line-height: 1;
         font-family: inherit;
-        transition: color 0.12s, background 0.12s;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        transition: color 0.12s;
     }
-    .sync-settings-btn:hover { color: var(--text-secondary); background: var(--bg-hover); }
+    .sync-settings-btn:hover { color: var(--text-secondary); }
 
     .sync-panel {
         margin-bottom: 10px;
@@ -966,6 +1003,10 @@
     <div class="mobile-header">
         <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
         <span class="mobile-app-logo">woooosh</span>
+        <button class="mobile-sync-btn" id="mobileSyncBtn" onclick="openMobileSync()" title="Sync settings">
+            <span class="mobile-sync-dot" id="mobileSyncDot"></span>
+            Sync
+        </button>
     </div>
 
     <!-- Sidebar -->
@@ -1026,12 +1067,12 @@
         </nav>
 
         <div class="sidebar-footer">
-            <!-- Sync status row -->
-            <div class="sync-status-bar">
+            <!-- Sync status row — entire button opens the panel -->
+            <button class="sync-status-bar" onclick="toggleSyncPanel()" title="Sync settings">
                 <span class="sync-dot-indicator" id="syncDot" style="background:#9CA3AF"></span>
                 <span class="sync-label-text" id="syncLabel">Sync loading…</span>
-                <button class="sync-settings-btn" onclick="toggleSyncPanel()" title="Sync settings">⚙</button>
-            </div>
+                <span class="sync-settings-btn">⚙ Sync</span>
+            </button>
 
             <!-- Expandable sync panel -->
             <div id="syncPanel" class="sync-panel hidden">
@@ -1187,10 +1228,29 @@
         const s = { syncing: ['#F59E0B','Syncing…'], synced: ['#10B981','Synced'], offline: ['#9CA3AF','Offline'], disabled: ['#9CA3AF','Sync off'] }[status] || ['#9CA3AF','—'];
         dot.style.background = s[0];
         label.textContent    = s[1];
+        // Keep mobile sync dot in sync
+        const mdot = document.getElementById('mobileSyncDot');
+        if (mdot) mdot.style.background = s[0];
     }
 
     function toggleSyncPanel() {
         document.getElementById('syncPanel').classList.toggle('hidden');
+    }
+
+    function openMobileSync() {
+        // On mobile, open the sidebar and show the sync panel
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        if (sidebar && !sidebar.classList.contains('sidebar-open')) {
+            sidebar.classList.add('sidebar-open');
+            if (overlay) overlay.classList.add('overlay-open');
+        }
+        const panel = document.getElementById('syncPanel');
+        if (panel) panel.classList.remove('hidden');
+        // Scroll sidebar footer into view
+        setTimeout(() => {
+            document.querySelector('.sidebar-footer')?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }, 150);
     }
     function showSyncKey() {
         document.getElementById('syncKeyDisplay').classList.remove('hidden');
