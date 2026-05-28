@@ -828,6 +828,132 @@
             min-height: 36px;
         }
     }
+    /* ─── Sync Panel ──────────────────────────────────────────────── */
+    .sync-status-bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 10px;
+    }
+    .sync-dot-indicator {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        transition: background 0.4s;
+    }
+    .sync-label-text {
+        font-size: 11px;
+        color: var(--text-tertiary);
+        flex: 1;
+    }
+    .sync-settings-btn {
+        border: none;
+        background: none;
+        font-size: 13px;
+        cursor: pointer;
+        color: var(--text-tertiary);
+        padding: 2px 4px;
+        border-radius: 4px;
+        line-height: 1;
+        font-family: inherit;
+        transition: color 0.12s, background 0.12s;
+    }
+    .sync-settings-btn:hover { color: var(--text-secondary); background: var(--bg-hover); }
+
+    .sync-panel {
+        margin-bottom: 10px;
+        padding: 10px;
+        background: var(--bg-hover);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font-size: 11px;
+    }
+    .sync-panel.hidden { display: none; }
+
+    .sync-panel-title {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 8px;
+    }
+    .sync-panel-row { display: flex; gap: 6px; margin-bottom: 0; }
+
+    .sync-action-btn {
+        flex: 1;
+        padding: 5px 6px;
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        background: #fff;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: background 0.1s, color 0.1s, border-color 0.1s;
+        white-space: nowrap;
+    }
+    .sync-action-btn:hover { background: var(--accent-bg); color: var(--accent-text); border-color: var(--accent); }
+
+    .sync-key-display { margin-top: 8px; }
+    .sync-key-display.hidden { display: none; }
+
+    .sync-key-code {
+        display: block;
+        font-family: 'SF Mono', 'Consolas', 'Courier New', monospace;
+        font-size: 9.5px;
+        color: var(--text-primary);
+        word-break: break-all;
+        background: #fff;
+        padding: 7px 8px;
+        border-radius: 5px;
+        border: 1px solid var(--border);
+        margin-bottom: 6px;
+        line-height: 1.7;
+        letter-spacing: 0.03em;
+    }
+    .sync-copy-btn, .sync-apply-btn {
+        width: 100%;
+        padding: 6px;
+        border: none;
+        border-radius: 5px;
+        background: var(--accent);
+        color: #fff;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    .sync-copy-btn:hover, .sync-apply-btn:hover { background: var(--accent-hover); }
+
+    .sync-key-input-area { margin-top: 8px; }
+    .sync-key-input-area.hidden { display: none; }
+
+    .sync-key-field {
+        width: 100%;
+        padding: 6px 8px;
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        font-family: 'SF Mono', 'Consolas', monospace;
+        font-size: 9.5px;
+        background: #fff;
+        margin-bottom: 6px;
+        outline: none;
+        box-sizing: border-box;
+        color: var(--text-primary);
+    }
+    .sync-key-field:focus { border-color: var(--border-focus); }
+
+    .sync-warning {
+        font-size: 10px;
+        color: var(--text-tertiary);
+        margin-top: 6px;
+        line-height: 1.4;
+    }
+
     </style>
 </head>
 <body>
@@ -900,6 +1026,34 @@
         </nav>
 
         <div class="sidebar-footer">
+            <!-- Sync status row -->
+            <div class="sync-status-bar">
+                <span class="sync-dot-indicator" id="syncDot" style="background:#9CA3AF"></span>
+                <span class="sync-label-text" id="syncLabel">Sync loading…</span>
+                <button class="sync-settings-btn" onclick="toggleSyncPanel()" title="Sync settings">⚙</button>
+            </div>
+
+            <!-- Expandable sync panel -->
+            <div id="syncPanel" class="sync-panel hidden">
+                <p class="sync-panel-title">Cross-device sync</p>
+                <div class="sync-panel-row">
+                    <button class="sync-action-btn" onclick="showSyncKey()">Show key</button>
+                    <button class="sync-action-btn" onclick="showEnterKeyInput()">Enter key</button>
+                </div>
+
+                <div id="syncKeyDisplay" class="sync-key-display hidden">
+                    <code id="syncKeyCode" class="sync-key-code"></code>
+                    <button class="sync-copy-btn" onclick="copySyncKey()">Copy sync key</button>
+                    <p class="sync-warning">Keep this key private. Anyone with it can read your data.</p>
+                </div>
+
+                <div id="syncKeyInput" class="sync-key-input-area hidden">
+                    <input type="text" id="syncKeyField" class="sync-key-field"
+                           placeholder="Paste sync key from another device…">
+                    <button class="sync-apply-btn" onclick="applySyncKey()">Apply &amp; sync</button>
+                </div>
+            </div>
+
             <button id="deleteAllButton" onclick="deleteAllTasks()">Clear all tasks</button>
         </div>
     </aside>
@@ -964,6 +1118,14 @@
     let currentFilter = 'all';
     let _editCancelled = false;
 
+    // ── Sync configuration ────────────────────────────────────────────
+    // Override via: localStorage.setItem('wooooshSyncServer', 'https://your-server.com')
+    const SYNC_SERVER = localStorage.getItem('wooooshSyncServer') || 'http://localhost:3001';
+    let syncAccountId = null;   // 32-char hex (first 16 bytes of key) — sent to server
+    let syncAesKey    = null;   // CryptoKey (full 32 bytes) — never leaves device
+    let syncEnabled   = false;
+    let _syncTimer    = null;
+
     const taskInput      = document.getElementById('taskInput');
     const taskList       = document.getElementById('taskList');
     const noTasksMessage = document.getElementById('noTasksMessage');
@@ -988,6 +1150,147 @@
     function closeSidebar() {
         document.getElementById('sidebar').classList.remove('sidebar-open');
         document.getElementById('sidebarOverlay').classList.remove('overlay-open');
+    }
+
+    // ── Sync: crypto helpers ──────────────────────────────────────────
+    function toB64url(buf) {
+        return btoa(String.fromCharCode(...new Uint8Array(buf)))
+            .replace(/\+/g, '-').replace(/\//g, '_').replace(/=*$/, '');
+    }
+    function fromB64url(s) {
+        const b64 = s.replace(/-/g, '+').replace(/_/g, '/')
+            + '=='.slice(0, (4 - s.length % 4) % 4);
+        return new Uint8Array(atob(b64).split('').map(c => c.charCodeAt(0)));
+    }
+
+    async function encryptTasks(taskArr) {
+        const iv   = crypto.getRandomValues(new Uint8Array(12));
+        const data = new TextEncoder().encode(JSON.stringify(taskArr));
+        const ct   = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, syncAesKey, data);
+        return { iv: toB64url(iv), ciphertext: toB64url(new Uint8Array(ct)) };
+    }
+    async function decryptPayload(payload) {
+        const iv = fromB64url(payload.iv);
+        const ct = fromB64url(payload.ciphertext);
+        const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, syncAesKey, ct);
+        return JSON.parse(new TextDecoder().decode(pt));
+    }
+
+    // ── Sync: status UI ───────────────────────────────────────────────
+    function setSyncStatus(status) {
+        const dot   = document.getElementById('syncDot');
+        const label = document.getElementById('syncLabel');
+        if (!dot || !label) return;
+        const s = { syncing: ['#F59E0B','Syncing…'], synced: ['#10B981','Synced'], offline: ['#9CA3AF','Offline'], disabled: ['#9CA3AF','Sync off'] }[status] || ['#9CA3AF','—'];
+        dot.style.background = s[0];
+        label.textContent    = s[1];
+    }
+
+    function toggleSyncPanel() {
+        document.getElementById('syncPanel').classList.toggle('hidden');
+    }
+    function showSyncKey() {
+        document.getElementById('syncKeyDisplay').classList.remove('hidden');
+        document.getElementById('syncKeyInput').classList.add('hidden');
+    }
+    function showEnterKeyInput() {
+        document.getElementById('syncKeyInput').classList.remove('hidden');
+        document.getElementById('syncKeyDisplay').classList.add('hidden');
+    }
+    function _refreshKeyDisplay() {
+        const raw = localStorage.getItem('wooooshSyncKey') || '';
+        const el  = document.getElementById('syncKeyCode');
+        if (el) el.textContent = raw.match(/.{1,11}/g)?.join(' ') || '';
+    }
+    async function copySyncKey() {
+        const raw = localStorage.getItem('wooooshSyncKey');
+        if (!raw) return;
+        try {
+            await navigator.clipboard.writeText(raw);
+            showToast('Sync key copied to clipboard.', 'success');
+        } catch {
+            showToast('Copy failed — select the key manually.', 'error');
+        }
+    }
+    async function applySyncKey() {
+        const raw = (document.getElementById('syncKeyField')?.value || '').trim().replace(/\s+/g,'');
+        if (raw.length < 10) { showToast('Key too short.', 'error'); return; }
+        try {
+            const bytes = fromB64url(raw);
+            if (bytes.length !== 32) throw new Error('wrong length');
+            localStorage.setItem('wooooshSyncKey', raw);
+            localStorage.removeItem('wooooshSyncVersion');
+            showToast('Sync key applied — loading your data…', 'info');
+            document.getElementById('syncKeyField').value = '';
+            document.getElementById('syncPanel').classList.add('hidden');
+            await initSync();
+        } catch { showToast('Invalid sync key.', 'error'); }
+    }
+
+    // ── Sync: init ────────────────────────────────────────────────────
+    async function initSync() {
+        if (!crypto?.subtle) { setSyncStatus('disabled'); return; }
+        let raw = localStorage.getItem('wooooshSyncKey');
+        let keyBytes;
+        if (raw) {
+            keyBytes = fromB64url(raw);
+        } else {
+            keyBytes = crypto.getRandomValues(new Uint8Array(32));
+            raw = toB64url(keyBytes);
+            localStorage.setItem('wooooshSyncKey', raw);
+        }
+        syncAccountId = Array.from(keyBytes.slice(0,16)).map(b=>b.toString(16).padStart(2,'0')).join('');
+        syncAesKey    = await crypto.subtle.importKey('raw', keyBytes, 'AES-GCM', false, ['encrypt','decrypt']);
+        syncEnabled   = true;
+        _refreshKeyDisplay();
+        setSyncStatus('offline');
+        await syncFromServer();
+    }
+
+    // ── Sync: push ────────────────────────────────────────────────────
+    function debouncedSync() {
+        if (!syncEnabled) return;
+        clearTimeout(_syncTimer);
+        _syncTimer = setTimeout(syncToServer, 1500);
+    }
+    async function syncToServer() {
+        if (!syncEnabled || !syncAccountId) return;
+        try {
+            setSyncStatus('syncing');
+            const version   = Date.now();
+            const encrypted = await encryptTasks(tasks);
+            const res = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...encrypted, version }),
+            });
+            if (!res.ok) throw new Error('server error');
+            localStorage.setItem('wooooshSyncVersion', String(version));
+            setSyncStatus('synced');
+        } catch { setSyncStatus('offline'); }
+    }
+
+    // ── Sync: pull ────────────────────────────────────────────────────
+    async function syncFromServer() {
+        if (!syncEnabled || !syncAccountId) return;
+        try {
+            const res  = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`);
+            const data = await res.json();
+            if (!data.exists) { await syncToServer(); return; }
+
+            const remoteV = data.version || 0;
+            const localV  = parseInt(localStorage.getItem('wooooshSyncVersion') || '0', 10);
+
+            if (remoteV > localV) {
+                const remoteTasks = await decryptPayload(data);
+                tasks = remoteTasks.map(t => ({ ...t, isEditing: false, isScheduling: false }));
+                saveTasks();
+                localStorage.setItem('wooooshSyncVersion', String(remoteV));
+                renderTasks();
+                showToast('Tasks synced from another device.', 'info');
+            }
+            setSyncStatus('synced');
+        } catch { setSyncStatus('offline'); }
     }
 
     // ── Toast notifications ───────────────────────────────────────────
@@ -1270,6 +1573,7 @@
     // ── Render ─────────────────────────────────────────────────────────
     function saveAndRender() {
         saveTasks();
+        debouncedSync();
         renderTasks();
     }
 
@@ -1390,9 +1694,10 @@
         });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
         loadTasks();
         renderTasks();
+        try { await initSync(); } catch { setSyncStatus('offline'); }
     });
 
     if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
