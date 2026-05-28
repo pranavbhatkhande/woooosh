@@ -1,0 +1,6 @@
+# Intermediate per-device screenshots and temp files produced by demo scripts
+_a_*.png
+_b_*.png
+_title_*.png
+_frames.txt
+_sync_frames.txt
