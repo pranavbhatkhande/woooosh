@@ -1120,7 +1120,10 @@
 
     // ── Sync configuration ────────────────────────────────────────────
     // Override via: localStorage.setItem('wooooshSyncServer', 'https://your-server.com')
-    const SYNC_SERVER = localStorage.getItem('wooooshSyncServer') || 'http://localhost:3001';
+    const SYNC_SERVER = localStorage.getItem('wooooshSyncServer') ||
+        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3001'
+            : '');  // empty = same-origin on Netlify; /sync/:id served by the function
     let syncAccountId = null;   // 32-char hex (first 16 bytes of key) — sent to server
     let syncAesKey    = null;   // CryptoKey (full 32 bytes) — never leaves device
     let syncEnabled   = false;
