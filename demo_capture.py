@@ -1,6 +1,6 @@
 """
-Captures screenshots of the woooosh redesign across multiple states,
-then stitches them into a demo video using ffmpeg.
+Captures mobile-specific screenshots: iOS Safari viewport, Android Chrome,
+tap-to-expand, bottom nav, FAB — then stitches into a demo video.
 """
 import asyncio
 import json
@@ -12,10 +12,8 @@ from playwright.async_api import async_playwright
 OUT = "/home/user/woooosh/demo"
 os.makedirs(OUT, exist_ok=True)
 
-# Realistic demo tasks seeded into localStorage
 now = datetime.utcnow()
-def ts(minutes_ago=0):
-    return (now - timedelta(minutes=minutes_ago)).isoformat() + "Z"
+def ts(m=0): return (now - timedelta(minutes=m)).isoformat() + "Z"
 
 DEMO_TASKS = [
     {"id": 1001, "text": "Redesign the onboarding flow", "status": "inProgress",
@@ -37,127 +35,123 @@ DEMO_TASKS = [
      "created": ts(90), "scheduledFor": None, "isEditing": False, "isScheduling": False},
 ]
 
+CHROMIUM = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
+BASE = "file:///home/user/woooosh/index.html"
+
+async def seed(page):
+    await page.goto(BASE, wait_until="networkidle")
+    await page.evaluate(f"localStorage.setItem('wooooshTasks', JSON.stringify({json.dumps(DEMO_TASKS)}))")
+    await page.reload(wait_until="networkidle")
+
 async def capture():
     async with async_playwright() as p:
         browser = await p.chromium.launch(
-            executable_path="/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+            executable_path=CHROMIUM,
             args=["--no-sandbox", "--disable-dev-shm-usage"]
         )
 
-        # ── Desktop screenshots ───────────────────────────────────────
-        base = "file:///home/user/woooosh/index.html"
-        page = await browser.new_page(viewport={"width": 1200, "height": 780})
+        # ── Desktop: 1440×900 (wide, "real" SaaS viewport) ──────────────
+        desk = await browser.new_page(viewport={"width": 1440, "height": 900})
+        await seed(desk)
+        await desk.wait_for_timeout(500)
+        await desk.screenshot(path=f"{OUT}/d01_desktop_all.png")
+        print("✓ d01 desktop all-tasks")
 
-        # Navigate first so localStorage is accessible, then seed and reload
-        await page.goto(base, wait_until="networkidle")
-        await page.evaluate(f"""
-            localStorage.setItem('wooooshTasks', JSON.stringify({json.dumps(DEMO_TASKS)}));
-        """)
-        await page.reload(wait_until="networkidle")
+        await desk.locator(".task-item").nth(1).hover()
+        await desk.wait_for_timeout(300)
+        await desk.screenshot(path=f"{OUT}/d02_desktop_hover.png")
+        print("✓ d02 desktop hover")
 
-        # 1. Full app – all tasks
-        await page.goto(base, wait_until="networkidle")
-        await page.wait_for_timeout(600)
-        await page.screenshot(path=f"{OUT}/01_all_tasks.png", full_page=False)
-        print("✓ 01_all_tasks")
+        await desk.click("#filterAction")
+        await desk.wait_for_timeout(300)
+        await desk.screenshot(path=f"{OUT}/d03_desktop_actions_filter.png")
+        print("✓ d03 desktop actions filter")
 
-        # 2. Hover over a task row to reveal actions
-        row = page.locator(".task-item").first
-        await row.hover()
-        await page.wait_for_timeout(300)
-        await page.screenshot(path=f"{OUT}/02_row_hover.png", full_page=False)
-        print("✓ 02_row_hover")
+        await desk.click("#filterAll")
+        await desk.fill("#taskInput", "Improve search relevance scoring")
+        await desk.wait_for_timeout(300)
+        await desk.screenshot(path=f"{OUT}/d04_desktop_input.png")
+        print("✓ d04 desktop input")
 
-        # 3. Filter: Ideas view
-        await page.click("#filterIdea")
-        await page.wait_for_timeout(300)
-        await page.screenshot(path=f"{OUT}/03_ideas_filter.png", full_page=False)
-        print("✓ 03_ideas_filter")
+        # ── iPhone 14 Pro (390×844) ──────────────────────────────────────
+        iphone = await browser.new_page(viewport={"width": 390, "height": 844}, has_touch=True)
+        await seed(iphone)
+        await iphone.wait_for_timeout(500)
+        await iphone.screenshot(path=f"{OUT}/m01_iphone_default.png")
+        print("✓ m01 iPhone default")
 
-        # 4. Filter: In progress view
-        await page.click("#filterInProgress")
-        await page.wait_for_timeout(300)
-        await page.screenshot(path=f"{OUT}/04_inprogress_filter.png", full_page=False)
-        print("✓ 04_inprogress_filter")
+        # Tap a task row to reveal actions
+        await iphone.tap(".task-item:nth-child(1) .task-row")
+        await iphone.wait_for_timeout(400)
+        await iphone.screenshot(path=f"{OUT}/m02_iphone_row_expanded.png")
+        print("✓ m02 iPhone row expanded")
 
-        # 5. Filter: Done view
-        await page.click("#filterCompleted")
-        await page.wait_for_timeout(300)
-        await page.screenshot(path=f"{OUT}/05_done_filter.png", full_page=False)
-        print("✓ 05_done_filter")
+        # Tap a bottom tab — Ideas
+        await iphone.tap("#bt-idea")
+        await iphone.wait_for_timeout(300)
+        await iphone.screenshot(path=f"{OUT}/m03_iphone_ideas_tab.png")
+        print("✓ m03 iPhone ideas tab")
 
-        # 6. Back to All – show how-to box open
-        await page.click("#filterAll")
-        await page.wait_for_timeout(200)
-        await page.click("#toggleHowToBtn")
-        await page.wait_for_timeout(300)
-        await page.screenshot(path=f"{OUT}/06_howto_open.png", full_page=False)
-        print("✓ 06_howto_open")
+        # Active tab — In progress
+        await iphone.tap("#bt-inProgress")
+        await iphone.wait_for_timeout(300)
+        await iphone.screenshot(path=f"{OUT}/m04_iphone_inprogress_tab.png")
+        print("✓ m04 iPhone in-progress tab")
 
-        # 7. Focused input state
-        await page.click("#toggleHowToBtn")  # close how-to
-        await page.click("#filterAll")
-        await page.wait_for_timeout(200)
-        await page.click("#taskInput")
-        await page.fill("#taskInput", "Build a demo video of the new UI")
-        await page.wait_for_timeout(300)
-        await page.screenshot(path=f"{OUT}/07_input_focused.png", full_page=False)
-        print("✓ 07_input_focused")
+        # FAB tapped — input focused at top
+        await iphone.tap("#bt-all")
+        await iphone.wait_for_timeout(200)
+        await iphone.tap(".fab")
+        await iphone.wait_for_timeout(500)
+        await iphone.screenshot(path=f"{OUT}/m05_iphone_fab_input.png")
+        print("✓ m05 iPhone FAB → input focused")
 
-        # 8. After adding the task (clear input, task appears)
-        await page.keyboard.press("Enter")
-        await page.wait_for_timeout(400)
-        await page.screenshot(path=f"{OUT}/08_task_added.png", full_page=False)
-        print("✓ 08_task_added")
+        # Sidebar overlay
+        await iphone.tap(".menu-toggle")
+        await iphone.wait_for_timeout(400)
+        await iphone.screenshot(path=f"{OUT}/m06_iphone_sidebar.png")
+        print("✓ m06 iPhone sidebar open")
 
-        # ── Mobile screenshots ────────────────────────────────────────
-        mobile = await browser.new_page(viewport={"width": 390, "height": 844})  # iPhone 14 size
-        await mobile.goto(base, wait_until="networkidle")
-        await mobile.evaluate(f"""
-            localStorage.setItem('wooooshTasks', JSON.stringify({json.dumps(DEMO_TASKS)}));
-        """)
-        await mobile.reload(wait_until="networkidle")
-        await mobile.wait_for_timeout(600)
+        # ── Android Pixel 7 (412×915) ────────────────────────────────────
+        android = await browser.new_page(viewport={"width": 412, "height": 915}, has_touch=True)
+        await seed(android)
+        await android.wait_for_timeout(500)
+        await android.screenshot(path=f"{OUT}/a01_android_default.png")
+        print("✓ a01 Android default")
 
-        # 9. Mobile – default view
-        await mobile.screenshot(path=f"{OUT}/09_mobile_default.png", full_page=False)
-        print("✓ 09_mobile_default")
-
-        # 10. Mobile – sidebar open
-        await mobile.click(".menu-toggle")
-        await mobile.wait_for_timeout(400)
-        await mobile.screenshot(path=f"{OUT}/10_mobile_sidebar.png", full_page=False)
-        print("✓ 10_mobile_sidebar")
+        await android.tap(".task-item:nth-child(2) .task-row")
+        await android.wait_for_timeout(400)
+        await android.screenshot(path=f"{OUT}/a02_android_row_expanded.png")
+        print("✓ a02 Android row expanded")
 
         await browser.close()
 
-    # ── Stitch into video ─────────────────────────────────────────────
-    # Each screenshot shown for ~2.5s → ~4fps from pngs
-    frames_file = f"{OUT}/frames.txt"
-    screenshots = [
-        "01_all_tasks", "02_row_hover", "03_ideas_filter", "04_inprogress_filter",
-        "05_done_filter", "06_howto_open", "07_input_focused", "08_task_added",
-        "09_mobile_default", "10_mobile_sidebar"
-    ]
+    # ── Stitch into two videos ───────────────────────────────────────
+    def make_video(frames, output, duration=2.5):
+        frames_file = f"{OUT}/_frames_{output}.txt"
+        with open(frames_file, "w") as f:
+            for name in frames:
+                f.write(f"file '{OUT}/{name}.png'\n")
+                f.write(f"duration {duration}\n")
+            f.write(f"file '{OUT}/{frames[-1]}.png'\nduration 0.1\n")
+        subprocess.run([
+            "ffmpeg", "-y", "-f", "concat", "-safe", "0",
+            "-i", frames_file,
+            "-vf", "scale=iw:ih:flags=lanczos,fps=30",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20", "-preset", "fast",
+            f"{OUT}/{output}.mp4"
+        ], check=True, capture_output=True)
+        print(f"✓ Video → {OUT}/{output}.mp4")
 
-    # Write ffmpeg concat list (each frame shown 2.5s)
-    with open(frames_file, "w") as f:
-        for name in screenshots:
-            f.write(f"file '{OUT}/{name}.png'\n")
-            f.write("duration 2.5\n")
-        # repeat last frame so ffmpeg doesn't cut it short
-        f.write(f"file '{OUT}/{screenshots[-1]}.png'\n")
-        f.write("duration 0.1\n")
-
-    video_path = f"{OUT}/demo.mp4"
-    subprocess.run([
-        "ffmpeg", "-y", "-f", "concat", "-safe", "0",
-        "-i", frames_file,
-        "-vf", "scale=1200:-2:flags=lanczos,fps=30",
-        "-c:v", "libx264", "-pix_fmt", "yuv420p",
-        "-crf", "20", "-preset", "fast",
-        video_path
-    ], check=True, capture_output=True)
-    print(f"\n✓ Video saved → {video_path}")
+    make_video(
+        ["d01_desktop_all","d02_desktop_hover","d03_desktop_actions_filter","d04_desktop_input"],
+        "demo_desktop"
+    )
+    make_video(
+        ["m01_iphone_default","m02_iphone_row_expanded","m03_iphone_ideas_tab",
+         "m04_iphone_inprogress_tab","m05_iphone_fab_input","m06_iphone_sidebar",
+         "a01_android_default","a02_android_row_expanded"],
+        "demo_mobile", duration=2.2
+    )
 
 asyncio.run(capture())

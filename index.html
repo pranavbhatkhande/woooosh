@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#4F46E5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>woooosh</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="manifest" href="./manifest.json">
@@ -62,6 +65,7 @@
     .app-shell {
         display: flex;
         height: 100vh;
+        height: 100dvh; /* iOS Safari dynamic viewport — accounts for toolbar */
         max-width: 1100px;
         margin: 0 auto;
         background: var(--bg-app);
@@ -632,12 +636,16 @@
     }
     .sidebar-overlay.overlay-open { display: block; }
 
-    /* ─── Responsive ──────────────────────────────────────────────── */
+    /* ─── Global touch/iOS polish ─────────────────────────────────── */
+    * { -webkit-tap-highlight-color: transparent; }
+
+    /* ─── Responsive: desktop sidebar hidden on narrow screens ───── */
     @media (max-width: 768px) {
         .app-shell {
             flex-direction: column;
             height: auto;
             min-height: 100vh;
+            min-height: 100dvh;
         }
         .sidebar {
             display: none;
@@ -645,6 +653,7 @@
             top: 0;
             left: 0;
             height: 100vh;
+            height: 100dvh;
             z-index: 100;
             box-shadow: 0 0 0 1px var(--border), 0 8px 24px rgba(0,0,0,0.12);
         }
@@ -659,10 +668,165 @@
         }
         .input-area      { max-width: 100%; width: 100%; }
         .task-row        { padding: 12px 16px; }
-        .task-actions    { opacity: 1; } /* always visible on touch */
         .schedule-input-area { padding: 4px 16px 14px 16px; }
         .schedule-details    { padding: 2px 16px 10px 16px; }
         .no-tasks            { padding: 40px 16px; }
+
+        /* Prevent iOS font zoom on input focus — must be ≥ 16px */
+        .input-area input[type="text"],
+        .schedule-input-area input[type="datetime-local"],
+        .task-text.editing {
+            font-size: 16px;
+        }
+        /* Toast clears the bottom tab bar */
+        #toastContainer {
+            bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+        }
+    }
+
+    /* ─── Bottom Tab Bar (mobile only) ────────────────────────────── */
+    .bottom-tabs {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .bottom-tabs {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: var(--bg-sidebar);
+            border-top: 1px solid var(--border);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            /* iOS safe area: home indicator */
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        .bottom-tabs::-webkit-scrollbar { display: none; }
+
+        /* Offset content above tab bar */
+        .main-content {
+            padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+        }
+
+        .bottom-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 62px;
+            height: 52px;
+            padding: 6px 4px;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            white-space: nowrap;
+            gap: 4px;
+            flex-shrink: 0;
+            transition: color 0.12s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bottom-tab.active  { color: var(--accent); }
+
+        .bt-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--text-tertiary);
+            transition: background 0.12s;
+        }
+        .bottom-tab.active .bt-dot { background: var(--accent); }
+
+        /* Status-specific dot colors (inactive state) */
+        .bt-dot-idea      { background: var(--s-idea-dot); }
+        .bt-dot-action    { background: var(--s-action-dot); }
+        .bt-dot-progress  { background: var(--s-prog-dot); }
+        .bt-dot-reminder  { background: var(--s-remind-dot); }
+        .bt-dot-scheduled { background: var(--s-sched-dot); }
+        .bt-dot-done      { background: var(--s-done-dot); }
+    }
+
+    /* ─── Floating Action Button (mobile only) ─────────────────────── */
+    .fab { display: none; }
+
+    @media (max-width: 768px) {
+        .fab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            right: 18px;
+            bottom: calc(66px + env(safe-area-inset-bottom, 0px));
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            font-size: 26px;
+            font-weight: 300;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(79,70,229,0.4), 0 1px 3px rgba(0,0,0,0.15);
+            z-index: 150;
+            transition: background 0.15s, transform 0.12s;
+            font-family: inherit;
+        }
+        .fab:active { background: var(--accent-hover); transform: scale(0.95); }
+    }
+
+    /* ─── Tap-to-expand actions (touch/pointer:coarse devices) ──────── */
+    @media (hover: none) and (pointer: coarse) {
+        /* On touch: hide actions, use flex-wrap so they go to second row */
+        .task-row { flex-wrap: wrap; }
+
+        .task-actions {
+            flex-basis: 100%;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            padding: 0;
+            margin-top: 0;
+            transition: max-height 0.22s ease, opacity 0.18s ease, padding 0.18s ease;
+        }
+
+        .task-item--expanded .task-actions {
+            max-height: 100px;
+            opacity: 1;
+            padding: 6px 0 10px 18px;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        /* Expand chevron on task rows */
+        .task-meta::after {
+            content: '›';
+            display: inline-block;
+            margin-left: 6px;
+            color: var(--text-tertiary);
+            font-size: 14px;
+            font-weight: 400;
+            transition: transform 0.2s;
+            line-height: 1;
+        }
+        .task-item--expanded .task-meta::after {
+            transform: rotate(90deg);
+            display: inline-block;
+        }
+
+        /* Larger touch targets for action buttons */
+        .task-actions button {
+            padding: 7px 12px;
+            font-size: 13px;
+            min-height: 36px;
+        }
     }
     </style>
 </head>
@@ -758,6 +922,41 @@
 
 </div>
 
+<!-- Mobile: bottom tab navigation (hidden on desktop) -->
+<nav class="bottom-tabs" id="bottomTabs">
+    <button class="bottom-tab active" id="bt-all" onclick="setFilter('all')">
+        <span class="bt-dot"></span>
+        <span>All</span>
+    </button>
+    <button class="bottom-tab" id="bt-idea" onclick="setFilter('idea')">
+        <span class="bt-dot bt-dot-idea"></span>
+        <span>Ideas</span>
+    </button>
+    <button class="bottom-tab" id="bt-action" onclick="setFilter('action')">
+        <span class="bt-dot bt-dot-action"></span>
+        <span>Actions</span>
+    </button>
+    <button class="bottom-tab" id="bt-inProgress" onclick="setFilter('inProgress')">
+        <span class="bt-dot bt-dot-progress"></span>
+        <span>Active</span>
+    </button>
+    <button class="bottom-tab" id="bt-reminder" onclick="setFilter('reminder')">
+        <span class="bt-dot bt-dot-reminder"></span>
+        <span>Remind</span>
+    </button>
+    <button class="bottom-tab" id="bt-scheduled" onclick="setFilter('scheduled')">
+        <span class="bt-dot bt-dot-scheduled"></span>
+        <span>Sched.</span>
+    </button>
+    <button class="bottom-tab" id="bt-completed" onclick="setFilter('completed')">
+        <span class="bt-dot bt-dot-done"></span>
+        <span>Done</span>
+    </button>
+</nav>
+
+<!-- Mobile: floating add button (hidden on desktop) -->
+<button class="fab" id="fab" onclick="focusInput()" aria-label="Add task">+</button>
+
 <div id="toastContainer"></div>
 
 <script>
@@ -847,12 +1046,44 @@
         }
     }
 
+    // ── Mobile helpers ────────────────────────────────────────────────
+    function updateBottomTabs(filter) {
+        document.querySelectorAll('.bottom-tab').forEach(t => t.classList.remove('active'));
+        const el = document.getElementById('bt-' + filter);
+        if (el) {
+            el.classList.add('active');
+            // Scroll the active tab into view without jarring the user
+            el.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        }
+    }
+
+    function focusInput() {
+        // Scroll content to top so the header input is visible, then focus
+        const main = document.querySelector('.main-content');
+        if (main) main.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => taskInput.focus(), 250);
+    }
+
+    function handleRowTap(id, event) {
+        // Ignore taps on action buttons or inputs inside the row
+        if (event.target.closest('.task-actions, input')) return;
+        // Only activate on touch/coarse-pointer devices
+        if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+        const li = document.querySelector(`.task-item[data-id='${id}']`);
+        if (!li) return;
+        const isExpanded = li.classList.contains('task-item--expanded');
+        // Collapse any other expanded row first
+        document.querySelectorAll('.task-item--expanded').forEach(el => el.classList.remove('task-item--expanded'));
+        if (!isExpanded) li.classList.add('task-item--expanded');
+    }
+
     // ── Filter ────────────────────────────────────────────────────────
     function setFilter(filter) {
         currentFilter = filter;
         document.querySelectorAll('.task-filters button').forEach(btn => btn.classList.remove('active'));
         const btn = document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1));
         if (btn) btn.classList.add('active');
+        updateBottomTabs(filter);
         const titles = {
             all: 'All tasks', idea: 'Ideas', action: 'Actions',
             inProgress: 'In progress', reminder: 'Reminders',
@@ -1080,11 +1311,10 @@
 
         filteredTasks.forEach(task => {
             const li = document.createElement('li');
-            li.className = `task-item status-${task.status}${task._isNew ? ' task-item-new' : ''}`;
+            const actionsVisible = task.isEditing || task.isScheduling;
+            li.className = `task-item status-${task.status}${task._isNew ? ' task-item-new' : ''}${actionsVisible ? ' task-item--expanded' : ''}`;
             li.dataset.id = task.id;
             if (task._isNew) task._isNew = false;
-
-            const actionsVisible = task.isEditing || task.isScheduling;
 
             // Build action buttons
             let actionsHTML = '';
@@ -1131,7 +1361,7 @@
                 taskTextHTML = `<span class="task-text ${task.status === 'completed' ? 'status-completed' : ''}">${escapeHTML(task.text)}</span>`;
             }
 
-            let html = `<div class="task-row">
+            let html = `<div class="task-row" onclick="handleRowTap(${task.id}, event)">
                 <span class="status-dot"></span>
                 ${taskTextHTML}
                 <span class="task-status status-${task.status}">${getFriendlyStatus(task.status)}</span>
