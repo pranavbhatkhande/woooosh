@@ -453,6 +453,11 @@
         background: var(--danger-bg);
         color: var(--danger);
     }
+    .task-actions .btn-delete-confirm {
+        background: var(--danger-bg);
+        color: var(--danger);
+        font-weight: 600;
+    }
     .task-actions .btn-complete:hover {
         background: var(--s-action-bg);
         color: var(--s-action-text);
@@ -857,19 +862,26 @@
     .sync-status-bar {
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 4px;
         margin-bottom: 10px;
-        padding: 7px 8px;
+        padding: 4px 4px 4px 8px;
         border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.12s;
         border: 1px solid var(--border);
-        background: none;
-        width: 100%;
-        font-family: inherit;
-        text-align: left;
     }
-    .sync-status-bar:hover { background: var(--bg-hover); }
+    .sync-now-btn {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex: 1;
+        border: none;
+        background: none;
+        padding: 3px 0;
+        cursor: pointer;
+        font-family: inherit;
+        border-radius: 4px;
+        transition: background 0.12s;
+    }
+    .sync-now-btn:hover { background: var(--bg-hover); }
     .sync-dot-indicator {
         width: 7px;
         height: 7px;
@@ -880,23 +892,21 @@
     .sync-label-text {
         font-size: 12px;
         color: var(--text-secondary);
-        flex: 1;
     }
     .sync-settings-btn {
         border: none;
         background: none;
-        font-size: 11px;
+        font-size: 13px;
         cursor: pointer;
         color: var(--text-tertiary);
-        padding: 2px 4px;
+        padding: 4px 6px;
         border-radius: 4px;
         line-height: 1;
         font-family: inherit;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        transition: color 0.12s;
+        transition: color 0.12s, background 0.12s;
+        flex-shrink: 0;
     }
-    .sync-settings-btn:hover { color: var(--text-secondary); }
+    .sync-settings-btn:hover { color: var(--text-secondary); background: var(--bg-hover); }
 
     .sync-panel {
         margin-bottom: 10px;
@@ -1003,7 +1013,7 @@
     <div class="mobile-header">
         <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
         <span class="mobile-app-logo">woooosh</span>
-        <button class="mobile-sync-btn" id="mobileSyncBtn" onclick="openMobileSync()" title="Sync settings">
+        <button class="mobile-sync-btn" id="mobileSyncBtn" onclick="syncNow()" title="Sync now">
             <span class="mobile-sync-dot" id="mobileSyncDot"></span>
             Sync
         </button>
@@ -1067,12 +1077,14 @@
         </nav>
 
         <div class="sidebar-footer">
-            <!-- Sync status row — entire button opens the panel -->
-            <button class="sync-status-bar" onclick="toggleSyncPanel()" title="Sync settings">
-                <span class="sync-dot-indicator" id="syncDot" style="background:#9CA3AF"></span>
-                <span class="sync-label-text" id="syncLabel">Sync loading…</span>
-                <span class="sync-settings-btn">⚙ Sync</span>
-            </button>
+            <!-- Sync row: left = Sync now button, right = settings gear -->
+            <div class="sync-status-bar">
+                <button class="sync-now-btn" onclick="syncNow()" title="Sync now">
+                    <span class="sync-dot-indicator" id="syncDot" style="background:#9CA3AF"></span>
+                    <span class="sync-label-text" id="syncLabel">Sync loading…</span>
+                </button>
+                <button class="sync-settings-btn" onclick="toggleSyncPanel()" title="Sync settings">⚙</button>
+            </div>
 
             <!-- Expandable sync panel -->
             <div id="syncPanel" class="sync-panel hidden">
@@ -1158,6 +1170,7 @@
     let tasks = [];
     let currentFilter = 'all';
     let _editCancelled = false;
+    const _pendingDelete = new Set();  // task IDs awaiting delete confirmation
 
     // ── Sync configuration ────────────────────────────────────────────
     // Override via: localStorage.setItem('wooooshSyncServer', 'https://your-server.com')
@@ -1307,10 +1320,10 @@
         syncEnabled   = true;
         _refreshKeyDisplay();
         setSyncStatus('offline');
-        await syncFromServer();
+        await syncNow({ silent: true });
     }
 
-    // ── Sync: push ────────────────────────────────────────────────────
+    // ── Sync: auto-push (debounced after local changes) ───────────────
     function debouncedSync() {
         if (!syncEnabled) return;
         clearTimeout(_syncTimer);
@@ -1333,26 +1346,45 @@
         } catch { setSyncStatus('offline'); }
     }
 
-    // ── Sync: pull ────────────────────────────────────────────────────
-    async function syncFromServer() {
+    // ── Sync: merge — per-task last-write-wins by updatedAt ───────────
+    function mergeTasks(local, remote) {
+        const byId = new Map();
+        for (const t of [...local, ...remote]) {
+            const existing = byId.get(t.id);
+            const tTime = new Date(t.updatedAt || t.created || 0).getTime();
+            const eTime = existing ? new Date(existing.updatedAt || existing.created || 0).getTime() : 0;
+            if (!existing || tTime > eTime) byId.set(t.id, t);
+        }
+        return [...byId.values()];
+    }
+
+    // ── Sync: pull + merge + push (manual Sync button) ────────────────
+    async function syncNow({ silent = false } = {}) {
         if (!syncEnabled || !syncAccountId) return;
+        setSyncStatus('syncing');
         try {
             const res  = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`);
             const data = await res.json();
-            if (!data.exists) { await syncToServer(); return; }
 
-            const remoteV = data.version || 0;
-            const localV  = parseInt(localStorage.getItem('wooooshSyncVersion') || '0', 10);
-
-            if (remoteV > localV) {
-                const remoteTasks = await decryptPayload(data);
-                tasks = remoteTasks.map(t => ({ ...t, isEditing: false, isScheduling: false }));
+            if (data.exists) {
+                const remote = await decryptPayload(data);
+                const merged = mergeTasks(tasks, remote);
+                tasks = merged.map(t => ({ ...t, isEditing: false, isScheduling: false }));
                 saveTasks();
-                localStorage.setItem('wooooshSyncVersion', String(remoteV));
                 renderTasks();
-                showToast('Tasks synced from another device.', 'info');
             }
+
+            // Push merged result (or local-only if nothing was on server)
+            const version   = Date.now();
+            const encrypted = await encryptTasks(tasks);
+            await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...encrypted, version }),
+            });
+            localStorage.setItem('wooooshSyncVersion', String(version));
             setSyncStatus('synced');
+            if (!silent) showToast('Synced ✓', 'success');
         } catch { setSyncStatus('offline'); }
     }
 
@@ -1400,7 +1432,8 @@
 
     // ── Persistence ───────────────────────────────────────────────────
     function saveTasks() {
-        const toSave = tasks.map(({ _isNew, ...rest }) => rest);
+        // Strip UI-only flags; keep _deleted tombstones so they sync correctly
+        const toSave = tasks.map(({ _isNew, isEditing, isScheduling, ...rest }) => rest);
         localStorage.setItem('wooooshTasks', JSON.stringify(toSave));
     }
 
@@ -1473,11 +1506,13 @@
             taskInput.focus();
             return;
         }
+        const now = new Date().toISOString();
         const newTask = {
             id: Date.now(),
             text,
             status: 'idea',
-            created: new Date().toISOString(),
+            created: now,
+            updatedAt: now,
             scheduledFor: null,
             isEditing: false,
             isScheduling: false,
@@ -1489,19 +1524,26 @@
     }
 
     function deleteTask(id) {
-        if (confirm('Delete this task?')) {
-            tasks = tasks.filter(t => t.id !== id);
+        if (_pendingDelete.has(id)) {
+            // Second click — confirmed: replace with tombstone
+            _pendingDelete.delete(id);
+            const idx = tasks.findIndex(t => t.id === id);
+            if (idx !== -1) tasks[idx] = { id, _deleted: true, updatedAt: new Date().toISOString() };
             saveAndRender();
+        } else {
+            // First click — arm the confirmation for 3s
+            _pendingDelete.add(id);
+            renderTasks();
+            setTimeout(() => { if (_pendingDelete.delete(id)) renderTasks(); }, 3000);
         }
     }
 
     function deleteAllTasks() {
-        if (tasks.length === 0) {
-            showToast('No tasks to clear.', 'info');
-            return;
-        }
+        const live = tasks.filter(t => !t._deleted);
+        if (live.length === 0) { showToast('No tasks to clear.', 'info'); return; }
         if (confirm('Clear all tasks? This cannot be undone.')) {
-            tasks = [];
+            const now = new Date().toISOString();
+            tasks = tasks.map(t => t._deleted ? t : { id: t.id, _deleted: true, updatedAt: now });
             saveAndRender();
         }
     }
@@ -1549,6 +1591,7 @@
             } else {
                 task.text = trimmed;
                 task.isEditing = false;
+                task.updatedAt = new Date().toISOString();
             }
             saveAndRender();
         }
@@ -1561,6 +1604,7 @@
             task.status = newStatus;
             task.isEditing = false;
             task.isScheduling = false;
+            task.updatedAt = new Date().toISOString();
             if (newStatus !== 'scheduled') task.scheduledFor = null;
             saveAndRender();
             if (newStatus === 'completed') {
@@ -1585,6 +1629,7 @@
         if (task && datetimeValue) {
             task.status = 'scheduled';
             task.scheduledFor = new Date(datetimeValue).toISOString();
+            task.updatedAt = new Date().toISOString();
             task.isScheduling = false;
             saveAndRender();
             showToast('Task scheduled.', 'success');
@@ -1641,8 +1686,9 @@
     }
 
     function updateFilterBadges() {
-        const counts = { all: tasks.length, idea: 0, action: 0, inProgress: 0, reminder: 0, scheduled: 0, completed: 0 };
-        tasks.forEach(t => { if (counts[t.status] !== undefined) counts[t.status]++; });
+        const visible = tasks.filter(t => !t._deleted);
+        const counts = { all: visible.length, idea: 0, action: 0, inProgress: 0, reminder: 0, scheduled: 0, completed: 0 };
+        visible.forEach(t => { if (counts[t.status] !== undefined) counts[t.status]++; });
         Object.entries(counts).forEach(([status, n]) => {
             const el = document.getElementById(`count-${status}`);
             if (el) el.textContent = n > 0 ? n : '';
@@ -1653,6 +1699,7 @@
         taskList.innerHTML = '';
 
         const filteredTasks = tasks.filter(task => {
+            if (task._deleted) return false;
             if (currentFilter === 'all') return true;
             return task.status === currentFilter;
         }).sort((a, b) => {
@@ -1715,7 +1762,8 @@
                 actionsHTML += `<button class="btn-actionize" onclick="changeStatus(${task.id},'action')">Re-open</button>`;
             }
             if (!task.isEditing && !task.isScheduling) {
-                actionsHTML += `<span class="btn-sep"></span><button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>`;
+                const isPending = _pendingDelete.has(task.id);
+                actionsHTML += `<span class="btn-sep"></span><button class="btn-delete${isPending ? ' btn-delete-confirm' : ''}" onclick="deleteTask(${task.id})">${isPending ? 'Confirm?' : 'Delete'}</button>`;
             }
 
             // Build task text element
