@@ -11,7 +11,7 @@
  * Run: node sync-server.js
  */
 
-const http = require('http');
+import http from 'http';
 
 // In-memory store (swap for Redis/KV in production)
 const store = new Map();

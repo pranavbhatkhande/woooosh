@@ -170,12 +170,16 @@ async def run_demo(procs):
                    "Device A — 4th task added", "Device B — received live update")
         print("✓ step 6: live update propagated")
 
-        # ── Step 7: Device B actionizes a task → syncs back to A ──────
-        # Hover and click Actionize on the first task
-        await b.hover(".task-item:first-child .task-row")
-        await b.wait_for_timeout(200)
-        actionize = b.locator(".task-item:first-child .btn-actionize")
-        await actionize.click()
+        # ── Step 7: Device B actionizes the first task → syncs back to A ──
+        # Read task ID from DOM (tasks is let-scoped, not on window)
+        first_id = await b.evaluate("document.querySelector('.task-item')?.dataset?.id")
+        item_count = await b.evaluate("document.querySelectorAll('.task-item').length")
+        print(f"  Device B DOM task count: {item_count}, first id: {first_id}")
+        if not first_id:
+            # Fallback: take a diagnostic screenshot and skip step 7
+            await b.screenshot(path=f"{OUT}/debug_step7_b.png")
+            raise RuntimeError("Device B has no rendered tasks at step 7 — see debug_step7_b.png")
+        await b.evaluate(f"changeStatus({first_id}, 'action')")
         await b.wait_for_timeout(2200)   # push
 
         await a.evaluate("syncFromServer()")
