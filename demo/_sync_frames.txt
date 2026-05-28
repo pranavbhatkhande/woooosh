@@ -1,0 +1,16 @@
+file '/home/user/woooosh/demo/sync_01_fresh_load.png'
+duration 3.0
+file '/home/user/woooosh/demo/sync_02_A_added_tasks.png'
+duration 3.0
+file '/home/user/woooosh/demo/sync_03_A_shows_key.png'
+duration 3.0
+file '/home/user/woooosh/demo/sync_04_B_entering_key.png'
+duration 3.0
+file '/home/user/woooosh/demo/sync_05_synced.png'
+duration 3.0
+file '/home/user/woooosh/demo/sync_06_live_update.png'
+duration 3.0
+file '/home/user/woooosh/demo/sync_07_B_edits_A_receives.png'
+duration 3.0
+file '/home/user/woooosh/demo/sync_07_B_edits_A_receives.png'
+duration 0.1
