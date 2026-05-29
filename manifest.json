@@ -2,7 +2,7 @@
   "name": "woooosh - Task Manager",
   "short_name": "woooosh",
   "description": "Capture Ideas, Actionize, Start, and if you can't - Schedule!",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FDF6FD",
