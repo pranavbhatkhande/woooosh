@@ -255,6 +255,130 @@
         letter-spacing: 0.5px;
     }
 
+    /* ─── Pomodoro Timer ──────────────────────────────────────────── */
+    .timer-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: var(--text-tertiary);
+        padding: 4px;
+        border-radius: 4px;
+        transition: color 0.15s, background 0.15s;
+        line-height: 1;
+    }
+    .timer-btn:hover { color: var(--accent); background: var(--accent-bg); }
+
+    .timer-modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+    }
+    .timer-modal-overlay.open { display: flex; }
+
+    .timer-modal {
+        background: var(--bg-main);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        padding: 32px 40px 28px;
+        text-align: center;
+        min-width: 260px;
+        position: relative;
+    }
+    .timer-modal-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: none;
+        border: none;
+        font-size: 18px;
+        color: var(--text-tertiary);
+        cursor: pointer;
+        padding: 2px 6px;
+        border-radius: 4px;
+        line-height: 1;
+    }
+    .timer-modal-close:hover { color: var(--text-primary); background: var(--bg-hover); }
+
+    .timer-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .timer-label.work { color: var(--accent); }
+    .timer-label.break { color: var(--s-action-dot); }
+
+    .timer-display {
+        font-size: 56px;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        color: var(--text-primary);
+        letter-spacing: -1px;
+        line-height: 1.1;
+        margin-bottom: 24px;
+    }
+
+    .timer-controls {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    }
+    .timer-controls button {
+        border: 1px solid var(--border);
+        background: var(--bg-main);
+        color: var(--text-secondary);
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.12s, color 0.12s, border-color 0.12s;
+    }
+    .timer-controls button:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .timer-controls button.primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+    }
+    .timer-controls button.primary:hover { background: var(--accent-hover); }
+
+    .timer-presets {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        margin-top: 16px;
+    }
+    .timer-presets button {
+        background: none;
+        border: none;
+        color: var(--text-tertiary);
+        font-family: inherit;
+        font-size: 11px;
+        cursor: pointer;
+        padding: 3px 8px;
+        border-radius: 4px;
+        transition: color 0.12s, background 0.12s;
+    }
+    .timer-presets button:hover { color: var(--text-secondary); background: var(--bg-hover); }
+
+    @media (max-width: 768px) {
+        .timer-modal {
+            min-width: auto;
+            width: calc(100% - 48px);
+            max-width: 320px;
+            padding: 28px 24px 24px;
+        }
+        .timer-display { font-size: 48px; }
+    }
+
     /* ─── Main Content ────────────────────────────────────────────── */
     .main-content {
         flex: 1;
@@ -1027,6 +1151,7 @@
     <div class="mobile-header">
         <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
         <span class="mobile-app-logo">woooosh</span>
+        <button class="timer-btn" onclick="openTimer()" title="Pomodoro timer">&#9201;</button>
         <button class="mobile-sync-btn" id="mobileSyncBtn" onclick="syncNow()" title="Sync now">
             <span class="mobile-sync-dot" id="mobileSyncDot"></span>
             Sync
@@ -1123,6 +1248,7 @@
 
             <div class="version-row">
                 <span class="app-version" id="appVersion"></span>
+                <button class="timer-btn" onclick="openTimer()" title="Pomodoro timer">&#9201;</button>
                 <button id="deleteAllButton" onclick="deleteAllTasks()">Clear all tasks</button>
             </div>
         </div>
@@ -1144,6 +1270,25 @@
         </div>
     </main>
 
+</div>
+
+<!-- Pomodoro Timer Modal -->
+<div class="timer-modal-overlay" id="timerOverlay" onclick="closeTimerOutside(event)">
+    <div class="timer-modal">
+        <button class="timer-modal-close" onclick="closeTimer()">&times;</button>
+        <p class="timer-label work" id="timerLabel">Focus</p>
+        <div class="timer-display" id="timerDisplay">25:00</div>
+        <div class="timer-controls">
+            <button id="timerStartBtn" class="primary" onclick="timerToggle()">Start</button>
+            <button onclick="timerReset()">Reset</button>
+        </div>
+        <div class="timer-presets">
+            <button onclick="timerSetPreset(25)">25 min</button>
+            <button onclick="timerSetPreset(15)">15 min</button>
+            <button onclick="timerSetPreset(5)">5 min</button>
+            <button onclick="timerSetPreset(1)">1 min</button>
+        </div>
+    </div>
 </div>
 
 <!-- Mobile: bottom tab navigation (hidden on desktop) -->
@@ -1856,6 +2001,101 @@
             taskList.appendChild(li);
         });
     }
+
+    // ── Pomodoro Timer ───────────────────────────────────────────────
+    let timerInterval = null;
+    let timerSeconds = 25 * 60;
+    let timerRunning = false;
+    let timerMode = 'work';
+
+    const timerDisplay = () => document.getElementById('timerDisplay');
+    const timerLabel = () => document.getElementById('timerLabel');
+    const timerStartBtn = () => document.getElementById('timerStartBtn');
+
+    const updateTimerUI = () => {
+        const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        const s = String(timerSeconds % 60).padStart(2, '0');
+        const el = timerDisplay();
+        if (el) el.textContent = `${m}:${s}`;
+        const lb = timerLabel();
+        if (lb) {
+            lb.textContent = timerMode === 'work' ? 'Focus' : 'Break';
+            lb.className = `timer-label ${timerMode}`;
+        }
+        const btn = timerStartBtn();
+        if (btn) btn.textContent = timerRunning ? 'Pause' : 'Start';
+        document.title = timerRunning ? `${m}:${s} — woooosh` : 'woooosh';
+    };
+
+    const tick = () => {
+        if (timerSeconds <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerRunning = false;
+            updateTimerUI();
+            try {
+                new Audio('data:audio/wav;base64,UklGRl9vT19teleXQBAABAAEARAAEQACABAAEGWl7QOYAAxlZWNvbmRlZCBieSB3b29vb3No');
+            } catch {}
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(timerMode === 'work' ? 'Focus session done!' : 'Break is over!', { body: 'woooosh timer' });
+            }
+            timerMode = timerMode === 'work' ? 'break' : 'work';
+            timerSeconds = timerMode === 'work' ? 25 * 60 : 5 * 60;
+            updateTimerUI();
+            return;
+        }
+        timerSeconds--;
+        updateTimerUI();
+    };
+
+    const timerToggle = () => {
+        if (timerRunning) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerRunning = false;
+        } else {
+            if (!timerInterval) {
+                timerInterval = setInterval(tick, 1000);
+            }
+            timerRunning = true;
+        }
+        updateTimerUI();
+    };
+
+    const timerReset = () => {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timerRunning = false;
+        timerMode = 'work';
+        timerSeconds = 25 * 60;
+        updateTimerUI();
+    };
+
+    const timerSetPreset = (mins) => {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timerRunning = false;
+        timerMode = 'work';
+        timerSeconds = mins * 60;
+        updateTimerUI();
+    };
+
+    const openTimer = () => {
+        document.getElementById('timerOverlay').classList.add('open');
+        updateTimerUI();
+        if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+    };
+
+    const closeTimer = () => {
+        document.getElementById('timerOverlay').classList.remove('open');
+        document.title = 'woooosh';
+    };
+
+    const closeTimerOutside = (e) => {
+        if (e.target === document.getElementById('timerOverlay')) closeTimer();
+    };
 
     document.addEventListener('DOMContentLoaded', async () => {
         loadTasks();
