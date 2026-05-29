@@ -1760,11 +1760,17 @@
                 if (data.exists) {
                     const remote = await decryptPayload(data);
                     const merged = mergeTasks({ tasks, habits }, remote);
-                    tasks = (merged.tasks || []).map(t => ({ ...t, isEditing: false, isScheduling: false }));
-                    habits = merged.habits || [];
+                    // Preserve UI state so sync doesn't kick user out of edit mode
+                    const taskUI = new Map(tasks.map(t => [t.id, { isEditing: t.isEditing, isScheduling: t.isScheduling }]));
+                    tasks = (merged.tasks || []).map(t => ({ ...t, ...taskUI.get(t.id) }));
+                    const habitUI = new Map(habits.map(h => [h.id, h.isEditing]));
+                    habits = (merged.habits || []).map(h => ({ ...h, isEditing: habitUI.get(h.id) || false }));
                     saveTasks();
                     saveHabits();
-                    renderAll();
+                    // Only re-render if nothing is being edited (re-rendering would overwrite user's in-progress typing)
+                    if (!tasks.some(t => t.isEditing || t.isScheduling) && !habits.some(h => h.isEditing)) {
+                        renderAll();
+                    }
                 }
             }
             // Push merged result
