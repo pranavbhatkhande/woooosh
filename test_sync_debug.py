@@ -5,7 +5,6 @@ Runs against http://localhost:3000 + sync server on :3001.
 import asyncio, json, subprocess, sys, time
 from playwright.async_api import async_playwright
 
-CHROM = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
 APP   = "http://localhost:3000"
 
 def get_tasks_js():
@@ -41,9 +40,7 @@ async def wait_sync_done(page, name, timeout=6000):
 async def run_tests():
     async with async_playwright() as p:
         browser = await p.chromium.launch(
-            executable_path=CHROM,
-            args=["--no-sandbox", "--disable-dev-shm-usage",
-                  "--enable-logging", "--v=1"]
+            args=["--no-sandbox", "--disable-dev-shm-usage"]
         )
 
         ctx_a = await browser.new_context(viewport={"width": 900, "height": 720})
@@ -251,14 +248,14 @@ async def run_tests():
 def main():
     print("Starting servers…")
     http_srv = subprocess.Popen(
-        ["python3", "-m", "http.server", "3000", "--directory", "/home/user/woooosh"],
+        ["node", "/home/pranav/sandboxes/woooosh/serve.cjs", "3000", "/home/pranav/sandboxes/woooosh"],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
     )
     sync_srv = subprocess.Popen(
-        ["node", "/home/user/woooosh/sync-server.js"],
+        ["node", "/home/pranav/sandboxes/woooosh/sync-server.js"],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
-    time.sleep(1.5)
+    time.sleep(2)
     try:
         asyncio.run(run_tests())
     finally:

@@ -17,7 +17,6 @@ Exit code 0 only if: Phase A reproduced divergence AND Phase B converged.
 import asyncio, os, subprocess, sys, time
 from playwright.async_api import async_playwright
 
-CHROM = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
 APP   = "http://localhost:3000"
 
 TASKS_JS = """
@@ -67,14 +66,14 @@ async def run_phase(label, stale_ms, rounds, max_syncs, gap_ms):
     (converged_every_round: bool, rounds_converged: int, rounds: int)."""
     print(f"\n{'='*60}\nPHASE {label}  (SYNC_STALE_MS={stale_ms})\n{'='*60}")
     env = dict(os.environ, SYNC_STALE_MS=str(stale_ms))
-    srv = subprocess.Popen(["node", "/home/user/woooosh/sync-server.js"],
+    srv = subprocess.Popen(["node", "/home/pranav/sandboxes/woooosh/sync-server.js"],
                            env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(1.2)
 
     rounds_converged = 0
     try:
         async with async_playwright() as p:
-            browser = await p.chromium.launch(executable_path=CHROM,
+            browser = await p.chromium.launch(
                 args=["--no-sandbox", "--disable-dev-shm-usage"])
             ca = await browser.new_context(viewport={"width": 800, "height": 700})
             cb = await browser.new_context(viewport={"width": 800, "height": 700})
@@ -156,7 +155,7 @@ async def main_async():
 
 def main():
     http = subprocess.Popen(
-        ["python3", "-m", "http.server", "3000", "--directory", "/home/user/woooosh"],
+        ["node", "/home/pranav/sandboxes/woooosh/serve.cjs", "3000", "/home/pranav/sandboxes/woooosh"],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(1.0)
     try:

@@ -1,5 +1,5 @@
 // In sw.js
-const CACHE_NAME = 'woooosh-cache-v6'; // <-- IMPORTANT: Increment the cache version!
+const CACHE_NAME = 'woooosh-cache-v7'; // <-- IMPORTANT: Increment the cache version!
 const ASSETS_TO_CACHE = [
   './',                         // For start_url: "/"
   './index.html',               // Explicit cache for index.html
@@ -59,6 +59,10 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') {
     return; // Only handle GET requests
   }
+  // Never cache sync API requests — they must always hit the network so
+  // devices see each other's latest changes. Caching /sync/:id causes
+  // the "back-and-forth sync stops working" bug.
+  if (event.request.url.includes('/sync/')) return;
   // Optional: uncomment for very verbose fetch logging during testing
   // console.log('[SW] Fetch event for:', event.request.url, 'Mode:', event.request.mode);
 

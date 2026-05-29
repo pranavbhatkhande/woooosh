@@ -241,6 +241,20 @@
     }
     #deleteAllButton:hover { color: var(--danger); }
 
+    .version-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 4px;
+    }
+    .app-version {
+        font-size: 10px;
+        color: var(--text-tertiary);
+        opacity: 0.5;
+        font-family: var(--mono);
+        letter-spacing: 0.5px;
+    }
+
     /* ─── Main Content ────────────────────────────────────────────── */
     .main-content {
         flex: 1;
@@ -1107,7 +1121,10 @@
                 </div>
             </div>
 
-            <button id="deleteAllButton" onclick="deleteAllTasks()">Clear all tasks</button>
+            <div class="version-row">
+                <span class="app-version" id="appVersion"></span>
+                <button id="deleteAllButton" onclick="deleteAllTasks()">Clear all tasks</button>
+            </div>
         </div>
     </aside>
 
@@ -1167,6 +1184,7 @@
 <div id="toastContainer"></div>
 
 <script>
+    const APP_VERSION = '2.0.0';
     let tasks = [];
     let currentFilter = 'all';
     let _editCancelled = false;
@@ -1332,18 +1350,31 @@
     }
     async function syncToServer() {
         if (!syncEnabled || !syncAccountId) return;
-        if (_syncInProgress) return;   // a full syncNow is running — it will push
+        if (_syncInProgress) { showToast('Sync already in progress…', 'info'); return; }
         _syncInProgress = true;
         try {
             setSyncStatus('syncing');
+            // Pull first to merge with server state (prevents blind overwrite of tombstones)
+            const res  = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.exists) {
+                    const remote = await decryptPayload(data);
+                    const merged = mergeTasks(tasks, remote);
+                    tasks = merged.map(t => ({ ...t, isEditing: false, isScheduling: false }));
+                    saveTasks();
+                    renderTasks();
+                }
+            }
+            // Push merged result
             const version   = Date.now();
             const encrypted = await encryptTasks(tasks);
-            const res = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
+            const putRes = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...encrypted, version }),
             });
-            if (!res.ok) throw new Error('server error');
+            if (!putRes.ok) throw new Error('server error');
             localStorage.setItem('wooooshSyncVersion', String(version));
             setSyncStatus('synced');
         } catch { setSyncStatus('offline'); }
@@ -1351,10 +1382,14 @@
     }
 
     // ── Sync: merge — per-task last-write-wins by updatedAt ───────────
+    // Tombstone always wins: a deleted task stays deleted regardless of
+    // whether a stale device has a newer updatedAt.
     function mergeTasks(local, remote) {
         const byId = new Map();
         for (const t of [...local, ...remote]) {
             const existing = byId.get(t.id);
+            if (t._deleted) { byId.set(t.id, t); continue; }
+            if (existing && existing._deleted) continue;
             const tTime = new Date(t.updatedAt || t.created || 0).getTime();
             const eTime = existing ? new Date(existing.updatedAt || existing.created || 0).getTime() : 0;
             if (!existing || tTime > eTime) byId.set(t.id, t);
@@ -1365,7 +1400,7 @@
     // ── Sync: pull + merge + push (manual Sync button) ────────────────
     async function syncNow({ silent = false } = {}) {
         if (!syncEnabled || !syncAccountId) return;
-        if (_syncInProgress) return;   // already running
+        if (_syncInProgress) { showToast('Sync already in progress…', 'info'); return; }
         _syncInProgress = true;
         clearTimeout(_syncTimer);      // cancel any pending auto-push
         setSyncStatus('syncing');
@@ -1825,6 +1860,8 @@
     document.addEventListener('DOMContentLoaded', async () => {
         loadTasks();
         renderTasks();
+        const ve = document.getElementById('appVersion');
+        if (ve) ve.textContent = `v${APP_VERSION}`;
         try { await initSync(); } catch { setSyncStatus('offline'); }
     });
 

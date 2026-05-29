@@ -39,8 +39,7 @@ except ImportError:
     subprocess.run([sys.executable, "-m", "pip", "install", "Pillow", "-q"], check=True)
     from PIL import Image, ImageDraw, ImageFont
 
-OUT   = "/home/user/woooosh/demo"
-CHROM = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
+OUT   = "/home/pranav/sandboxes/woooosh/demo"
 APP   = "http://localhost:3000"
 
 os.makedirs(OUT, exist_ok=True)
@@ -174,7 +173,6 @@ def check(cond, msg):
 async def run_demo():
     async with async_playwright() as p:
         browser = await p.chromium.launch(
-            executable_path=CHROM,
             args=["--no-sandbox", "--disable-dev-shm-usage"]
         )
         WW, WH = 900, 720
@@ -478,11 +476,11 @@ async def run_demo():
 def main():
     print("Starting servers…")
     http_srv = subprocess.Popen(
-        ["python3", "-m", "http.server", "3000", "--directory", "/home/user/woooosh"],
+        ["node", "/home/pranav/sandboxes/woooosh/serve.cjs", "3000", "/home/pranav/sandboxes/woooosh"],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
     sync_srv = subprocess.Popen(
-        ["node", "/home/user/woooosh/sync-server.js"],
+        ["node", "/home/pranav/sandboxes/woooosh/sync-server.js"],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     )
     time.sleep(1.5)

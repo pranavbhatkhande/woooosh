@@ -1,4 +1,6 @@
-# Intermediate per-device screenshots, title cards, and ffmpeg frame lists
-# produced by the demo scripts. All scratch files are prefixed with "_";
-# the committed composite frames (inf_r01.png, merge_01_*.png, …) are not.
-_*
+# All generated demo outputs — screenshots, videos, frame lists
+# These are produced by the demo scripts and should not be committed.
+*.png
+*.mp4
+*.webm
+*.txt

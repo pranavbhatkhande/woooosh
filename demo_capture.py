@@ -9,7 +9,7 @@ import subprocess
 from datetime import datetime, timedelta
 from playwright.async_api import async_playwright
 
-OUT = "/home/user/woooosh/demo"
+OUT = "/home/pranav/sandboxes/woooosh/demo"
 os.makedirs(OUT, exist_ok=True)
 
 now = datetime.utcnow()
@@ -35,8 +35,7 @@ DEMO_TASKS = [
      "created": ts(90), "scheduledFor": None, "isEditing": False, "isScheduling": False},
 ]
 
-CHROMIUM = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
-BASE = "file:///home/user/woooosh/index.html"
+BASE = "file:///home/pranav/sandboxes/woooosh/index.html"
 
 async def seed(page):
     await page.goto(BASE, wait_until="networkidle")
@@ -46,7 +45,6 @@ async def seed(page):
 async def capture():
     async with async_playwright() as p:
         browser = await p.chromium.launch(
-            executable_path=CHROMIUM,
             args=["--no-sandbox", "--disable-dev-shm-usage"]
         )
 

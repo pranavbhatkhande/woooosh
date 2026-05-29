@@ -25,8 +25,6 @@ const store = new Map();   // accountId → [ { value, visibleAt } ]
 // production Netlify function now uses (consistency: "strong").
 const STALE_MS = Number(process.env.SYNC_STALE_MS || 0);
 
-const ACCOUNT_ID_RE = /^[a-f0-9]{32}$/;
-
 // Returns the newest write that has already become visible, honoring the
 // simulated staleness window. With STALE_MS = 0 every write is visible
 // immediately, so this always returns the latest write (strong consistency).
