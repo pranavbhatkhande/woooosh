@@ -1522,7 +1522,10 @@
         }
         const now = new Date().toISOString();
         const newTask = {
-            id: Date.now(),
+            // Collision-resistant numeric id: ms timestamp × 1000 + 3 random
+            // digits. Stays well under Number.MAX_SAFE_INTEGER and avoids two
+            // devices generating the same id within the same millisecond.
+            id: Date.now() * 1000 + Math.floor(Math.random() * 1000),
             text,
             status: 'idea',
             created: now,
