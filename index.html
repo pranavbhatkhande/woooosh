@@ -34,6 +34,12 @@
         --danger-hover:   #DC2626;
         --danger-bg:      #FEF2F2;
 
+        --habit:          #EC4899;
+        --habit-hover:    #DB2777;
+        --habit-bg:       #FDF2F8;
+        --habit-text:     #9D174D;
+        --habit-dot:      #EC4899;
+
         /* Status — muted light-bg approach */
         --s-idea-bg:      #FEF9C3; --s-idea-text:     #78350F; --s-idea-dot:      #D97706;
         --s-action-bg:    #D1FAE5; --s-action-text:   #065F46; --s-action-dot:    #059669;
@@ -1139,6 +1145,185 @@
         line-height: 1.4;
     }
 
+    /* ─── Habits View ─────────────────────────────────────────────── */
+    .habit-list-container {
+        flex: 1;
+        background: var(--bg-main);
+        overflow-y: auto;
+    }
+
+    .habit-card {
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px;
+    }
+
+    .habit-card-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .habit-name {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .habit-name.editing {
+        border: 1px solid var(--border-focus);
+        border-radius: 6px;
+        padding: 5px 8px;
+        outline: none;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        width: 100%;
+        font-family: inherit;
+        font-size: 14px;
+    }
+
+    .habit-streak {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--habit-text);
+        background: var(--habit-bg);
+        padding: 2px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+    }
+
+    .habit-calendar {
+        display: flex;
+        gap: 3px;
+        align-items: flex-end;
+    }
+
+    .habit-calendar-day {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .habit-calendar-dot {
+        width: 100%;
+        aspect-ratio: 1;
+        max-height: 24px;
+        border-radius: 4px;
+        background: var(--bg-hover);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+    }
+
+    .habit-calendar-dot.completed {
+        background: var(--habit);
+        border-color: var(--habit);
+    }
+
+    .habit-calendar-dot:hover {
+        border-color: var(--habit);
+    }
+
+    .habit-calendar-label {
+        font-size: 9px;
+        color: var(--text-tertiary);
+        font-weight: 500;
+    }
+
+    .habit-actions {
+        display: flex;
+        gap: 2px;
+        opacity: 0;
+        transition: opacity 0.15s;
+    }
+
+    .habit-card:hover .habit-actions,
+    .habit-actions.habit-actions--visible {
+        opacity: 1;
+    }
+
+    .habit-actions button {
+        border: none;
+        background: none;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 3px 6px;
+        border-radius: 4px;
+        color: var(--text-secondary);
+        transition: background 0.1s, color 0.1s;
+    }
+
+    .habit-actions button:hover {
+        background: var(--border);
+        color: var(--text-primary);
+    }
+
+    .habit-actions .btn-delete {
+        color: var(--text-tertiary);
+    }
+
+    .habit-actions .btn-delete:hover {
+        background: var(--danger-bg);
+        color: var(--danger);
+    }
+
+    .habit-actions .btn-delete-confirm {
+        background: var(--danger-bg);
+        color: var(--danger);
+        font-weight: 600;
+    }
+
+    .no-habits {
+        padding: 56px 28px;
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .no-habits-hint {
+        display: block;
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 4px;
+        color: var(--text-tertiary);
+    }
+
+    /* Habit input area */
+    .habit-input-area {
+        display: none;
+    }
+
+    .habit-input-area.visible {
+        display: flex;
+    }
+
+    /* Nav dot for habits */
+    .nav-dot-habit {
+        background: var(--habit-dot);
+    }
+
+    .bt-dot-habit {
+        background: var(--habit-dot);
+    }
+
+    @media (max-width: 768px) {
+        .habit-card {
+            padding: 14px 16px;
+        }
+        .no-habits {
+            padding: 40px 16px;
+        }
+        .habit-calendar-dot {
+            max-height: 20px;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -1215,6 +1400,15 @@
             </button>
         </nav>
 
+        <p class="nav-section-label">Features</p>
+
+        <nav class="sidebar-nav">
+            <button id="navHabits" class="nav-item" onclick="switchView('habits')">
+                <span class="nav-dot nav-dot-habit"></span>
+                <span class="nav-label">Habits</span>
+            </button>
+        </nav>
+
         <div class="sidebar-footer">
             <!-- Sync row: left = Sync now button, right = settings gear -->
             <div class="sync-status-bar">
@@ -1258,15 +1452,24 @@
     <main class="main-content">
         <div class="content-header">
             <h2 class="view-title" id="viewTitle">All tasks</h2>
-            <div class="input-area">
+            <div class="input-area" id="taskInputArea">
                 <input type="text" id="taskInput" placeholder="Add a new idea...">
                 <button onclick="addTask()">Add</button>
             </div>
+            <div class="input-area habit-input-area" id="habitInputArea">
+                <input type="text" id="habitInput" placeholder="Add a new habit...">
+                <button onclick="addHabit()">Add</button>
+            </div>
         </div>
 
-        <div class="task-list-container">
+        <div class="task-list-container" id="taskListContainer">
             <ul id="taskList"></ul>
             <p id="noTasksMessage" class="no-tasks" style="display: none;"></p>
+        </div>
+
+        <div class="habit-list-container" id="habitListContainer" style="display: none;">
+            <div id="habitList"></div>
+            <p id="noHabitsMessage" class="no-habits" style="display: none;"></p>
         </div>
     </main>
 
@@ -1317,11 +1520,15 @@
         <span class="bt-dot bt-dot-scheduled"></span>
         <span>Sched.</span>
     </button>
-    <button class="bottom-tab" id="bt-completed" onclick="setFilter('completed')">
-        <span class="bt-dot bt-dot-done"></span>
-        <span>Done</span>
-    </button>
-</nav>
+  <button class="bottom-tab" id="bt-completed" onclick="setFilter('completed')">
+            <span class="bt-dot bt-dot-done"></span>
+            <span>Done</span>
+        </button>
+        <button class="bottom-tab" id="bt-habits" onclick="switchView('habits')">
+            <span class="bt-dot bt-dot-habit"></span>
+            <span>Habits</span>
+        </button>
+    </nav>
 
 <!-- Mobile: floating add button (hidden on desktop) -->
 <button class="fab" id="fab" onclick="focusInput()" aria-label="Add task">+</button>
@@ -1363,6 +1570,53 @@
         if (e.key === 'Enter') addTask();
     });
 
+    const habitInput = document.getElementById('habitInput');
+    if (habitInput) {
+        habitInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') addHabit();
+        });
+    }
+
+    function switchView(view) {
+        currentView = view;
+        const taskInputArea = document.getElementById('taskInputArea');
+        const habitInputArea = document.getElementById('habitInputArea');
+        const taskListContainer = document.getElementById('taskListContainer');
+        const habitListContainer = document.getElementById('habitListContainer');
+        const viewTitle = document.getElementById('viewTitle');
+
+        // Update sidebar active state
+        document.querySelectorAll('.task-filters .nav-item').forEach(btn => btn.classList.remove('active'));
+        const navHabits = document.getElementById('navHabits');
+
+        if (view === 'habits') {
+            taskInputArea.style.display = 'none';
+            habitInputArea.classList.add('visible');
+            taskListContainer.style.display = 'none';
+            habitListContainer.style.display = 'block';
+            viewTitle.textContent = 'Habits';
+            if (navHabits) navHabits.classList.add('active');
+        } else {
+            taskInputArea.style.display = 'flex';
+            habitInputArea.classList.remove('visible');
+            taskListContainer.style.display = 'block';
+            habitListContainer.style.display = 'none';
+            if (navHabits) navHabits.classList.remove('active');
+        }
+
+        // Update bottom tabs
+        document.querySelectorAll('.bottom-tab').forEach(t => t.classList.remove('active'));
+        if (view === 'habits') {
+            const btHabits = document.getElementById('bt-habits');
+            if (btHabits) btHabits.classList.add('active');
+        } else {
+            updateBottomTabs(currentFilter);
+        }
+
+        closeSidebar();
+        renderAll();
+    }
+
     // ── Mobile sidebar ────────────────────────────────────────────────
     function toggleSidebar() {
         document.getElementById('sidebar').classList.toggle('sidebar-open');
@@ -1384,10 +1638,10 @@
         return new Uint8Array(atob(b64).split('').map(c => c.charCodeAt(0)));
     }
 
-    async function encryptTasks(taskArr) {
+    async function encryptTasks(data) {
         const iv   = crypto.getRandomValues(new Uint8Array(12));
-        const data = new TextEncoder().encode(JSON.stringify(taskArr));
-        const ct   = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, syncAesKey, data);
+        const payload = new TextEncoder().encode(JSON.stringify(data));
+        const ct   = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, syncAesKey, payload);
         return { iv: toB64url(iv), ciphertext: toB64url(new Uint8Array(ct)) };
     }
     async function decryptPayload(payload) {
@@ -1505,15 +1759,17 @@
                 const data = await res.json();
                 if (data.exists) {
                     const remote = await decryptPayload(data);
-                    const merged = mergeTasks(tasks, remote);
-                    tasks = merged.map(t => ({ ...t, isEditing: false, isScheduling: false }));
+                    const merged = mergeTasks({ tasks, habits }, remote);
+                    tasks = (merged.tasks || []).map(t => ({ ...t, isEditing: false, isScheduling: false }));
+                    habits = merged.habits || [];
                     saveTasks();
-                    renderTasks();
+                    saveHabits();
+                    renderAll();
                 }
             }
             // Push merged result
             const version   = Date.now();
-            const encrypted = await encryptTasks(tasks);
+            const encrypted = await encryptTasks({ tasks, habits });
             const putRes = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -1526,10 +1782,10 @@
         finally { _syncInProgress = false; }
     }
 
-    // ── Sync: merge — per-task last-write-wins by updatedAt ───────────
-    // Tombstone always wins: a deleted task stays deleted regardless of
+    // ── Sync: merge — per-item last-write-wins by updatedAt ───────────
+    // Tombstone always wins: a deleted item stays deleted regardless of
     // whether a stale device has a newer updatedAt.
-    function mergeTasks(local, remote) {
+    function mergeItems(local, remote) {
         const byId = new Map();
         for (const t of [...local, ...remote]) {
             const existing = byId.get(t.id);
@@ -1540,6 +1796,19 @@
             if (!existing || tTime > eTime) byId.set(t.id, t);
         }
         return [...byId.values()];
+    }
+
+    // Backward compat: mergeTasks wraps mergeItems for array payloads
+    function mergeTasks(local, remote) {
+        // Handle old format (array) or new format ({tasks, habits})
+        let localTasks = Array.isArray(local) ? local : (local.tasks || []);
+        let remoteTasks = Array.isArray(remote) ? remote : (remote.tasks || []);
+        let localHabitArr = Array.isArray(local) ? [] : (local.habits || []);
+        let remoteHabitArr = Array.isArray(remote) ? [] : (remote.habits || []);
+        return {
+            tasks: mergeItems(localTasks, remoteTasks),
+            habits: mergeItems(localHabitArr, remoteHabitArr),
+        };
     }
 
     // ── Sync: pull + merge + push (manual Sync button) ────────────────
@@ -1556,15 +1825,17 @@
 
             if (data.exists) {
                 const remote = await decryptPayload(data);
-                const merged = mergeTasks(tasks, remote);
-                tasks = merged.map(t => ({ ...t, isEditing: false, isScheduling: false }));
+                const merged = mergeTasks({ tasks, habits }, remote);
+                tasks = (merged.tasks || []).map(t => ({ ...t, isEditing: false, isScheduling: false }));
+                habits = merged.habits || [];
                 saveTasks();
-                renderTasks();
+                saveHabits();
+                renderAll();
             }
 
             // Push merged result (or local-only if nothing was on server)
             const version   = Date.now();
-            const encrypted = await encryptTasks(tasks);
+            const encrypted = await encryptTasks({ tasks, habits });
             const putRes = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -1639,6 +1910,50 @@
         }
     }
 
+    // ── Habit data model ─────────────────────────────────────────────
+    let habits = [];
+    let currentView = 'tasks';
+    let _pendingHabitDelete = new Set();
+
+    function saveHabits() {
+        const toSave = habits.map(({ _isNew, isEditing, ...rest }) => rest);
+        localStorage.setItem('wooooshHabits', JSON.stringify(toSave));
+    }
+
+    function loadHabits() {
+        const stored = localStorage.getItem('wooooshHabits');
+        if (stored) {
+            habits = JSON.parse(stored);
+        }
+    }
+
+    function getTodayKey() {
+        return new Date().toISOString().slice(0, 10);
+    }
+
+    function getStreak(habit) {
+        const comps = habit.completions || {};
+        let streak = 0;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        let checkDate = new Date(today);
+        // If not completed today, start checking from yesterday
+        const todayKey = checkDate.toISOString().slice(0, 10);
+        if (!comps[todayKey]) {
+            checkDate.setDate(checkDate.getDate() - 1);
+        }
+        while (true) {
+            const key = checkDate.toISOString().slice(0, 10);
+            if (comps[key]) {
+                streak++;
+                checkDate.setDate(checkDate.getDate() - 1);
+            } else {
+                break;
+            }
+        }
+        return streak;
+    }
+
     // ── Mobile helpers ────────────────────────────────────────────────
     function updateBottomTabs(filter) {
         document.querySelectorAll('.bottom-tab').forEach(t => t.classList.remove('active'));
@@ -1654,7 +1969,13 @@
         // Scroll content to top so the header input is visible, then focus
         const main = document.querySelector('.main-content');
         if (main) main.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(() => taskInput.focus(), 250);
+        setTimeout(() => {
+            if (currentView === 'habits') {
+                habitInput?.focus();
+            } else {
+                taskInput.focus();
+            }
+        }, 250);
     }
 
     function handleRowTap(id, event) {
@@ -1672,10 +1993,18 @@
 
     // ── Filter ────────────────────────────────────────────────────────
     function setFilter(filter) {
+        currentView = 'tasks';
         currentFilter = filter;
         document.querySelectorAll('.task-filters button').forEach(btn => btn.classList.remove('active'));
         const btn = document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1));
         if (btn) btn.classList.add('active');
+        const navHabits = document.getElementById('navHabits');
+        if (navHabits) navHabits.classList.remove('active');
+        // Show task input, hide habit input
+        document.getElementById('taskInputArea').style.display = 'flex';
+        document.getElementById('habitInputArea').classList.remove('visible');
+        document.getElementById('taskListContainer').style.display = 'block';
+        document.getElementById('habitListContainer').style.display = 'none';
         updateBottomTabs(filter);
         const titles = {
             all: 'All tasks', idea: 'Ideas', action: 'Actions',
@@ -1879,7 +2208,21 @@
     function saveAndRender() {
         saveTasks();
         debouncedSync();
-        renderTasks();
+        renderAll();
+    }
+
+    function saveHabitsAndRender() {
+        saveHabits();
+        debouncedSync();
+        renderAll();
+    }
+
+    function renderAll() {
+        if (currentView === 'habits') {
+            renderHabits();
+        } else {
+            renderTasks();
+        }
     }
 
     function updateFilterBadges() {
@@ -1999,6 +2342,162 @@
 
             li.innerHTML = html;
             taskList.appendChild(li);
+        });
+    }
+
+    // ── Habit CRUD ────────────────────────────────────────────────────
+    function addHabit() {
+        const text = (habitInput?.value || '').trim();
+        if (text === '') {
+            showToast('Please enter a habit name.', 'error');
+            habitInput?.focus();
+            return;
+        }
+        const now = new Date().toISOString();
+        habits.unshift({
+            id: Date.now() * 1000 + Math.floor(Math.random() * 1000),
+            name: text,
+            completions: {},
+            created: now,
+            updatedAt: now,
+            _isNew: true,
+        });
+        habitInput.value = '';
+        saveHabitsAndRender();
+    }
+
+    function deleteHabit(id) {
+        if (_pendingHabitDelete.has(id)) {
+            _pendingHabitDelete.delete(id);
+            const idx = habits.findIndex(h => h.id === id);
+            if (idx !== -1) habits[idx] = { id, _deleted: true, updatedAt: new Date().toISOString() };
+            saveHabitsAndRender();
+        } else {
+            _pendingHabitDelete.add(id);
+            renderHabits();
+            setTimeout(() => { if (_pendingHabitDelete.delete(id)) renderHabits(); }, 3000);
+        }
+    }
+
+    function toggleHabitCompletion(habitId, dateKey) {
+        const habit = habits.find(h => h.id === habitId);
+        if (!habit || habit._deleted) return;
+        if (!habit.completions) habit.completions = {};
+        habit.completions[dateKey] = !habit.completions[dateKey];
+        habit.updatedAt = new Date().toISOString();
+        saveHabitsAndRender();
+    }
+
+    function toggleEditHabit(id) {
+        const habit = habits.find(h => h.id === id);
+        if (habit) {
+            habit.isEditing = !habit.isEditing;
+            saveHabitsAndRender();
+            if (habit.isEditing) {
+                setTimeout(() => {
+                    const el = document.querySelector(`.habit-card[data-id='${id}'] .habit-name.editing`);
+                    if (el) el.focus();
+                }, 0);
+            }
+        }
+    }
+
+    function updateHabitName(id, newName) {
+        const habit = habits.find(h => h.id === id);
+        if (habit) {
+            const trimmed = newName.trim();
+            if (trimmed === '') {
+                showToast('Habit name cannot be empty.', 'error');
+                habit.isEditing = true;
+            } else {
+                habit.name = trimmed;
+                habit.isEditing = false;
+                habit.updatedAt = new Date().toISOString();
+            }
+            saveHabitsAndRender();
+        }
+    }
+
+    // ── Habit Render ─────────────────────────────────────────────────
+    function renderHabits() {
+        const habitList = document.getElementById('habitList');
+        const noHabitsMessage = document.getElementById('noHabitsMessage');
+        if (!habitList) return;
+
+        habitList.innerHTML = '';
+        const live = habits.filter(h => !h._deleted);
+
+        if (habits.length === 0) {
+            noHabitsMessage.innerHTML = 'No habits yet.<span class="no-habits-hint">Add your first habit above.</span>';
+            noHabitsMessage.style.display = 'block';
+        } else if (live.length === 0) {
+            noHabitsMessage.innerHTML = 'No habits here.';
+            noHabitsMessage.style.display = 'block';
+        } else {
+            noHabitsMessage.style.display = 'none';
+        }
+
+        live.forEach(habit => {
+            const card = document.createElement('div');
+            card.className = 'habit-card';
+            card.dataset.id = habit.id;
+            if (habit._isNew) habit._isNew = false;
+
+            const streak = getStreak(habit);
+
+            // Build name element
+            let nameHTML;
+            if (habit.isEditing) {
+                nameHTML = `<input type="text" class="habit-name editing" value="${escapeHTML(habit.name)}"
+                    onkeydown="if(event.key==='Enter'){this.blur();}else if(event.key==='Escape'){event.preventDefault();toggleEditHabit(${habit.id});this.blur();}"
+                    onblur="updateHabitName(${habit.id},this.value)">`;
+            } else {
+                nameHTML = `<span class="habit-name">${escapeHTML(habit.name)}</span>`;
+            }
+
+            // Build calendar: last 7 days
+            const days = [];
+            const dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                d.setHours(0, 0, 0, 0);
+                days.push(d);
+            }
+
+            let calendarHTML = '<div class="habit-calendar">';
+            days.forEach(d => {
+                const key = d.toISOString().slice(0, 10);
+                const completed = habit.completions && habit.completions[key];
+                const label = dayLabels[d.getDay()];
+                calendarHTML += `<div class="habit-calendar-day">
+                    <div class="habit-calendar-dot${completed ? ' completed' : ''}"
+                         onclick="toggleHabitCompletion(${habit.id}, '${key}')"></div>
+                    <span class="habit-calendar-label">${label}</span>
+                </div>`;
+            });
+            calendarHTML += '</div>';
+
+            // Build actions
+            const isPending = _pendingHabitDelete.has(habit.id);
+            let actionsHTML = '';
+            if (!habit.isEditing) {
+                actionsHTML = `<div class="habit-actions">
+                    <button onclick="toggleEditHabit(${habit.id})">Edit</button>
+                    <span class="btn-sep"></span>
+                    <button class="btn-delete${isPending ? ' btn-delete-confirm' : ''}" onclick="deleteHabit(${habit.id})">${isPending ? 'Confirm?' : 'Delete'}</button>
+                </div>`;
+            }
+
+            card.innerHTML = `
+                <div class="habit-card-header">
+                    ${nameHTML}
+                    ${streak > 0 ? `<span class="habit-streak">${streak} day${streak > 1 ? 's' : ''}</span>` : ''}
+                    ${actionsHTML}
+                </div>
+                ${calendarHTML}
+            `;
+            habitList.appendChild(card);
         });
     }
 
@@ -2125,7 +2624,8 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
         loadTasks();
-        renderTasks();
+        loadHabits();
+        renderAll();
         const ve = document.getElementById('appVersion');
         if (ve) ve.textContent = `v${APP_VERSION}`;
         try { await initSync(); } catch { setSyncStatus('offline'); }
