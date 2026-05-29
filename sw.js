@@ -1,12 +1,10 @@
-// In sw.js
-const CACHE_NAME = 'woooosh-cache-v7'; // <-- IMPORTANT: Increment the cache version!
+const CACHE_NAME = 'woooosh-cache-v7';
 const ASSETS_TO_CACHE = [
-  './',                         // For start_url: "/"
-  './index.html',               // Explicit cache for index.html
+  './',
+  './index.html',
   './manifest.json',
-  './images/icon-192x192.png',  // Ensure this exact path and filename exists
-  './images/icon-512x512.png'   // Ensure this exact path and filename exists
-  // If you added an apple-touch-icon, ensure its path is here too, e.g. './images/apple-touch-icon.png'
+  './images/icon-192x192.png',
+  './images/icon-512x512.png'
 ];
 
 self.addEventListener('install', event => {
@@ -15,17 +13,13 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('[SW] Cache opened successfully. Caching core assets:', ASSETS_TO_CACHE);
-        return cache.addAll(ASSETS_TO_CACHE) // This is the critical operation
+        return cache.addAll(ASSETS_TO_CACHE)
           .then(() => {
             console.log('[SW] All assets in ASSETS_TO_CACHE were successfully cached.');
           })
           .catch(error => {
-            // THIS IS THE MOST IMPORTANT LOG IF THINGS GO WRONG
             console.error('[SW] CRITICAL ERROR: cache.addAll() FAILED during install!', error);
             console.error('[SW] Failed to cache one or more of these assets:', ASSETS_TO_CACHE);
-            // The error object above often indicates which URL failed.
-            // Throwing an error here signals that the SW installation failed, which is correct
-            // if critical assets cannot be cached.
             throw error;
           });
       })
@@ -50,41 +44,52 @@ self.addEventListener('activate', event => {
       );
     }).then(() => {
       console.log('[SW] Old caches cleared. Claiming clients.');
-      return self.clients.claim(); // Ensure new SW takes control immediately
+      return self.clients.claim();
     })
   );
 });
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') {
-    return; // Only handle GET requests
+    return;
   }
-  // Never cache sync API requests — they must always hit the network so
-  // devices see each other's latest changes. Caching /sync/:id causes
-  // the "back-and-forth sync stops working" bug.
+  // Never cache sync API requests — they must always hit the network
   if (event.request.url.includes('/sync/')) return;
-  // Optional: uncomment for very verbose fetch logging during testing
-  // console.log('[SW] Fetch event for:', event.request.url, 'Mode:', event.request.mode);
+  // Never cache version.json — it's used to detect app updates
+  if (event.request.url.includes('/version.json')) return;
+
+  // For index.html: always check network first for updates, then cache and serve
+  if (event.request.url.includes('index.html')) {
+    event.respondWith(
+      fetch(event.request).then(networkResponse => {
+        const responseClone = networkResponse.clone();
+        // Cache the fresh copy for offline use
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseClone);
+        });
+        return networkResponse;
+      }).catch(() => {
+        // Network failed — fall back to cached version
+        return caches.match(event.request);
+      })
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
         if (cachedResponse) {
-          // console.log('[SW] Serving from cache:', event.request.url);
           return cachedResponse;
         }
-        // console.log('[SW] Not in cache, fetching from network:', event.request.url);
         return fetch(event.request).then(networkResponse => {
           if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-            // console.log('[SW] Invalid network response, not caching:', event.request.url, 'Status:', networkResponse ? networkResponse.status : 'unknown');
             return networkResponse;
           }
-          // console.log('[SW] Valid network response, attempting to cache:', event.request.url);
           const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME)
             .then(cache => {
               cache.put(event.request, responseToCache);
-              // console.log('[SW] Successfully cached network response for:', event.request.url);
             })
             .catch(err => {
               console.error('[SW] Failed to cache network response for:', event.request.url, err);
@@ -92,8 +97,6 @@ self.addEventListener('fetch', event => {
           return networkResponse;
         }).catch(error => {
           console.error('[SW] Network fetch failed for:', event.request.url, error);
-          // Optionally return a generic offline fallback page if one is cached
-          // For example: return caches.match('./offline.html');
         });
       })
   );
