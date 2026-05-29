@@ -28,10 +28,17 @@ export default async (req, context) => {
         return Response.json({ error: "Not found" }, { status: 404, headers: CORS });
     }
 
-    const store = getStore("woooosh-sync");
+    // Strong consistency is REQUIRED: with the default eventual consistency a
+    // GET right after another device's PUT can return a stale blob. The client
+    // would then merge against stale data and push it back, clobbering the
+    // other device's changes — making back-and-forth sync appear to "stop
+    // working." Strong reads guarantee every GET sees the latest write.
+    const store = getStore({ name: "woooosh-sync", consistency: "strong" });
 
     if (req.method === "GET") {
-        const entry = await store.get(id, { type: "json" }).catch(() => null);
+        const entry = await store
+            .get(id, { type: "json", consistency: "strong" })
+            .catch(() => null);
         return Response.json(
             entry ? { exists: true, ...entry } : { exists: false },
             { headers: CORS }

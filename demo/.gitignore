@@ -1,6 +1,4 @@
-# Intermediate per-device screenshots and temp files produced by demo scripts
-_a_*.png
-_b_*.png
-_title_*.png
-_frames.txt
-_sync_frames.txt
+# Intermediate per-device screenshots, title cards, and ffmpeg frame lists
+# produced by the demo scripts. All scratch files are prefixed with "_";
+# the committed composite frames (inf_r01.png, merge_01_*.png, …) are not.
+_*
