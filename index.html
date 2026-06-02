@@ -1223,8 +1223,13 @@
         border-color: var(--habit);
     }
 
-    .habit-calendar-dot:hover {
+    .habit-calendar-dot:hover:not(.future) {
         border-color: var(--habit);
+    }
+
+    .habit-calendar-dot.future {
+        opacity: 0.25;
+        cursor: default;
     }
 
     .habit-calendar-label {
@@ -2461,24 +2466,31 @@
                 nameHTML = `<span class="habit-name">${escapeHTML(habit.name)}</span>`;
             }
 
-            // Build calendar: last 7 days
+            // Build calendar: current week Mon–Sun
             const days = [];
-            const dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-            for (let i = 6; i >= 0; i--) {
-                const d = new Date();
-                d.setDate(d.getDate() - i);
-                d.setHours(0, 0, 0, 0);
+            const dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            // How many days since Monday? (getDay: 0=Sun…6=Sat)
+            const sinceMonday = today.getDay() === 0 ? 6 : today.getDay() - 1;
+            const monday = new Date(today);
+            monday.setDate(today.getDate() - sinceMonday);
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(monday);
+                d.setDate(monday.getDate() + i);
                 days.push(d);
             }
 
             let calendarHTML = '<div class="habit-calendar">';
             days.forEach(d => {
                 const key = d.toISOString().slice(0, 10);
-                const completed = habit.completions && habit.completions[key];
-                const label = dayLabels[d.getDay()];
+                const isFuture = d > today;
+                const completed = !isFuture && habit.completions && habit.completions[key];
+                const label = dayLabels[days.indexOf(d)];
+                const dotClass = `habit-calendar-dot${completed ? ' completed' : ''}${isFuture ? ' future' : ''}`;
+                const clickAttr = isFuture ? '' : ` onclick="toggleHabitCompletion(${habit.id}, '${key}')"`;
                 calendarHTML += `<div class="habit-calendar-day">
-                    <div class="habit-calendar-dot${completed ? ' completed' : ''}"
-                         onclick="toggleHabitCompletion(${habit.id}, '${key}')"></div>
+                    <div class="${dotClass}"${clickAttr}></div>
                     <span class="habit-calendar-label">${label}</span>
                 </div>`;
             });
