@@ -1,4 +1,4 @@
-const CACHE_NAME = 'woooosh-cache-v7';
+const CACHE_NAME = 'woooosh-cache-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -8,44 +8,26 @@ const ASSETS_TO_CACHE = [
 ];
 
 self.addEventListener('install', event => {
-  console.log('[SW] Install event triggered. Attempting to cache assets for CACHE_NAME:', CACHE_NAME);
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('[SW] Cache opened successfully. Caching core assets:', ASSETS_TO_CACHE);
-        return cache.addAll(ASSETS_TO_CACHE)
-          .then(() => {
-            console.log('[SW] All assets in ASSETS_TO_CACHE were successfully cached.');
-          })
-          .catch(error => {
-            console.error('[SW] CRITICAL ERROR: cache.addAll() FAILED during install!', error);
-            console.error('[SW] Failed to cache one or more of these assets:', ASSETS_TO_CACHE);
-            throw error;
-          });
-      })
+      .then(cache => cache.addAll(ASSETS_TO_CACHE))
+      .then(() => self.skipWaiting())
       .catch(error => {
-        console.error('[SW] CRITICAL ERROR: caches.open() FAILED during install for CACHE_NAME:', CACHE_NAME, error);
+        console.error('[SW] cache.addAll() failed during install:', error);
         throw error;
       })
   );
 });
 
 self.addEventListener('activate', event => {
-  console.log('[SW] Activate event triggered. Current CACHE_NAME:', CACHE_NAME);
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('[SW] Clearing old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => {
-      console.log('[SW] Old caches cleared. Claiming clients.');
-      return self.clients.claim();
-    })
+    caches.keys().then(cacheNames => Promise.all(
+      cacheNames.map(cacheName => {
+        if (cacheName !== CACHE_NAME) {
+          return caches.delete(cacheName);
+        }
+      })
+    )).then(() => self.clients.claim())
   );
 });
 
@@ -58,19 +40,21 @@ self.addEventListener('fetch', event => {
   // Never cache version.json — it's used to detect app updates
   if (event.request.url.includes('/version.json')) return;
 
-  // For index.html: always check network first for updates, then cache and serve
-  if (event.request.url.includes('index.html')) {
+  // Navigations (opening the app, including the installed PWA launching at
+  // start_url "/") MUST be network-first. Matching only URLs that contain
+  // "index.html" misses the root path, which left installed apps pinned to
+  // a stale cached copy forever.
+  if (event.request.mode === 'navigate' || event.request.url.includes('index.html')) {
     event.respondWith(
       fetch(event.request).then(networkResponse => {
         const responseClone = networkResponse.clone();
-        // Cache the fresh copy for offline use
         caches.open(CACHE_NAME).then(cache => {
           cache.put(event.request, responseClone);
         });
         return networkResponse;
       }).catch(() => {
-        // Network failed — fall back to cached version
-        return caches.match(event.request);
+        // Offline — fall back to the cached app shell
+        return caches.match(event.request).then(hit => hit || caches.match('./index.html'));
       })
     );
     return;
