@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#4F46E5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="woooosh">
+    <link rel="apple-touch-icon" href="./images/icon-192x192.png">
     <title>woooosh</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="manifest" href="./manifest.json">
@@ -1146,6 +1148,143 @@
     }
 
     /* ─── Habits View ─────────────────────────────────────────────── */
+    /* ── Today panel ─────────────────────────────────────────────── */
+    .today-panel {
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        margin: 16px 28px 0;
+    }
+    .today-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+    .today-day {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-right: auto;
+    }
+    .today-chip {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 8px;
+        border-radius: 4px;
+        border: none;
+        font-family: inherit;
+    }
+    .today-chip-pr {
+        background: var(--accent-bg);
+        color: var(--accent-text);
+    }
+    .today-chip-habits {
+        background: var(--habit-bg);
+        color: var(--habit-text);
+        cursor: pointer;
+    }
+    .today-chip-habits.all-done {
+        background: var(--s-action-bg);
+        color: var(--s-action-text);
+    }
+    .today-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    .today-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+    }
+    .today-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-tertiary);
+    }
+    .today-value {
+        font-size: 13px;
+        color: var(--text-secondary);
+    }
+    @media (max-width: 768px) {
+        .today-panel { margin: 12px 16px 0; }
+        .today-grid { grid-template-columns: 1fr; gap: 8px; }
+        .today-cell { flex-direction: row; align-items: baseline; gap: 8px; }
+        .today-label { min-width: 72px; }
+    }
+
+    /* ── Lifts card ──────────────────────────────────────────────── */
+    .lifts-card {
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        margin: 16px 24px;
+    }
+    .lifts-card-header {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 10px;
+    }
+    .lifts-card-sub {
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--text-tertiary);
+        margin-left: 6px;
+    }
+    .lift-row {
+        display: grid;
+        grid-template-columns: 90px 70px 50px 1fr;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 0;
+    }
+    .lift-name {
+        font-size: 13px;
+        color: var(--text-secondary);
+    }
+    .lift-input {
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-primary);
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 8px;
+        width: 70px;
+        text-align: right;
+    }
+    .lift-input:focus {
+        outline: none;
+        border-color: var(--border-focus);
+    }
+    .lift-target {
+        font-size: 12px;
+        color: var(--text-tertiary);
+    }
+    .lift-bar {
+        height: 4px;
+        background: var(--bg-input);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    .lift-bar-fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+    .lift-bar-fill.done {
+        background: var(--s-action-dot);
+    }
+
     .habit-list-container {
         flex: 1;
         background: var(--bg-main);
@@ -1467,12 +1606,16 @@
             </div>
         </div>
 
+        <!-- Today panel: the day's plan from the 2026 weekly template -->
+        <div class="today-panel" id="todayPanel"></div>
+
         <div class="task-list-container" id="taskListContainer">
             <ul id="taskList"></ul>
             <p id="noTasksMessage" class="no-tasks" style="display: none;"></p>
         </div>
 
         <div class="habit-list-container" id="habitListContainer" style="display: none;">
+            <div class="lifts-card" id="liftsCard"></div>
             <div id="habitList"></div>
             <p id="noHabitsMessage" class="no-habits" style="display: none;"></p>
         </div>
@@ -1541,7 +1684,7 @@
 <div id="toastContainer"></div>
 
 <script>
-    const APP_VERSION = '2.2.0';
+    const APP_VERSION = '2.3.0';
     let tasks = [];
     let currentFilter = 'all';
     let _editCancelled = false;
@@ -1764,14 +1907,16 @@
                 const data = await res.json();
                 if (data.exists) {
                     const remote = await decryptPayload(data);
-                    const merged = mergeTasks({ tasks, habits }, remote);
+                    const merged = mergeTasks({ tasks, habits, prs }, remote);
                     // Preserve UI state so sync doesn't kick user out of edit mode
                     const taskUI = new Map(tasks.map(t => [t.id, { isEditing: t.isEditing, isScheduling: t.isScheduling }]));
                     tasks = (merged.tasks || []).map(t => ({ ...t, ...taskUI.get(t.id) }));
                     const habitUI = new Map(habits.map(h => [h.id, h.isEditing]));
                     habits = (merged.habits || []).map(h => ({ ...h, isEditing: habitUI.get(h.id) || false }));
+                    prs = merged.prs || prs;
                     saveTasks();
                     saveHabits();
+                    savePrs();
                     // Only re-render if nothing is being edited (re-rendering would overwrite user's in-progress typing)
                     if (!tasks.some(t => t.isEditing || t.isScheduling) && !habits.some(h => h.isEditing)) {
                         renderAll();
@@ -1780,7 +1925,7 @@
             }
             // Push merged result
             const version   = Date.now();
-            const encrypted = await encryptTasks({ tasks, habits });
+            const encrypted = await encryptTasks({ tasks, habits, prs });
             const putRes = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -1796,6 +1941,10 @@
     // ── Sync: merge — per-item last-write-wins by updatedAt ───────────
     // Tombstone always wins: a deleted item stays deleted regardless of
     // whether a stale device has a newer updatedAt.
+    // Habit `completions` maps are DEEP-merged: whole-item LWW would drop
+    // check-ins made on the other device (e.g. Monday marked on the phone,
+    // Tuesday on the tablet — the loser's days must survive). Dates present
+    // on both sides take the newer item's value, so un-checking still syncs.
     function mergeItems(local, remote) {
         const byId = new Map();
         for (const t of [...local, ...remote]) {
@@ -1804,14 +1953,20 @@
             if (existing && existing._deleted) continue;
             const tTime = new Date(t.updatedAt || t.created || 0).getTime();
             const eTime = existing ? new Date(existing.updatedAt || existing.created || 0).getTime() : 0;
-            if (!existing || tTime > eTime) byId.set(t.id, t);
+            const winner = (!existing || tTime > eTime) ? t : existing;
+            const loser  = (winner === t) ? existing : t;
+            if (loser && winner.completions && loser.completions) {
+                byId.set(t.id, { ...winner, completions: { ...loser.completions, ...winner.completions } });
+            } else {
+                byId.set(t.id, winner);
+            }
         }
         return [...byId.values()];
     }
 
     // Backward compat: mergeTasks wraps mergeItems for array payloads
     function mergeTasks(local, remote) {
-        // Handle old format (array) or new format ({tasks, habits})
+        // Handle old format (array) or new format ({tasks, habits, prs})
         let localTasks = Array.isArray(local) ? local : (local.tasks || []);
         let remoteTasks = Array.isArray(remote) ? remote : (remote.tasks || []);
         let localHabitArr = Array.isArray(local) ? [] : (local.habits || []);
@@ -1819,6 +1974,10 @@
         return {
             tasks: mergeItems(localTasks, remoteTasks),
             habits: mergeItems(localHabitArr, remoteHabitArr),
+            prs: mergePrs(
+                Array.isArray(local) ? {} : (local.prs || {}),
+                Array.isArray(remote) ? {} : (remote.prs || {})
+            ),
         };
     }
 
@@ -1836,17 +1995,19 @@
 
             if (data.exists) {
                 const remote = await decryptPayload(data);
-                const merged = mergeTasks({ tasks, habits }, remote);
+                const merged = mergeTasks({ tasks, habits, prs }, remote);
                 tasks = (merged.tasks || []).map(t => ({ ...t, isEditing: false, isScheduling: false }));
                 habits = merged.habits || [];
+                prs = merged.prs || prs;
                 saveTasks();
                 saveHabits();
+                savePrs();
                 renderAll();
             }
 
             // Push merged result (or local-only if nothing was on server)
             const version   = Date.now();
-            const encrypted = await encryptTasks({ tasks, habits });
+            const encrypted = await encryptTasks({ tasks, habits, prs });
             const putRes = await fetch(`${SYNC_SERVER}/sync/${syncAccountId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -1938,8 +2099,138 @@
         }
     }
 
-    function getTodayKey() {
-        return new Date().toISOString().slice(0, 10);
+    // First-run seed: the five habits from the 2026 plan. Deterministic ids
+    // (1–5) so two fresh devices seeding independently merge into one set
+    // instead of duplicating. Only runs when the storage key has never
+    // existed — deletions leave tombstones, so this never resurrects them.
+    function seedDefaultHabits() {
+        if (localStorage.getItem('wooooshHabits') !== null) return;
+        const t0 = '2026-01-01T00:00:00.000Z';
+        habits = [
+            { id: 1, name: 'Lift / BJJ',               completions: {}, created: t0, updatedAt: t0 },
+            { id: 2, name: 'Clean eating (low carb)',  completions: {}, created: t0, updatedAt: t0 },
+            { id: 3, name: 'Post-dinner walk',         completions: {}, created: t0, updatedAt: t0 },
+            { id: 4, name: 'Learning (any)',           completions: {}, created: t0, updatedAt: t0 },
+            { id: 5, name: 'Good mindset all day',     completions: {}, created: t0, updatedAt: t0 },
+        ];
+        saveHabits();
+    }
+
+    // ── Lift PR data model ───────────────────────────────────────────
+    // Synced + encrypted alongside tasks/habits. Per-lift LWW by updatedAt.
+    const LIFT_DEFS = [
+        { key: 'squat',      label: 'Squat',      target: 365 },
+        { key: 'bench',      label: 'Bench',      target: 245 },
+        { key: 'deadlift',   label: 'Deadlift',   target: 405 },
+        { key: 'press',      label: 'Press',      target: null },
+        { key: 'bodyweight', label: 'Bodyweight', target: 170 },
+    ];
+    let prs = {};
+
+    function savePrs() {
+        localStorage.setItem('wooooshPrs', JSON.stringify(prs));
+    }
+    function loadPrs() {
+        const stored = localStorage.getItem('wooooshPrs');
+        if (stored) { try { prs = JSON.parse(stored) || {}; } catch { prs = {}; } }
+        // Known starting point from the 2026 plan: deadlift PR 365 (01/22)
+        if (!prs.deadlift) {
+            prs.deadlift = { current: 365, updatedAt: '2026-01-22T00:00:00.000Z' };
+            savePrs();
+        }
+    }
+
+    function mergePrs(local, remote) {
+        const out = { ...(local || {}) };
+        for (const [k, v] of Object.entries(remote || {})) {
+            const mine = out[k];
+            if (!mine || new Date(v.updatedAt || 0) > new Date(mine.updatedAt || 0)) out[k] = v;
+        }
+        return out;
+    }
+
+    function updatePr(key, rawValue) {
+        const v = parseFloat(rawValue);
+        if (isNaN(v) || v <= 0) { renderToday(); renderLifts(); return; }
+        prs[key] = { current: v, updatedAt: new Date().toISOString() };
+        savePrs();
+        renderToday();
+        renderLifts();
+        debouncedSync();
+        showToast(`${LIFT_DEFS.find(l => l.key === key)?.label || key}: ${v}`, 'success');
+    }
+
+    // ── Today panel: the 2026 weekly template ────────────────────────
+    // Indexed by Date.getDay() (0 = Sunday).
+    const WEEKLY_PLAN = [
+        { focus: 'Press (5/3/1) + Hobby',        nutrition: 'Low Carb',        recovery: 'Family Calls / 5yr Planning', lift: 'press' },
+        { focus: 'Squat (5/3/1) + BBB',          nutrition: 'Strict Low Carb', recovery: 'Deep Work Block (90m)',       lift: 'squat' },
+        { focus: 'BJJ 6am + Work Delegation',    nutrition: 'High Protein',    recovery: 'Management Syncs',            lift: null },
+        { focus: 'Bench (5/3/1) + BBB',          nutrition: 'Low Carb',        recovery: 'Sauna / Cold Plunge',         lift: 'bench' },
+        { focus: 'Work (Deep Rust Dev)',         nutrition: 'Low Carb',        recovery: 'Guitar Practice (Blues)',     lift: null },
+        { focus: 'Deadlift (5/3/1) + BBB',       nutrition: 'Moderate Carb',   recovery: 'Date Night / Hosting Prep',   lift: 'deadlift' },
+        { focus: 'BJJ 11am + Cleaning',          nutrition: 'Reward Meal',     recovery: 'Social / Games',              lift: null },
+    ];
+    const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+    function renderToday() {
+        const panel = document.getElementById('todayPanel');
+        if (!panel) return;
+        const now  = new Date();
+        const plan = WEEKLY_PLAN[now.getDay()];
+        const key  = localDateKey(now);
+
+        const liveHabits = habits.filter(h => !h._deleted);
+        const done = liveHabits.filter(h => h.completions && h.completions[key]).length;
+
+        let prChip = '';
+        if (plan.lift) {
+            const def = LIFT_DEFS.find(l => l.key === plan.lift);
+            const cur = prs[plan.lift]?.current;
+            prChip = `<span class="today-chip today-chip-pr">PR ${cur ?? '—'}${def?.target ? ` → ${def.target}` : ''} lb</span>`;
+        }
+        const habitChip = liveHabits.length
+            ? `<button class="today-chip today-chip-habits${done === liveHabits.length ? ' all-done' : ''}" onclick="switchView('habits')">Habits ${done}/${liveHabits.length}</button>`
+            : '';
+
+        panel.innerHTML = `
+            <div class="today-header">
+                <span class="today-day">${DAY_NAMES[now.getDay()]}</span>
+                ${prChip}
+                ${habitChip}
+            </div>
+            <div class="today-grid">
+                <div class="today-cell"><span class="today-label">Focus</span><span class="today-value">${plan.focus}</span></div>
+                <div class="today-cell"><span class="today-label">Nutrition</span><span class="today-value">${plan.nutrition}</span></div>
+                <div class="today-cell"><span class="today-label">Recovery</span><span class="today-value">${plan.recovery}</span></div>
+            </div>`;
+    }
+
+    function renderLifts() {
+        const card = document.getElementById('liftsCard');
+        if (!card) return;
+        const rows = LIFT_DEFS.map(def => {
+            const cur = prs[def.key]?.current;
+            const pct = (cur && def.target) ? Math.min(100, Math.round(cur / def.target * 100)) : 0;
+            return `<div class="lift-row">
+                <span class="lift-name">${def.label}</span>
+                <input class="lift-input" type="number" inputmode="decimal" step="5" min="0"
+                       value="${cur ?? ''}" placeholder="—"
+                       onchange="updatePr('${def.key}', this.value)"
+                       onkeydown="if(event.key==='Enter')this.blur()">
+                <span class="lift-target">${def.target ? `/ ${def.target}` : ''}</span>
+                <div class="lift-bar"><div class="lift-bar-fill${pct >= 100 ? ' done' : ''}" style="width:${pct}%"></div></div>
+            </div>`;
+        }).join('');
+        card.innerHTML = `<div class="lifts-card-header">Lifts <span class="lifts-card-sub">current / target (lb)</span></div>${rows}`;
+    }
+
+    // Date key in LOCAL time (YYYY-MM-DD). toISOString() is UTC and shifts
+    // the date near midnight (or all day in UTC+ timezones) — habit
+    // check-ins would land on the wrong day.
+    function localDateKey(d) {
+        const pad = n => String(n).padStart(2, '0');
+        return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
     }
 
     function getStreak(habit) {
@@ -1949,13 +2240,11 @@
         today.setHours(0, 0, 0, 0);
         let checkDate = new Date(today);
         // If not completed today, start checking from yesterday
-        const todayKey = checkDate.toISOString().slice(0, 10);
-        if (!comps[todayKey]) {
+        if (!comps[localDateKey(checkDate)]) {
             checkDate.setDate(checkDate.getDate() - 1);
         }
         while (true) {
-            const key = checkDate.toISOString().slice(0, 10);
-            if (comps[key]) {
+            if (comps[localDateKey(checkDate)]) {
                 streak++;
                 checkDate.setDate(checkDate.getDate() - 1);
             } else {
@@ -2229,7 +2518,9 @@
     }
 
     function renderAll() {
+        renderToday();
         if (currentView === 'habits') {
+            renderLifts();
             renderHabits();
         } else {
             renderTasks();
@@ -2483,7 +2774,7 @@
 
             let calendarHTML = '<div class="habit-calendar">';
             days.forEach(d => {
-                const key = d.toISOString().slice(0, 10);
+                const key = localDateKey(d);
                 const isFuture = d > today;
                 const completed = !isFuture && habit.completions && habit.completions[key];
                 const label = dayLabels[days.indexOf(d)];
@@ -2615,26 +2906,28 @@
     };
 
     // ── Version Check ──────────────────────────────────────────────────
+    // On version mismatch, refresh the app shell ONLY (caches + service
+    // worker + reload). NEVER touch localStorage — it holds the user's
+    // tasks, habits, and the sync key. Clearing it would permanently
+    // destroy the sync identity on every release.
     const checkVersion = async () => {
         try {
-            const ts = Date.now();
-            const resp = await fetch(`/version.json?t=${ts}`, { cache: 'no-store' });
+            const resp = await fetch(`/version.json?t=${Date.now()}`, { cache: 'no-store' });
             if (!resp.ok) return;
             const data = await resp.json();
-            if (data.version && data.version !== APP_VERSION) {
-                // Newer version available — wipe local data and reload from server
-                localStorage.clear();
-                if ('caches' in window) {
-                    const keys = await caches.keys();
-                    await Promise.all(keys.map(k => caches.delete(k)));
-                }
-                if ('serviceWorker' in navigator) {
-                    const regs = await navigator.serviceWorker.getRegistrations();
-                    await Promise.all(regs.map(r => r.unregister()));
-                }
-                sessionStorage.clear();
-                window.location.reload();
+            if (!data.version || data.version === APP_VERSION) return;
+            // Reload-loop guard: only attempt one refresh per session
+            if (sessionStorage.getItem('wooooshVersionRefreshed') === data.version) return;
+            sessionStorage.setItem('wooooshVersionRefreshed', data.version);
+            if ('caches' in window) {
+                const keys = await caches.keys();
+                await Promise.all(keys.map(k => caches.delete(k)));
             }
+            if ('serviceWorker' in navigator) {
+                const regs = await navigator.serviceWorker.getRegistrations();
+                await Promise.all(regs.map(r => r.update()));
+            }
+            window.location.reload();
         } catch {
             // Network error or version.json missing — proceed normally
         }
@@ -2643,9 +2936,15 @@
     document.addEventListener('DOMContentLoaded', async () => {
         loadTasks();
         loadHabits();
+        seedDefaultHabits();
+        loadPrs();
         renderAll();
         const ve = document.getElementById('appVersion');
         if (ve) ve.textContent = `v${APP_VERSION}`;
+        // Ask the browser not to evict our storage (localStorage + SW cache).
+        // Matters on iOS Safari and helps on Android; harmless elsewhere.
+        try { navigator.storage?.persist?.(); } catch {}
+        checkVersion();
         try { await initSync(); } catch { setSyncStatus('offline'); }
     });
 
