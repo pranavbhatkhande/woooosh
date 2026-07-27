@@ -1,6 +1,0 @@
-# All generated demo outputs — screenshots, videos, frame lists
-# These are produced by the demo scripts and should not be committed.
-*.png
-*.mp4
-*.webm
-*.txt

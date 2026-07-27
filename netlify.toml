@@ -1,9 +1,6 @@
 [build]
   publish = "."
 
-[functions]
-  node_bundler = "esbuild"
-
 [[headers]]
   for = "/*"
   [headers.values]
@@ -17,6 +14,6 @@
     Cache-Control = "no-cache"
 
 [[headers]]
-  for = "/manifest.json"
+  for = "/manifest.webmanifest"
   [headers.values]
     Cache-Control = "no-cache"

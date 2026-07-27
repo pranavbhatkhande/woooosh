@@ -1,87 +1,45 @@
-const CACHE_NAME = 'woooosh-cache-v8';
-const ASSETS_TO_CACHE = [
+const CACHE = 'ss-v1';
+const SHELL = [
   './',
   './index.html',
-  './manifest.json',
-  './images/icon-192x192.png',
-  './images/icon-512x512.png'
+  './css/app.css',
+  './js/app.js',
+  './js/programs.js',
+  './js/engine.js',
+  './js/store.js',
+  './js/charts.js',
+  './manifest.webmanifest',
+  './icons/icon.svg',
+  './icons/maskable.svg',
 ];
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(ASSETS_TO_CACHE))
-      .then(() => self.skipWaiting())
-      .catch(error => {
-        console.error('[SW] cache.addAll() failed during install:', error);
-        throw error;
-      })
+self.addEventListener('install', (e) => {
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => Promise.all(
-      cacheNames.map(cacheName => {
-        if (cacheName !== CACHE_NAME) {
-          return caches.delete(cacheName);
-        }
-      })
-    )).then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') {
-    return;
-  }
-  // Never cache sync API requests — they must always hit the network
-  if (event.request.url.includes('/sync/')) return;
-  // Never cache version.json — it's used to detect app updates
-  if (event.request.url.includes('/version.json')) return;
-
-  // Navigations (opening the app, including the installed PWA launching at
-  // start_url "/") MUST be network-first. Matching only URLs that contain
-  // "index.html" misses the root path, which left installed apps pinned to
-  // a stale cached copy forever.
-  if (event.request.mode === 'navigate' || event.request.url.includes('index.html')) {
-    event.respondWith(
-      fetch(event.request).then(networkResponse => {
-        const responseClone = networkResponse.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseClone);
-        });
-        return networkResponse;
-      }).catch(() => {
-        // Offline — fall back to the cached app shell
-        return caches.match(event.request).then(hit => hit || caches.match('./index.html'));
-      })
-    );
-    return;
-  }
-
-  event.respondWith(
-    caches.match(event.request)
-      .then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        return fetch(event.request).then(networkResponse => {
-          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-            return networkResponse;
+// Cache-first with background refresh: instant offline loads, updates on next visit.
+self.addEventListener('fetch', (e) => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then((cached) => {
+      const fresh = fetch(e.request)
+        .then((res) => {
+          if (res.ok && new URL(e.request.url).origin === location.origin) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(e.request, copy));
           }
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseToCache);
-            })
-            .catch(err => {
-              console.error('[SW] Failed to cache network response for:', event.request.url, err);
-            });
-          return networkResponse;
-        }).catch(error => {
-          console.error('[SW] Network fetch failed for:', event.request.url, error);
-        });
-      })
+          return res;
+        })
+        .catch(() => cached);
+      return cached || fresh;
+    })
   );
 });
