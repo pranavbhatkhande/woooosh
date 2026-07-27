@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "ai.woooosh.strength",
+    "sha256_cert_fingerprints": ["C4:97:AA:E1:56:DD:25:98:3A:9C:58:67:DA:74:D5:19:CD:D5:72:FA:2D:B4:5A:32:76:55:FE:8C:07:A2:42:B1"]
+  }
+}]
