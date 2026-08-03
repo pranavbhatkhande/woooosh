@@ -1,5 +1,5 @@
 // Program definitions from Starting Strength (Rippetoe), Practical Programming,
-// and Wendler’s Big Boy templates from the Starting Strength boards.
+// and Wendler’s 5/3/1 and Big Boy templates.
 // Slot kinds:
 //   main — fixed lift at its current work weight, drives linear progression
 //   alt  — rotates through options on an alternation counter (press/bench, DL/clean)
@@ -51,6 +51,31 @@ const DL_ROW_ALT = { slot: 'alt', key: 'pull', options: [
 ]};
 const CHINS = { slot: 'main', lift: 'chinup', sets: 3, amrap: true };
 const BACKEXT = { slot: 'main', lift: 'backext', sets: 3, reps: 10, fixed: true };
+
+// 5/3/1 percentages are of the training max (the lift's stored weight);
+// each work set is its own single-set pct slot so it gets its own weight.
+const WAVES_531 = [
+  { week: '3×5',    sets: [[0.65, 5], [0.75, 5], [0.85, 5, true]] },
+  { week: '3×3',    sets: [[0.70, 3], [0.80, 3], [0.90, 3, true]] },
+  { week: '5/3/1',  sets: [[0.75, 5], [0.85, 3], [0.95, 1, true]] },
+  { week: 'Deload', sets: [[0.40, 5], [0.50, 5], [0.60, 5]] },
+];
+
+function days531() {
+  const order = [['press', CHINS], ['deadlift', BACKEXT], ['bench', CHINS], ['squat', BACKEXT]];
+  const days = [];
+  for (const { week, sets } of WAVES_531) {
+    for (const [lift, assist] of order) {
+      const slots = sets.map(([pct, reps, amrap]) => ({
+        slot: 'pct', lift, of: lift, pct, sets: 1, reps, amrap,
+        tag: amrap ? `${Math.round(pct * 100)}% · ${reps}+` : `${Math.round(pct * 100)}%`,
+      }));
+      if (week !== 'Deload') slots.push({ slot: 'pct', lift, of: lift, pct: 0.5, sets: 5, reps: 10, tag: 'BBB 50%' });
+      days.push({ label: `${LIFTS[lift].name} · ${week}`, slots: [...slots, assist] });
+    }
+  }
+  return days;
+}
 
 export const PROGRAMS = [
   {
@@ -191,6 +216,18 @@ export const PROGRAMS = [
         { slot: 'main', lift: 'deadlift', sets: 1, reps: 5, tag: 'New 5RM' },
       ]},
     ],
+  },
+  // ── 5/3/1 (Wendler) ─────────────────────────────────────────────────
+  {
+    id: 'five-three-one',
+    name: '5/3/1 · Boring But Big',
+    level: 'Intermediate',
+    schedule: '4 days / week · 4-week cycle',
+    blurb: 'Wendler’s 5/3/1: monthly waves of 5s, 3s, and a PR single off a training max, with Boring But Big assistance.',
+    detail: 'Jim Wendler’s 5/3/1 trains each big lift once a week, working off a training max — set each lift’s weight to about 90% of your best single. Week one ramps to a top set of 5+, week two 3+, week three the 5/3/1 week with a 95% single for 1+, week four deloads. Top sets are AMRAP: beat the minimum by as many reps as you have in you. Boring But Big follows the main work — 5 sets of 10 at 50% of the training max — plus chins or back extensions.',
+    progression: 'Training maxes go up by each lift’s increment once per four-week cycle, never per workout. Set increments to +5 lb for the press and bench and +10 lb for the squat and deadlift in Settings. If a top set misses its minimum reps, drop that lift’s training max 10% and rebuild.',
+    days: days531(),
+    cycleBump: ['press', 'deadlift', 'bench', 'squat'],
   },
   // ── Big Boy templates (Wendler) ─────────────────────────────────────
   {

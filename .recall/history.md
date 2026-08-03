@@ -415,3 +415,24 @@ The APK at `android/app/build/outputs/apk/release/app-release.apk` is this build
 **Claude:** Now proving it end-to-end — load the module and simulate two full weeks of each new program through the real engine:
   - `Bash: node --input-type=module -e " import { PROGRAMS, LIFTS, DEFAULTS, programById } from './js/programs.js'; import { resolveWorkout, completeWorkout } from './js/e`
   - `Bash: node --input-type=module -e " import { PROGRAMS, DEFAULTS } from './js/programs.js'; import { resolveWorkout } from './js/engine.js'; const d = DEFAULTS.lb; for`
+
+**Claude:** Fixed. The app was completely dead — the commit had replaced curly apostrophes with straight ones inside single-quoted strings in `js/programs.js` (lines 100, 117, 118, 146), so the module failed to parse and nothing loaded, old programs included.
+
+What I fixed:
+
+- **Syntax errors** — restored the original `’` apostrophes; the module imports cleanly again.
+- **`shrugs` lift** — removed: it was declared `bodyweight: true` (shrugs aren't) and referenced by no program.
+- **Missing slot-8 color** — `row` uses chip/chart slot 8 but `css/app.css` only defined `--s1`–`--s7`; added `--s8` (teal) to all three theme blocks plus the `.lift-chip.s8`/`.swatch.s8` rules.
+- **Second press day trained the wrong lift** — with `press: 'cycle-end'`, the "Recovery" press day repeated Monday's lift, so bench went untrained on alternate weeks. Switched it to the `altOffset: 1` pattern HLM already uses (`js/programs.js:212`), so both presses get trained weekly and swap roles each week.
+- **Descriptions contradicted the schedules** (BBB's text called Friday a pull day; its slots were presses; progression text described training-max cycles the engine doesn't have). Rewrote blurb/detail/progression for all three to describe what actually runs, and normalized them to the file's quoting style.
+- Restored the load-bearing `altAdvance` comment on the Texas Method that the commit had deleted.
+
+Verified end-to-end: simulated two full weeks of each new program through the real `resolveWorkout`/`completeWorkout` engine — squat +5/session, deadlift 5×5 ↔ row 3×8 alternating with correct rounding, press/bench swapping correctly — and smoke-tested all 10 programs (output above).
+
+Two things worth knowing:
+1. These are Big Boy 3×5 templates, not actual 5/3/1 — the engine has no training-max or percentage-wave concept, and the original commit didn't add one either (it just claimed to). If you want real 5/3/1 (65/75/85 → 70/80/90 → 75/85/95 waves off a TM, deload week, TM bump per cycle), that's an engine feature; say the word.
+2. That commit also checked in ~15 MB of Gradle build garbage (`android/.gradle/`, `android/app/build/`, `local.properties`). I left it alone, but it should probably be removed and gitignored in a follow-up.
+
+**You:** push all changes
+  - `Bash: git status --short && git diff --stat`
+  - `Bash: git add -A && git commit -m "Fix broken 531 support Repair syntax errors that broke the whole app (straight apostrophes in single-quoted strings), remove unused`

@@ -122,6 +122,12 @@ export function completeWorkout(state, logged) {
     for (const [key, mode] of Object.entries(advance)) {
       if (mode === 'cycle-end') next.program.alt[key] = (next.program.alt[key] || 0) + 1;
     }
+    // 5/3/1-style: training maxes move once per completed cycle, never per workout
+    for (const lift of program.cycleBump || []) {
+      const rec = next.lifts[lift];
+      rec.weight = roundToLoadable(rec.weight + rec.increment, next.settings);
+      summary.push({ lift, kind: 'up', to: rec.weight });
+    }
   }
   next.program.dayIndex = state.program.dayIndex + 1;
   return { next, summary };
