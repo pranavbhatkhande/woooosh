@@ -15,7 +15,7 @@
   --wash: rgba(11, 11, 11, 0.045);
   --shadow: 0 1px 2px rgba(11, 11, 11, 0.05), 0 8px 24px -12px rgba(11, 11, 11, 0.12);
   --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
-  --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7;
+  --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7; --s8: #0e93a8;
   --radius: 18px;
   --font: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -36,7 +36,7 @@
     --wash: rgba(255, 255, 255, 0.06);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
     --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
-    --s5: #d55181; --s6: #008300; --s7: #9085e9;
+    --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #35b5c9;
   }
 }
 :root[data-theme="dark"] {
@@ -55,7 +55,7 @@
   --wash: rgba(255, 255, 255, 0.06);
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
-  --s5: #d55181; --s6: #008300; --s7: #9085e9;
+  --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #35b5c9;
 }
 
 /* ---------- base ---------- */
@@ -185,7 +185,7 @@ abbr { text-decoration: none; }
 .lift-chip.s1 { background: var(--s1); } .lift-chip.s2 { background: var(--s2); }
 .lift-chip.s3 { background: var(--s3); } .lift-chip.s4 { background: var(--s4); }
 .lift-chip.s5 { background: var(--s5); } .lift-chip.s6 { background: var(--s6); }
-.lift-chip.s7 { background: var(--s7); }
+.lift-chip.s7 { background: var(--s7); } .lift-chip.s8 { background: var(--s8); }
 
 .big-weight {
   font-size: 2.35rem; font-weight: 800; letter-spacing: -0.03em;
@@ -285,7 +285,7 @@ abbr { text-decoration: none; }
 .swatch.s1 { background: var(--s1); } .swatch.s2 { background: var(--s2); }
 .swatch.s3 { background: var(--s3); } .swatch.s4 { background: var(--s4); }
 .swatch.s5 { background: var(--s5); } .swatch.s6 { background: var(--s6); }
-.swatch.s7 { background: var(--s7); }
+.swatch.s7 { background: var(--s7); } .swatch.s8 { background: var(--s8); }
 
 /* ---------- rest pill ---------- */
 #rest-pill[hidden] { display: none; }

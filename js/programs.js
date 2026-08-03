@@ -1,5 +1,5 @@
 // Program definitions from Starting Strength (Rippetoe), Practical Programming,
-// and Wendler's 5/3/1 Big Boy programs on StartingStrength.com.
+// and Wendler’s Big Boy templates from the Starting Strength boards.
 // Slot kinds:
 //   main — fixed lift at its current work weight, drives linear progression
 //   alt  — rotates through options on an alternation counter (press/bench, DL/clean)
@@ -14,7 +14,6 @@ export const LIFTS = {
   chinup:     { name: 'Chin-Up',        short: 'CH', slot: 6, bodyweight: true },
   backext:    { name: 'Back Extension', short: 'BE', slot: 7, bodyweight: true },
   row:        { name: 'Barbell Row',    short: 'RW', slot: 8 },
-  shrugs:     { name: 'Shrugs',         short: 'SHR', slot: 9, bodyweight: true },
 };
 
 export const DEFAULTS = {
@@ -97,7 +96,7 @@ export const PROGRAMS = [
     level: 'Novice',
     schedule: 'Mon / Wed / Fri weekly',
     blurb: 'The last stop before intermediate: a light squat day mid-week keeps the linear progression alive a few more weeks.',
-    detail: 'When Monday's squats start ruining Wednesday's, the Wednesday squat drops to 80% for 2 sets of 5 — light enough to recover, heavy enough to keep practicing. Pulling assistance spreads across the week: chin-ups Monday, back extensions Wednesday, and the heavy pull (deadlift alternating with power clean) on Friday. Squeeze the last weeks out of the novice progression here before moving to the Texas Method.',
+    detail: 'When Monday’s squats start ruining Wednesday’s, the Wednesday squat drops to 80% for 2 sets of 5 — light enough to recover, heavy enough to keep practicing. Pulling assistance spreads across the week: chin-ups Monday, back extensions Wednesday, and the heavy pull (deadlift alternating with power clean) on Friday. Squeeze the last weeks out of the novice progression here before moving to the Texas Method.',
     progression: 'Monday and Friday squats progress +5 lb per session; Wednesday stays at 80% of the current work weight automatically. Presses and pulls progress as in Phase 3.',
     days: [
       { label: 'Monday', slots: [S3x5, PRESS_ALT, CHINS] },
@@ -114,8 +113,8 @@ export const PROGRAMS = [
     level: 'Intermediate',
     schedule: 'Mon / Wed / Fri weekly',
     blurb: 'Volume Monday, recovery Wednesday, a new 5RM every Friday. The classic intermediate program from Practical Programming.',
-    detail: 'Progress now happens weekly, not per-workout. Monday is the stress: 5 sets of 5 at 90% of Friday's five-rep max. Wednesday is active recovery: light squats at 80% of Monday, the other press at moderate weight, chin-ups. Friday is the payoff: a single all-out set of five at a new personal record. The press and bench swap weekly — whichever you push Monday and Friday, the other fills Wednesday.',
-    progression: 'Friday's 5RM goes up 5 lb per week (2.5 lb for the press); Monday's volume and Wednesday's light work are computed from it automatically. When Friday stalls, reset volume 10% and rebuild.',
+    detail: 'Progress now happens weekly, not per-workout. Monday is the stress: 5 sets of 5 at 90% of Friday’s five-rep max. Wednesday is active recovery: light squats at 80% of Monday, the other press at moderate weight, chin-ups. Friday is the payoff: a single all-out set of five at a new personal record. The press and bench swap weekly — whichever you push Monday and Friday, the other fills Wednesday.',
+    progression: 'Friday’s 5RM goes up 5 lb per week (2.5 lb for the press); Monday’s volume and Wednesday’s light work are computed from it automatically. When Friday stalls, reset volume 10% and rebuild.',
     days: [
       { label: 'Volume', slots: [
         { slot: 'pct', lift: 'squat', of: 'squat', pct: 0.9, sets: 5, reps: 5, tag: 'Volume 90%' },
@@ -136,6 +135,9 @@ export const PROGRAMS = [
         PULL_ALT,
       ]},
     ],
+    // Volume + Intensity press must match; the shared counter advances once per
+    // completed workout containing the key, so it flips Volume→Recovery→Intensity.
+    // Advance press alternation weekly instead: only bump after the Intensity day.
     altAdvance: { press: 'cycle-end', pull: 'per-appearance' },
   },
   {
@@ -143,9 +145,9 @@ export const PROGRAMS = [
     name: 'Heavy · Light · Medium',
     level: 'Intermediate',
     schedule: 'Mon / Wed / Fri weekly',
-    blurb: 'The oldest template in barbell training — Bill Starr's weekly wave, as presented in Practical Programming.',
+    blurb: 'The oldest template in barbell training — Bill Starr’s weekly wave, as presented in Practical Programming.',
     detail: 'One heavy dose of stress on Monday, then two progressively easier sessions that keep you moving while you recover: Wednesday at 80%, Friday at 90%. Weekly progression on the Monday sets across all lifts. HLM is more forgiving than the Texas Method and scales from late-novice through years of training by adjusting the size of the weekly jump.',
-    progression: "Monday's 3×5 adds 5 lb per week (2.5 lb press). Light and medium days are computed at 80% and 90% of Monday. Stall three Mondays running, deload 10%.",
+    progression: 'Monday’s 3×5 adds 5 lb per week (2.5 lb press). Light and medium days are computed at 80% and 90% of Monday. Stall three Mondays running, deload 10%.',
     days: [
       { label: 'Heavy', slots: [S3x5, PRESS_ALT, { slot: 'main', lift: 'deadlift', sets: 1, reps: 5 }] },
       { label: 'Light', slots: [
@@ -190,27 +192,21 @@ export const PROGRAMS = [
       ]},
     ],
   },
-  // ── 5/3/1 Big Boy Programs (Wendler) ────────────────────────────────
+  // ── Big Boy templates (Wendler) ─────────────────────────────────────
   {
     id: 'bbb',
     name: 'Big Boy',
     level: 'Intermediate',
     schedule: 'Mon / Tue / Fri weekly',
-    blurb: "The classic BBB splits presses and pulls with two squat days a week.",
-    detail: "Jim Wendler's Big Boy program, widely available on StartingStrength.com. Two squat days (Monday squats with the press or bench, Tuesday squats with deadlifts or rows). Friday is pull day with the alternate heavy lift. Assistance work rounds out each session. The stored weight for each lift is treated like a training max — use it to progressively overload block-to-block.",
-    progression: "Progress by increasing your training max every fourth cycle when you hit all reps comfortably. Use deload week (week 4) before testing new maxes on week 5.",
+    blurb: 'Wendler’s Big Boy template: two squat days early in the week, both presses trained weekly, deadlifts alternating with rows.',
+    detail: 'Jim Wendler’s Big Boy template as posted around the Starting Strength boards. Monday and Tuesday both squat — Monday with the week’s primary press, Tuesday with the heavy pull (deadlift alternating with barbell rows). Friday is a lighter session on the other press with assistance work, so both the press and bench get trained every week.',
+    progression: 'Squats progress per session as in the novice LP. The presses swap Monday/Friday roles each week; the deadlift and row alternate per appearance. Deload a lift 10% after 3 consecutive failed sessions.',
     days: [
-      // Monday: Squat + Press/Press or Bench/Bench
-      { label: 'Squat · Press', slots: [
-        S3x5, PRESS_ALT, BACKEXT, CHINS,
-      ]},
-      // Tuesday: Squat + Deadlifts/Rows
-      { label: 'Squat · Pull', slots: [
-        S3x5, DL_ROW_ALT, CHINS,
-      ]},
-      // Friday: Press/Bench (alternating) without squats
+      { label: 'Squat · Press', slots: [S3x5, PRESS_ALT, BACKEXT, CHINS] },
+      { label: 'Squat · Pull', slots: [S3x5, DL_ROW_ALT, CHINS] },
       { label: 'Press · Recovery', slots: [
-        PRESS_ALT, BACKEXT, CHINS,
+        { slot: 'alt', key: 'press', altOffset: 1, tag: 'Other press', options: PRESS_ALT.options },
+        BACKEXT, CHINS,
       ]},
     ],
     altAdvance: { press: 'cycle-end', pull: 'per-appearance' },
@@ -220,21 +216,15 @@ export const PROGRAMS = [
     name: 'Big Push / Big Pull',
     level: 'Intermediate',
     schedule: 'Mon / Tue / Thu weekly',
-    blurb: "Presses on Monday, pulls on Tuesday, squats every other Thursday.",
-    detail: "Wendler's variation separates pressing and pulling onto distinct days. Monday is push day (squat + press/bench), Tuesday is pull day (deadlift/row without squat). Thursday alternates between a heavy day of press or bench, plus assistance work — no squats to let legs recover before next week's push/pull.",
-    progression: "Progress by increasing your training max every fourth cycle. Deload the fourth week when percentages drop then test new maxes in week five.",
+    blurb: 'Pushing and pulling on separate days: squat and press Monday, deadlift or row Tuesday, the other press Thursday.',
+    detail: 'A Big Boy variation that separates pushing and pulling. Monday is the push day: squats with the week’s primary press. Tuesday is the pull day: deadlift alternating with barbell rows, no squats. Thursday is a lighter push session on the other press with assistance — the legs rest until next Monday.',
+    progression: 'Squats progress per session; the presses swap Monday/Thursday roles each week; the deadlift and row alternate per appearance. Deload a lift 10% after 3 consecutive failed sessions.',
     days: [
-      // Monday: Push Day
-      { label: 'Push', slots: [
-        S3x5, PRESS_ALT, BACKEXT, CHINS,
-      ]},
-      // Tuesday: Pull Day (deadlift alternating with row)
-      { label: 'Pull', slots: [
-        DL_ROW_ALT, CHINS, BACKEXT,
-      ]},
-      // Thursday: Push Recovery 
+      { label: 'Push', slots: [S3x5, PRESS_ALT, BACKEXT, CHINS] },
+      { label: 'Pull', slots: [DL_ROW_ALT, CHINS, BACKEXT] },
       { label: 'Push · Recovery', slots: [
-        PRESS_ALT, BACKEXT, CHINS,
+        { slot: 'alt', key: 'press', altOffset: 1, tag: 'Other press', options: PRESS_ALT.options },
+        BACKEXT, CHINS,
       ]},
     ],
     altAdvance: { press: 'cycle-end', pull: 'per-appearance' },
@@ -244,26 +234,17 @@ export const PROGRAMS = [
     name: 'Super Big Boy',
     level: 'Intermediate',
     schedule: 'Mon / Tue / Wed / Thu weekly',
-    blurb: "Maximum volume variation for the dedicated: four days a week with squats twice, presses/pulls split.",
-    detail: "Super BBB doubles the pressing frequency while keeping two squat days. Monday is heavy day with squats and press/bench; Tuesday is pull day (deadlift or row), Wednesday hits another pressing/assistance session without squats; Thursday gives you a second squat + deadlift/row session for maximum weekly volume on every movement pattern.",
-    progression: "Progress by increasing your training max the fifth week when all four weeks' targets are hit. Use a deload cycle before testing new 1RMs to lift the next block's percentages.",
+    blurb: 'The four-day version: squats and heavy pulls twice a week, both presses trained, maximum weekly volume.',
+    detail: 'Super Big Boy adds a fourth day for more weekly volume. Monday squats with the primary press; Tuesday is the pull day (deadlift alternating with rows); Wednesday is a lighter session on the other press; Thursday squats again with the next pull in the rotation. Every movement pattern gets hit twice a week.',
+    progression: 'Squats progress per session on both squat days; the presses swap roles each week; the deadlift and row alternate per appearance across Tuesday and Thursday. Deload a lift 10% after 3 consecutive failed sessions.',
     days: [
-      // Monday: Heavy Squat + Press
-      { label: 'Squat · Press', slots: [
-        S3x5, PRESS_ALT, BACKEXT, CHINS,
-      ]},
-      // Tuesday: Pull Day (Deadlift alternating with Rows)
-      { label: 'Pull', slots: [
-        DL_ROW_ALT, CHINS, BACKEXT,
-      ]},
-      // Wednesday: Press/Bench day without squats 
+      { label: 'Squat · Press', slots: [S3x5, PRESS_ALT, BACKEXT, CHINS] },
+      { label: 'Pull', slots: [DL_ROW_ALT, CHINS, BACKEXT] },
       { label: 'Press · Recovery', slots: [
-        PRESS_ALT, BACKEXT, CHINS,
+        { slot: 'alt', key: 'press', altOffset: 1, tag: 'Other press', options: PRESS_ALT.options },
+        BACKEXT, CHINS,
       ]},
-      // Thursday: Second Squat + another Pull session (DL/row)
-      { label: 'Squat · Pull', slots: [
-        S3x5, DL_ROW_ALT, CHINS,
-      ]},
+      { label: 'Squat · Pull', slots: [S3x5, DL_ROW_ALT, CHINS] },
     ],
     altAdvance: { press: 'cycle-end', pull: 'per-appearance' },
   },
