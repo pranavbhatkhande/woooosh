@@ -1,45 +1,17 @@
-const CACHE = 'ss-v1';
-const SHELL = [
-  './',
-  './index.html',
-  './css/app.css',
-  './js/app.js',
-  './js/programs.js',
-  './js/engine.js',
-  './js/store.js',
-  './js/charts.js',
-  './manifest.webmanifest',
-  './icons/icon.svg',
-  './icons/maskable.svg',
-];
-
-self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
+/* Clears the previous app's offline cache and steps aside.
+   The old Starting Strength page registered this URL. Once this
+   script activates, cached pages are deleted and the worker unregisters
+   so the recomp site loads from the network. */
+self.addEventListener("install", (event) => {
+  event.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
-});
-
-// Cache-first with background refresh: instant offline loads, updates on next visit.
-self.addEventListener('fetch', (e) => {
-  if (e.request.method !== 'GET') return;
-  e.respondWith(
-    caches.match(e.request).then((cached) => {
-      const fresh = fetch(e.request)
-        .then((res) => {
-          if (res.ok && new URL(e.request.url).origin === location.origin) {
-            const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put(e.request, copy));
-          }
-          return res;
-        })
-        .catch(() => cached);
-      return cached || fresh;
-    })
-  );
+self.addEventListener("activate", (event) => {
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map((key) => caches.delete(key)));
+    await self.registration.unregister();
+    const windows = await self.clients.matchAll({ type: "window" });
+    await Promise.all(windows.map((client) => client.navigate(client.url)));
+  })());
 });

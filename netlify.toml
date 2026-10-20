@@ -8,18 +8,9 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# The previous app registered /sw.js. Keep it uncached so browsers
+# pick up the script that deletes that offline cache.
 [[headers]]
   for = "/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/manifest.webmanifest"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/app/*.apk"
-  [headers.values]
-    Content-Type = "application/vnd.android.package-archive"
-    Content-Disposition = "attachment"
