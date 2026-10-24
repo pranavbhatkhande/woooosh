@@ -6,7 +6,8 @@ import { scoreAttempt } from "./scoring.js";
 import { planUnlimited, dailyPromptIds, previousUtcDate, utcDate } from "./select.js";
 import { shareText } from "./share.js";
 import { loadState, saveState } from "./storage.js";
-import { CEILING_KM, tierMeta, zoneFor } from "./tiers.js";
+import { flightLine, flightMood, mountAscent, peakTier, rocketProgress } from "./ascent.js";
+import { tierMeta, zoneFor } from "./tiers.js";
 
 const screen = document.querySelector("#screen");
 const howDialog = document.querySelector("#how");
@@ -31,6 +32,7 @@ let judging = false;
 let view = "";
 let homeStamp = "";
 let nodes = null;
+let ascent = null;
 let lastSecond = -1;
 
 function el(tag, attrs, kids) {
@@ -114,6 +116,7 @@ judgeToggle.addEventListener("change", () => {
 });
 
 function showBoot(message) {
+  releaseAscent();
   screen.replaceChildren(el("p", { class: "status", text: message }));
 }
 
@@ -124,11 +127,13 @@ function showHome() {
   const stats = store.stats || {};
   const date = utcDate();
   homeStamp = date;
+  const pad = rocketProgress(0, null);
   screen.replaceChildren(
     el("section", { class: "home" }, [
       el("p", { class: "eyebrow", text: "THE DAILY ASCENT" }),
       el("h1", { class: "title", text: "WOOOOSH" }),
       el("p", { class: "lede", text: "Seven prompts. Rarer answers climb higher." }),
+      orbitHost({ altitude: 0, mood: "idle", fromT: pad, toT: pad }),
       el("p", { class: "meta", text: `${date} · ${bank.promptCount} prompts in the bank` }),
       el("div", { class: "actions" }, [
         button("Today's ascent", "daily", () => begin("daily")),
@@ -214,20 +219,29 @@ function dots() {
   return row;
 }
 
-function meter() {
-  const zone = zoneFor(run.altitude);
-  const fill = el("span", { class: "meter-fill" });
-  fill.style.height = `${Math.max(4, Math.min(100, (run.altitude / CEILING_KM) * 100))}%`;
-  const bar = el("div", { class: "meter", role: "img", "aria-label": `${run.altitude} kilometers, ${zone.label}` }, [
-    fill,
-  ]);
-  return el("div", { class: "altitude" }, [
-    bar,
-    el("div", {}, [
-      el("p", { class: "km", text: `${run.altitude} km` }),
+function releaseAscent() {
+  if (!ascent) return;
+  ascent.destroy();
+  ascent = null;
+}
+
+function orbitHost({ altitude, mood, fromT, toT, tier = null, answerTier = null, mark = "" }) {
+  const zone = zoneFor(altitude);
+  const host = el("div", { class: mark ? `orbit ${mark}` : "orbit" });
+  host.dataset.mood = mood || "idle";
+  const canvas = document.createElement("canvas");
+  canvas.className = "orbit-sky";
+  canvas.setAttribute("aria-hidden", "true");
+  host.append(
+    canvas,
+    el("div", { class: "orbit-readout" }, [
+      el("p", { class: "km", text: `${altitude} km` }),
       el("p", { class: "zone", text: zone.label }),
     ]),
-  ]);
+  );
+  releaseAscent();
+  ascent = mountAscent(canvas, { altitude, mood, fromT, toT, tier, answerTier });
+  return host;
 }
 
 function renderPlay() {
@@ -259,18 +273,39 @@ function renderPlay() {
     run = passPrompt(run, Date.now());
     renderPhase();
   });
+  const progress = rocketProgress(run.altitude, peakTier(run.rounds));
+  const orbit = orbitHost({
+    altitude: run.altitude,
+    mood: "idle",
+    fromT: progress,
+    toT: progress,
+    tier: peakTier(run.rounds),
+  });
   const ring = ringSvg();
-  const judgingNote = el("p", { class: "judging", role: "status", text: "judging…" });
+  const judgingNote = el("p", { class: "judging", role: "status" });
+  judgingNote.append(el("span", { class: "judging-mark", "aria-hidden": "true" }), "judging…");
   judgingNote.hidden = true;
   const live = el("p", { class: "sr", "aria-live": "polite" });
-  nodes = { field, submit, ringValue: ring.querySelector(".value"), seconds: ring.querySelector("text"), live, judgingNote, pass };
+  nodes = {
+    field,
+    submit,
+    form,
+    orbit,
+    ascent,
+    wasJudging: false,
+    ringValue: ring.querySelector(".value"),
+    seconds: ring.querySelector("text"),
+    live,
+    judgingNote,
+    pass,
+  };
   const preview = run.phase === "preview";
   field.disabled = preview;
   submit.disabled = preview;
   pass.disabled = preview;
   screen.replaceChildren(
     el("section", { class: "round" }, [
-      meter(),
+      orbit,
       dots(),
       el("p", { class: "count", text: `${run.index + 1} / ${run.prompts.length}` }),
       el("h2", { class: "prompt", text: prompt.text }),
@@ -329,6 +364,13 @@ function updateClock(now) {
     nodes.ringValue.classList.toggle("low", second <= 5 && !run.paused);
   }
   nodes.judgingNote.hidden = !judging;
+  if (nodes.ascent && nodes.wasJudging !== judging) {
+    nodes.wasJudging = judging;
+    nodes.ascent.set({ mood: judging ? "judging" : "idle" });
+    nodes.orbit.dataset.mood = judging ? "judging" : "idle";
+    nodes.orbit.classList.toggle("orbit-judging", judging);
+    nodes.form.classList.toggle("waiting", judging);
+  }
   if (run.phase === "play") {
     nodes.field.disabled = judging;
     if (nodes.submit) nodes.submit.disabled = judging;
@@ -342,6 +384,7 @@ function shake() {
   void nodes.field.offsetWidth;
   nodes.field.classList.add("bad");
   nodes.field.setAttribute("aria-invalid", "true");
+  if (nodes.ascent) nodes.ascent.kick("reject");
 }
 
 function lock(hit, typed) {
@@ -412,8 +455,19 @@ function renderReveal() {
   const round = run.rounds[run.rounds.length - 1];
   const meta = round.tier ? tierMeta(round.tier) : null;
   const heading = round.kind === "hit" ? `${meta.label} · ${round.points}` : round.kind === "pass" ? "PASSED · 0" : "TIME · 0";
-  const detail = el("div", { class: "reveal" }, [
-    meter(),
+  const previous = run.rounds.slice(0, -1);
+  const gained = round.points || 0;
+  const orbit = orbitHost({
+    altitude: run.altitude,
+    mood: round.kind === "hit" ? "hit" : "miss",
+    fromT: rocketProgress(Math.max(0, run.altitude - gained), peakTier(previous)),
+    toT: rocketProgress(run.altitude, peakTier(run.rounds)),
+    tier: peakTier(run.rounds),
+    answerTier: round.tier,
+    mark: round.kind === "hit" ? `orbit-hit tier-${round.tier}` : "orbit-miss",
+  });
+  const detail = el("div", { class: `reveal${round.tier ? ` tier-${round.tier}` : " tier-miss"}` }, [
+    orbit,
     dots(),
     el("p", { class: `banner ${round.tier || "miss"}`, text: heading }),
   ]);
@@ -444,6 +498,9 @@ function renderReveal() {
 function renderDone() {
   view = "done";
   nodes = null;
+  const peak = peakTier(run.rounds);
+  const flight = flightMood(run.altitude, peak);
+  const progress = rocketProgress(run.altitude, peak);
   const zone = zoneFor(run.altitude);
   const text = shareText({
     mode: run.mode,
@@ -464,10 +521,20 @@ function renderDone() {
     share.textContent = ok ? "Copied" : "Copy failed";
   });
   screen.replaceChildren(
-    el("section", { class: "done" }, [
+    el("section", { class: `done flight-${flight}` }, [
+      orbitHost({
+        altitude: run.altitude,
+        mood: "finale",
+        fromT: progress,
+        toT: progress,
+        tier: peak,
+        answerTier: peak,
+        mark: "orbit-finale",
+      }),
       el("p", { class: "eyebrow", text: run.mode === "daily" ? `DAILY · ${run.date}` : "UNLIMITED" }),
       el("h2", { class: "title", text: `${run.altitude} km` }),
       el("p", { class: "zone big", text: zone.label }),
+      el("p", { class: "flight-line", text: flightLine(flight) }),
       el("pre", { class: "share", text }),
       share,
       log,
