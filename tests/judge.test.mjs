@@ -1,14 +1,19 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { classifyJudgeResponse } from "../js/judge-client.js";
+import { compileAnswers } from "../js/match.js";
+import { scoreAttempt } from "../js/scoring.js";
 import {
   allowRequest,
   cacheKey,
   judgeEndpoint,
   judgeMessages,
   parseVerdict,
+  referenceEntries,
   requestBody,
   scoreJudged,
+  settleJudged,
   validAnswer,
 } from "../netlify/lib/judge-core.js";
 
@@ -76,20 +81,39 @@ test("obscure real members stay valid and familiarity is separate", () => {
   assert.doesNotMatch(text, /valid is true only when/);
 });
 
-test("the public judge ignores JUDGE_URL and never enables", async () => {
+test("the judge enables when JUDGE_URL is set, and an exact bank hit skips the model", async () => {
+  const { handler } = await import("../netlify/functions/judge.js");
   const previous = process.env.JUDGE_URL;
-  process.env.JUDGE_URL = "https://example.invalid/v1";
+  delete process.env.JUDGE_URL;
   try {
-    const { handler } = await import("../netlify/functions/judge.js");
-    const get = await handler({ httpMethod: "GET", headers: {} });
-    assert.equal(JSON.parse(get.body).enabled, false);
-    const post = await handler({
-      httpMethod: "POST",
-      headers: {},
-      body: JSON.stringify({ promptId: "wd-country", answer: "France" }),
-    });
-    assert.equal(post.statusCode, 200);
-    assert.equal(JSON.parse(post.body).enabled, false);
+    const off = await handler({ httpMethod: "GET", headers: {} });
+    assert.equal(JSON.parse(off.body).enabled, false);
+    process.env.JUDGE_URL = "https://example.invalid/api";
+    const on = await handler({ httpMethod: "GET", headers: {} });
+    assert.equal(JSON.parse(on.body).enabled, true);
+    let calls = 0;
+    const prev = globalThis.fetch;
+    globalThis.fetch = async (...args) => {
+      calls += 1;
+      return prev(...args);
+    };
+    try {
+      const post = await handler({
+        httpMethod: "POST",
+        headers: { host: "example.test" },
+        body: JSON.stringify({ promptId: "wd-country", answer: "France" }),
+      });
+      assert.equal(post.statusCode, 200);
+      const data = JSON.parse(post.body);
+      assert.equal(data.enabled, true);
+      assert.equal(data.valid, true);
+      assert.equal(data.inBank, true);
+      assert.equal(data.canonical, "France");
+      assert.equal(data.judged, false);
+      assert.equal(calls, 0);
+    } finally {
+      globalThis.fetch = prev;
+    }
   } finally {
     if (previous === undefined) delete process.env.JUDGE_URL;
     else process.env.JUDGE_URL = previous;
@@ -100,8 +124,108 @@ test("upstream body asks for JSON and disables thinking", () => {
   const body = requestBody("ollama", "qwen3.8:27b", []);
   assert.equal(body.think, false);
   assert.equal(body.stream, false);
+  assert.equal(body.keep_alive, "30m");
   assert.equal(body.format.required.includes("familiarity"), true);
   const openai = requestBody("openai", "qwen3.8:27b", []);
   assert.equal(openai.temperature, 0.1);
+  assert.equal(openai.keep_alive, undefined);
   assert.equal(openai.response_format.json_schema.schema.required.includes("valid"), true);
+});
+
+const cities = compileAnswers([
+  { name: "Portland", aliases: [], tier: "taxi", gem: false },
+  { name: "Salem", aliases: [], tier: "climb", gem: false },
+  { name: "Eugene", aliases: [], tier: "climb", gem: false },
+  { name: "Joseph", aliases: [], tier: "burn", gem: false },
+]);
+
+test("scoring: exact bank hit, typo mapped to canonical, unlisted accept, reject, timeout fallback", () => {
+  const exact = scoreAttempt(cities, "Portland", { status: "pending" });
+  assert.equal(exact.action, "lock");
+  assert.equal(exact.hit.name, "Portland");
+  assert.equal(exact.hit.tier, "taxi");
+  assert.equal(exact.hit.judged, false);
+
+  const mapped = settleJudged(cities, "Portlnd", {
+    valid: true,
+    canonical: "Portland",
+    familiarity: 10,
+    reason: "typo",
+  });
+  assert.equal(mapped.valid, true);
+  assert.equal(mapped.inBank, true);
+  assert.equal(mapped.judged, false);
+  assert.equal(mapped.canonical, "Portland");
+  assert.equal(mapped.tier, "taxi");
+  assert.equal(mapped.points, 5);
+  const mappedClient = scoreAttempt(cities, "Portlnd", { status: "scored", data: mapped });
+  assert.equal(mappedClient.action, "lock");
+  assert.equal(mappedClient.hit.name, "Portland");
+  assert.equal(mappedClient.hit.judged, false);
+
+  const unlisted = settleJudged(cities, "Manzanita", {
+    valid: true,
+    canonical: "Manzanita",
+    familiarity: 2,
+    reason: "small Oregon city",
+  });
+  assert.equal(unlisted.valid, true);
+  assert.equal(unlisted.inBank, false);
+  assert.equal(unlisted.judged, true);
+  assert.equal(unlisted.canonical, "Manzanita");
+  assert.equal(unlisted.tier, "apogee");
+  assert.equal(unlisted.gem, false);
+
+  const rejected = settleJudged(cities, "Portlnd", {
+    valid: false,
+    canonical: "",
+    familiarity: 1,
+    reason: "not a city",
+  });
+  assert.equal(rejected.valid, false);
+  const rejectedClient = scoreAttempt(cities, "Portlnd", { status: "reject" });
+  assert.equal(rejectedClient.action, "shake");
+  assert.equal(rejectedClient.remember, true);
+
+  const timedOut = settleJudged(cities, "Portlnd", null);
+  assert.equal(timedOut.valid, true);
+  assert.equal(timedOut.canonical, "Portland");
+  assert.equal(timedOut.tier, "taxi");
+  assert.equal(timedOut.judged, false);
+  const fallback = scoreAttempt(cities, "Portlnd", { status: "fallback" });
+  assert.equal(fallback.action, "lock");
+  assert.equal(fallback.hit.name, "Portland");
+  assert.equal(fallback.hit.judged, false);
+  assert.equal(scoreAttempt(cities, "zzzzqqqq", { status: "fallback" }).action, "shake");
+});
+
+test("near bank entries are the judge's lookup list", () => {
+  const refs = referenceEntries(cities, "Portlnd");
+  assert.equal(refs[0].name, "Portland");
+  const clubs = compileAnswers([
+    { name: "Paris Saint-Germain", aliases: [], tier: "taxi", gem: false },
+    { name: "Marseille", aliases: [], tier: "climb", gem: false },
+  ]);
+  assert.equal(referenceEntries(clubs, "psg")[0].name, "Paris Saint-Germain");
+  const text = judgeMessages("Name a city in Oregon", "Portlnd", refs)
+    .map((message) => message.content)
+    .join("\n");
+  assert.match(text, /Reference entries:/);
+  assert.match(text, /- Portland/);
+  assert.match(text, /copied exactly/);
+});
+
+test("a judge transport failure falls back and a real reject does not", () => {
+  assert.equal(classifyJudgeResponse(false, { enabled: true, error: "upstream" }).status, "fallback");
+  assert.equal(classifyJudgeResponse(false, { enabled: true, error: "rate" }).status, "fallback");
+  assert.equal(classifyJudgeResponse(true, { enabled: true, valid: false }).status, "reject");
+  const scored = classifyJudgeResponse(true, {
+    enabled: true,
+    valid: true,
+    tier: "taxi",
+    canonical: "Portland",
+    inBank: true,
+  });
+  assert.equal(scored.status, "scored");
+  assert.equal(scored.data.canonical, "Portland");
 });

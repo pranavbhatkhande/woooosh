@@ -143,6 +143,15 @@ function fuzzyHits(compiled, token) {
   return uniqueAnswers(hits);
 }
 
+// Exact or normalized key only: the display name, an alias, or a compact
+// spelling already stored on the answer. Plurals and typos are not exact.
+export function exactHit(compiled, raw) {
+  if (!compiled) return null;
+  const norm = normalize(raw);
+  if (!norm || !compiled.exact.has(norm)) return null;
+  return compiled.exact.get(norm);
+}
+
 export function matchAnswer(compiled, raw) {
   if (!compiled) return null;
   const norm = normalize(raw);

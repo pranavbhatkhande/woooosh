@@ -1,11 +1,12 @@
-// The public site scores from the static bank only. This function stays
-// inert even when JUDGE_URL is set, so a miss never calls a model.
+// Primary scorer when JUDGE_URL is set. Exact bank hits return immediately.
+// Everything else is judged, with near bank entries in the prompt. A model
+// failure is an error status so the game can fall back to bank matching.
 
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { compileAnswers, matchAnswer } from "../../js/match.js";
+import { compileAnswers, exactHit } from "../../js/match.js";
 import {
   allowRequest,
   cacheKey,
@@ -14,8 +15,10 @@ import {
   judgeMessages,
   messageText,
   parseVerdict,
+  referenceEntries,
   requestBody,
   scoreJudged,
+  settleJudged,
   validAnswer,
   validPromptId,
   withoutThink,
@@ -45,7 +48,8 @@ const ROOTS = [
 const IP_LIMIT = 30;
 const GLOBAL_LIMIT = 120;
 const WINDOW_MS = 60_000;
-const UPSTREAM_MS = 3500;
+// A cold Ollama load is about 5s. Stay inside the 10s function limit.
+const UPSTREAM_MS = 8000;
 
 function state() {
   if (!globalThis.__wooooshJudge) {
@@ -66,8 +70,7 @@ function json(status, body) {
 }
 
 function enabled() {
-  // Hard off. Do not consult JUDGE_URL. The bank is the only scorer.
-  return false;
+  return Boolean(String(process.env.JUDGE_URL || "").trim());
 }
 
 async function readJsonFile(rel) {
@@ -165,43 +168,66 @@ function remember(key, verdict) {
   }
 }
 
-async function callModel(answer, promptText) {
+async function postModel(messages, { parse = true, predict = 0 } = {}) {
   const endpoint = judgeEndpoint(process.env.JUDGE_URL, process.env.JUDGE_API || "");
   if (!endpoint) throw new Error("no endpoint");
   const model = process.env.JUDGE_MODEL || "qwen3.8:27b";
-  const messages = judgeMessages(promptText, answer);
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), UPSTREAM_MS);
   const headers = { "Content-Type": "application/json" };
   if (process.env.JUDGE_TOKEN) headers.Authorization = `Bearer ${process.env.JUDGE_TOKEN}`;
+  const deadline = Date.now() + UPSTREAM_MS;
+  const send = async (body) => {
+    const left = deadline - Date.now();
+    if (left < 200) throw new Error("timeout");
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), left);
+    try {
+      const response = await fetch(endpoint.url, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+      const text = await response.text();
+      if (!response.ok) {
+        const error = new Error(`upstream ${response.status}`);
+        error.detail = text.slice(0, 300);
+        throw error;
+      }
+      if (!parse) return text;
+      let payload;
+      try {
+        payload = JSON.parse(text);
+      } catch {
+        payload = { message: { content: text } };
+      }
+      const verdict = parseVerdict(messageText(payload));
+      if (!verdict) throw new Error("unparsed verdict");
+      return verdict;
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+  let body = requestBody(endpoint.mode, model, messages);
+  if (predict > 0 && endpoint.mode === "ollama") body = { ...body, options: { ...body.options, num_predict: predict } };
+  if (predict > 0 && endpoint.mode !== "ollama") body = { ...body, max_tokens: predict };
   try {
-    return await postUpstream(endpoint.url, requestBody(endpoint.mode, model, messages), headers, controller.signal);
+    return await send(body);
   } catch (error) {
     const message = String(error && error.detail ? error.detail : error && error.message ? error.message : error);
     if (!/think/i.test(message)) throw error;
-    return await postUpstream(endpoint.url, withoutThink(requestBody(endpoint.mode, model, messages)), headers, controller.signal);
-  } finally {
-    clearTimeout(timer);
+    return await send(withoutThink(body));
   }
 }
 
-async function postUpstream(url, body, headers, signal) {
-  const response = await fetch(url, { method: "POST", headers, body: JSON.stringify(body), signal });
-  const text = await response.text();
-  if (!response.ok) {
-    const error = new Error(`upstream ${response.status}`);
-    error.detail = text.slice(0, 300);
-    throw error;
-  }
-  let payload;
-  try {
-    payload = JSON.parse(text);
-  } catch {
-    payload = { message: { content: text } };
-  }
-  const verdict = parseVerdict(messageText(payload));
-  if (!verdict) throw new Error("unparsed verdict");
-  return verdict;
+function rateOk(event) {
+  const now = Date.now();
+  const bag = state();
+  const ip = clientIp(event.headers);
+  const ipResult = allowRequest(bag.ip.get(ip) || [], now, IP_LIMIT, WINDOW_MS);
+  bag.ip.set(ip, ipResult.hits);
+  const globalResult = allowRequest(bag.global, now, GLOBAL_LIMIT, WINDOW_MS);
+  bag.global = globalResult.hits;
+  return ipResult.ok && globalResult.ok;
 }
 
 function readJsonBody(event) {
@@ -221,27 +247,29 @@ export async function handler(event) {
   } catch {
     return json(400, { enabled: true, error: "json" });
   }
+  if (body.warm === true) {
+    if (!rateOk(event)) return json(429, { enabled: true, error: "rate" });
+    try {
+      await postModel([{ role: "user", content: "ping" }], { parse: false, predict: 16 });
+      return json(200, { enabled: true, warm: true });
+    } catch {
+      return json(502, { enabled: true, error: "upstream" });
+    }
+  }
+
   const promptId = body.promptId;
   const answer = validAnswer(body.answer);
   if (!validPromptId(promptId) || !answer) return json(400, { enabled: true, error: "input" });
-
-  const now = Date.now();
-  const bag = state();
-  const ip = clientIp(event.headers);
-  const ipHits = bag.ip.get(ip) || [];
-  const ipResult = allowRequest(ipHits, now, IP_LIMIT, WINDOW_MS);
-  bag.ip.set(ip, ipResult.hits);
-  const globalResult = allowRequest(bag.global, now, GLOBAL_LIMIT, WINDOW_MS);
-  bag.global = globalResult.hits;
-  if (!ipResult.ok || !globalResult.ok) return json(429, { enabled: true, error: "rate" });
+  if (!rateOk(event)) return json(429, { enabled: true, error: "rate" });
 
   const prompt = await loadPrompt(event, promptId);
   if (!prompt) return json(404, { enabled: true, error: "prompt" });
 
   const compiled = compileAnswers(prompt.answers);
-  const direct = matchAnswer(compiled, answer);
+  const direct = exactHit(compiled, answer);
   if (direct) return json(200, { enabled: true, ...scoreJudged(null, direct) });
 
+  const bag = state();
   const key = cacheKey(promptId, answer);
   if (bag.verdicts.has(key)) return json(200, { enabled: true, ...bag.verdicts.get(key) });
   const store = await blobStore("judge-verdicts");
@@ -253,12 +281,11 @@ export async function handler(event) {
 
   let verdict;
   try {
-    verdict = await callModel(answer, prompt.text);
+    verdict = await postModel(judgeMessages(prompt.text, answer, referenceEntries(compiled, answer)));
   } catch {
     return json(502, { enabled: true, error: "upstream" });
   }
-  const fromCanonical = verdict.canonical ? matchAnswer(compiled, verdict.canonical) : null;
-  const scored = scoreJudged(verdict, fromCanonical);
+  const scored = settleJudged(compiled, answer, verdict);
   remember(key, scored);
   await blobSet(store, key, scored);
   if (scored.judged) {

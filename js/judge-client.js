@@ -1,8 +1,16 @@
-// The browser never calls the model directly. If the function is disabled,
-// slow, or unhappy, the round just keeps the bank rules.
+// The browser never calls the model directly. Transport failures, timeouts,
+// and rate limits are a fallback signal. A valid:false verdict is a reject.
 
 const PROBE_MS = 2500;
-const JUDGE_MS = 4000;
+// Cold model load is about 5s. The function waits 8s and Netlify allows 10s.
+const JUDGE_MS = 9000;
+
+export function classifyJudgeResponse(responseOk, data) {
+  if (!responseOk || !data || data.enabled === false || data.error) return { status: "fallback" };
+  if (data.valid === true && data.tier) return { status: "scored", data };
+  if (data.valid === false) return { status: "reject" };
+  return { status: "fallback" };
+}
 
 export async function probeJudge() {
   const controller = new AbortController();
@@ -26,6 +34,21 @@ export function judgePreferred(saved, available) {
   return saved !== false;
 }
 
+// Fire and forget. Starting a round loads the model during the preview
+// so the first real answer is less likely to pay the cold-start cost.
+export function warmJudge() {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), JUDGE_MS);
+  fetch("/api/judge", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ warm: true }),
+    signal: controller.signal,
+  })
+    .catch(() => {})
+    .finally(() => clearTimeout(timer));
+}
+
 export async function askJudge(promptId, answer, signal) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), JUDGE_MS);
@@ -41,12 +64,15 @@ export async function askJudge(promptId, answer, signal) {
       body: JSON.stringify({ promptId, answer }),
       signal: controller.signal,
     });
-    if (!response.ok) return null;
-    const data = await response.json();
-    if (!data || !data.enabled || !data.valid || !data.tier) return null;
-    return data;
+    let data = null;
+    try {
+      data = await response.json();
+    } catch {
+      data = null;
+    }
+    return classifyJudgeResponse(response.ok, data);
   } catch {
-    return null;
+    return { status: "fallback" };
   } finally {
     clearTimeout(timer);
     if (signal) signal.removeEventListener("abort", stop);

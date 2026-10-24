@@ -1,11 +1,12 @@
 import { loadIndex, loadPrompts, allIds } from "./bank.js";
 import { lockAnswer, nextPrompt, passPrompt, secondsLeft, startRun, tick } from "./engine.js";
-import { askJudge, judgePreferred, probeJudge } from "./judge-client.js";
-import { compileAnswers, matchAnswer, normalize } from "./match.js";
+import { askJudge, judgePreferred, probeJudge, warmJudge } from "./judge-client.js";
+import { compileAnswers, normalize } from "./match.js";
+import { scoreAttempt } from "./scoring.js";
 import { planUnlimited, dailyPromptIds, previousUtcDate, utcDate } from "./select.js";
 import { shareText } from "./share.js";
 import { loadState, saveState } from "./storage.js";
-import { CEILING_KM, pointsFor, tierMeta, zoneFor } from "./tiers.js";
+import { CEILING_KM, tierMeta, zoneFor } from "./tiers.js";
 
 const screen = document.querySelector("#screen");
 const howDialog = document.querySelector("#how");
@@ -15,7 +16,6 @@ const judgeNote = document.querySelector("#judge-note");
 const openHow = document.querySelector("#open-how");
 const openSettings = document.querySelector("#open-settings");
 
-const TIER_OK = new Set(["taxi", "climb", "burn", "stall", "apogee", "escape"]);
 const RING = 2 * Math.PI * 28;
 
 let bank = null;
@@ -93,8 +93,8 @@ function syncSettings() {
   judgeToggle.checked = useJudge();
   judgeToggle.disabled = !available;
   judgeNote.textContent = available
-    ? "Unlisted answers can score. They are marked judged by AI and never earn the ESCAPE gem. The clock keeps running."
-    : "The judge is offline for this site, so only answers in the bank score.";
+    ? "Close spellings and real answers that are not in the bank go to the judge. A bank match keeps its tier. Judged answers are marked and never earn ESCAPE. If the judge is unavailable, the bank is used instead. The clock keeps running."
+    : "The judge is offline, so scoring stays on the bank, including close spellings.";
 }
 
 openHow.addEventListener("click", () => howDialog.showModal());
@@ -171,6 +171,7 @@ async function begin(nextMode) {
     if (prompts.length < 1) throw new Error("empty");
     run = startRun({ mode: nextMode, date, prompts, now: Date.now() });
     rejected = new Set();
+    if (useJudge()) warmJudge();
     renderPhase();
   } catch {
     screen.replaceChildren(
@@ -340,21 +341,26 @@ function shake() {
   nodes.field.setAttribute("aria-invalid", "true");
 }
 
+function lock(hit, typed) {
+  abortJudge();
+  judging = false;
+  run = lockAnswer(run, Date.now(), { ...hit, typed });
+  renderPhase();
+}
+
 async function submitAnswer(raw) {
   if (!run || run.phase !== "play") return;
   const typed = raw.trim();
   if (!typed) return;
   const prompt = run.prompts[run.index];
-  const hit = matchAnswer(answersFor(prompt), typed);
-  if (hit) {
-    abortJudge();
-    judging = false;
-    run = lockAnswer(run, Date.now(), { ...hit, typed, judged: false });
-    renderPhase();
+  const compiled = answersFor(prompt);
+  const norm = normalize(typed);
+  const first = scoreAttempt(compiled, typed, { status: useJudge() ? "pending" : "off" });
+  if (first.action === "lock") {
+    lock(first.hit, typed);
     return;
   }
-  const norm = normalize(typed);
-  if (!norm || rejected.has(norm) || !useJudge()) {
+  if (!norm || !useJudge() || rejected.has(norm)) {
     shake();
     return;
   }
@@ -363,35 +369,16 @@ async function submitAnswer(raw) {
   judgeAbort = new AbortController();
   judging = true;
   if (nodes) nodes.judgingNote.hidden = false;
-  const verdict = await askJudge(prompt.id, typed, judgeAbort.signal);
+  const result = await askJudge(prompt.id, typed, judgeAbort.signal);
   if (token !== judgeToken || !run || run.phase !== "play") return;
   judging = false;
-  if (!verdict) {
-    rejected.add(norm);
-    shake();
+  const decision = scoreAttempt(compiled, typed, result);
+  if (decision.action === "lock") {
+    lock(decision.hit, typed);
     return;
   }
-  const inBank = Boolean(verdict.inBank);
-  const tier = inBank && TIER_OK.has(verdict.tier) ? verdict.tier : cappedTier(verdict);
-  if (!tier) {
-    rejected.add(norm);
-    shake();
-    return;
-  }
-  run = lockAnswer(run, Date.now(), {
-    name: verdict.canonical || typed,
-    tier,
-    points: pointsFor(tier),
-    typed,
-    judged: !inBank,
-  });
-  renderPhase();
-}
-
-function cappedTier(verdict) {
-  if (verdict.tier === "escape") return "apogee";
-  if (TIER_OK.has(verdict.tier) && verdict.tier !== "escape") return verdict.tier;
-  return null;
+  if (decision.remember && norm) rejected.add(norm);
+  shake();
 }
 
 function renderReveal() {
