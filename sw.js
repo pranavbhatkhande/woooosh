@@ -1,7 +1,7 @@
-/* Clears the previous app's offline cache and steps aside.
-   The old Starting Strength page registered this URL. Once this
-   script activates, cached pages are deleted and the worker unregisters
-   so the recomp site loads from the network. */
+/* Clears offline caches from earlier apps that registered this URL
+   (Starting Strength, then the recomp planner). Once this script
+   activates, cached pages are deleted and the worker unregisters.
+   The current game does not register a service worker. */
 self.addEventListener("install", (event) => {
   event.waitUntil(self.skipWaiting());
 });

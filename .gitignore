@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+pipeline/.cache/
+pipeline/out/
+node_modules/
+.DS_Store
+*.log

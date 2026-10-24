@@ -7,9 +7,47 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# The previous app registered /sw.js. Keep it uncached so browsers
-# pick up the script that deletes that offline cache.
+# HTML, the client, and the bank index change in place. Shards are
+# immutable for a given published version only in content, not in name,
+# so they get a short cache. /sw.js stays uncached so browsers that
+# registered an older worker pick up the script that unregisters it.
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/data/index.json"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/data/daily.json"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/data/prompts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
 [[headers]]
   for = "/sw.js"
   [headers.values]

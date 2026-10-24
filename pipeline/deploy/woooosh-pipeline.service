@@ -1,0 +1,12 @@
+[Unit]
+Description=Add WOOOOSH prompts and publish the bank
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/woooosh
+Environment=WOOOOSH_LLM_URL=http://localhost:11434/v1
+Environment=WOOOOSH_LLM_MODEL=qwen3.8:27b
+Environment=WOOOOSH_WEEKLY_COUNT=25
+ExecStart=%h/woooosh/pipeline/deploy/weekly-generate.sh

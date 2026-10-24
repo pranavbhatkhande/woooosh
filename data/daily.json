@@ -1,0 +1,4064 @@
+{
+  "version": 1,
+  "dates": {
+    "2026-10-23": [
+      "wd-nobel-peace",
+      "wd-film-2007",
+      "wd-capitals",
+      "hand-tale",
+      "wd-series-1998",
+      "wd-oscar-actors",
+      "wd-album-2007"
+    ],
+    "2026-10-24": [
+      "wd-album-2020",
+      "wd-film-2014",
+      "wd-film-2020",
+      "wd-palme",
+      "wd-newspapers",
+      "wd-film-2015",
+      "wd-album-2013"
+    ],
+    "2026-10-25": [
+      "wd-game-2009",
+      "wd-game-2001",
+      "wd-mountains",
+      "wd-elements",
+      "wd-cities-egypt",
+      "wd-cat-breeds",
+      "wd-series-2004"
+    ],
+    "2026-10-26": [
+      "wd-nobel-peace",
+      "wd-classical-composers",
+      "wd-series-2009",
+      "wd-album-2019",
+      "wd-cities-indonesia",
+      "wd-landlocked",
+      "wd-film-1987"
+    ],
+    "2026-10-27": [
+      "wd-software",
+      "wd-film-1988",
+      "hand-tree",
+      "hand-cards",
+      "wd-basketball-players",
+      "hand-genre",
+      "wd-series-2007"
+    ],
+    "2026-10-28": [
+      "wd-film-2023",
+      "hand-tree",
+      "hand-pizza",
+      "wd-cities-russia",
+      "wd-film-2011",
+      "wd-cities-australia",
+      "wd-game-2014"
+    ],
+    "2026-10-29": [
+      "wd-universities",
+      "hand-flower",
+      "wd-cities-egypt",
+      "wd-film-1988",
+      "wd-film-1992",
+      "wd-band-funk",
+      "wd-cities-india"
+    ],
+    "2026-10-30": [
+      "wd-film-1986",
+      "wd-software",
+      "wd-game-devs",
+      "wd-film-2002",
+      "wd-mountains",
+      "wd-album-2020",
+      "wd-series-2010"
+    ],
+    "2026-10-31": [
+      "wd-album-2023",
+      "wd-religions",
+      "wd-series-2010",
+      "wd-series-2009",
+      "wd-film-2023",
+      "hand-cards",
+      "wd-album-2008"
+    ],
+    "2026-11-01": [
+      "wd-game-1995",
+      "wd-cities-pakistan",
+      "wd-album-2007",
+      "wd-album-2019",
+      "hand-vegetable",
+      "hand-yoga",
+      "wd-series-2022"
+    ],
+    "2026-11-02": [
+      "wd-album-2021",
+      "wd-dog-breeds",
+      "wd-film-2002",
+      "wd-band-alternative",
+      "hand-holiday",
+      "wd-game-1996",
+      "wd-cities-us"
+    ],
+    "2026-11-03": [
+      "wd-us-presidents",
+      "wd-band-alternative",
+      "wd-game-2007",
+      "wd-series-1999",
+      "wd-film-1993",
+      "wd-series-2013",
+      "wd-game-devs"
+    ],
+    "2026-11-04": [
+      "wd-languages",
+      "wd-game-2006",
+      "wd-band-punk",
+      "wd-band-electronic",
+      "wd-classical-composers",
+      "wd-film-1990",
+      "wd-album-2008"
+    ],
+    "2026-11-05": [
+      "wd-film-1990",
+      "wd-cities-iran",
+      "wd-cities-japan",
+      "wd-oscar-actors",
+      "wd-cities-indonesia",
+      "wd-series-1999",
+      "wd-game-2020"
+    ],
+    "2026-11-06": [
+      "wd-booker",
+      "wd-beer-styles",
+      "wd-band-kpop",
+      "wd-film-2012",
+      "hand-pizza",
+      "wd-game-1998",
+      "hand-yoga"
+    ],
+    "2026-11-07": [
+      "wd-software",
+      "wd-game-2004",
+      "wd-film-2007",
+      "wd-film-2008",
+      "wd-film-1991",
+      "wd-film-2005",
+      "wd-fruits"
+    ],
+    "2026-11-08": [
+      "wd-film-1993",
+      "wd-film-1999",
+      "wd-film-1986",
+      "wd-series-2023",
+      "wd-film-2004",
+      "wd-islands",
+      "wd-footballers"
+    ],
+    "2026-11-09": [
+      "wd-film-2009",
+      "wd-universities",
+      "hand-tree",
+      "wd-constellations",
+      "wd-cities-russia",
+      "wd-religions",
+      "wd-film-2021"
+    ],
+    "2026-11-10": [
+      "wd-band-funk",
+      "wd-film-2019",
+      "wd-cities-iran",
+      "wd-film-1994",
+      "wd-us-presidents",
+      "wd-film-2014",
+      "wd-game-2002"
+    ],
+    "2026-11-11": [
+      "wd-cities-us",
+      "wd-album-2023",
+      "wd-cities-indonesia",
+      "wd-game-2001",
+      "wd-game-2022",
+      "wd-film-1986",
+      "wd-film-2002"
+    ],
+    "2026-11-12": [
+      "wd-game-2017",
+      "wd-band-metal",
+      "hand-olympus",
+      "wd-game-1997",
+      "hand-travel",
+      "wd-series-2024",
+      "wd-band-electronic"
+    ],
+    "2026-11-13": [
+      "wd-series-1999",
+      "wd-film-2023",
+      "wd-album-2023",
+      "wd-film-2000",
+      "hand-holiday",
+      "wd-album-2015",
+      "wd-game-2023"
+    ],
+    "2026-11-14": [
+      "hand-dance",
+      "wd-cities-germany",
+      "wd-cat-breeds",
+      "hand-cereal",
+      "wd-game-2007",
+      "wd-film-2003",
+      "wd-game-2010"
+    ],
+    "2026-11-15": [
+      "hand-cereal",
+      "wd-album-2022",
+      "wd-game-2000",
+      "hand-olympus",
+      "wd-series-2010",
+      "wd-mountains",
+      "wd-album-2008"
+    ],
+    "2026-11-16": [
+      "wd-film-1995",
+      "wd-album-2017",
+      "wd-religions",
+      "wd-cat-breeds",
+      "wd-series-2008",
+      "hand-olympus",
+      "wd-album-2006"
+    ],
+    "2026-11-17": [
+      "wd-album-2004",
+      "wd-game-2022",
+      "wd-band-rock",
+      "wd-game-2017",
+      "wd-board-games",
+      "wd-landlocked",
+      "hand-soda"
+    ],
+    "2026-11-18": [
+      "wd-album-2014",
+      "hand-tool",
+      "wd-booker",
+      "wd-landlocked",
+      "hand-yoga",
+      "hand-hero",
+      "wd-beer-styles"
+    ],
+    "2026-11-19": [
+      "wd-cities-philippines",
+      "wd-film-2020",
+      "wd-us-parks",
+      "wd-series-2014",
+      "wd-film-1993",
+      "wd-oscar-actors",
+      "wd-philosophers"
+    ],
+    "2026-11-20": [
+      "wd-album-2021",
+      "wd-band-kpop",
+      "wd-series-2009",
+      "wd-film-1989",
+      "wd-film-1996",
+      "wd-series-2011",
+      "wd-cities-egypt"
+    ],
+    "2026-11-21": [
+      "wd-game-1991",
+      "wd-religions",
+      "hand-subject",
+      "wd-album-2016",
+      "wd-cities-argentina",
+      "wd-game-devs",
+      "wd-band-kpop"
+    ],
+    "2026-11-22": [
+      "wd-album-2022",
+      "wd-series-2021",
+      "wd-album-2017",
+      "wd-pharaohs",
+      "wd-constellations",
+      "wd-game-1993",
+      "wd-series-2020"
+    ],
+    "2026-11-23": [
+      "hand-utensil",
+      "wd-album-2021",
+      "wd-physicists",
+      "wd-paintings",
+      "hand-bone",
+      "wd-album-2023",
+      "wd-mathematicians"
+    ],
+    "2026-11-24": [
+      "wd-horse-breeds",
+      "wd-nobel-literature",
+      "wd-album-2017",
+      "wd-countries-asia",
+      "hand-dance",
+      "wd-nobel-peace",
+      "wd-game-2007"
+    ],
+    "2026-11-25": [
+      "wd-series-2003",
+      "wd-heritage",
+      "wd-us-states",
+      "wd-series-2015",
+      "wd-band-rock",
+      "wd-film-2020",
+      "hand-feeling"
+    ],
+    "2026-11-26": [
+      "wd-game-2020",
+      "hand-soda",
+      "wd-film-2009",
+      "wd-cities-france",
+      "wd-basketball-players",
+      "wd-nobel-chemistry",
+      "wd-album-2018"
+    ],
+    "2026-11-27": [
+      "wd-album-2020",
+      "wd-album-2021",
+      "wd-game-2017",
+      "wd-cities-uk",
+      "wd-film-2008",
+      "wd-film-2006",
+      "wd-magazines"
+    ],
+    "2026-11-28": [
+      "wd-album-2013",
+      "wd-film-1995",
+      "wd-series-2013",
+      "wd-series-2006",
+      "wd-mountains",
+      "wd-horse-breeds",
+      "hand-tree"
+    ],
+    "2026-11-29": [
+      "wd-nobel-physics",
+      "wd-film-2012",
+      "wd-cities-philippines",
+      "wd-film-2004",
+      "wd-game-2019",
+      "wd-emperors",
+      "wd-game-2014"
+    ],
+    "2026-11-30": [
+      "hand-tool",
+      "wd-film-1987",
+      "hand-dance",
+      "wd-game-1995",
+      "wd-album-2012",
+      "wd-album-2017",
+      "wd-film-2000"
+    ],
+    "2026-12-01": [
+      "wd-series-2021",
+      "wd-volcanoes",
+      "wd-paintings",
+      "wd-band-funk",
+      "wd-cities-russia",
+      "wd-game-1992",
+      "wd-series-2022"
+    ],
+    "2026-12-02": [
+      "hand-candy",
+      "wd-countries",
+      "wd-cities-brazil",
+      "wd-cities-india",
+      "wd-uk-premiers",
+      "wd-band-funk",
+      "hand-myth"
+    ],
+    "2026-12-03": [
+      "wd-series-2012",
+      "hand-genre",
+      "wd-film-1987",
+      "wd-cities-south-korea",
+      "wd-film-1993",
+      "wd-game-2003",
+      "wd-album-2016"
+    ],
+    "2026-12-04": [
+      "wd-film-2022",
+      "wd-cities-uk",
+      "wd-nobel-physics",
+      "wd-inventors",
+      "hand-unit",
+      "wd-game-2019",
+      "wd-game-2012"
+    ],
+    "2026-12-05": [
+      "wd-series-2023",
+      "wd-best-picture",
+      "wd-game-2009",
+      "wd-footballers",
+      "wd-cities-colombia",
+      "hand-job",
+      "wd-band-metal"
+    ],
+    "2026-12-06": [
+      "wd-series-2012",
+      "wd-pastas",
+      "wd-game-2006",
+      "hand-unit",
+      "wd-countries-africa",
+      "wd-automakers",
+      "wd-cities-argentina"
+    ],
+    "2026-12-07": [
+      "wd-rivers",
+      "wd-film-2001",
+      "wd-cities-egypt",
+      "wd-cities-colombia",
+      "wd-series-2021",
+      "wd-series-2001",
+      "wd-universities"
+    ],
+    "2026-12-08": [
+      "wd-emperors",
+      "wd-nobel-peace",
+      "wd-film-1996",
+      "wd-cities-germany",
+      "wd-cities-brazil",
+      "wd-game-1993",
+      "wd-uk-premiers"
+    ],
+    "2026-12-09": [
+      "wd-game-2006",
+      "wd-horse-breeds",
+      "wd-teams",
+      "wd-film-2012",
+      "wd-film-2011",
+      "wd-game-2001",
+      "wd-game-devs"
+    ],
+    "2026-12-10": [
+      "wd-painters",
+      "wd-game-2012",
+      "wd-album-2023",
+      "wd-elements",
+      "wd-beer-styles",
+      "wd-album-2004",
+      "wd-film-2019"
+    ],
+    "2026-12-11": [
+      "wd-film-2018",
+      "wd-film-1995",
+      "wd-cities-indonesia",
+      "wd-cities-poland",
+      "wd-game-2002",
+      "wd-dog-breeds",
+      "wd-film-1992"
+    ],
+    "2026-12-12": [
+      "wd-series-2019",
+      "wd-series-2002",
+      "wd-emperors",
+      "hand-dance",
+      "wd-series-2010",
+      "wd-album-2006",
+      "wd-islands"
+    ],
+    "2026-12-13": [
+      "wd-film-2015",
+      "hand-genre",
+      "wd-album-2024",
+      "wd-game-1993",
+      "wd-series-2003",
+      "wd-series-2020",
+      "wd-heritage"
+    ],
+    "2026-12-14": [
+      "wd-film-2017",
+      "wd-game-2007",
+      "hand-cereal",
+      "wd-palme",
+      "wd-album-2016",
+      "wd-film-1988",
+      "wd-film-1996"
+    ],
+    "2026-12-15": [
+      "wd-game-2005",
+      "wd-singers",
+      "wd-series-2018",
+      "wd-album-2022",
+      "wd-elements",
+      "wd-band-metal",
+      "wd-beer-styles"
+    ],
+    "2026-12-16": [
+      "wd-film-1989",
+      "wd-film-1992",
+      "wd-game-2001",
+      "wd-cities-italy",
+      "wd-band-pop",
+      "wd-cities-argentina",
+      "wd-footballers"
+    ],
+    "2026-12-17": [
+      "wd-film-2004",
+      "wd-series-2000",
+      "wd-game-2016",
+      "wd-film-2019",
+      "wd-game-2007",
+      "hand-hero",
+      "hand-hat"
+    ],
+    "2026-12-18": [
+      "wd-capitals",
+      "wd-nobel-physics",
+      "hand-fabric",
+      "wd-elements",
+      "wd-tube",
+      "wd-game-2011",
+      "wd-game-2022"
+    ],
+    "2026-12-19": [
+      "wd-religions",
+      "wd-film-2011",
+      "wd-spices",
+      "wd-software",
+      "wd-series-2022",
+      "hand-condiment",
+      "wd-mathematicians"
+    ],
+    "2026-12-20": [
+      "wd-album-2021",
+      "wd-uk-premiers",
+      "wd-band-punk",
+      "wd-magazines",
+      "wd-series-1999",
+      "wd-film-2023",
+      "wd-series-2000"
+    ],
+    "2026-12-21": [
+      "wd-film-2021",
+      "wd-film-2023",
+      "hand-utensil",
+      "wd-cities-france",
+      "wd-series-2000",
+      "wd-album-2014",
+      "wd-cities-spain"
+    ],
+    "2026-12-22": [
+      "hand-unit",
+      "wd-game-2013",
+      "wd-series-2013",
+      "wd-film-2009",
+      "wd-film-2007",
+      "wd-cities-us",
+      "wd-film-2012"
+    ],
+    "2026-12-23": [
+      "wd-series-2021",
+      "wd-oscar-actors",
+      "wd-series-2024",
+      "hand-cereal",
+      "wd-film-2013",
+      "wd-game-1993",
+      "wd-series-2008"
+    ],
+    "2026-12-24": [
+      "wd-museums",
+      "wd-film-2007",
+      "wd-series-2022",
+      "wd-series-2017",
+      "wd-film-2024",
+      "wd-game-2014",
+      "wd-magazines"
+    ],
+    "2026-12-25": [
+      "wd-museums",
+      "hand-dessert",
+      "hand-ball",
+      "wd-game-2005",
+      "wd-album-2013",
+      "wd-mathematicians",
+      "wd-booker"
+    ],
+    "2026-12-26": [
+      "wd-series-2001",
+      "wd-game-2024",
+      "wd-film-1998",
+      "wd-game-1997",
+      "wd-series-2002",
+      "hand-insect",
+      "wd-cities-mexico"
+    ],
+    "2026-12-27": [
+      "wd-film-2005",
+      "wd-spices",
+      "wd-album-2011",
+      "wd-film-2023",
+      "wd-film-2024",
+      "wd-elements",
+      "wd-cities-mexico"
+    ],
+    "2026-12-28": [
+      "wd-game-2016",
+      "wd-software",
+      "wd-physicists",
+      "hand-yoga",
+      "wd-oscar-actors",
+      "wd-game-1998",
+      "wd-cities-canada"
+    ],
+    "2026-12-29": [
+      "wd-martial-arts",
+      "wd-game-1994",
+      "wd-game-2015",
+      "hand-fabric",
+      "wd-cities-us",
+      "hand-subject",
+      "wd-series-2012"
+    ],
+    "2026-12-30": [
+      "wd-cocktails",
+      "wd-horse-breeds",
+      "wd-game-2009",
+      "hand-subject",
+      "wd-film-2010",
+      "wd-album-2020",
+      "wd-cities-egypt"
+    ],
+    "2026-12-31": [
+      "wd-game-1995",
+      "wd-teams",
+      "wd-horse-breeds",
+      "wd-cities-russia",
+      "hand-olympus",
+      "wd-series-2004",
+      "wd-film-1997"
+    ],
+    "2027-01-01": [
+      "wd-game-1991",
+      "wd-film-1987",
+      "wd-countries-europe",
+      "wd-game-2014",
+      "wd-series-2013",
+      "hand-tree",
+      "wd-us-states"
+    ],
+    "2027-01-02": [
+      "wd-horse-breeds",
+      "hand-tale",
+      "wd-film-2024",
+      "wd-inventors",
+      "hand-tool",
+      "wd-booker",
+      "wd-cities-south-korea"
+    ],
+    "2027-01-03": [
+      "wd-cities-argentina",
+      "hand-condiment",
+      "wd-software",
+      "wd-band-metal",
+      "wd-series-2020",
+      "wd-game-2014",
+      "wd-game-1991"
+    ],
+    "2027-01-04": [
+      "wd-nobel-peace",
+      "wd-series-1999",
+      "wd-album-2012",
+      "wd-film-2011",
+      "wd-cities-france",
+      "wd-horse-breeds",
+      "hand-ball"
+    ],
+    "2027-01-05": [
+      "hand-travel",
+      "hand-dessert",
+      "hand-breakfast",
+      "hand-utensil",
+      "wd-album-2021",
+      "wd-film-2002",
+      "wd-software"
+    ],
+    "2027-01-06": [
+      "wd-series-2018",
+      "wd-series-2016",
+      "wd-film-2008",
+      "wd-paintings",
+      "wd-basketball-players",
+      "wd-game-2005",
+      "wd-album-2018"
+    ],
+    "2027-01-07": [
+      "wd-series-2003",
+      "wd-cities-philippines",
+      "wd-film-2006",
+      "wd-countries-europe",
+      "wd-game-2003",
+      "wd-film-1998",
+      "wd-series-2023"
+    ],
+    "2027-01-08": [
+      "wd-film-1991",
+      "wd-game-2003",
+      "wd-game-2019",
+      "wd-game-1999",
+      "wd-cities-china",
+      "wd-fruits",
+      "wd-band-alternative"
+    ],
+    "2027-01-09": [
+      "wd-breads",
+      "wd-film-2005",
+      "hand-hero",
+      "wd-singers",
+      "wd-islands",
+      "hand-weather",
+      "wd-film-1993"
+    ],
+    "2027-01-10": [
+      "wd-game-2012",
+      "hand-candy",
+      "wd-album-2010",
+      "wd-series-2000",
+      "wd-band-electronic",
+      "wd-cities-france",
+      "wd-film-2001"
+    ],
+    "2027-01-11": [
+      "wd-cities-south-korea",
+      "wd-game-2011",
+      "wd-film-1996",
+      "wd-series-1998",
+      "wd-album-2010",
+      "wd-film-1986",
+      "wd-film-2013"
+    ],
+    "2027-01-12": [
+      "wd-album-2007",
+      "wd-film-2009",
+      "hand-myth",
+      "wd-nobel-physics",
+      "wd-film-2014",
+      "wd-magazines",
+      "wd-series-2006"
+    ],
+    "2027-01-13": [
+      "wd-us-states",
+      "wd-programming-languages",
+      "wd-cities-italy",
+      "wd-film-1991",
+      "wd-band-rock",
+      "wd-mountains",
+      "wd-cities-australia"
+    ],
+    "2027-01-14": [
+      "wd-film-2011",
+      "wd-cities-uk",
+      "wd-film-2010",
+      "wd-nobel-medicine",
+      "wd-series-2007",
+      "wd-fruits",
+      "wd-cat-breeds"
+    ],
+    "2027-01-15": [
+      "wd-series-2001",
+      "wd-band-rnb",
+      "wd-film-1988",
+      "wd-game-2002",
+      "wd-series-2010",
+      "wd-band-pop",
+      "wd-pharaohs"
+    ],
+    "2027-01-16": [
+      "wd-breads",
+      "wd-film-2022",
+      "wd-series-2013",
+      "wd-cities-france",
+      "wd-game-2016",
+      "wd-rivers",
+      "wd-cities-italy"
+    ],
+    "2027-01-17": [
+      "wd-game-2009",
+      "hand-fabric",
+      "wd-game-1997",
+      "wd-film-2024",
+      "wd-philosophers",
+      "wd-nobel-peace",
+      "wd-album-2016"
+    ],
+    "2027-01-18": [
+      "wd-film-2019",
+      "wd-album-2021",
+      "wd-cities-philippines",
+      "wd-islands",
+      "wd-cities-south-korea",
+      "wd-album-2011",
+      "wd-film-1988"
+    ],
+    "2027-01-19": [
+      "wd-series-2022",
+      "wd-museums",
+      "wd-album-2019",
+      "hand-bone",
+      "wd-automakers",
+      "wd-film-2001",
+      "hand-dance"
+    ],
+    "2027-01-20": [
+      "wd-series-2003",
+      "hand-appliance",
+      "wd-band-rnb",
+      "wd-landlocked",
+      "hand-subject",
+      "wd-nobel-physics",
+      "wd-game-1992"
+    ],
+    "2027-01-21": [
+      "wd-rivers",
+      "wd-series-2021",
+      "wd-software",
+      "wd-band-electronic",
+      "hand-hero",
+      "wd-series-2000",
+      "wd-tube"
+    ],
+    "2027-01-22": [
+      "wd-series-2008",
+      "wd-cities-japan",
+      "wd-album-2011",
+      "wd-spices",
+      "wd-us-parks",
+      "wd-game-2000",
+      "wd-constellations"
+    ],
+    "2027-01-23": [
+      "wd-cities-russia",
+      "wd-series-2014",
+      "wd-cities-argentina",
+      "wd-game-2022",
+      "wd-emperors",
+      "wd-album-2009",
+      "wd-countries-asia"
+    ],
+    "2027-01-24": [
+      "hand-candy",
+      "hand-flower",
+      "hand-utensil",
+      "wd-band-kpop",
+      "wd-cities-uk",
+      "wd-film-1993",
+      "wd-tube"
+    ],
+    "2027-01-25": [
+      "wd-teams",
+      "hand-hero",
+      "wd-automakers",
+      "wd-cities-us",
+      "wd-game-1995",
+      "wd-cities-india",
+      "wd-film-2024"
+    ],
+    "2027-01-26": [
+      "wd-game-2000",
+      "wd-series-2006",
+      "wd-software",
+      "wd-classical-composers",
+      "wd-cities-iran",
+      "wd-nobel-peace",
+      "hand-insect"
+    ],
+    "2027-01-27": [
+      "wd-film-1989",
+      "wd-nobel-peace",
+      "wd-emperors",
+      "hand-takeout",
+      "wd-cities-us",
+      "wd-cheeses",
+      "wd-heritage"
+    ],
+    "2027-01-28": [
+      "hand-pizza",
+      "wd-cities-nigeria",
+      "wd-film-1990",
+      "wd-nobel-chemistry",
+      "wd-film-2009",
+      "wd-album-2017",
+      "hand-hat"
+    ],
+    "2027-01-29": [
+      "wd-series-2019",
+      "wd-album-2023",
+      "wd-cities-russia",
+      "wd-pastas",
+      "wd-series-2020",
+      "wd-series-2005",
+      "wd-cities-pakistan"
+    ],
+    "2027-01-30": [
+      "hand-candy",
+      "wd-volcanoes",
+      "wd-film-1990",
+      "wd-game-2007",
+      "wd-film-1986",
+      "wd-nobel-literature",
+      "wd-game-2017"
+    ],
+    "2027-01-31": [
+      "wd-game-2011",
+      "wd-series-2011",
+      "hand-holiday",
+      "wd-cities-uk",
+      "hand-dessert",
+      "hand-pizza",
+      "wd-landlocked"
+    ],
+    "2027-02-01": [
+      "wd-cities-canada",
+      "wd-game-2023",
+      "wd-series-2021",
+      "wd-film-2004",
+      "hand-candy",
+      "wd-album-2023",
+      "wd-spices"
+    ],
+    "2027-02-02": [
+      "wd-cities-turkey",
+      "wd-series-2000",
+      "wd-album-2017",
+      "wd-cities-egypt",
+      "wd-cities-uk",
+      "wd-film-1998",
+      "wd-series-2012"
+    ],
+    "2027-02-03": [
+      "wd-band-alternative",
+      "wd-album-2012",
+      "wd-film-2001",
+      "wd-religions",
+      "wd-cities-france",
+      "wd-us-presidents",
+      "wd-cities-uk"
+    ],
+    "2027-02-04": [
+      "wd-film-2004",
+      "wd-cities-philippines",
+      "hand-bone",
+      "wd-newspapers",
+      "wd-software",
+      "wd-martial-arts",
+      "wd-film-1986"
+    ],
+    "2027-02-05": [
+      "wd-film-2019",
+      "wd-game-2012",
+      "wd-film-2002",
+      "wd-cities-australia",
+      "wd-album-2016",
+      "wd-oscar-actors",
+      "wd-album-2021"
+    ],
+    "2027-02-06": [
+      "wd-teams",
+      "wd-spices",
+      "hand-candy",
+      "wd-film-2008",
+      "wd-game-2019",
+      "wd-film-2021",
+      "wd-nobel-peace"
+    ],
+    "2027-02-07": [
+      "wd-film-1990",
+      "wd-cities-turkey",
+      "hand-tool",
+      "wd-film-2018",
+      "wd-cities-poland",
+      "hand-ball",
+      "wd-cities-egypt"
+    ],
+    "2027-02-08": [
+      "wd-rivers",
+      "wd-constellations",
+      "wd-album-2014",
+      "hand-genre",
+      "wd-horse-breeds",
+      "wd-series-2000",
+      "hand-takeout"
+    ],
+    "2027-02-09": [
+      "wd-film-2007",
+      "hand-fabric",
+      "wd-countries-asia",
+      "wd-astronauts",
+      "wd-cities-india",
+      "wd-film-2009",
+      "wd-oscar-actors"
+    ],
+    "2027-02-10": [
+      "wd-universities",
+      "wd-elements",
+      "wd-cities-canada",
+      "wd-countries-asia",
+      "wd-band-pop",
+      "wd-game-2003",
+      "wd-game-2022"
+    ],
+    "2027-02-11": [
+      "wd-series-2004",
+      "wd-cities-mexico",
+      "hand-genre",
+      "wd-nobel-medicine",
+      "hand-clothing",
+      "wd-paintings",
+      "wd-game-2018"
+    ],
+    "2027-02-12": [
+      "wd-cities-italy",
+      "wd-series-2014",
+      "wd-teams",
+      "wd-series-2018",
+      "wd-film-2002",
+      "wd-newspapers",
+      "wd-series-2023"
+    ],
+    "2027-02-13": [
+      "wd-album-2019",
+      "wd-band-rnb",
+      "wd-album-2014",
+      "wd-band-punk",
+      "wd-game-2003",
+      "wd-series-2024",
+      "wd-cities-philippines"
+    ],
+    "2027-02-14": [
+      "wd-film-2020",
+      "hand-candy",
+      "wd-game-2007",
+      "wd-series-2019",
+      "wd-band-rock",
+      "hand-hero",
+      "wd-film-1988"
+    ],
+    "2027-02-15": [
+      "wd-film-2024",
+      "wd-film-1993",
+      "wd-film-2017",
+      "wd-film-2001",
+      "wd-tube",
+      "wd-spices",
+      "wd-horse-breeds"
+    ],
+    "2027-02-16": [
+      "wd-series-2023",
+      "hand-vegetable",
+      "wd-series-2004",
+      "wd-game-1994",
+      "wd-cities-japan",
+      "wd-series-2018",
+      "wd-game-2015"
+    ],
+    "2027-02-17": [
+      "wd-game-2003",
+      "wd-magazines",
+      "hand-tree",
+      "wd-cities-indonesia",
+      "wd-album-2008",
+      "hand-unit",
+      "wd-game-1991"
+    ],
+    "2027-02-18": [
+      "wd-film-1995",
+      "wd-film-1994",
+      "hand-flower",
+      "wd-album-2015",
+      "wd-game-1994",
+      "hand-bone",
+      "hand-cereal"
+    ],
+    "2027-02-19": [
+      "hand-cereal",
+      "wd-philosophers",
+      "wd-game-2007",
+      "wd-booker",
+      "wd-film-1986",
+      "wd-beer-styles",
+      "wd-cheeses"
+    ],
+    "2027-02-20": [
+      "wd-countries-africa",
+      "wd-cat-breeds",
+      "wd-countries-asia",
+      "wd-astronauts",
+      "wd-album-2004",
+      "wd-cities-brazil",
+      "wd-game-2022"
+    ],
+    "2027-02-21": [
+      "hand-travel",
+      "wd-film-2023",
+      "wd-game-2020",
+      "wd-film-2017",
+      "wd-band-rock",
+      "wd-film-1988",
+      "wd-countries-europe"
+    ],
+    "2027-02-22": [
+      "wd-film-2020",
+      "hand-tool",
+      "wd-cities-mexico",
+      "wd-album-2020",
+      "wd-album-2014",
+      "wd-album-2008",
+      "wd-landlocked"
+    ],
+    "2027-02-23": [
+      "wd-film-1991",
+      "wd-album-2010",
+      "wd-elements",
+      "wd-uk-premiers",
+      "wd-film-2000",
+      "hand-tale",
+      "wd-series-2010"
+    ],
+    "2027-02-24": [
+      "wd-languages",
+      "wd-software",
+      "wd-series-2019",
+      "wd-film-2018",
+      "hand-breakfast",
+      "wd-heritage",
+      "wd-cities-russia"
+    ],
+    "2027-02-25": [
+      "wd-cities-philippines",
+      "wd-game-2013",
+      "wd-film-2022",
+      "wd-series-2017",
+      "wd-band-electronic",
+      "wd-album-2004",
+      "wd-cities-mexico"
+    ],
+    "2027-02-26": [
+      "wd-landlocked",
+      "wd-series-2018",
+      "wd-cities-canada",
+      "wd-game-2002",
+      "wd-cities-brazil",
+      "wd-inventors",
+      "wd-cities-nigeria"
+    ],
+    "2027-02-27": [
+      "wd-series-2002",
+      "wd-series-2022",
+      "wd-automakers",
+      "wd-cities-france",
+      "wd-landlocked",
+      "wd-series-2018",
+      "wd-series-2011"
+    ],
+    "2027-02-28": [
+      "wd-film-1988",
+      "wd-series-2021",
+      "wd-cities-poland",
+      "wd-film-1989",
+      "wd-cities-us",
+      "wd-cities-australia",
+      "wd-magazines"
+    ],
+    "2027-03-01": [
+      "wd-series-2008",
+      "wd-band-rnb",
+      "wd-album-2017",
+      "wd-film-2008",
+      "wd-series-2002",
+      "hand-unit",
+      "wd-game-2010"
+    ],
+    "2027-03-02": [
+      "wd-nobel-chemistry",
+      "wd-game-2018",
+      "wd-cities-russia",
+      "wd-film-2010",
+      "wd-game-2024",
+      "hand-olympus",
+      "wd-film-1986"
+    ],
+    "2027-03-03": [
+      "wd-film-2011",
+      "wd-film-1994",
+      "wd-inventors",
+      "wd-languages",
+      "wd-classical-composers",
+      "wd-heritage",
+      "wd-film-2002"
+    ],
+    "2027-03-04": [
+      "wd-cities-iran",
+      "wd-game-2021",
+      "wd-philosophers",
+      "hand-bone",
+      "wd-game-1991",
+      "hand-hero",
+      "wd-game-2010"
+    ],
+    "2027-03-05": [
+      "wd-nobel-medicine",
+      "wd-constellations",
+      "wd-film-2016",
+      "wd-film-2001",
+      "hand-olympus",
+      "wd-series-2020",
+      "wd-game-2020"
+    ],
+    "2027-03-06": [
+      "hand-travel",
+      "wd-band-alternative",
+      "wd-album-2019",
+      "wd-series-2014",
+      "wd-game-2013",
+      "wd-museums",
+      "wd-film-2007"
+    ],
+    "2027-03-07": [
+      "wd-film-1987",
+      "wd-series-2001",
+      "wd-spices",
+      "wd-cities-nigeria",
+      "wd-game-1995",
+      "wd-cities-south-korea",
+      "wd-film-2012"
+    ],
+    "2027-03-08": [
+      "wd-series-2006",
+      "wd-paintings",
+      "wd-game-2002",
+      "hand-insect",
+      "wd-film-2019",
+      "wd-series-2001",
+      "wd-film-2003"
+    ],
+    "2027-03-09": [
+      "wd-game-2022",
+      "hand-genre",
+      "wd-film-1986",
+      "wd-series-2001",
+      "wd-cities-pakistan",
+      "wd-band-funk",
+      "wd-game-1998"
+    ],
+    "2027-03-10": [
+      "wd-automakers",
+      "wd-cities-us",
+      "wd-film-2017",
+      "wd-cities-brazil",
+      "wd-game-2003",
+      "wd-constellations",
+      "wd-game-devs"
+    ],
+    "2027-03-11": [
+      "wd-band-alternative",
+      "wd-cocktails",
+      "wd-album-2004",
+      "wd-game-2006",
+      "wd-band-funk",
+      "wd-game-1998",
+      "wd-album-2024"
+    ],
+    "2027-03-12": [
+      "wd-game-2016",
+      "wd-cities-brazil",
+      "wd-series-2004",
+      "wd-series-1998",
+      "wd-band-electronic",
+      "wd-paintings",
+      "wd-series-2018"
+    ],
+    "2027-03-13": [
+      "wd-landlocked",
+      "hand-soda",
+      "wd-series-2022",
+      "hand-utensil",
+      "hand-cereal",
+      "wd-mathematicians",
+      "wd-album-2021"
+    ],
+    "2027-03-14": [
+      "wd-nobel-medicine",
+      "wd-series-2014",
+      "wd-game-devs",
+      "wd-album-2024",
+      "wd-album-2013",
+      "hand-dance",
+      "wd-horse-breeds"
+    ],
+    "2027-03-15": [
+      "wd-booker",
+      "hand-cereal",
+      "wd-countries",
+      "wd-game-2012",
+      "wd-game-2024",
+      "wd-band-kpop",
+      "hand-insect"
+    ],
+    "2027-03-16": [
+      "wd-series-1998",
+      "wd-game-devs",
+      "wd-film-2013",
+      "hand-bone",
+      "wd-film-1995",
+      "wd-film-2005",
+      "hand-breakfast"
+    ],
+    "2027-03-17": [
+      "wd-cities-pakistan",
+      "hand-condiment",
+      "wd-game-1992",
+      "wd-cities-italy",
+      "wd-film-1991",
+      "wd-band-electronic",
+      "hand-candy"
+    ],
+    "2027-03-18": [
+      "wd-film-2023",
+      "hand-appliance",
+      "wd-series-1998",
+      "hand-cereal",
+      "wd-game-2004",
+      "wd-game-2019",
+      "wd-elements"
+    ],
+    "2027-03-19": [
+      "wd-album-2019",
+      "hand-weather",
+      "wd-album-2024",
+      "wd-basketball-players",
+      "wd-film-2024",
+      "wd-film-1992",
+      "hand-travel"
+    ],
+    "2027-03-20": [
+      "wd-film-2011",
+      "wd-cities-spain",
+      "wd-film-2001",
+      "wd-emperors",
+      "wd-game-2012",
+      "wd-film-2020",
+      "wd-album-2014"
+    ],
+    "2027-03-21": [
+      "wd-album-2010",
+      "wd-cities-germany",
+      "wd-spices",
+      "wd-film-2020",
+      "wd-band-rock",
+      "wd-cities-uk",
+      "wd-game-2010"
+    ],
+    "2027-03-22": [
+      "wd-painters",
+      "wd-game-2002",
+      "wd-album-2019",
+      "wd-film-1995",
+      "wd-game-2023",
+      "wd-cities-china",
+      "hand-candy"
+    ],
+    "2027-03-23": [
+      "wd-nobel-peace",
+      "wd-film-1988",
+      "wd-basketball-players",
+      "wd-film-1994",
+      "wd-cities-india",
+      "wd-game-2012",
+      "hand-candy"
+    ],
+    "2027-03-24": [
+      "hand-job",
+      "wd-game-2002",
+      "wd-series-2010",
+      "wd-game-2001",
+      "wd-breads",
+      "wd-film-1986",
+      "wd-board-games"
+    ],
+    "2027-03-25": [
+      "wd-film-1993",
+      "wd-pharaohs",
+      "wd-us-presidents",
+      "wd-film-2019",
+      "wd-cities-colombia",
+      "hand-dance",
+      "wd-series-1998"
+    ],
+    "2027-03-26": [
+      "wd-series-2014",
+      "wd-game-2004",
+      "wd-game-2017",
+      "wd-series-2022",
+      "wd-astronauts",
+      "wd-game-2009",
+      "wd-airlines"
+    ],
+    "2027-03-27": [
+      "wd-countries-asia",
+      "wd-cities-mexico",
+      "wd-game-1994",
+      "wd-film-2023",
+      "hand-travel",
+      "wd-series-2010",
+      "wd-game-2020"
+    ],
+    "2027-03-28": [
+      "wd-series-2001",
+      "wd-band-alternative",
+      "wd-album-2004",
+      "wd-film-2006",
+      "wd-cities-poland",
+      "wd-beer-styles",
+      "wd-game-2018"
+    ],
+    "2027-03-29": [
+      "wd-nobel-physics",
+      "hand-olympus",
+      "hand-genre",
+      "wd-countries-asia",
+      "wd-game-2005",
+      "hand-pizza",
+      "wd-us-states"
+    ],
+    "2027-03-30": [
+      "wd-airlines",
+      "wd-game-2008",
+      "wd-horse-breeds",
+      "wd-film-2008",
+      "wd-rivers",
+      "wd-film-2024",
+      "hand-subject"
+    ],
+    "2027-03-31": [
+      "wd-album-2019",
+      "hand-condiment",
+      "wd-film-2007",
+      "wd-us-presidents",
+      "wd-basketball-players",
+      "wd-automakers",
+      "wd-series-2009"
+    ],
+    "2027-04-01": [
+      "wd-footballers",
+      "wd-us-parks",
+      "wd-film-1998",
+      "hand-pizza",
+      "wd-paintings",
+      "wd-game-1991",
+      "wd-band-funk"
+    ],
+    "2027-04-02": [
+      "hand-vegetable",
+      "wd-album-2019",
+      "wd-album-2014",
+      "wd-cities-canada",
+      "wd-series-2001",
+      "wd-religions",
+      "wd-airlines"
+    ],
+    "2027-04-03": [
+      "wd-game-2001",
+      "wd-film-2021",
+      "wd-game-2012",
+      "wd-game-1992",
+      "wd-series-2012",
+      "wd-film-2015",
+      "wd-series-2010"
+    ],
+    "2027-04-04": [
+      "wd-series-2002",
+      "wd-physicists",
+      "wd-dog-breeds",
+      "wd-game-2009",
+      "wd-cities-australia",
+      "wd-cities-spain",
+      "wd-film-2005"
+    ],
+    "2027-04-05": [
+      "wd-nobel-chemistry",
+      "wd-game-2019",
+      "wd-game-1991",
+      "wd-series-2019",
+      "wd-game-1994",
+      "wd-film-2008",
+      "hand-utensil"
+    ],
+    "2027-04-06": [
+      "wd-cities-brazil",
+      "wd-film-2013",
+      "wd-series-1998",
+      "wd-game-2009",
+      "wd-album-2008",
+      "wd-film-2019",
+      "wd-film-1986"
+    ],
+    "2027-04-07": [
+      "wd-game-2013",
+      "wd-film-2021",
+      "hand-weather",
+      "wd-nobel-chemistry",
+      "hand-unit",
+      "wd-series-2020",
+      "wd-us-states"
+    ],
+    "2027-04-08": [
+      "wd-physicists",
+      "wd-cities-brazil",
+      "hand-vegetable",
+      "wd-game-2000",
+      "wd-palme",
+      "wd-series-2008",
+      "wd-film-1991"
+    ],
+    "2027-04-09": [
+      "wd-nobel-literature",
+      "hand-subject",
+      "wd-series-2021",
+      "wd-game-2012",
+      "hand-ball",
+      "wd-film-1995",
+      "wd-album-2016"
+    ],
+    "2027-04-10": [
+      "hand-tale",
+      "hand-soda",
+      "hand-weather",
+      "wd-cities-philippines",
+      "wd-tube",
+      "wd-best-picture",
+      "wd-game-2023"
+    ],
+    "2027-04-11": [
+      "wd-game-2005",
+      "wd-band-funk",
+      "wd-film-2012",
+      "wd-series-2018",
+      "wd-film-2014",
+      "wd-album-2016",
+      "wd-basketball-players"
+    ],
+    "2027-04-12": [
+      "wd-fruits",
+      "hand-yoga",
+      "wd-series-2016",
+      "wd-band-rnb",
+      "wd-film-2007",
+      "wd-volcanoes",
+      "wd-religions"
+    ],
+    "2027-04-13": [
+      "wd-capitals",
+      "wd-constellations",
+      "wd-album-2008",
+      "wd-game-1991",
+      "wd-painters",
+      "hand-insect",
+      "wd-palme"
+    ],
+    "2027-04-14": [
+      "wd-nobel-physics",
+      "hand-tool",
+      "wd-rivers",
+      "wd-newspapers",
+      "wd-cities-germany",
+      "wd-series-2017",
+      "wd-band-metal"
+    ],
+    "2027-04-15": [
+      "wd-game-1994",
+      "wd-series-2009",
+      "wd-volcanoes",
+      "wd-film-2011",
+      "wd-cities-mexico",
+      "hand-utensil",
+      "wd-band-indie"
+    ],
+    "2027-04-16": [
+      "wd-religions",
+      "wd-spices",
+      "hand-vegetable",
+      "wd-breads",
+      "wd-film-2005",
+      "wd-album-2004",
+      "wd-series-2017"
+    ],
+    "2027-04-17": [
+      "wd-game-2019",
+      "wd-film-2012",
+      "wd-cheeses",
+      "wd-beer-styles",
+      "wd-countries",
+      "wd-band-electronic",
+      "wd-series-2024"
+    ],
+    "2027-04-18": [
+      "wd-game-2005",
+      "wd-series-2022",
+      "wd-film-2020",
+      "wd-cities-uk",
+      "wd-emperors",
+      "wd-series-2018",
+      "wd-film-2023"
+    ],
+    "2027-04-19": [
+      "wd-album-2023",
+      "hand-fabric",
+      "wd-pastas",
+      "wd-nobel-physics",
+      "wd-rivers",
+      "wd-game-2005",
+      "wd-film-1990"
+    ],
+    "2027-04-20": [
+      "wd-film-1995",
+      "wd-series-2002",
+      "wd-album-2016",
+      "wd-cities-italy",
+      "wd-mathematicians",
+      "wd-album-2012",
+      "wd-game-2008"
+    ],
+    "2027-04-21": [
+      "wd-series-2000",
+      "wd-series-2015",
+      "wd-countries",
+      "wd-cities-japan",
+      "wd-series-2007",
+      "wd-film-1992",
+      "wd-capitals"
+    ],
+    "2027-04-22": [
+      "wd-game-2024",
+      "wd-game-2009",
+      "wd-game-1991",
+      "wd-religions",
+      "wd-programming-languages",
+      "wd-series-1999",
+      "wd-series-2018"
+    ],
+    "2027-04-23": [
+      "wd-nobel-physics",
+      "wd-series-2012",
+      "wd-series-2007",
+      "wd-inventors",
+      "wd-band-indie",
+      "wd-series-2019",
+      "wd-album-2023"
+    ],
+    "2027-04-24": [
+      "wd-series-2013",
+      "wd-countries-europe",
+      "wd-beer-styles",
+      "wd-series-2001",
+      "wd-fruits",
+      "wd-band-indie",
+      "wd-cities-italy"
+    ],
+    "2027-04-25": [
+      "wd-album-2024",
+      "wd-cities-pakistan",
+      "wd-palme",
+      "wd-game-2003",
+      "wd-breads",
+      "hand-fabric",
+      "wd-band-kpop"
+    ],
+    "2027-04-26": [
+      "wd-album-2012",
+      "wd-game-2000",
+      "wd-film-2017",
+      "wd-series-2018",
+      "wd-cities-brazil",
+      "wd-capitals",
+      "hand-clothing"
+    ],
+    "2027-04-27": [
+      "wd-game-2019",
+      "wd-capitals",
+      "wd-album-2024",
+      "wd-album-2014",
+      "wd-film-1990",
+      "hand-genre",
+      "wd-film-1995"
+    ],
+    "2027-04-28": [
+      "wd-nobel-literature",
+      "wd-album-2012",
+      "hand-tale",
+      "hand-myth",
+      "wd-beer-styles",
+      "wd-programming-languages",
+      "wd-album-2013"
+    ],
+    "2027-04-29": [
+      "wd-mathematicians",
+      "wd-game-2019",
+      "hand-feeling",
+      "wd-oscar-actors",
+      "wd-us-presidents",
+      "wd-physicists",
+      "wd-game-2010"
+    ],
+    "2027-04-30": [
+      "wd-film-2013",
+      "wd-game-2003",
+      "wd-series-1999",
+      "wd-game-2017",
+      "wd-mountains",
+      "wd-series-2012",
+      "wd-teams"
+    ],
+    "2027-05-01": [
+      "wd-game-1996",
+      "wd-spices",
+      "wd-board-games",
+      "wd-pastas",
+      "hand-myth",
+      "wd-game-1992",
+      "wd-album-2010"
+    ],
+    "2027-05-02": [
+      "wd-us-parks",
+      "wd-cities-australia",
+      "wd-cheeses",
+      "wd-game-2005",
+      "wd-newspapers",
+      "wd-game-2000",
+      "wd-album-2019"
+    ],
+    "2027-05-03": [
+      "hand-yoga",
+      "wd-magazines",
+      "hand-tale",
+      "wd-breads",
+      "wd-game-1995",
+      "wd-film-2022",
+      "wd-film-2024"
+    ],
+    "2027-05-04": [
+      "wd-martial-arts",
+      "hand-job",
+      "hand-pizza",
+      "wd-album-2005",
+      "wd-series-2020",
+      "wd-languages",
+      "wd-pharaohs"
+    ],
+    "2027-05-05": [
+      "wd-game-2009",
+      "wd-physicists",
+      "wd-cities-argentina",
+      "wd-film-2003",
+      "wd-game-2012",
+      "wd-martial-arts",
+      "hand-job"
+    ],
+    "2027-05-06": [
+      "wd-cities-iran",
+      "wd-astronauts",
+      "wd-film-2015",
+      "hand-cereal",
+      "wd-film-2014",
+      "wd-series-2004",
+      "hand-tree"
+    ],
+    "2027-05-07": [
+      "wd-fruits",
+      "wd-footballers",
+      "wd-series-2008",
+      "wd-band-rnb",
+      "wd-album-2015",
+      "wd-band-kpop",
+      "wd-cities-pakistan"
+    ],
+    "2027-05-08": [
+      "wd-game-2013",
+      "wd-film-2009",
+      "wd-series-2012",
+      "wd-series-2007",
+      "wd-game-1991",
+      "wd-band-indie",
+      "wd-series-2022"
+    ],
+    "2027-05-09": [
+      "wd-constellations",
+      "wd-spices",
+      "wd-film-2005",
+      "wd-pastas",
+      "wd-film-2018",
+      "wd-album-2009",
+      "wd-universities"
+    ],
+    "2027-05-10": [
+      "wd-game-2002",
+      "wd-constellations",
+      "wd-cities-iran",
+      "wd-game-2004",
+      "wd-philosophers",
+      "wd-album-2011",
+      "wd-band-rnb"
+    ],
+    "2027-05-11": [
+      "wd-game-2016",
+      "wd-beer-styles",
+      "wd-film-2001",
+      "wd-film-2002",
+      "wd-series-2005",
+      "wd-album-2009",
+      "wd-film-2024"
+    ],
+    "2027-05-12": [
+      "hand-clothing",
+      "wd-film-1991",
+      "wd-inventors",
+      "wd-cities-japan",
+      "wd-philosophers",
+      "wd-game-2011",
+      "wd-film-1988"
+    ],
+    "2027-05-13": [
+      "hand-hat",
+      "wd-film-2016",
+      "wd-game-2008",
+      "wd-film-2015",
+      "wd-heritage",
+      "wd-series-2002",
+      "wd-film-2017"
+    ],
+    "2027-05-14": [
+      "wd-game-2007",
+      "wd-game-2009",
+      "wd-cities-uk",
+      "wd-album-2008",
+      "wd-album-2013",
+      "wd-series-2009",
+      "wd-countries-africa"
+    ],
+    "2027-05-15": [
+      "wd-game-1996",
+      "wd-airlines",
+      "hand-clothing",
+      "wd-emperors",
+      "wd-film-1993",
+      "wd-game-2011",
+      "wd-series-2010"
+    ],
+    "2027-05-16": [
+      "wd-countries",
+      "wd-series-2013",
+      "wd-game-2019",
+      "wd-film-2001",
+      "wd-booker",
+      "wd-cities-egypt",
+      "wd-nobel-physics"
+    ],
+    "2027-05-17": [
+      "wd-teams",
+      "wd-cities-turkey",
+      "wd-album-2024",
+      "wd-album-2017",
+      "wd-us-presidents",
+      "wd-game-2018",
+      "wd-cities-france"
+    ],
+    "2027-05-18": [
+      "wd-teams",
+      "hand-flower",
+      "hand-cereal",
+      "wd-cities-russia",
+      "wd-nobel-peace",
+      "wd-film-2000",
+      "wd-emperors"
+    ],
+    "2027-05-19": [
+      "wd-film-2004",
+      "hand-yoga",
+      "wd-album-2022",
+      "wd-film-2001",
+      "wd-cities-india",
+      "wd-film-2024",
+      "wd-paintings"
+    ],
+    "2027-05-20": [
+      "wd-album-2020",
+      "wd-film-2004",
+      "wd-band-alternative",
+      "wd-film-2010",
+      "wd-album-2012",
+      "wd-astronauts",
+      "hand-holiday"
+    ],
+    "2027-05-21": [
+      "wd-album-2020",
+      "wd-capitals",
+      "wd-spices",
+      "wd-film-2010",
+      "wd-beer-styles",
+      "wd-cities-south-korea",
+      "wd-software"
+    ],
+    "2027-05-22": [
+      "wd-game-2003",
+      "wd-cities-germany",
+      "wd-cities-russia",
+      "wd-software",
+      "wd-cities-nigeria",
+      "wd-series-2012",
+      "wd-game-2018"
+    ],
+    "2027-05-23": [
+      "wd-cities-south-korea",
+      "wd-cities-spain",
+      "wd-game-2023",
+      "wd-cities-philippines",
+      "hand-color",
+      "wd-film-2024",
+      "wd-game-2015"
+    ],
+    "2027-05-24": [
+      "wd-spices",
+      "wd-game-2019",
+      "wd-album-2006",
+      "wd-countries",
+      "wd-countries-africa",
+      "wd-nobel-physics",
+      "wd-game-1993"
+    ],
+    "2027-05-25": [
+      "wd-series-2024",
+      "wd-series-2018",
+      "wd-series-2014",
+      "wd-film-2006",
+      "wd-band-alternative",
+      "wd-band-electronic",
+      "hand-job"
+    ],
+    "2027-05-26": [
+      "wd-film-2001",
+      "wd-game-2021",
+      "wd-film-1994",
+      "wd-series-2005",
+      "wd-game-2014",
+      "wd-islands",
+      "wd-film-2020"
+    ],
+    "2027-05-27": [
+      "wd-film-2010",
+      "wd-film-2009",
+      "wd-capitals",
+      "wd-cities-nigeria",
+      "wd-us-states",
+      "wd-software",
+      "wd-series-2018"
+    ],
+    "2027-05-28": [
+      "wd-game-1993",
+      "wd-series-2017",
+      "wd-band-kpop",
+      "wd-cities-us",
+      "wd-teams",
+      "wd-uk-premiers",
+      "wd-film-1990"
+    ],
+    "2027-05-29": [
+      "wd-pharaohs",
+      "hand-cereal",
+      "wd-cities-mexico",
+      "wd-film-2018",
+      "hand-insect",
+      "wd-game-2018",
+      "wd-game-1998"
+    ],
+    "2027-05-30": [
+      "wd-oscar-actors",
+      "wd-cities-spain",
+      "wd-airlines",
+      "wd-capitals",
+      "wd-cat-breeds",
+      "wd-series-2010",
+      "wd-pharaohs"
+    ],
+    "2027-05-31": [
+      "wd-series-2005",
+      "wd-album-2024",
+      "wd-palme",
+      "hand-holiday",
+      "wd-film-1993",
+      "wd-film-1994",
+      "wd-game-1998"
+    ],
+    "2027-06-01": [
+      "wd-cocktails",
+      "wd-game-devs",
+      "wd-cities-india",
+      "wd-series-2013",
+      "hand-job",
+      "wd-game-2014",
+      "wd-film-1987"
+    ],
+    "2027-06-02": [
+      "wd-us-states",
+      "hand-cards",
+      "wd-cities-germany",
+      "wd-game-2003",
+      "wd-airlines",
+      "wd-cities-south-korea",
+      "wd-cities-china"
+    ],
+    "2027-06-03": [
+      "hand-bone",
+      "wd-album-2021",
+      "wd-film-2019",
+      "wd-band-indie",
+      "wd-series-2001",
+      "wd-film-2014",
+      "wd-series-2004"
+    ],
+    "2027-06-04": [
+      "wd-film-2001",
+      "wd-countries-africa",
+      "wd-cities-pakistan",
+      "wd-mountains",
+      "wd-game-2012",
+      "wd-game-2020",
+      "wd-game-2018"
+    ],
+    "2027-06-05": [
+      "wd-magazines",
+      "hand-appliance",
+      "wd-series-2013",
+      "hand-fabric",
+      "hand-yoga",
+      "wd-band-electronic",
+      "wd-series-2012"
+    ],
+    "2027-06-06": [
+      "wd-game-1992",
+      "wd-emperors",
+      "wd-cities-italy",
+      "hand-color",
+      "wd-album-2019",
+      "wd-album-2016",
+      "wd-album-2008"
+    ],
+    "2027-06-07": [
+      "wd-booker",
+      "hand-condiment",
+      "wd-museums",
+      "hand-dessert",
+      "wd-programming-languages",
+      "wd-philosophers",
+      "wd-religions"
+    ],
+    "2027-06-08": [
+      "wd-game-2007",
+      "wd-band-metal",
+      "wd-nobel-peace",
+      "hand-yoga",
+      "wd-magazines",
+      "wd-classical-composers",
+      "wd-film-2006"
+    ],
+    "2027-06-09": [
+      "wd-series-2001",
+      "wd-museums",
+      "wd-series-2016",
+      "wd-series-2017",
+      "hand-dessert",
+      "wd-album-2018",
+      "hand-dance"
+    ],
+    "2027-06-10": [
+      "wd-album-2011",
+      "wd-pastas",
+      "wd-capitals",
+      "wd-film-2014",
+      "wd-band-electronic",
+      "wd-band-metal",
+      "wd-mathematicians"
+    ],
+    "2027-06-11": [
+      "wd-series-2008",
+      "wd-automakers",
+      "wd-album-2018",
+      "wd-cities-philippines",
+      "wd-film-1995",
+      "wd-countries",
+      "wd-game-2014"
+    ],
+    "2027-06-12": [
+      "wd-game-1998",
+      "wd-album-2021",
+      "wd-film-2005",
+      "wd-painters",
+      "wd-capitals",
+      "wd-game-2000",
+      "wd-cities-china"
+    ],
+    "2027-06-13": [
+      "wd-film-2006",
+      "wd-series-1999",
+      "wd-paintings",
+      "wd-emperors",
+      "wd-cocktails",
+      "wd-album-2024",
+      "hand-breakfast"
+    ],
+    "2027-06-14": [
+      "wd-series-2005",
+      "wd-cheeses",
+      "wd-game-2015",
+      "wd-game-2020",
+      "wd-album-2015",
+      "wd-album-2008",
+      "wd-series-2012"
+    ],
+    "2027-06-15": [
+      "wd-series-2021",
+      "wd-band-electronic",
+      "wd-martial-arts",
+      "wd-film-1988",
+      "wd-automakers",
+      "wd-game-2003",
+      "wd-band-kpop"
+    ],
+    "2027-06-16": [
+      "wd-rivers",
+      "wd-film-1995",
+      "wd-uk-premiers",
+      "wd-cities-iran",
+      "wd-game-2022",
+      "wd-series-2006",
+      "hand-candy"
+    ],
+    "2027-06-17": [
+      "wd-cities-south-korea",
+      "wd-booker",
+      "wd-series-2019",
+      "wd-nobel-chemistry",
+      "hand-clothing",
+      "wd-series-2017",
+      "hand-dance"
+    ],
+    "2027-06-18": [
+      "wd-film-1990",
+      "wd-game-2007",
+      "wd-game-2014",
+      "wd-paintings",
+      "wd-series-2023",
+      "wd-film-2001",
+      "wd-us-states"
+    ],
+    "2027-06-19": [
+      "wd-series-2017",
+      "wd-film-2002",
+      "hand-travel",
+      "wd-series-2012",
+      "wd-game-2013",
+      "wd-fruits",
+      "wd-film-2013"
+    ],
+    "2027-06-20": [
+      "wd-series-2004",
+      "wd-us-states",
+      "wd-band-punk",
+      "wd-game-1998",
+      "wd-album-2008",
+      "wd-game-2011",
+      "hand-breakfast"
+    ],
+    "2027-06-21": [
+      "wd-rivers",
+      "hand-feeling",
+      "wd-film-2007",
+      "wd-album-2016",
+      "wd-album-2021",
+      "wd-band-punk",
+      "wd-album-2009"
+    ],
+    "2027-06-22": [
+      "wd-cities-brazil",
+      "wd-cities-indonesia",
+      "wd-pharaohs",
+      "wd-game-devs",
+      "wd-album-2016",
+      "wd-series-2023",
+      "wd-film-2012"
+    ],
+    "2027-06-23": [
+      "wd-film-2003",
+      "hand-cards",
+      "wd-countries",
+      "wd-us-presidents",
+      "wd-album-2022",
+      "wd-game-2021",
+      "hand-appliance"
+    ],
+    "2027-06-24": [
+      "wd-film-1999",
+      "wd-game-1998",
+      "wd-film-2022",
+      "wd-programming-languages",
+      "wd-cities-india",
+      "wd-film-1989",
+      "wd-cities-japan"
+    ],
+    "2027-06-25": [
+      "hand-genre",
+      "wd-series-2009",
+      "wd-film-1986",
+      "wd-languages",
+      "wd-game-1993",
+      "wd-cities-uk",
+      "wd-cities-canada"
+    ],
+    "2027-06-26": [
+      "wd-airlines",
+      "wd-cheeses",
+      "wd-film-1999",
+      "wd-album-2022",
+      "wd-film-2003",
+      "wd-game-1991",
+      "wd-film-1988"
+    ],
+    "2027-06-27": [
+      "wd-uk-premiers",
+      "hand-pizza",
+      "wd-album-2015",
+      "wd-album-2011",
+      "wd-us-states",
+      "wd-film-2019",
+      "hand-cards"
+    ],
+    "2027-06-28": [
+      "wd-game-2019",
+      "wd-airlines",
+      "wd-constellations",
+      "wd-game-2015",
+      "wd-album-2008",
+      "hand-weather",
+      "wd-cities-spain"
+    ],
+    "2027-06-29": [
+      "hand-condiment",
+      "wd-game-2004",
+      "wd-film-1987",
+      "wd-capitals",
+      "wd-game-2019",
+      "wd-film-2006",
+      "wd-film-2000"
+    ],
+    "2027-06-30": [
+      "wd-series-1998",
+      "wd-series-2021",
+      "wd-film-2017",
+      "wd-film-2018",
+      "wd-film-2008",
+      "wd-oscar-actors",
+      "wd-film-2011"
+    ],
+    "2027-07-01": [
+      "wd-film-1987",
+      "wd-film-1995",
+      "wd-game-1991",
+      "hand-hero",
+      "wd-album-2024",
+      "wd-game-2011",
+      "wd-film-2002"
+    ],
+    "2027-07-02": [
+      "wd-spices",
+      "wd-best-picture",
+      "wd-game-2020",
+      "hand-soda",
+      "wd-mountains",
+      "wd-languages",
+      "wd-game-1992"
+    ],
+    "2027-07-03": [
+      "wd-film-2017",
+      "wd-film-2014",
+      "wd-spices",
+      "wd-capitals",
+      "hand-utensil",
+      "hand-travel",
+      "wd-series-2010"
+    ],
+    "2027-07-04": [
+      "wd-series-2013",
+      "wd-game-2019",
+      "wd-album-2013",
+      "hand-tree",
+      "hand-appliance",
+      "wd-album-2018",
+      "wd-game-2023"
+    ],
+    "2027-07-05": [
+      "wd-capitals",
+      "wd-film-2006",
+      "hand-utensil",
+      "wd-band-punk",
+      "wd-game-2021",
+      "wd-album-2014",
+      "wd-game-2006"
+    ],
+    "2027-07-06": [
+      "hand-myth",
+      "wd-album-2009",
+      "wd-album-2016",
+      "wd-fruits",
+      "wd-album-2021",
+      "wd-cities-france",
+      "wd-game-1994"
+    ],
+    "2027-07-07": [
+      "wd-album-2009",
+      "wd-newspapers",
+      "wd-horse-breeds",
+      "hand-holiday",
+      "wd-heritage",
+      "hand-candy",
+      "hand-ball"
+    ],
+    "2027-07-08": [
+      "wd-religions",
+      "wd-volcanoes",
+      "wd-album-2024",
+      "wd-cities-us",
+      "wd-series-2006",
+      "wd-album-2006",
+      "wd-film-2019"
+    ],
+    "2027-07-09": [
+      "wd-film-2021",
+      "wd-nobel-physics",
+      "wd-cities-india",
+      "wd-cities-china",
+      "wd-album-2008",
+      "hand-clothing",
+      "wd-dog-breeds"
+    ],
+    "2027-07-10": [
+      "wd-astronauts",
+      "wd-series-2010",
+      "wd-singers",
+      "wd-cities-us",
+      "wd-film-2005",
+      "wd-cities-australia",
+      "wd-game-2005"
+    ],
+    "2027-07-11": [
+      "wd-game-2019",
+      "hand-weather",
+      "hand-bone",
+      "wd-film-2012",
+      "wd-series-2002",
+      "wd-automakers",
+      "wd-cities-spain"
+    ],
+    "2027-07-12": [
+      "wd-band-punk",
+      "hand-job",
+      "wd-series-2005",
+      "wd-painters",
+      "wd-series-2003",
+      "wd-rivers",
+      "wd-album-2023"
+    ],
+    "2027-07-13": [
+      "wd-countries-europe",
+      "hand-hat",
+      "wd-series-2004",
+      "wd-dog-breeds",
+      "wd-band-rock",
+      "wd-game-1999",
+      "wd-film-2008"
+    ],
+    "2027-07-14": [
+      "wd-magazines",
+      "wd-album-2018",
+      "hand-genre",
+      "wd-game-2003",
+      "wd-album-2005",
+      "hand-myth",
+      "wd-pharaohs"
+    ],
+    "2027-07-15": [
+      "hand-tool",
+      "wd-cities-russia",
+      "hand-pizza",
+      "wd-us-states",
+      "wd-magazines",
+      "wd-game-2008",
+      "wd-film-1990"
+    ],
+    "2027-07-16": [
+      "wd-game-2003",
+      "wd-film-1992",
+      "wd-beer-styles",
+      "hand-flower",
+      "wd-series-2006",
+      "hand-takeout",
+      "wd-game-1995"
+    ],
+    "2027-07-17": [
+      "wd-game-1997",
+      "wd-film-2018",
+      "hand-unit",
+      "wd-game-2023",
+      "wd-paintings",
+      "wd-cities-spain",
+      "hand-tool"
+    ],
+    "2027-07-18": [
+      "wd-film-1998",
+      "hand-vegetable",
+      "wd-horse-breeds",
+      "wd-album-2024",
+      "wd-series-2024",
+      "wd-inventors",
+      "wd-series-2021"
+    ],
+    "2027-07-19": [
+      "wd-series-2019",
+      "wd-album-2004",
+      "wd-game-devs",
+      "hand-unit",
+      "wd-nobel-physics",
+      "hand-soda",
+      "wd-spices"
+    ],
+    "2027-07-20": [
+      "wd-cities-brazil",
+      "wd-nobel-medicine",
+      "wd-nobel-peace",
+      "wd-album-2014",
+      "wd-airlines",
+      "wd-game-2022",
+      "wd-album-2007"
+    ],
+    "2027-07-21": [
+      "wd-nobel-chemistry",
+      "wd-countries-europe",
+      "hand-myth",
+      "hand-pizza",
+      "wd-game-1992",
+      "wd-film-1986",
+      "wd-series-2024"
+    ],
+    "2027-07-22": [
+      "hand-condiment",
+      "wd-board-games",
+      "wd-film-1986",
+      "wd-film-2016",
+      "wd-inventors",
+      "wd-paintings",
+      "wd-cities-japan"
+    ],
+    "2027-07-23": [
+      "hand-soda",
+      "wd-cocktails",
+      "wd-game-2001",
+      "wd-classical-composers",
+      "hand-hat",
+      "wd-series-2005",
+      "wd-cities-france"
+    ],
+    "2027-07-24": [
+      "wd-cities-colombia",
+      "hand-feeling",
+      "wd-countries-asia",
+      "wd-film-1997",
+      "wd-film-2023",
+      "wd-game-1996",
+      "hand-breakfast"
+    ],
+    "2027-07-25": [
+      "wd-game-1995",
+      "wd-film-2008",
+      "wd-film-2014",
+      "wd-film-2006",
+      "hand-candy",
+      "wd-basketball-players",
+      "wd-dog-breeds"
+    ],
+    "2027-07-26": [
+      "wd-series-2020",
+      "wd-islands",
+      "wd-game-2018",
+      "wd-game-2015",
+      "wd-landlocked",
+      "wd-game-2011",
+      "wd-cities-us"
+    ],
+    "2027-07-27": [
+      "wd-elements",
+      "wd-magazines",
+      "wd-game-2011",
+      "wd-breads",
+      "wd-game-1997",
+      "wd-film-1990",
+      "hand-tool"
+    ],
+    "2027-07-28": [
+      "wd-cities-indonesia",
+      "wd-series-2004",
+      "hand-tool",
+      "wd-film-1996",
+      "wd-film-1995",
+      "wd-pastas",
+      "wd-series-2014"
+    ],
+    "2027-07-29": [
+      "wd-album-2014",
+      "wd-museums",
+      "wd-cities-japan",
+      "wd-basketball-players",
+      "wd-album-2011",
+      "wd-series-2015",
+      "wd-film-2010"
+    ],
+    "2027-07-30": [
+      "wd-film-2019",
+      "wd-album-2020",
+      "wd-islands",
+      "hand-tale",
+      "wd-film-1996",
+      "wd-film-1997",
+      "hand-vegetable"
+    ],
+    "2027-07-31": [
+      "wd-film-2024",
+      "wd-series-2008",
+      "wd-cities-pakistan",
+      "wd-game-2009",
+      "wd-cities-mexico",
+      "hand-condiment",
+      "hand-hero"
+    ],
+    "2027-08-01": [
+      "wd-inventors",
+      "hand-subject",
+      "wd-cities-poland",
+      "wd-cities-us",
+      "wd-cities-india",
+      "wd-film-1999",
+      "hand-tale"
+    ],
+    "2027-08-02": [
+      "hand-flower",
+      "wd-game-2023",
+      "wd-nobel-literature",
+      "hand-dessert",
+      "wd-film-2009",
+      "wd-nobel-peace",
+      "wd-cat-breeds"
+    ],
+    "2027-08-03": [
+      "wd-series-2014",
+      "hand-feeling",
+      "hand-tool",
+      "wd-cities-philippines",
+      "wd-game-2016",
+      "hand-genre",
+      "wd-oscar-actors"
+    ],
+    "2027-08-04": [
+      "wd-cities-france",
+      "wd-band-kpop",
+      "wd-classical-composers",
+      "wd-singers",
+      "wd-palme",
+      "wd-magazines",
+      "wd-band-punk"
+    ],
+    "2027-08-05": [
+      "wd-uk-premiers",
+      "hand-takeout",
+      "wd-classical-composers",
+      "hand-tool",
+      "wd-astronauts",
+      "wd-film-2001",
+      "wd-film-2022"
+    ],
+    "2027-08-06": [
+      "wd-series-2024",
+      "wd-cities-pakistan",
+      "wd-series-2007",
+      "wd-game-2024",
+      "hand-breakfast",
+      "wd-series-2010",
+      "wd-countries"
+    ],
+    "2027-08-07": [
+      "wd-cities-spain",
+      "wd-game-2012",
+      "wd-oscar-actors",
+      "hand-ball",
+      "wd-album-2018",
+      "wd-game-2015",
+      "wd-film-2024"
+    ],
+    "2027-08-08": [
+      "wd-band-alternative",
+      "wd-band-rnb",
+      "wd-game-2015",
+      "wd-film-2005",
+      "wd-film-2022",
+      "wd-game-2024",
+      "wd-mountains"
+    ],
+    "2027-08-09": [
+      "wd-series-2018",
+      "wd-album-2016",
+      "wd-film-1996",
+      "wd-pastas",
+      "wd-cities-pakistan",
+      "hand-condiment",
+      "wd-cities-canada"
+    ],
+    "2027-08-10": [
+      "hand-subject",
+      "wd-album-2007",
+      "wd-pharaohs",
+      "wd-game-2003",
+      "wd-game-1994",
+      "hand-dance",
+      "wd-cities-mexico"
+    ],
+    "2027-08-11": [
+      "wd-band-alternative",
+      "hand-breakfast",
+      "wd-film-2017",
+      "wd-pastas",
+      "wd-cities-egypt",
+      "wd-singers",
+      "wd-landlocked"
+    ],
+    "2027-08-12": [
+      "wd-series-2020",
+      "wd-tube",
+      "wd-languages",
+      "wd-booker",
+      "wd-film-2016",
+      "wd-game-devs",
+      "wd-volcanoes"
+    ],
+    "2027-08-13": [
+      "wd-film-1989",
+      "wd-film-2007",
+      "wd-mathematicians",
+      "wd-film-2000",
+      "wd-game-1996",
+      "wd-nobel-literature",
+      "wd-series-2005"
+    ],
+    "2027-08-14": [
+      "hand-cards",
+      "wd-film-2002",
+      "wd-cities-japan",
+      "wd-band-alternative",
+      "wd-game-2022",
+      "hand-cereal",
+      "hand-bone"
+    ],
+    "2027-08-15": [
+      "hand-unit",
+      "wd-series-2004",
+      "wd-band-rock",
+      "hand-yoga",
+      "wd-series-2019",
+      "wd-game-2003",
+      "wd-film-2016"
+    ],
+    "2027-08-16": [
+      "hand-olympus",
+      "wd-game-2017",
+      "wd-cities-mexico",
+      "wd-series-2009",
+      "wd-series-2008",
+      "wd-pharaohs",
+      "hand-appliance"
+    ],
+    "2027-08-17": [
+      "wd-game-2005",
+      "wd-us-presidents",
+      "wd-game-1999",
+      "wd-game-1992",
+      "wd-cities-turkey",
+      "wd-series-2007",
+      "wd-series-1998"
+    ],
+    "2027-08-18": [
+      "wd-film-2011",
+      "wd-game-devs",
+      "wd-band-electronic",
+      "wd-series-2005",
+      "wd-cities-mexico",
+      "wd-album-2004",
+      "wd-band-kpop"
+    ],
+    "2027-08-19": [
+      "wd-album-2024",
+      "wd-film-2002",
+      "wd-album-2010",
+      "wd-film-1994",
+      "wd-film-2004",
+      "wd-nobel-physics",
+      "wd-cities-uk"
+    ],
+    "2027-08-20": [
+      "hand-condiment",
+      "wd-game-2014",
+      "wd-cities-nigeria",
+      "wd-band-rock",
+      "hand-takeout",
+      "wd-cities-spain",
+      "wd-film-1997"
+    ],
+    "2027-08-21": [
+      "wd-game-2007",
+      "wd-countries-europe",
+      "hand-dessert",
+      "wd-film-1994",
+      "wd-album-2010",
+      "wd-game-2024",
+      "wd-series-2000"
+    ],
+    "2027-08-22": [
+      "wd-cities-mexico",
+      "wd-programming-languages",
+      "wd-board-games",
+      "wd-cities-uk",
+      "hand-yoga",
+      "wd-pharaohs",
+      "wd-series-2013"
+    ],
+    "2027-08-23": [
+      "wd-album-2023",
+      "wd-film-1988",
+      "wd-spices",
+      "hand-job",
+      "hand-vegetable",
+      "hand-genre",
+      "wd-programming-languages"
+    ],
+    "2027-08-24": [
+      "wd-game-2002",
+      "wd-film-1997",
+      "wd-fruits",
+      "hand-tree",
+      "wd-cities-spain",
+      "wd-film-1993",
+      "wd-game-1995"
+    ],
+    "2027-08-25": [
+      "wd-series-2004",
+      "wd-album-2023",
+      "wd-album-2005",
+      "wd-album-2016",
+      "wd-band-electronic",
+      "wd-cat-breeds",
+      "wd-series-2007"
+    ],
+    "2027-08-26": [
+      "wd-album-2008",
+      "hand-pizza",
+      "wd-film-2009",
+      "wd-film-2023",
+      "wd-film-2008",
+      "hand-job",
+      "wd-series-2008"
+    ],
+    "2027-08-27": [
+      "wd-series-2015",
+      "hand-appliance",
+      "wd-countries-asia",
+      "wd-album-2017",
+      "wd-classical-composers",
+      "wd-game-2015",
+      "wd-cheeses"
+    ],
+    "2027-08-28": [
+      "wd-airlines",
+      "wd-game-2001",
+      "wd-film-2021",
+      "wd-album-2011",
+      "wd-board-games",
+      "wd-software",
+      "wd-mathematicians"
+    ],
+    "2027-08-29": [
+      "wd-cities-russia",
+      "hand-takeout",
+      "wd-series-2000",
+      "wd-game-2001",
+      "hand-hero",
+      "wd-countries",
+      "wd-cities-philippines"
+    ],
+    "2027-08-30": [
+      "wd-game-2019",
+      "wd-nobel-chemistry",
+      "hand-tale",
+      "wd-series-2003",
+      "hand-breakfast",
+      "wd-palme",
+      "wd-newspapers"
+    ],
+    "2027-08-31": [
+      "wd-series-2018",
+      "wd-band-rnb",
+      "wd-game-1991",
+      "wd-cheeses",
+      "wd-film-2006",
+      "wd-film-2015",
+      "wd-cities-indonesia"
+    ],
+    "2027-09-01": [
+      "wd-film-2006",
+      "hand-flower",
+      "hand-cereal",
+      "wd-series-2023",
+      "hand-clothing",
+      "wd-film-2011",
+      "wd-series-2001"
+    ],
+    "2027-09-02": [
+      "wd-film-2012",
+      "wd-cities-russia",
+      "wd-series-2014",
+      "wd-series-2013",
+      "wd-film-2016",
+      "wd-cities-uk",
+      "wd-film-2007"
+    ],
+    "2027-09-03": [
+      "wd-rivers",
+      "wd-game-2002",
+      "wd-film-1996",
+      "wd-album-2007",
+      "wd-best-picture",
+      "wd-film-1994",
+      "wd-cities-us"
+    ],
+    "2027-09-04": [
+      "wd-film-2007",
+      "wd-oscar-actors",
+      "wd-museums",
+      "wd-series-2000",
+      "wd-cities-japan",
+      "wd-film-2019",
+      "wd-cities-south-korea"
+    ],
+    "2027-09-05": [
+      "wd-album-2015",
+      "wd-heritage",
+      "wd-album-2013",
+      "wd-film-2015",
+      "wd-film-2004",
+      "hand-yoga",
+      "wd-album-2005"
+    ],
+    "2027-09-06": [
+      "wd-film-1986",
+      "wd-cities-pakistan",
+      "wd-film-2022",
+      "wd-album-2016",
+      "wd-album-2012",
+      "wd-spices",
+      "wd-series-2016"
+    ],
+    "2027-09-07": [
+      "wd-album-2008",
+      "wd-dog-breeds",
+      "wd-nobel-physics",
+      "wd-uk-premiers",
+      "wd-album-2013",
+      "wd-series-2002",
+      "wd-film-1990"
+    ],
+    "2027-09-08": [
+      "wd-cities-egypt",
+      "wd-software",
+      "wd-cities-iran",
+      "wd-airlines",
+      "wd-series-2017",
+      "wd-film-2023",
+      "wd-series-1998"
+    ],
+    "2027-09-09": [
+      "wd-album-2009",
+      "wd-universities",
+      "wd-footballers",
+      "wd-series-2004",
+      "hand-dessert",
+      "wd-cities-iran",
+      "wd-cities-uk"
+    ],
+    "2027-09-10": [
+      "wd-series-2024",
+      "wd-film-2015",
+      "wd-airlines",
+      "wd-series-2011",
+      "wd-singers",
+      "wd-game-1998",
+      "wd-volcanoes"
+    ],
+    "2027-09-11": [
+      "wd-cities-brazil",
+      "wd-film-2016",
+      "wd-album-2024",
+      "wd-film-1990",
+      "wd-game-2021",
+      "hand-myth",
+      "wd-film-1986"
+    ],
+    "2027-09-12": [
+      "wd-series-1998",
+      "wd-classical-composers",
+      "wd-volcanoes",
+      "wd-game-1994",
+      "wd-mountains",
+      "wd-physicists",
+      "wd-countries-africa"
+    ],
+    "2027-09-13": [
+      "wd-cities-brazil",
+      "wd-film-1987",
+      "hand-candy",
+      "wd-uk-premiers",
+      "hand-takeout",
+      "wd-horse-breeds",
+      "wd-series-2010"
+    ],
+    "2027-09-14": [
+      "hand-olympus",
+      "wd-oscar-actors",
+      "wd-emperors",
+      "wd-band-alternative",
+      "wd-film-2001",
+      "wd-film-1987",
+      "wd-film-2023"
+    ],
+    "2027-09-15": [
+      "wd-painters",
+      "wd-film-2012",
+      "wd-album-2006",
+      "wd-game-1995",
+      "wd-game-2014",
+      "wd-game-2022",
+      "wd-game-2013"
+    ],
+    "2027-09-16": [
+      "wd-band-pop",
+      "wd-album-2019",
+      "hand-color",
+      "wd-album-2009",
+      "wd-game-devs",
+      "wd-game-1992",
+      "wd-game-2015"
+    ],
+    "2027-09-17": [
+      "wd-film-1995",
+      "wd-film-2014",
+      "wd-game-2013",
+      "wd-game-1992",
+      "wd-singers",
+      "wd-film-2001",
+      "wd-game-2006"
+    ],
+    "2027-09-18": [
+      "wd-magazines",
+      "wd-film-2002",
+      "hand-cereal",
+      "wd-pastas",
+      "wd-film-2014",
+      "wd-museums",
+      "wd-software"
+    ],
+    "2027-09-19": [
+      "hand-candy",
+      "wd-album-2004",
+      "wd-album-2009",
+      "wd-game-1997",
+      "wd-game-2004",
+      "wd-cities-italy",
+      "wd-nobel-peace"
+    ],
+    "2027-09-20": [
+      "wd-mathematicians",
+      "wd-film-2020",
+      "wd-volcanoes",
+      "wd-nobel-literature",
+      "wd-footballers",
+      "wd-cities-philippines",
+      "wd-cities-france"
+    ],
+    "2027-09-21": [
+      "wd-film-2012",
+      "wd-board-games",
+      "hand-vegetable",
+      "wd-band-punk",
+      "wd-cities-india",
+      "hand-job",
+      "wd-band-funk"
+    ],
+    "2027-09-22": [
+      "wd-series-2019",
+      "wd-film-2001",
+      "wd-emperors",
+      "hand-dessert",
+      "wd-tube",
+      "wd-series-2008",
+      "hand-holiday"
+    ],
+    "2027-09-23": [
+      "wd-album-2013",
+      "wd-pharaohs",
+      "wd-album-2021",
+      "wd-cities-canada",
+      "wd-basketball-players",
+      "wd-painters",
+      "wd-game-2020"
+    ],
+    "2027-09-24": [
+      "hand-holiday",
+      "wd-us-parks",
+      "wd-spices",
+      "wd-album-2009",
+      "wd-astronauts",
+      "hand-utensil",
+      "wd-series-2020"
+    ],
+    "2027-09-25": [
+      "wd-footballers",
+      "wd-game-2000",
+      "hand-condiment",
+      "wd-film-2002",
+      "wd-band-electronic",
+      "wd-band-punk",
+      "wd-album-2022"
+    ],
+    "2027-09-26": [
+      "hand-genre",
+      "wd-band-punk",
+      "hand-travel",
+      "wd-cities-pakistan",
+      "wd-film-1996",
+      "wd-film-2015",
+      "wd-game-2003"
+    ],
+    "2027-09-27": [
+      "wd-game-1992",
+      "wd-series-2014",
+      "wd-film-2017",
+      "wd-album-2013",
+      "hand-cards",
+      "wd-cities-poland",
+      "wd-series-2007"
+    ],
+    "2027-09-28": [
+      "wd-album-2013",
+      "wd-cities-japan",
+      "wd-film-2014",
+      "wd-film-2019",
+      "hand-genre",
+      "wd-cities-india",
+      "wd-album-2004"
+    ],
+    "2027-09-29": [
+      "wd-series-1998",
+      "wd-astronauts",
+      "wd-game-2010",
+      "hand-job",
+      "wd-cities-india",
+      "hand-travel",
+      "wd-game-2013"
+    ],
+    "2027-09-30": [
+      "wd-cities-germany",
+      "wd-series-2020",
+      "wd-software",
+      "hand-tool",
+      "wd-album-2004",
+      "wd-album-2023",
+      "wd-album-2013"
+    ],
+    "2027-10-01": [
+      "wd-cities-china",
+      "wd-series-1998",
+      "wd-cities-us",
+      "wd-series-2002",
+      "wd-film-1998",
+      "wd-film-2008",
+      "wd-album-2019"
+    ],
+    "2027-10-02": [
+      "wd-film-2007",
+      "wd-game-2016",
+      "wd-painters",
+      "hand-cereal",
+      "wd-nobel-peace",
+      "hand-takeout",
+      "wd-game-2019"
+    ],
+    "2027-10-03": [
+      "hand-subject",
+      "wd-cities-philippines",
+      "wd-capitals",
+      "wd-fruits",
+      "wd-film-2005",
+      "wd-game-1997",
+      "wd-game-1993"
+    ],
+    "2027-10-04": [
+      "wd-series-2022",
+      "hand-cereal",
+      "hand-condiment",
+      "wd-cities-germany",
+      "wd-cities-china",
+      "wd-album-2011",
+      "wd-languages"
+    ],
+    "2027-10-05": [
+      "hand-dance",
+      "wd-album-2021",
+      "hand-flower",
+      "wd-series-2009",
+      "wd-album-2015",
+      "wd-magazines",
+      "hand-olympus"
+    ],
+    "2027-10-06": [
+      "wd-cities-pakistan",
+      "wd-landlocked",
+      "wd-series-2018",
+      "wd-cities-turkey",
+      "wd-series-2011",
+      "wd-album-2019",
+      "wd-classical-composers"
+    ],
+    "2027-10-07": [
+      "wd-us-states",
+      "wd-pharaohs",
+      "wd-film-2016",
+      "hand-tool",
+      "wd-game-1991",
+      "wd-game-2001",
+      "hand-feeling"
+    ],
+    "2027-10-08": [
+      "hand-weather",
+      "hand-fabric",
+      "wd-band-indie",
+      "wd-series-2023",
+      "wd-series-2003",
+      "wd-game-2021",
+      "wd-film-1994"
+    ],
+    "2027-10-09": [
+      "wd-landlocked",
+      "wd-series-2017",
+      "hand-fabric",
+      "wd-cheeses",
+      "wd-film-2021",
+      "wd-airlines",
+      "wd-film-1995"
+    ],
+    "2027-10-10": [
+      "wd-constellations",
+      "wd-band-rock",
+      "wd-cities-philippines",
+      "wd-film-1992",
+      "wd-series-2002",
+      "wd-band-electronic",
+      "wd-film-1999"
+    ],
+    "2027-10-11": [
+      "wd-physicists",
+      "wd-album-2005",
+      "wd-game-2008",
+      "wd-film-2014",
+      "hand-appliance",
+      "wd-series-2013",
+      "wd-classical-composers"
+    ],
+    "2027-10-12": [
+      "wd-series-2024",
+      "wd-board-games",
+      "wd-mountains",
+      "wd-game-2020",
+      "wd-game-2008",
+      "wd-album-2008",
+      "wd-nobel-physics"
+    ],
+    "2027-10-13": [
+      "wd-footballers",
+      "wd-film-2002",
+      "wd-film-2017",
+      "wd-album-2004",
+      "wd-film-1990",
+      "wd-album-2024",
+      "wd-museums"
+    ],
+    "2027-10-14": [
+      "wd-game-2001",
+      "hand-genre",
+      "wd-series-2002",
+      "wd-film-2013",
+      "wd-nobel-literature",
+      "wd-mathematicians",
+      "wd-album-2010"
+    ],
+    "2027-10-15": [
+      "wd-game-2008",
+      "hand-pizza",
+      "wd-game-1997",
+      "wd-tube",
+      "wd-film-1992",
+      "hand-utensil",
+      "wd-album-2019"
+    ],
+    "2027-10-16": [
+      "wd-series-2003",
+      "wd-cities-japan",
+      "wd-film-1990",
+      "wd-series-2012",
+      "wd-album-2010",
+      "wd-game-1994",
+      "hand-candy"
+    ],
+    "2027-10-17": [
+      "wd-film-1995",
+      "hand-holiday",
+      "wd-teams",
+      "wd-game-2023",
+      "hand-vegetable",
+      "wd-cities-australia",
+      "wd-series-2020"
+    ],
+    "2027-10-18": [
+      "wd-game-2020",
+      "wd-game-2009",
+      "wd-series-2019",
+      "wd-pharaohs",
+      "wd-languages",
+      "wd-tube",
+      "wd-cities-pakistan"
+    ],
+    "2027-10-19": [
+      "wd-film-1996",
+      "wd-cities-turkey",
+      "wd-game-2008",
+      "hand-tool",
+      "wd-beer-styles",
+      "hand-clothing",
+      "wd-tube"
+    ],
+    "2027-10-20": [
+      "hand-clothing",
+      "wd-game-1998",
+      "wd-album-2005",
+      "wd-film-2013",
+      "wd-album-2019",
+      "hand-unit",
+      "wd-album-2024"
+    ],
+    "2027-10-21": [
+      "hand-tool",
+      "wd-cities-australia",
+      "wd-martial-arts",
+      "wd-film-2017",
+      "hand-weather",
+      "wd-series-2009",
+      "wd-film-1986"
+    ],
+    "2027-10-22": [
+      "wd-film-1993",
+      "wd-game-1999",
+      "wd-physicists",
+      "wd-countries-europe",
+      "wd-film-2003",
+      "wd-game-2005",
+      "wd-cities-south-korea"
+    ],
+    "2027-10-23": [
+      "wd-series-2013",
+      "wd-game-2017",
+      "hand-job",
+      "wd-cities-turkey",
+      "wd-game-2010",
+      "wd-band-funk",
+      "wd-physicists"
+    ],
+    "2027-10-24": [
+      "wd-capitals",
+      "wd-film-1998",
+      "hand-candy",
+      "wd-film-2011",
+      "wd-elements",
+      "wd-album-2014",
+      "wd-cities-japan"
+    ],
+    "2027-10-25": [
+      "wd-newspapers",
+      "wd-series-2024",
+      "wd-band-kpop",
+      "wd-film-2022",
+      "wd-rivers",
+      "wd-cities-turkey",
+      "wd-film-2009"
+    ],
+    "2027-10-26": [
+      "wd-film-2010",
+      "wd-game-2011",
+      "wd-cities-mexico",
+      "wd-game-1994",
+      "wd-newspapers",
+      "wd-album-2011",
+      "wd-series-2004"
+    ],
+    "2027-10-27": [
+      "wd-film-2023",
+      "wd-album-2022",
+      "wd-game-2012",
+      "wd-album-2017",
+      "wd-album-2010",
+      "hand-dance",
+      "wd-band-funk"
+    ],
+    "2027-10-28": [
+      "wd-cities-pakistan",
+      "wd-paintings",
+      "wd-cheeses",
+      "wd-film-2017",
+      "wd-series-2000",
+      "wd-cities-italy",
+      "wd-film-2007"
+    ],
+    "2027-10-29": [
+      "wd-series-2005",
+      "wd-band-electronic",
+      "wd-cities-japan",
+      "wd-cities-china",
+      "hand-subject",
+      "wd-mathematicians",
+      "hand-weather"
+    ],
+    "2027-10-30": [
+      "wd-languages",
+      "wd-band-metal",
+      "hand-holiday",
+      "wd-oscar-actors",
+      "wd-series-2004",
+      "wd-series-2007",
+      "wd-game-2009"
+    ],
+    "2027-10-31": [
+      "wd-film-2011",
+      "hand-cards",
+      "wd-series-2003",
+      "wd-game-2017",
+      "wd-painters",
+      "wd-pastas",
+      "wd-us-states"
+    ],
+    "2027-11-01": [
+      "wd-game-2001",
+      "wd-teams",
+      "wd-film-1993",
+      "wd-universities",
+      "wd-series-2023",
+      "wd-automakers",
+      "hand-fabric"
+    ],
+    "2027-11-02": [
+      "wd-band-electronic",
+      "wd-album-2019",
+      "wd-film-1999",
+      "wd-album-2005",
+      "wd-film-1990",
+      "wd-paintings",
+      "wd-inventors"
+    ],
+    "2027-11-03": [
+      "wd-us-states",
+      "hand-color",
+      "wd-cities-japan",
+      "wd-series-2000",
+      "wd-cities-indonesia",
+      "wd-film-2011",
+      "wd-band-punk"
+    ],
+    "2027-11-04": [
+      "wd-elements",
+      "wd-cities-australia",
+      "wd-series-2005",
+      "hand-bone",
+      "wd-series-2024",
+      "wd-album-2009",
+      "wd-game-2006"
+    ],
+    "2027-11-05": [
+      "wd-software",
+      "wd-album-2016",
+      "wd-film-2019",
+      "wd-singers",
+      "wd-album-2010",
+      "wd-footballers",
+      "wd-oscar-actors"
+    ],
+    "2027-11-06": [
+      "wd-series-2001",
+      "wd-game-2010",
+      "wd-software",
+      "wd-uk-premiers",
+      "wd-film-2022",
+      "wd-film-1996",
+      "wd-cities-poland"
+    ],
+    "2027-11-07": [
+      "hand-vegetable",
+      "wd-landlocked",
+      "wd-film-2012",
+      "wd-film-1999",
+      "wd-magazines",
+      "wd-nobel-peace",
+      "wd-game-1996"
+    ],
+    "2027-11-08": [
+      "hand-fabric",
+      "hand-yoga",
+      "wd-game-2000",
+      "wd-game-2001",
+      "wd-cities-poland",
+      "wd-film-2007",
+      "wd-film-1986"
+    ],
+    "2027-11-09": [
+      "wd-paintings",
+      "wd-series-2014",
+      "hand-unit",
+      "wd-album-2022",
+      "wd-album-2019",
+      "wd-us-presidents",
+      "wd-elements"
+    ],
+    "2027-11-10": [
+      "wd-series-2002",
+      "wd-album-2017",
+      "wd-album-2011",
+      "hand-cereal",
+      "wd-physicists",
+      "wd-nobel-physics",
+      "wd-capitals"
+    ],
+    "2027-11-11": [
+      "wd-series-2011",
+      "wd-volcanoes",
+      "wd-cities-brazil",
+      "wd-film-2010",
+      "wd-film-1992",
+      "wd-series-2001",
+      "wd-band-kpop"
+    ],
+    "2027-11-12": [
+      "wd-film-1993",
+      "wd-game-2014",
+      "wd-physicists",
+      "wd-mountains",
+      "wd-board-games",
+      "wd-film-2019",
+      "wd-album-2011"
+    ],
+    "2027-11-13": [
+      "wd-film-2011",
+      "wd-game-2010",
+      "wd-game-2005",
+      "wd-beer-styles",
+      "wd-series-2001",
+      "wd-game-1994",
+      "wd-cities-russia"
+    ],
+    "2027-11-14": [
+      "wd-film-1995",
+      "wd-cities-egypt",
+      "wd-game-2013",
+      "hand-tool",
+      "wd-film-2014",
+      "wd-cities-nigeria",
+      "wd-film-2006"
+    ],
+    "2027-11-15": [
+      "wd-nobel-peace",
+      "wd-cities-australia",
+      "wd-spices",
+      "wd-martial-arts",
+      "wd-film-2003",
+      "wd-oscar-actors",
+      "wd-cities-india"
+    ],
+    "2027-11-16": [
+      "wd-philosophers",
+      "wd-cities-china",
+      "wd-game-1995",
+      "wd-volcanoes",
+      "wd-footballers",
+      "wd-album-2008",
+      "wd-game-2011"
+    ],
+    "2027-11-17": [
+      "wd-cities-russia",
+      "wd-series-2008",
+      "wd-tube",
+      "wd-us-parks",
+      "wd-game-1998",
+      "wd-series-2012",
+      "wd-series-2019"
+    ],
+    "2027-11-18": [
+      "wd-film-1989",
+      "wd-astronauts",
+      "wd-cities-india",
+      "wd-film-1990",
+      "wd-game-2013",
+      "wd-film-2021",
+      "wd-languages"
+    ],
+    "2027-11-19": [
+      "wd-cities-argentina",
+      "wd-automakers",
+      "wd-teams",
+      "wd-cities-philippines",
+      "hand-soda",
+      "wd-game-2017",
+      "wd-game-2008"
+    ],
+    "2027-11-20": [
+      "wd-game-2004",
+      "wd-film-1998",
+      "wd-album-2004",
+      "wd-physicists",
+      "hand-subject",
+      "wd-album-2015",
+      "wd-band-kpop"
+    ],
+    "2027-11-21": [
+      "wd-game-2002",
+      "wd-tube",
+      "wd-series-2022",
+      "wd-album-2013",
+      "wd-game-1993",
+      "wd-inventors",
+      "wd-cities-spain"
+    ],
+    "2027-11-22": [
+      "wd-album-2019",
+      "wd-series-2005",
+      "hand-ball",
+      "wd-game-2015",
+      "wd-museums",
+      "hand-weather",
+      "wd-film-2024"
+    ],
+    "2027-11-23": [
+      "wd-film-1994",
+      "wd-series-2003",
+      "wd-band-metal",
+      "wd-film-2010",
+      "wd-game-1996",
+      "hand-myth",
+      "wd-game-2017"
+    ],
+    "2027-11-24": [
+      "wd-game-2001",
+      "wd-album-2017",
+      "wd-cities-france",
+      "wd-game-2014",
+      "hand-candy",
+      "wd-mountains",
+      "wd-game-1993"
+    ],
+    "2027-11-25": [
+      "wd-cities-pakistan",
+      "wd-series-2013",
+      "hand-vegetable",
+      "wd-game-2017",
+      "wd-cities-india",
+      "wd-film-1993",
+      "hand-condiment"
+    ],
+    "2027-11-26": [
+      "wd-film-2011",
+      "hand-genre",
+      "wd-game-1996",
+      "wd-album-2024",
+      "wd-film-2000",
+      "wd-cities-germany",
+      "wd-game-2019"
+    ],
+    "2027-11-27": [
+      "wd-film-1991",
+      "wd-band-electronic",
+      "wd-album-2018",
+      "wd-series-2018",
+      "wd-cities-china",
+      "wd-film-2003",
+      "wd-spices"
+    ],
+    "2027-11-28": [
+      "wd-us-states",
+      "wd-countries",
+      "wd-cocktails",
+      "hand-holiday",
+      "wd-languages",
+      "hand-travel",
+      "hand-dance"
+    ],
+    "2027-11-29": [
+      "wd-film-1997",
+      "wd-game-1993",
+      "wd-film-1999",
+      "wd-film-2019",
+      "wd-film-2020",
+      "wd-game-2012",
+      "wd-album-2022"
+    ],
+    "2027-11-30": [
+      "wd-film-1991",
+      "hand-olympus",
+      "wd-film-2020",
+      "wd-series-2001",
+      "wd-nobel-peace",
+      "wd-film-1989",
+      "wd-countries"
+    ],
+    "2027-12-01": [
+      "wd-film-1993",
+      "hand-cards",
+      "hand-travel",
+      "wd-pastas",
+      "wd-paintings",
+      "wd-film-2023",
+      "wd-cities-pakistan"
+    ],
+    "2027-12-02": [
+      "wd-film-1998",
+      "wd-series-1998",
+      "wd-airlines",
+      "wd-film-2021",
+      "hand-vegetable",
+      "wd-game-devs",
+      "wd-film-1997"
+    ],
+    "2027-12-03": [
+      "wd-nobel-chemistry",
+      "wd-cities-brazil",
+      "wd-game-2002",
+      "wd-cities-egypt",
+      "hand-fabric",
+      "wd-breads",
+      "wd-us-states"
+    ],
+    "2027-12-04": [
+      "hand-hero",
+      "wd-martial-arts",
+      "wd-cities-india",
+      "wd-religions",
+      "wd-series-2011",
+      "wd-band-indie",
+      "wd-game-1992"
+    ],
+    "2027-12-05": [
+      "wd-band-rock",
+      "hand-flower",
+      "wd-newspapers",
+      "hand-ball",
+      "wd-cities-uk",
+      "wd-film-2008",
+      "wd-game-1995"
+    ],
+    "2027-12-06": [
+      "wd-us-presidents",
+      "wd-album-2021",
+      "wd-album-2024",
+      "wd-film-1991",
+      "wd-series-2004",
+      "wd-religions",
+      "hand-tale"
+    ],
+    "2027-12-07": [
+      "hand-yoga",
+      "wd-series-2022",
+      "wd-museums",
+      "wd-film-1992",
+      "wd-cities-turkey",
+      "wd-film-1987",
+      "wd-philosophers"
+    ],
+    "2027-12-08": [
+      "wd-film-1986",
+      "hand-candy",
+      "wd-film-1990",
+      "wd-game-1993",
+      "hand-hero",
+      "wd-game-2023",
+      "hand-clothing"
+    ],
+    "2027-12-09": [
+      "wd-game-2023",
+      "wd-band-metal",
+      "wd-film-1989",
+      "wd-landlocked",
+      "hand-condiment",
+      "wd-series-2012",
+      "wd-countries-asia"
+    ],
+    "2027-12-10": [
+      "wd-series-1998",
+      "wd-countries",
+      "wd-album-2013",
+      "wd-cities-spain",
+      "wd-game-2021",
+      "wd-series-2012",
+      "wd-film-2000"
+    ],
+    "2027-12-11": [
+      "wd-game-2006",
+      "wd-album-2009",
+      "wd-album-2015",
+      "wd-album-2011",
+      "wd-game-2023",
+      "wd-album-2013",
+      "wd-game-2007"
+    ],
+    "2027-12-12": [
+      "hand-dance",
+      "wd-game-2008",
+      "wd-album-2005",
+      "wd-game-2007",
+      "wd-nobel-peace",
+      "wd-album-2011",
+      "wd-cities-italy"
+    ],
+    "2027-12-13": [
+      "wd-album-2016",
+      "wd-series-2017",
+      "wd-album-2012",
+      "wd-series-2002",
+      "wd-cities-iran",
+      "wd-fruits",
+      "wd-game-2011"
+    ],
+    "2027-12-14": [
+      "wd-game-1996",
+      "wd-game-2005",
+      "wd-film-2023",
+      "wd-cities-australia",
+      "wd-painters",
+      "wd-automakers",
+      "wd-game-2002"
+    ],
+    "2027-12-15": [
+      "wd-series-2022",
+      "wd-cities-spain",
+      "hand-hero",
+      "hand-condiment",
+      "wd-cities-russia",
+      "hand-yoga",
+      "hand-bone"
+    ],
+    "2027-12-16": [
+      "wd-capitals",
+      "wd-film-2005",
+      "wd-album-2006",
+      "wd-band-indie",
+      "wd-film-2024",
+      "wd-film-2009",
+      "wd-game-1999"
+    ],
+    "2027-12-17": [
+      "wd-album-2014",
+      "wd-series-2021",
+      "wd-album-2016",
+      "wd-cities-uk",
+      "wd-album-2023",
+      "wd-album-2017",
+      "wd-film-2024"
+    ],
+    "2027-12-18": [
+      "hand-genre",
+      "wd-game-2015",
+      "hand-feeling",
+      "wd-series-2016",
+      "wd-cocktails",
+      "hand-takeout",
+      "wd-game-2003"
+    ],
+    "2027-12-19": [
+      "wd-classical-composers",
+      "hand-color",
+      "hand-job",
+      "wd-game-2015",
+      "wd-cities-poland",
+      "wd-band-rnb",
+      "wd-cities-australia"
+    ],
+    "2027-12-20": [
+      "wd-best-picture",
+      "hand-ball",
+      "wd-spices",
+      "wd-film-1997",
+      "wd-film-2023",
+      "wd-singers",
+      "hand-tale"
+    ],
+    "2027-12-21": [
+      "wd-basketball-players",
+      "wd-nobel-chemistry",
+      "wd-rivers",
+      "wd-film-2008",
+      "wd-religions",
+      "hand-cards",
+      "wd-us-states"
+    ],
+    "2027-12-22": [
+      "hand-myth",
+      "hand-hat",
+      "wd-film-2006",
+      "wd-series-2024",
+      "wd-series-2011",
+      "wd-series-2020",
+      "wd-film-2020"
+    ],
+    "2027-12-23": [
+      "wd-game-2023",
+      "wd-film-2004",
+      "hand-color",
+      "wd-film-2015",
+      "wd-film-1992",
+      "wd-album-2014",
+      "wd-series-2024"
+    ],
+    "2027-12-24": [
+      "wd-game-2014",
+      "wd-series-1999",
+      "hand-tale",
+      "wd-cities-germany",
+      "wd-game-2009",
+      "wd-series-2004",
+      "wd-series-2021"
+    ],
+    "2027-12-25": [
+      "wd-film-2005",
+      "hand-candy",
+      "wd-cities-spain",
+      "wd-cities-brazil",
+      "wd-series-2004",
+      "wd-album-2023",
+      "wd-cities-colombia"
+    ],
+    "2027-12-26": [
+      "hand-yoga",
+      "wd-film-2013",
+      "wd-series-2024",
+      "hand-hero",
+      "wd-band-metal",
+      "wd-us-parks",
+      "wd-band-rnb"
+    ],
+    "2027-12-27": [
+      "wd-countries-africa",
+      "wd-us-parks",
+      "wd-game-1993",
+      "wd-band-alternative",
+      "wd-film-2018",
+      "wd-cities-brazil",
+      "wd-cities-mexico"
+    ],
+    "2027-12-28": [
+      "hand-subject",
+      "wd-cities-japan",
+      "hand-tree",
+      "wd-series-2018",
+      "wd-game-2023",
+      "wd-band-alternative",
+      "wd-band-punk"
+    ],
+    "2027-12-29": [
+      "wd-painters",
+      "wd-game-1997",
+      "hand-vegetable",
+      "wd-film-1990",
+      "hand-unit",
+      "hand-olympus",
+      "hand-dance"
+    ],
+    "2027-12-30": [
+      "wd-series-2021",
+      "hand-travel",
+      "wd-painters",
+      "wd-album-2021",
+      "wd-game-2017",
+      "wd-cocktails",
+      "wd-game-1991"
+    ],
+    "2027-12-31": [
+      "wd-emperors",
+      "wd-album-2020",
+      "wd-airlines",
+      "wd-film-2021",
+      "hand-tree",
+      "wd-game-2021",
+      "wd-cities-us"
+    ],
+    "2028-01-01": [
+      "wd-spices",
+      "wd-film-2021",
+      "wd-nobel-literature",
+      "hand-subject",
+      "wd-series-2022",
+      "hand-weather",
+      "wd-pastas"
+    ],
+    "2028-01-02": [
+      "wd-album-2009",
+      "wd-game-1991",
+      "wd-newspapers",
+      "wd-paintings",
+      "wd-album-2018",
+      "wd-beer-styles",
+      "wd-languages"
+    ],
+    "2028-01-03": [
+      "wd-band-funk",
+      "wd-film-2024",
+      "wd-film-2012",
+      "wd-physicists",
+      "wd-countries-europe",
+      "wd-film-2006",
+      "wd-film-1986"
+    ],
+    "2028-01-04": [
+      "wd-series-2024",
+      "wd-pastas",
+      "wd-cities-iran",
+      "wd-religions",
+      "wd-band-indie",
+      "wd-game-1993",
+      "wd-game-2024"
+    ],
+    "2028-01-05": [
+      "wd-game-1998",
+      "wd-album-2021",
+      "hand-tale",
+      "wd-game-2001",
+      "wd-cities-russia",
+      "wd-cities-egypt",
+      "wd-film-2011"
+    ],
+    "2028-01-06": [
+      "wd-film-1993",
+      "wd-cities-poland",
+      "wd-cat-breeds",
+      "wd-newspapers",
+      "wd-series-1999",
+      "wd-nobel-chemistry",
+      "hand-ball"
+    ],
+    "2028-01-07": [
+      "wd-album-2007",
+      "wd-series-2003",
+      "wd-landlocked",
+      "wd-album-2008",
+      "wd-nobel-peace",
+      "wd-film-2013",
+      "wd-album-2019"
+    ],
+    "2028-01-08": [
+      "wd-uk-premiers",
+      "wd-board-games",
+      "wd-film-1997",
+      "wd-game-2007",
+      "wd-cities-italy",
+      "wd-album-2010",
+      "wd-cities-mexico"
+    ],
+    "2028-01-09": [
+      "hand-takeout",
+      "wd-film-2002",
+      "wd-film-2010",
+      "wd-beer-styles",
+      "wd-cocktails",
+      "wd-album-2005",
+      "hand-genre"
+    ],
+    "2028-01-10": [
+      "wd-film-1997",
+      "wd-cities-colombia",
+      "wd-series-1999",
+      "hand-dance",
+      "wd-uk-premiers",
+      "wd-album-2006",
+      "wd-film-1991"
+    ],
+    "2028-01-11": [
+      "wd-film-2000",
+      "hand-cards",
+      "wd-band-alternative",
+      "wd-film-2011",
+      "wd-nobel-peace",
+      "wd-series-2013",
+      "wd-game-2003"
+    ],
+    "2028-01-12": [
+      "wd-series-2001",
+      "wd-film-2000",
+      "wd-game-2006",
+      "wd-cheeses",
+      "wd-band-pop",
+      "hand-travel",
+      "wd-game-2021"
+    ],
+    "2028-01-13": [
+      "wd-cities-spain",
+      "wd-series-2001",
+      "wd-film-2024",
+      "wd-film-2023",
+      "wd-best-picture",
+      "wd-album-2013",
+      "wd-album-2023"
+    ],
+    "2028-01-14": [
+      "wd-cities-philippines",
+      "hand-candy",
+      "wd-emperors",
+      "wd-countries-asia",
+      "wd-film-2015",
+      "wd-cities-japan",
+      "hand-job"
+    ],
+    "2028-01-15": [
+      "wd-palme",
+      "wd-volcanoes",
+      "wd-game-2015",
+      "wd-series-2019",
+      "wd-film-2001",
+      "hand-dance",
+      "wd-band-rnb"
+    ],
+    "2028-01-16": [
+      "hand-pizza",
+      "wd-band-metal",
+      "wd-game-2003",
+      "wd-game-1991",
+      "wd-film-1994",
+      "wd-booker",
+      "wd-cocktails"
+    ]
+  }
+}

@@ -1,17 +1,30 @@
-# woooosh
+# WOOOOSH
 
-A static guide for the October 20, 2026 recomp plan: the coach’s summary, three weekly training templates, a protein and calorie calculator that uses the plan’s ranges, sleep, supplements, a weekly check-in stored in this browser, and the reference list.
+Seven prompts. Rarer answers climb higher.
 
-Not medical advice.
+A run is seven open prompts. Each one shows for two seconds, then a 25 second clock. Type one answer. The first match locks in. A miss shakes the box and costs nothing. Pass or a timeout scores 0, and the run still plays all seven.
 
-## Run
+One point is one kilometre. Tiers, from common to rare: Pad 5, Ascent 10, Ceiling 25, Hotshot 40, Orbit 60, Apex 100. Hotshot is the trap: the clever pick everyone reaches for that is not actually rare. Each prompt has one Apex gem.
 
-```sh
-python3 -m http.server 8613
+Daily is the same seven prompts for every player on a UTC day. Unlimited does not repeat a prompt until this browser has seen the whole bank, then it replays oldest first. Streak and best altitude stay in local storage on this browser.
+
+The prompt bank is static JSON. There is no live model on the site. New prompts are built offline with the tools in [pipeline/README.md](pipeline/README.md).
+
+Netlify publishes this repo from `main` with no build step (`netlify.toml`, `publish = "."`).
+
+## Play it locally
+
+```bash
+python3 -m http.server 8765
 ```
 
-Open http://localhost:8613/
+Open `http://127.0.0.1:8765/`. The game loads `/data/index.json`, so it has to be served from the repo root.
 
-## Deploy
+## Tests
 
-Netlify serves this repository with `publish = "."` in `netlify.toml`. There is no build step. The custom domain is attached to that Netlify site; this repo does not contain a CNAME or a GitHub Actions workflow.
+```bash
+node --test tests/matcher.test.mjs tests/engine.test.mjs
+python -m unittest discover -s pipeline/tests
+```
+
+The display face is [Silkscreen](fonts/OFL.txt), used under the SIL Open Font License. Prompt text uses the system font.

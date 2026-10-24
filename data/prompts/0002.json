@@ -1,0 +1,7278 @@
+{
+  "prompts": [
+    {
+      "id": "hand-job",
+      "text": "Name a job people do",
+      "category": "everyday",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Teacher",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Doctor",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Nurse",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Farmer",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Chef",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Driver",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Cashier",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Police Officer",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Lawyer",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Engineer",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Firefighter",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Pilot",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Mechanic",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Plumber",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Electrician",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Carpenter",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Accountant",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Architect",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Journalist",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Artist",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Dentist",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Pharmacist",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Librarian",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Astronaut",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Veterinarian",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Paramedic",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Translator",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Curator",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Sommelier",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Actuary",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Cartographer",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Glassblower",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Falconer",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Cooper",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Fletcher",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Milliner",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Luthier",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Horologist",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Perfumer",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Taxidermist",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Pyrotechnician",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Cryptographer",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-myth",
+      "text": "Name a creature from myth",
+      "category": "culture",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Dragon",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Unicorn",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Phoenix",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Mermaid",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Vampire",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Werewolf",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Ghost",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Fairy",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Griffin",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Pegasus",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Cyclops",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Minotaur",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Kraken",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Yeti",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Bigfoot",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Elf",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Basilisk",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Chimera",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Hydra",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Cerberus",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Sphinx",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Goblin",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Troll",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Kitsune",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Wendigo",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Banshee",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Kelpie",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Selkie",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Rakshasa",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Naga",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Amarok",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Encantado",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Aswang",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Tikbalang",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Manticore",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Dobhar-chu",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Baku",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Qilin",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Nue",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Bai Ze",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Puca",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Adlet",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-olympus",
+      "text": "Name a figure from Greek myth",
+      "category": "culture",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Zeus",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Hera",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Poseidon",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Hades",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Athena",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Apollo",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Ares",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Aphrodite",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Hermes",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Artemis",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Demeter",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Dionysus",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Hercules",
+          "aliases": [
+            "heracles"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Perseus",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Medusa",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Achilles",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Odysseus",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Theseus",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Orpheus",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Icarus",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Pandora",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Prometheus",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Helen",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Persephone",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Cassandra",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Andromeda",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Circe",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Medea",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Atalanta",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Bellerophon",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Chiron",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Eurydice",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Ariadne",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Penelope",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Antigone",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Pygmalion",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Arachne",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Niobe",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Callisto",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Io",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Danae",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Acrisius",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-pizza",
+      "text": "Name a pizza topping",
+      "category": "food",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Pepperoni",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Cheese",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Mozzarella",
+          "aliases": [
+            "mozzarella cheese"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Mushrooms",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Sausage",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Onions",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Bell Peppers",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Olives",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Bacon",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Ham",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Pineapple",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Chicken",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Tomatoes",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Garlic",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Ground Beef",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Jalapeno",
+          "aliases": [
+            "jalapeño"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Spinach",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Salami",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Meatballs",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Feta",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Basil",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Artichoke",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Broccoli",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Arugula",
+          "aliases": [
+            "rocket leaf"
+          ],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Prosciutto",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Truffle Oil",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Goat Cheese",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Sun-Dried Tomatoes",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Pesto",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Figs",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Anchovies",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Eggplant",
+          "aliases": [
+            "aubergine"
+          ],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Ricotta",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Gorgonzola",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Capers",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Clams",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Nduja",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Soppressata",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Guanciale",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Bottarga",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Lardo",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Mortadella",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-soda",
+      "text": "Name a soft drink",
+      "category": "food",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Cola",
+          "aliases": [
+            "coca-cola"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Pepsi",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Sprite",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Lemonade",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Root Beer",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Ginger Ale",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Orange Soda",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Dr Pepper",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Mountain Dew",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Fanta",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Seven Up",
+          "aliases": [
+            "7up",
+            "7 up"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Cream Soda",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Club Soda",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Tonic Water",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Sparkling Water",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Iced Tea",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Ginger Beer",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Seltzer",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Ramune",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Jarritos",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Orangina",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Shirley Temple",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Italian Soda",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Inca Kola",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Barqs",
+          "aliases": [
+            "barq's"
+          ],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Vimto",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Cheerwine",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Moxie",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Big Red",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Faygo",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Thums Up",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Limca",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Bovonto",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Guarana Antarctica",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Kvass",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Ting",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Irn-Bru",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Kinnie",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Stoney",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Appletiser",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Passiona",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Maaza",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-subject",
+      "text": "Name a school subject",
+      "category": "everyday",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Math",
+          "aliases": [
+            "mathematics"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "English",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Science",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "History",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Art",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Music",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Geography",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Physical Education",
+          "aliases": [
+            "PE"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Biology",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Chemistry",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Physics",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Spanish",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "French",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Literature",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Computer Science",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Drama",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Algebra",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Geometry",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Economics",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Civics",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Health",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "German",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Latin",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Psychology",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Philosophy",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Calculus",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Sociology",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Creative Writing",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Robotics",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Environmental Science",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Anthropology",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Archaeology",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Astronomy",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Geology",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Accounting",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Debate",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Etymology",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Rhetoric",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Cartography",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Paleontology",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Logic",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Navigation",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-takeout",
+      "text": "Name a fast food dish",
+      "category": "food",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Hamburger",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Cheeseburger",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "French Fries",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Hot Dog",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Pizza",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Fried Chicken",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Taco",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Burrito",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Chicken Nuggets",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Onion Rings",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Milkshake",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Nachos",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Sandwich",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Sub",
+          "aliases": [
+            "submarine sandwich"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Quesadilla",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Chili Dog",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Mozzarella Sticks",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Chicken Wings",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Fish and Chips",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Gyro",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Kebab",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Falafel",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Spring Roll",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Poutine",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Elote",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Corn Dog",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Soft Pretzel",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Tater Tots",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Curly Fries",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Potato Wedges",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Arepa",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Empanada",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Banh Mi",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Jianbing",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Kati Roll",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Pupusa",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Churro",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Loukoumades",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Picarones",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Youtiao",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Mandazi",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Zeppole",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-tale",
+      "text": "Name a fairy tale",
+      "category": "culture",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Cinderella",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Snow White",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Sleeping Beauty",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Little Red Riding Hood",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Hansel and Gretel",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Rapunzel",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Jack and the Beanstalk",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Beauty and the Beast",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "The Frog Prince",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Rumpelstiltskin",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Goldilocks",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "The Three Little Pigs",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Aladdin",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Thumbelina",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Puss in Boots",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "The Little Mermaid",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Bluebeard",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "The Snow Queen",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "The Ugly Duckling",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "The Emperor's New Clothes",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Stone Soup",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "East of the Sun",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Vasilisa",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "The Twelve Dancing Princesses",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "The Six Swans",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Donkeyskin",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Cap o Rushes",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Molly Whuppie",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "The Fisherman and His Wife",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "The Goose Girl",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Mossycoat",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Kate Crackernuts",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "The Laidly Worm",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Tam Lin",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Childe Rowland",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Yallery Brown",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Tatterhood",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "The Armless Maiden",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Soria Moria",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "The Lindworm",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Mother Holle",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Fundevogel",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-tool",
+      "text": "Name a hand tool",
+      "category": "everyday",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Hammer",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Screwdriver",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Wrench",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Pliers",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Saw",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Tape Measure",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Drill",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Level",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Chisel",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "File",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Clamp",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Utility Knife",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Socket Wrench",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Allen Key",
+          "aliases": [
+            "hex key"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Mallet",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Hacksaw",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Hand Plane",
+          "aliases": [
+            "plane"
+          ],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Awl",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Pry Bar",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Coping Saw",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Tin Snips",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Staple Gun",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Caulk Gun",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Drawknife",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Spokeshave",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Block Plane",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Marking Gauge",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Sliding Bevel",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Gimlet",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Bradawl",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Inshave",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Froe",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Scorper",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Burnisher",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Wood Float",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Croze",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Adze",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Twibil",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Lump Hammer",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Race Knife",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Travisher",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Beetle Mallet",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-travel",
+      "text": "Name a way to travel",
+      "category": "travel",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Car",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Bus",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Train",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Plane",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Bike",
+          "aliases": [
+            "bicycle"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Walking",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Taxi",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Subway",
+          "aliases": [
+            "metro"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Boat",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Ferry",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Truck",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Motorcycle",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Scooter",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Tram",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Helicopter",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "RV",
+          "aliases": [
+            "recreational vehicle"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Sailboat",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Canoe",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Kayak",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Skateboard",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Roller Skates",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Horse",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Cable Car",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Hot Air Balloon",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Zeppelin",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Gondola",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Rickshaw",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Dog Sled",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Snowmobile",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Jet Ski",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Catamaran",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Hovercraft",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Monorail",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Funicular",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Segway",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Unicycle",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Hydrofoil",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Gyrocopter",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Velomobile",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Troika",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Junk Boat",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Pirogue",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-tree",
+      "text": "Name a kind of tree",
+      "category": "nature",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Oak",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Pine",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Maple",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Birch",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Palm",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Willow",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Apple",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Cherry",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Elm",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Cedar",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Spruce",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Fir",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Redwood",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Walnut",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Pear",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Peach",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Beech",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Ash",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Poplar",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Cypress",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Magnolia",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Dogwood",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Sycamore",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Sequoia",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Jacaranda",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Ginkgo",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Eucalyptus",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Banyan",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Mangrove",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Joshua Tree",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Hornbeam",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Larch",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Alder",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Hawthorn",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Linden",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Ironwood",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Baobab",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Dragon Blood Tree",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Kauri",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Wollemi Pine",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Monkey Puzzle",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Quiver Tree",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-unit",
+      "text": "Name a unit of measurement",
+      "category": "science",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Meter",
+          "aliases": [
+            "metre"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Kilogram",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Second",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Liter",
+          "aliases": [
+            "litre"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Mile",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Inch",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Foot",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Pound",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Kilometer",
+          "aliases": [
+            "kilometre"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Centimeter",
+          "aliases": [
+            "centimetre"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Gram",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Ounce",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Gallon",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Quart",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Hour",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Minute",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Yard",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Ton",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Celsius",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Fahrenheit",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Acre",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Hectare",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Watt",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Joule",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Newton",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Pascal",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Kelvin",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Hertz",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Volt",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Ampere",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Furlong",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Fathom",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "League",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Stone",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Dram",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Gill",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Smoot",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Barn",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Hand",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Cubit",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Parsec",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Angstrom",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-utensil",
+      "text": "Name a utensil from a kitchen",
+      "category": "food",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Spoon",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Fork",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Knife",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Spatula",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Whisk",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Ladle",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Tongs",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Peeler",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Cutting Board",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Colander",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Grater",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Can Opener",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Rolling Pin",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Mixing Bowl",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Measuring Cup",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Kitchen Shears",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Zester",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Mortar and Pestle",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Slotted Spoon",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Pastry Brush",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Potato Masher",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Garlic Press",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Wooden Spoon",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Microplane",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Mandoline",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Mezzaluna",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Chinois",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Bench Scraper",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Ricer",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Spider Strainer",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Spurtle",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Ulu Knife",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Suribachi",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Citrus Reamer",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Fish Spatula",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Tamagoyaki Pan",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Chasen",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Tamis",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Comal",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Tawa",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Idli Mold",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Poi Pounder",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-vegetable",
+      "text": "Name a vegetable",
+      "category": "food",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Carrot",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Potato",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Tomato",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Onion",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Lettuce",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Corn",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Broccoli",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Cucumber",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Peas",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Beans",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Spinach",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Cabbage",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Celery",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Pepper",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Squash",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Garlic",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Zucchini",
+          "aliases": [
+            "courgette"
+          ],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Eggplant",
+          "aliases": [
+            "aubergine"
+          ],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Cauliflower",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Kale",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Radish",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Asparagus",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Beet",
+          "aliases": [
+            "beetroot"
+          ],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Brussels Sprouts",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Artichoke",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Leek",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Fennel",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Bok Choy",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Okra",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Turnip",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Kohlrabi",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Celeriac",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Salsify",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Cardoon",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Rutabaga",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Jicama",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Romanesco",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Fiddlehead",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Samphire",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Crosnes",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Oca",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Mashua",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-weather",
+      "text": "Name a kind of weather",
+      "category": "nature",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Rain",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Snow",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Sun",
+          "aliases": [
+            "sunshine"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Wind",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Clouds",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Storm",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Fog",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Hail",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Thunderstorm",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Drizzle",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Sleet",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Blizzard",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Heatwave",
+          "aliases": [
+            "heat wave"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Frost",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Lightning",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Overcast",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Tornado",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Hurricane",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Monsoon",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Mist",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Rainbow",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Drought",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Ice Storm",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Derecho",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Dust Devil",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Virga",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Graupel",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Whiteout",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Squall",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Chinook",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Katabatic Wind",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Foehn",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Sirocco",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Mistral",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Buran",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Williwaw",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Haboob",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Pogonip",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Thundersnow",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Pyrocumulus",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Blood Rain",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Diamond Dust",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "hand-yoga",
+      "text": "Name a yoga pose",
+      "category": "everyday",
+      "source": "hand",
+      "answers": [
+        {
+          "name": "Downward Dog",
+          "aliases": [
+            "downward facing dog"
+          ],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Warrior",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Tree Pose",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Child's Pose",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Cobra",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Plank",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Mountain Pose",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Bridge",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false
+        },
+        {
+          "name": "Chair Pose",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Cat Pose",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Happy Baby",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Pigeon",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Triangle",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Boat Pose",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Corpse Pose",
+          "aliases": [
+            "savasana"
+          ],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Lotus",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false
+        },
+        {
+          "name": "Camel",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Fish Pose",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Bow Pose",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Crane Pose",
+          "aliases": [
+            "bakasana"
+          ],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Eagle",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Half Moon",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Seated Forward Bend",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false
+        },
+        {
+          "name": "Wheel",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Handstand",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Headstand",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Shoulder Stand",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Scorpion",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "King Pigeon",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Wild Thing",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false
+        },
+        {
+          "name": "Compass Pose",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Little Thunderbolt",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Flying Lizard",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Dancer Pose",
+          "aliases": [
+            "natarajasana"
+          ],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Moon Pose",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Bird of Paradise Pose",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false
+        },
+        {
+          "name": "Firefly Pose",
+          "aliases": [
+            "tittibhasana"
+          ],
+          "tier": "apex",
+          "gem": true
+        },
+        {
+          "name": "Eight Angle Pose",
+          "aliases": [
+            "astavakrasana"
+          ],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Grasshopper Pose",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Elephant Trunk Pose",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Visvamitrasana",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false
+        },
+        {
+          "name": "Pendant Pose",
+          "aliases": [
+            "lolasana"
+          ],
+          "tier": "apex",
+          "gem": false
+        }
+      ]
+    },
+    {
+      "id": "wd-airlines",
+      "text": "Name an airline",
+      "category": "travel",
+      "source": "wikidata",
+      "answers": [
+        {
+          "name": "Lufthansa",
+          "aliases": [
+            "LH",
+            "DLH",
+            "Deutsche Lufthansa",
+            "Deutsche Lufthansa AG",
+            "Lufthansa German Airlines",
+            "Deutsche Lufthansa Aktiengesellschaft"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q9325"
+        },
+        {
+          "name": "Turkish Airlines",
+          "aliases": [
+            "TK",
+            "DHY",
+            "THY",
+            "Türk Hava Yolları",
+            "Türkiye Devlet Hava Yolları"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q4548"
+        },
+        {
+          "name": "Air France",
+          "aliases": [
+            "Cie Nationale Air France",
+            "Société Air France, S.A.",
+            "Société Aerienne Francaise d'Affretement"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q131005"
+        },
+        {
+          "name": "British Airways",
+          "aliases": [
+            "BA",
+            "British Airways plc"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q8766"
+        },
+        {
+          "name": "VietJet Air",
+          "aliases": [
+            "VietJet",
+            "VietJet Airline",
+            "VietJet Airlines",
+            "VietJet Aviation Joint Stock Company"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q853878"
+        },
+        {
+          "name": "United Airlines",
+          "aliases": [
+            "UA",
+            "UAL",
+            "United",
+            "Continental",
+            "Varney Air Lines",
+            "Boeing Air Transport"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q174769"
+        },
+        {
+          "name": "KLM",
+          "aliases": [
+            "KL",
+            "KLM Airlines",
+            "KLM Royal Dutch Airlines",
+            "K.L.M. Royal Dutch Airlines",
+            "Koninklijke Luchtvaart Maatschappij",
+            "Koninklijke Luchtvaart Maatschappij N.V."
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q181912"
+        },
+        {
+          "name": "Aeroflot",
+          "aliases": [
+            "PJSC Aeroflot",
+            "Aeroflot - Russian Airlines",
+            "PJSC Aeroflot – Russian Airlines"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q58707"
+        },
+        {
+          "name": "Ryanair",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q170614"
+        },
+        {
+          "name": "Delta Air Lines",
+          "aliases": [
+            "DL",
+            "DAL",
+            "Delta",
+            "Delta Airlines",
+            "Delta Air Lines, Inc."
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q188920"
+        },
+        {
+          "name": "Emirates",
+          "aliases": [
+            "Emirates Group"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q180432"
+        },
+        {
+          "name": "Norwegian Air Shuttle",
+          "aliases": [
+            "DY",
+            "NOZ",
+            "Norwegian",
+            "Norwegian Air Shuttle ASA"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q215392"
+        },
+        {
+          "name": "American Airlines",
+          "aliases": [
+            "AA",
+            "AAL",
+            "AMR Corporation",
+            "American Airways",
+            "American Air Lines",
+            "American Airlines Group"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q32396"
+        },
+        {
+          "name": "Bamboo Airways",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q51779763"
+        },
+        {
+          "name": "Qantas Airways",
+          "aliases": [
+            "QF",
+            "QFA",
+            "Qantas Airways Ltd",
+            "Qantas Airways Limited"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q32491"
+        },
+        {
+          "name": "Air Canada",
+          "aliases": [
+            "AC",
+            "Trans-Canada Air Lines"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q185339"
+        },
+        {
+          "name": "Malaysia Airlines",
+          "aliases": [
+            "MAS",
+            "Malaysia Airlines Berhad",
+            "Malaysian Airline System Berhad"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q308952"
+        },
+        {
+          "name": "Austrian Airlines",
+          "aliases": [
+            "OS",
+            "AUA",
+            "Austrian",
+            "Austrian Airlines AG"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q781770"
+        },
+        {
+          "name": "Qatar Airways",
+          "aliases": [
+            "QR",
+            "QTR",
+            "QATARI",
+            "Qatar AW",
+            "Qatar Airways Company"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q208033"
+        },
+        {
+          "name": "Singapore Airlines",
+          "aliases": [
+            "SQ",
+            "SIA",
+            "Singapore Airlines Ltd.",
+            "Singapore Airlines Group",
+            "Singapore Airlines Limited"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q32245"
+        },
+        {
+          "name": "Air India",
+          "aliases": [
+            "AI",
+            "AIC"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q69906"
+        },
+        {
+          "name": "Etihad Airways",
+          "aliases": [
+            "EY",
+            "ETD",
+            "Etihad"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q212304"
+        },
+        {
+          "name": "Iberia",
+          "aliases": [
+            "IB",
+            "IBE",
+            "Iberia Airlines",
+            "Iberia holdings",
+            "Líneas Aéreas de España",
+            "Iberia Lineas Aereas de Espana"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q187972"
+        },
+        {
+          "name": "Scandinavian Airlines",
+          "aliases": [
+            "SK",
+            "SAS",
+            "SAS Scandinavian Airlines",
+            "Scandinavian Airlines, SAS",
+            "Scandinavian Airlines System"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q187854"
+        },
+        {
+          "name": "Japan Airlines",
+          "aliases": [
+            "JAL"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q213140"
+        },
+        {
+          "name": "Thai Airways",
+          "aliases": [
+            "TG",
+            "THA",
+            "THAI",
+            "Thai Airways International"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q188710"
+        },
+        {
+          "name": "Swiss International Air Lines",
+          "aliases": [
+            "LX",
+            "SWR",
+            "Swiss",
+            "Swiss Airline",
+            "Swiss Airlines"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q156776"
+        },
+        {
+          "name": "easyJet",
+          "aliases": [
+            "easyJet plc",
+            "EasyJet Airline Company Limited"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q191551"
+        },
+        {
+          "name": "Vietnam Airlines",
+          "aliases": [
+            "Vietnam Air",
+            "Vietnam Airlines Company Limited"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q174386"
+        },
+        {
+          "name": "Air China",
+          "aliases": [
+            "CA",
+            "CCA",
+            "Air China Limited"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q51747"
+        },
+        {
+          "name": "Finnair",
+          "aliases": [
+            "AY",
+            "FIN",
+            "Aero",
+            "Aero Oy",
+            "Aero O/Y",
+            "Finnair Oyj"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q201821"
+        },
+        {
+          "name": "All Nippon Airways",
+          "aliases": [
+            "ANA",
+            "Zennikkū",
+            "ANA Airlines",
+            "All Nippon Airways Co."
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q204284"
+        },
+        {
+          "name": "Czech Airlines",
+          "aliases": [
+            "CSA",
+            "CSA-LINES",
+            "České aerolinie",
+            "CSA Czech Airlines",
+            "Czech Airlines CSA",
+            "Czech Airlines a.s."
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q192653"
+        },
+        {
+          "name": "Cathay Pacific",
+          "aliases": [
+            "CX",
+            "CPA",
+            "Cathay",
+            "Cathay Pacific Airlines",
+            "Cathay Pacific Airlines Limited"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q32141"
+        },
+        {
+          "name": "LOT Polish Airlines",
+          "aliases": [
+            "LO",
+            "LOT"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q204268"
+        },
+        {
+          "name": "Alitalia",
+          "aliases": [
+            "AZ",
+            "AZA",
+            "Alitalia – Società Aerea Italiana",
+            "Alitalia Societa Aerea Italiana SpA",
+            "Alitalia – Società Aerea Italiana S.p.A."
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q153975"
+        },
+        {
+          "name": "South African Airways",
+          "aliases": [
+            "SAA"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q223763"
+        },
+        {
+          "name": "Air New Zealand",
+          "aliases": [
+            "AIZ",
+            "ANZ",
+            "Air New Zealand Ltd",
+            "Air New Zealand Limited"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q204296"
+        },
+        {
+          "name": "China Eastern Airlines",
+          "aliases": [
+            "MU",
+            "CES",
+            "China Eastern",
+            "China Eastern Airlines Corporation"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q291796"
+        },
+        {
+          "name": "Pan Am",
+          "aliases": [
+            "PAA",
+            "PanAm",
+            "Pan American World",
+            "Pan American Airways",
+            "Pan American World Airways Inc."
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q8681"
+        },
+        {
+          "name": "Virgin Atlantic",
+          "aliases": [
+            "VS",
+            "VIR",
+            "Virgin Airlines",
+            "Virgin Atlantic Air",
+            "Virgin Atlantic Airline",
+            "Virgin Atlantic Airlines"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q32277"
+        },
+        {
+          "name": "Ethiopian Airlines",
+          "aliases": [
+            "ET",
+            "ETH",
+            "Ethiopian"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q245233"
+        },
+        {
+          "name": "Southwest Airlines",
+          "aliases": [
+            "Southwest",
+            "Southwest Airlines Co."
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q503308"
+        },
+        {
+          "name": "Aer Lingus",
+          "aliases": [
+            "EI",
+            "EIN"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q83716"
+        },
+        {
+          "name": "Wizz Air",
+          "aliases": [
+            "WZZ",
+            "Wizz Air Hungary",
+            "Wizz Air Hungary Airlines Ltd."
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q335147"
+        },
+        {
+          "name": "AirBaltic",
+          "aliases": [
+            "Air Baltic",
+            "AS Air Baltic Corporation",
+            "A/S Air Baltic Corporation"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q300924"
+        },
+        {
+          "name": "Brussels Airlines",
+          "aliases": [
+            "SN",
+            "DAT",
+            "BEE-LINE"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q153571"
+        },
+        {
+          "name": "China Airlines",
+          "aliases": [
+            "CI",
+            "CAL",
+            "Dynasty"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q51756"
+        },
+        {
+          "name": "EgyptAir",
+          "aliases": [
+            "MS",
+            "MSR",
+            "Egypt Air",
+            "United Arab Airlines"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q374740"
+        },
+        {
+          "name": "Aegean Airlines",
+          "aliases": [
+            "AEE",
+            "Aegean",
+            "Aeroporia Aigaiou",
+            "Aegean Airlines SA",
+            "Aegean Airlines S.A."
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q380580"
+        },
+        {
+          "name": "Azerbaijan Airlines",
+          "aliases": [
+            "AHY",
+            "AZAL"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q333679"
+        },
+        {
+          "name": "China Southern Airlines",
+          "aliases": [
+            "CZ",
+            "CSN",
+            "China Southern",
+            "China Southern Airlines Co., Ltd."
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q291090"
+        },
+        {
+          "name": "TAP Air Portugal",
+          "aliases": [
+            "TP",
+            "TAP",
+            "TAP Air",
+            "Air Portugal",
+            "TAP Airlines",
+            "TAP Portugal"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q208232"
+        },
+        {
+          "name": "Air Berlin",
+          "aliases": [
+            "Airberlin",
+            "Airberlin.com",
+            "Air Berlin PLC & Co. Luftverkehrs KG"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q156829"
+        },
+        {
+          "name": "Asiana Airlines",
+          "aliases": [
+            "OZ",
+            "AAR",
+            "ASIANA",
+            "Asiana Cargo",
+            "Seoul Airlines",
+            "Asiana Airlines Inc."
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q211165"
+        },
+        {
+          "name": "Germanwings",
+          "aliases": [
+            "GWI"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q155038"
+        },
+        {
+          "name": "AirAsia",
+          "aliases": [
+            "AK",
+            "AirAsia Berhad"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q406643"
+        },
+        {
+          "name": "Alaska Airlines",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q822614"
+        },
+        {
+          "name": "Avianca",
+          "aliases": [
+            "Avianca S.A."
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q308911"
+        },
+        {
+          "name": "Croatia Airlines",
+          "aliases": [
+            "OU",
+            "CTN",
+            "Croatia Airlines Ltd."
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q308974"
+        },
+        {
+          "name": "EL AL Israel Airlines Ltd.",
+          "aliases": [
+            "LY",
+            "ELY"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q208489"
+        },
+        {
+          "name": "Kenya Airways",
+          "aliases": [
+            "Kenya Airways Ltd"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q638900"
+        },
+        {
+          "name": "Adria Airways",
+          "aliases": [
+            "JP",
+            "ADR",
+            "Inex Adria",
+            "Adria Airways d.d.",
+            "Inex Adria Airways",
+            "Inex-Adria Aviopromet"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q223191"
+        },
+        {
+          "name": "IndiGo",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1057110"
+        },
+        {
+          "name": "Nauru Airlines",
+          "aliases": [
+            "Air Nauru",
+            "Our Airline"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q192459"
+        },
+        {
+          "name": "Pakistan International Airlines",
+          "aliases": [
+            "PIA",
+            "Pakistan International",
+            "PIA Pakistan International"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q204887"
+        },
+        {
+          "name": "SriLankan Airlines",
+          "aliases": [
+            "UL",
+            "ALK",
+            "SriLankan Air",
+            "Sri Lankan Air",
+            "Sri Lankan Airline"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q853293"
+        },
+        {
+          "name": "Air Serbia",
+          "aliases": [
+            "JU",
+            "ASL",
+            "AirSERBIA",
+            "Air SERBIA a.d. Beograd"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q460373"
+        },
+        {
+          "name": "Belavia",
+          "aliases": [
+            "BRU",
+            "Belavia - Belarusian Airlines"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q815314"
+        },
+        {
+          "name": "Garuda Indonesia",
+          "aliases": [
+            "GIAA",
+            "Garuda",
+            "Garuda Air",
+            "Garuda Airline",
+            "Garuda Airlines",
+            "PT Garuda Indonesia"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q512468"
+        },
+        {
+          "name": "Jet Airways",
+          "aliases": [
+            "Jet",
+            "Jet Air",
+            "Jet Airlines"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q727066"
+        },
+        {
+          "name": "Vueling",
+          "aliases": [
+            "VY",
+            "VLG",
+            "Vueling Air",
+            "Vueling Airline",
+            "Vueling Airlines",
+            "Vueling Airlines S.A."
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q646741"
+        },
+        {
+          "name": "Flydubai",
+          "aliases": [
+            "FZ",
+            "FDB",
+            "Flydubai air",
+            "FlyDubai airways",
+            "FlyDubai Airlines",
+            "Dubai Aviation Corporation"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q1048495"
+        },
+        {
+          "name": "Icelandair",
+          "aliases": [
+            "FI",
+            "ICE",
+            "Iceland Air",
+            "Iceland Airways",
+            "Iceland airlines"
+          ],
+          "tier": "apex",
+          "gem": true,
+          "qid": "Q216645"
+        },
+        {
+          "name": "Philippine Airlines",
+          "aliases": [
+            "Philippine Air Lines"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q846910"
+        },
+        {
+          "name": "TAROM",
+          "aliases": [
+            "TAROM Air"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q240656"
+        },
+        {
+          "name": "US Airways",
+          "aliases": [
+            "USAir",
+            "US Airways, Inc."
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q208046"
+        },
+        {
+          "name": "Air Astana",
+          "aliases": [
+            "KC",
+            "KZR"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q406828"
+        },
+        {
+          "name": "Air Europa",
+          "aliases": [
+            "Air Europa Líneas Aéreas, S.A.U."
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q332980"
+        },
+        {
+          "name": "Air Malta",
+          "aliases": [
+            "KM",
+            "AMC",
+            "Air Malta plc"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q221604"
+        },
+        {
+          "name": "Pegasus Airlines",
+          "aliases": [
+            "PC",
+            "PGT"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1100424"
+        },
+        {
+          "name": "Royal Jordanian",
+          "aliases": [
+            "RJ",
+            "RJA",
+            "Royal Jordanian Airlines"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q824225"
+        },
+        {
+          "name": "Saudia",
+          "aliases": [
+            "SV",
+            "SVA",
+            "Saudi Air",
+            "Saudi Airlines",
+            "Saudia Airlines"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q541179"
+        },
+        {
+          "name": "Continental Airlines",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q216486"
+        },
+        {
+          "name": "EVA Air",
+          "aliases": [
+            "EVA",
+            "Eva Airways"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q715113"
+        },
+        {
+          "name": "Eurowings",
+          "aliases": [
+            "EW",
+            "EWG",
+            "Eurowings GmbH"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q168836"
+        },
+        {
+          "name": "JetBlue Airways",
+          "aliases": [
+            "jetBlue",
+            "Jet Blue",
+            "JetBlue Air",
+            "JetBlue Airlines"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q161086"
+        },
+        {
+          "name": "Air Koryo",
+          "aliases": [
+            "Chosŏn Minhang"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q257502"
+        },
+        {
+          "name": "Lion Air",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1056794"
+        },
+        {
+          "name": "Malév Hungarian Airlines",
+          "aliases": [
+            "Malev"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q208372"
+        },
+        {
+          "name": "Northwest Airlines",
+          "aliases": [
+            "NWA",
+            "Northwest Airways",
+            "Northwest Airlines Corp.",
+            "Northwest Orient Airlines"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q309174"
+        },
+        {
+          "name": "Oman Air",
+          "aliases": [
+            "Oman Airline"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q860379"
+        },
+        {
+          "name": "Aeroméxico",
+          "aliases": [
+            "Aerovías de México, S.A. de C.V."
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q381563"
+        },
+        {
+          "name": "Air Mauritius",
+          "aliases": [
+            "Air Mauritius Limited"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q407556"
+        },
+        {
+          "name": "Uzbekistan Airways",
+          "aliases": [
+            "HY",
+            "UZB",
+            "UZBEK",
+            "Uzbekistan Air",
+            "Uzbekistan Airline",
+            "Oʻzbekiston havo yoʻllari"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q610003"
+        },
+        {
+          "name": "Air Arabia",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q406798"
+        },
+        {
+          "name": "Air Transat",
+          "aliases": [
+            "TS",
+            "TSC",
+            "Air Transat A.T. Inc."
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q407869"
+        },
+        {
+          "name": "Copa Airlines",
+          "aliases": [
+            "CM",
+            "Copa",
+            "Compañía Panameña de Aviación",
+            "Compañía Panameña de Aviación, S.A."
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q849404"
+        },
+        {
+          "name": "Gulf Air",
+          "aliases": [
+            "GF",
+            "GFA",
+            "Gulfair",
+            "Gulf Airways",
+            "Gulf Airlines"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q473231"
+        },
+        {
+          "name": "Swissair",
+          "aliases": [
+            "Schweizerische Luftverkehr",
+            "Schweizerische Luftverkehr-AG",
+            "Swiss Air Transport Company Limited",
+            "S.A. Suisse pour la Navigation Aérienne"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q694098"
+        }
+      ]
+    },
+    {
+      "id": "wd-album-2004",
+      "text": "Name an album released in 2004",
+      "category": "music",
+      "source": "wikidata",
+      "answers": [
+        {
+          "name": "The Monsterican Dream",
+          "aliases": [
+            "The Monsterican Drea"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q487626"
+        },
+        {
+          "name": "American Idiot",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q151714"
+        },
+        {
+          "name": "Under My Skin",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q204617"
+        },
+        {
+          "name": "Reise, Reise",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q208642"
+        },
+        {
+          "name": "Once",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q628963"
+        },
+        {
+          "name": "Encore",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q638412"
+        },
+        {
+          "name": "How to Dismantle an Atomic Bomb",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q370769"
+        },
+        {
+          "name": "Three Cheers for Sweet Revenge",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q854644"
+        },
+        {
+          "name": "Hot Fuss",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q215223"
+        },
+        {
+          "name": "Greatest Hits: My Prerogative",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q382449"
+        },
+        {
+          "name": "The College Dropout",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q747526"
+        },
+        {
+          "name": "Vol. 3:",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q734600"
+        },
+        {
+          "name": "Breakaway",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1026394"
+        },
+        {
+          "name": "Queen on Fire – Live at the Bowl",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q745841"
+        },
+        {
+          "name": "The Ultimate Collection",
+          "aliases": [
+            "Michael Jackson: The Ultimate Collection"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q268138"
+        },
+        {
+          "name": "Funeral",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q526196"
+        },
+        {
+          "name": "Love. Angel. Music. Baby.",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q750087"
+        },
+        {
+          "name": "The System Has Failed",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q591783"
+        },
+        {
+          "name": "Ultimate Kylie",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q591157"
+        },
+        {
+          "name": "Back to Bedlam",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q762563"
+        },
+        {
+          "name": "Hopes and Fears",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q428397"
+        },
+        {
+          "name": "Chuck",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q751777"
+        },
+        {
+          "name": "Franz Ferdinand",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q829973"
+        },
+        {
+          "name": "The Silent Force",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q933287"
+        },
+        {
+          "name": "Loyal to the Game",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q256620"
+        },
+        {
+          "name": "Medúlla",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q842502"
+        },
+        {
+          "name": "Anywhere but Home",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1627959"
+        },
+        {
+          "name": "Honkin' on Bobo",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q904752"
+        },
+        {
+          "name": "Lest We Forget: The Best Of",
+          "aliases": [
+            "Lest We Forget: Best Of"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1751484"
+        },
+        {
+          "name": "Unbreakable",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q170203"
+        },
+        {
+          "name": "D12 World",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q621073"
+        },
+        {
+          "name": "Guetta Blaster",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q661124"
+        },
+        {
+          "name": "Live & off the Record",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q923178"
+        },
+        {
+          "name": "Live at Budokan",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q388052"
+        },
+        {
+          "name": "Live in Hyde Park",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1329694"
+        },
+        {
+          "name": "With the Lights Out",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1140480"
+        },
+        {
+          "name": "Artist Collection",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q703453"
+        },
+        {
+          "name": "Confessions",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1125266"
+        },
+        {
+          "name": "Inferno",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q867103"
+        },
+        {
+          "name": "Reckoning Night",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q431319"
+        },
+        {
+          "name": "Always Outnumbered, Never Outgunned",
+          "aliases": [
+            "AONO"
+          ],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q449710"
+        },
+        {
+          "name": "Anastacia",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q290114"
+        },
+        {
+          "name": "Around the Sun",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q698493"
+        },
+        {
+          "name": "Colour the Small One",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q2020498"
+        },
+        {
+          "name": "Damita Jo",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q572543"
+        },
+        {
+          "name": "Destiny Fulfilled",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1200985"
+        },
+        {
+          "name": "Fate of Norns",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q1398004"
+        },
+        {
+          "name": "Greatest Hits",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1028070"
+        },
+        {
+          "name": "Hilary Duff",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1991732"
+        },
+        {
+          "name": "Kasabian",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1535408"
+        },
+        {
+          "name": "Master of the Moon",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q741685"
+        },
+        {
+          "name": "Nymphetamine",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q951630"
+        },
+        {
+          "name": "Peachtree Road",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1800243"
+        },
+        {
+          "name": "R&G (Rhythm & Gangsta): The Masterpiece",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q928733"
+        },
+        {
+          "name": "Sardonic Wrath",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1756542"
+        },
+        {
+          "name": "Still Not Getting Any...",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q917493"
+        },
+        {
+          "name": "100,000,000 Bon Jovi Fans Can't Be Wrong",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q164705"
+        },
+        {
+          "name": "2Pac Live",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q672385"
+        },
+        {
+          "name": "Chimera",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1073128"
+        },
+        {
+          "name": "Contraband",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1129086"
+        },
+        {
+          "name": "Feedback",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1400908"
+        },
+        {
+          "name": "Goodies",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1418790"
+        },
+        {
+          "name": "M.I.A.M.I.",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q667767"
+        },
+        {
+          "name": "My Story",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1753118"
+        },
+        {
+          "name": "Remixes 81–04",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1051614"
+        },
+        {
+          "name": "Speak",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1070553"
+        },
+        {
+          "name": "The Chronicles of Life and Death",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1929413"
+        },
+        {
+          "name": "The End of Heartache",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q529875"
+        },
+        {
+          "name": "Autobiography",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q765665"
+        },
+        {
+          "name": "Com Lag",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q185854"
+        },
+        {
+          "name": "Dear Heather",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1930251"
+        },
+        {
+          "name": "JoJo",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q2568560"
+        },
+        {
+          "name": "Leviathan",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q647277"
+        },
+        {
+          "name": "Lifeblood",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true,
+          "qid": "Q1824495"
+        },
+        {
+          "name": "Live Licks",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q130860"
+        },
+        {
+          "name": "Metalogy",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q371562"
+        },
+        {
+          "name": "Miracle",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1048348"
+        },
+        {
+          "name": "Once More with Feeling: Singles 1996–2004",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q927734"
+        },
+        {
+          "name": "Siren Song of the Counter Culture",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q540509"
+        },
+        {
+          "name": "Sonic Firestorm",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q533031"
+        },
+        {
+          "name": "Soundtrack to Your Escape",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1342987"
+        },
+        {
+          "name": "The Human Equation",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q927315"
+        },
+        {
+          "name": "The Wretched Spawn",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q774195"
+        },
+        {
+          "name": "Trouble",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q3540875"
+        },
+        {
+          "name": "Ashes of the Wake",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q261009"
+        },
+        {
+          "name": "Demigod",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q648966"
+        },
+        {
+          "name": "Is There Love in Space?",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q279825"
+        },
+        {
+          "name": "So-Called Chaos",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q166896"
+        },
+        {
+          "name": "What Will the Neighbours Say?",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q284509"
+        }
+      ]
+    },
+    {
+      "id": "wd-album-2005",
+      "text": "Name an album released in 2005",
+      "category": "music",
+      "source": "wikidata",
+      "answers": [
+        {
+          "name": "Confessions on a Dance Floor",
+          "aliases": [
+            "The Best Madonna Album"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q151880"
+        },
+        {
+          "name": "Music of the Sun",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q208676"
+        },
+        {
+          "name": "X&Y",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q158738"
+        },
+        {
+          "name": "Rosenrot",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q213591"
+        },
+        {
+          "name": "Hypnotize",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q318954"
+        },
+        {
+          "name": "Mezmerize",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q462427"
+        },
+        {
+          "name": "Playing the Angel",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q155747"
+        },
+        {
+          "name": "Oral Fixation, Vol. 2",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q732900"
+        },
+        {
+          "name": "The Essential Michael Jackson",
+          "aliases": [
+            "The Essential"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q782406"
+        },
+        {
+          "name": "All We Know Is Falling",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q615323"
+        },
+        {
+          "name": "Angel of Retribution",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q532061"
+        },
+        {
+          "name": "B in the Mix: The Remixes",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q719837"
+        },
+        {
+          "name": "Demon Days",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q834418"
+        },
+        {
+          "name": "Late Registration",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q1130097"
+        },
+        {
+          "name": "Octavarium",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q519249"
+        },
+        {
+          "name": "A Beautiful Lie",
+          "aliases": [
+            "Battle of One",
+            "A Beautiful Lie - Deluxe Edition"
+          ],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q300325"
+        },
+        {
+          "name": "City of Evil",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q1641886"
+        },
+        {
+          "name": "PCD",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q853372"
+        },
+        {
+          "name": "The Monster Show",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q728165"
+        },
+        {
+          "name": "A Fever You Can't Sweat Out",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q1753088"
+        },
+        {
+          "name": "Rapture of the Deep",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q828024"
+        },
+        {
+          "name": "Fijación Oral, Vol. 1",
+          "aliases": [
+            "Fijación Oral"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q828282"
+        },
+        {
+          "name": "Monkey Business",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q580022"
+        },
+        {
+          "name": "The Emancipation of Mimi",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q633141"
+        },
+        {
+          "name": "9.0: Live",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q846371"
+        },
+        {
+          "name": "A Bigger Bang",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q300333"
+        },
+        {
+          "name": "Amarantine",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q454936"
+        },
+        {
+          "name": "Curtain Call: The Hits",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q373514"
+        },
+        {
+          "name": "Rebirth",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q754161"
+        },
+        {
+          "name": "Are You Dead Yet?",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q640351"
+        },
+        {
+          "name": "From Under the Cork Tree",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q582405"
+        },
+        {
+          "name": "Have a Nice Day",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q827334"
+        },
+        {
+          "name": "Primo Victoria",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q780874"
+        },
+        {
+          "name": "Dangerous and Moving",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q774130"
+        },
+        {
+          "name": "Don't Believe the Truth",
+          "aliases": [
+            "Guess God Thinks I'm Abel"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1056754"
+        },
+        {
+          "name": "Get Behind Me Satan",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q635960"
+        },
+        {
+          "name": "In Your Honor",
+          "aliases": [
+            "In Your Honour"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q907592"
+        },
+        {
+          "name": "Ten Thousand Fists",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1352118"
+        },
+        {
+          "name": "The Massacre",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q839810"
+        },
+        {
+          "name": "All the Right Reasons",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1138994"
+        },
+        {
+          "name": "Death on the Road",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q587789"
+        },
+        {
+          "name": "Getting Away with Murder",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1417281"
+        },
+        {
+          "name": "Harry Potter and the Goblet of Fire",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1190705"
+        },
+        {
+          "name": "Return of the Champions",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q836671"
+        },
+        {
+          "name": "See You on the Other Side",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q122284"
+        },
+        {
+          "name": "Takk...",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1330456"
+        },
+        {
+          "name": "Taller in More Ways",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q899176"
+        },
+        {
+          "name": "The Poison",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q598888"
+        },
+        {
+          "name": "With Teeth",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q931635"
+        },
+        {
+          "name": "You Could Have It So Much Better",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1139485"
+        },
+        {
+          "name": "Chris Brown",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1077056"
+        },
+        {
+          "name": "Frances the Mute",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1440850"
+        },
+        {
+          "name": "Human After All",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1636518"
+        },
+        {
+          "name": "Out of Exile",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q431644"
+        },
+        {
+          "name": "#1's",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1996403"
+        },
+        {
+          "name": "Consign to Oblivion",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true,
+          "qid": "Q1929315"
+        },
+        {
+          "name": "Dark Light",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q26142"
+        },
+        {
+          "name": "Doomsday Machine",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1242512"
+        },
+        {
+          "name": "Ghost Reveries",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q18621"
+        },
+        {
+          "name": "Greatest Hits: Back to the Start",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1459483"
+        },
+        {
+          "name": "Highest Hopes: The Best of Nightwish",
+          "aliases": [
+            "Highest Hopes"
+          ],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q1137016"
+        },
+        {
+          "name": "Inhuman Rampage",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1767100"
+        },
+        {
+          "name": "Intensive Care",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q605106"
+        },
+        {
+          "name": "Rise of the Tyrant",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1755330"
+        },
+        {
+          "name": "Shivers",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q161150"
+        },
+        {
+          "name": "Stratovarius",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q900967"
+        },
+        {
+          "name": "The Documentary",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q652943"
+        },
+        {
+          "name": "The Rising Tied",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q907672"
+        },
+        {
+          "name": "The Unquestionable Truth",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q2756599"
+        },
+        {
+          "name": "Greatest Hits",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1196949"
+        },
+        {
+          "name": "Live at the House of Blues",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q732589"
+        },
+        {
+          "name": "Sliver – The Best of the Box",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1986224"
+        },
+        {
+          "name": "Some Hearts",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1754341"
+        },
+        {
+          "name": "The Score – An Epic Journey",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1981663"
+        },
+        {
+          "name": "Ça Ira",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q272338"
+        },
+        {
+          "name": "Aerial",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q381119"
+        },
+        {
+          "name": "Ascendancy",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q721697"
+        },
+        {
+          "name": "Beautiful Intentions",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q791677"
+        },
+        {
+          "name": "Chaos and Creation in the Backyard",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q500392"
+        },
+        {
+          "name": "Curtains",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q899625"
+        },
+        {
+          "name": "Dark Ages",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1166133"
+        },
+        {
+          "name": "Deadwing",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q902960"
+        },
+        {
+          "name": "Devils & Dust",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q2038517"
+        },
+        {
+          "name": "Employment",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1339409"
+        },
+        {
+          "name": "Hide from the Sun",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q611731"
+        },
+        {
+          "name": "Illinois",
+          "aliases": [
+            "Illinoise",
+            "Come On Feel the Illinoise!"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1658831"
+        },
+        {
+          "name": "Make Believe",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q2350347"
+        },
+        {
+          "name": "Silent Alarm",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1415704"
+        },
+        {
+          "name": "The Black Halo",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1753205"
+        },
+        {
+          "name": "Tyranny of Souls",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1091063"
+        }
+      ]
+    },
+    {
+      "id": "wd-album-2006",
+      "text": "Name an album released in 2006",
+      "category": "music",
+      "source": "wikidata",
+      "answers": [
+        {
+          "name": "The Arockalypse",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q486387"
+        },
+        {
+          "name": "B'Day",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q193950"
+        },
+        {
+          "name": "LOL <(^^,)>",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q664873"
+        },
+        {
+          "name": "Taylor Swift",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q845783"
+        },
+        {
+          "name": "Stadium Arcadium",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q152605"
+        },
+        {
+          "name": "Black Holes and Revelations",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q204240"
+        },
+        {
+          "name": "A Girl Like Me",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q300424"
+        },
+        {
+          "name": "Back to Black",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q156670"
+        },
+        {
+          "name": "A Matter of Life and Death",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q300482"
+        },
+        {
+          "name": "Loose",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q488934"
+        },
+        {
+          "name": "FutureSex/LoveSounds",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q471924"
+        },
+        {
+          "name": "The Open Door",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q629989"
+        },
+        {
+          "name": "Sam's Town",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q719932"
+        },
+        {
+          "name": "The Black Parade",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q856869"
+        },
+        {
+          "name": "Back to Basics",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q646508"
+        },
+        {
+          "name": "Po poyas v nebe",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q26710458"
+        },
+        {
+          "name": "I'm Not Dead",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q159164"
+        },
+        {
+          "name": "The Dutchess",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q742601"
+        },
+        {
+          "name": "10,000 Days",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q163807"
+        },
+        {
+          "name": "Alright, Still",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q58419"
+        },
+        {
+          "name": "On an Island",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q750318"
+        },
+        {
+          "name": "Attero Dominatus",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q758017"
+        },
+        {
+          "name": "Christ Illusion",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q527183"
+        },
+        {
+          "name": "One-X",
+          "aliases": [],
+          "tier": "pad",
+          "gem": false,
+          "qid": "Q1253065"
+        },
+        {
+          "name": "Völkerball",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q753109"
+        },
+        {
+          "name": "A Posteriori",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q2068700"
+        },
+        {
+          "name": "A Twist in the Myth",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q300606"
+        },
+        {
+          "name": "Eminem Presents: The Re-Up",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1128791"
+        },
+        {
+          "name": "The Eraser",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1142086"
+        },
+        {
+          "name": "Under the Iron Sea",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1130765"
+        },
+        {
+          "name": "End of an Era",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q282534"
+        },
+        {
+          "name": "Pearl Jam",
+          "aliases": [
+            "Avocado",
+            "The Avocado Album"
+          ],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q931609"
+        },
+        {
+          "name": "Schrei",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q220887"
+        },
+        {
+          "name": "The Sweet Escape",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q598195"
+        },
+        {
+          "name": "Visionary: The Video Singles",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q838009"
+        },
+        {
+          "name": "It's About Time",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1052145"
+        },
+        {
+          "name": "Meds",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q252355"
+        },
+        {
+          "name": "Score",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q626571"
+        },
+        {
+          "name": "The Paramour Sessions",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q205294"
+        },
+        {
+          "name": "High School Musical",
+          "aliases": [
+            "High School Musical soundtrack"
+          ],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q587397"
+        },
+        {
+          "name": "Karmacode",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q1422385"
+        },
+        {
+          "name": "Kiss of Death",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q507067"
+        },
+        {
+          "name": "Modern Times",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1324012"
+        },
+        {
+          "name": "Pac's Life",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q918058"
+        },
+        {
+          "name": "Paris",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1341876"
+        },
+        {
+          "name": "Rudebox",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q637838"
+        },
+        {
+          "name": "Tha Blue Carpet Treatment",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q735959"
+        },
+        {
+          "name": "As Daylight Dies",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q719906"
+        },
+        {
+          "name": "Doctor's Advocate",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1233957"
+        },
+        {
+          "name": "First Impressions of Earth",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1348139"
+        },
+        {
+          "name": "Hannah Montana",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q748137"
+        },
+        {
+          "name": "Kill",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q732834"
+        },
+        {
+          "name": "Love",
+          "aliases": [],
+          "tier": "ascent",
+          "gem": false,
+          "qid": "Q1324743"
+        },
+        {
+          "name": "Revelations",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1753037"
+        },
+        {
+          "name": "Saturday Night Wrist",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q2282005"
+        },
+        {
+          "name": "U218 Singles",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q1357277"
+        },
+        {
+          "name": "Amputechture",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q477411"
+        },
+        {
+          "name": "Apt.",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q433236"
+        },
+        {
+          "name": "Beautiful World",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q45645"
+        },
+        {
+          "name": "Endless Wire",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q2005304"
+        },
+        {
+          "name": "Henkäys Ikuisuudesta",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q1929088"
+        },
+        {
+          "name": "In My Mind",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1660654"
+        },
+        {
+          "name": "Konvicted",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q667826"
+        },
+        {
+          "name": "Life on the Murder Scene",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q785429"
+        },
+        {
+          "name": "Skin and Bones",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q781063"
+        },
+        {
+          "name": "The Best of Depeche Mode Volume 1",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q929712"
+        },
+        {
+          "name": "The Sufferer & The Witness",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q303144"
+        },
+        {
+          "name": "Threshold",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1537575"
+        },
+        {
+          "name": "With Oden on Our Side",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1469541"
+        },
+        {
+          "name": "(Miss)understood",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q945170"
+        },
+        {
+          "name": "All the Roadrunning",
+          "aliases": [],
+          "tier": "apex",
+          "gem": false,
+          "qid": "Q1756783"
+        },
+        {
+          "name": "Billy Talent II",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q863256"
+        },
+        {
+          "name": "Come Clarity",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1113863"
+        },
+        {
+          "name": "Count Your Blessings",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1137050"
+        },
+        {
+          "name": "Dante XXI",
+          "aliases": [],
+          "tier": "apex",
+          "gem": true,
+          "qid": "Q307363"
+        },
+        {
+          "name": "Eyes Open",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1755868"
+        },
+        {
+          "name": "Fundamental",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1457819"
+        },
+        {
+          "name": "Inside In/Inside Out",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1471470"
+        },
+        {
+          "name": "Live in Atlanta",
+          "aliases": [
+            "Destiny's Child: Live in Atlanta"
+          ],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q1317234"
+        },
+        {
+          "name": "Now, Diabolical",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1461260"
+        },
+        {
+          "name": "Sacrament",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q664207"
+        },
+        {
+          "name": "Secret",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1756292"
+        },
+        {
+          "name": "Stone Cold Classics",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1091249"
+        },
+        {
+          "name": "Super Colossal",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1072035"
+        },
+        {
+          "name": "The Crusade",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q385638"
+        },
+        {
+          "name": "The Cult Is Alive",
+          "aliases": [],
+          "tier": "hotshot",
+          "gem": false,
+          "qid": "Q966122"
+        },
+        {
+          "name": "We Don't Need to Whisper",
+          "aliases": [],
+          "tier": "orbit",
+          "gem": false,
+          "qid": "Q1536342"
+        },
+        {
+          "name": "Year of the Dog... Again",
+          "aliases": [],
+          "tier": "ceiling",
+          "gem": false,
+          "qid": "Q1192729"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1656 @@
+---
+id: hand-pizza
+text: Name a pizza topping
+category: food
+Pepperoni | pad |  |
+Cheese | pad |  |
+Mozzarella | pad | mozzarella cheese |
+Mushrooms | pad |  |
+Sausage | pad |  |
+Onions | pad |  |
+Bell Peppers | pad |  |
+Olives | pad |  |
+Bacon | ascent |  |
+Ham | ascent |  |
+Pineapple | ascent |  |
+Chicken | ascent |  |
+Tomatoes | ascent |  |
+Garlic | ascent |  |
+Ground Beef | ascent |  |
+Jalapeno | ascent | jalapeño |
+Spinach | ceiling |  |
+Salami | ceiling |  |
+Meatballs | ceiling |  |
+Feta | ceiling |  |
+Basil | ceiling |  |
+Artichoke | ceiling |  |
+Broccoli | ceiling |  |
+Arugula | hotshot | rocket leaf |
+Prosciutto | hotshot |  |
+Truffle Oil | hotshot |  |
+Goat Cheese | hotshot |  |
+Sun-Dried Tomatoes | hotshot |  |
+Pesto | hotshot |  |
+Figs | hotshot |  |
+Anchovies | orbit |  |
+Eggplant | orbit | aubergine |
+Ricotta | orbit |  |
+Gorgonzola | orbit |  |
+Capers | orbit |  |
+Clams | orbit |  |
+Nduja | apex |  | gem
+Soppressata | apex |  |
+Guanciale | apex |  |
+Bottarga | apex |  |
+Lardo | apex |  |
+Mortadella | apex |  |
+---
+id: hand-breakfast
+text: Name a breakfast food
+category: food
+Eggs | pad |  |
+Bacon | pad |  |
+Toast | pad |  |
+Pancakes | pad |  |
+Cereal | pad |  |
+Oatmeal | pad |  |
+Sausage | pad |  |
+Jam | pad |  |
+Waffles | ascent |  |
+Bagel | ascent |  |
+Hash Browns | ascent |  |
+Yogurt | ascent | yoghurt |
+Granola | ascent |  |
+Croissant | ascent |  |
+Fruit Salad | ascent |  |
+Orange Juice | ascent |  |
+French Toast | ceiling |  |
+Omelette | ceiling | omelet |
+Grits | ceiling |  |
+Muffin | ceiling |  |
+Smoothie | ceiling |  |
+Porridge | ceiling |  |
+Avocado Toast | ceiling |  |
+Eggs Benedict | hotshot |  |
+Acai Bowl | hotshot | açaí bowl |
+Shakshuka | hotshot |  |
+Chia Pudding | hotshot |  |
+Smoked Salmon | hotshot |  |
+Bircher Muesli | hotshot |  |
+Congee | hotshot |  |
+Kedgeree | orbit |  |
+Ful Medames | orbit |  |
+Changua | orbit |  |
+Upma | orbit |  |
+Idli | orbit |  |
+Menemen | orbit |  |
+Nasi Lemak | apex |  | gem
+Kaya Toast | apex |  |
+Tamago Kake Gohan | apex |  |
+Ackee and Saltfish | apex |  |
+Huevos Rancheros | apex |  |
+Shiro | apex |  |
+---
+id: hand-utensil
+text: Name a utensil from a kitchen
+category: food
+Spoon | pad |  |
+Fork | pad |  |
+Knife | pad |  |
+Spatula | pad |  |
+Whisk | pad |  |
+Ladle | pad |  |
+Tongs | pad |  |
+Peeler | pad |  |
+Cutting Board | ascent |  |
+Colander | ascent |  |
+Grater | ascent |  |
+Can Opener | ascent |  |
+Rolling Pin | ascent |  |
+Mixing Bowl | ascent |  |
+Measuring Cup | ascent |  |
+Kitchen Shears | ascent |  |
+Zester | ceiling |  |
+Mortar and Pestle | ceiling |  |
+Slotted Spoon | ceiling |  |
+Pastry Brush | ceiling |  |
+Potato Masher | ceiling |  |
+Garlic Press | ceiling |  |
+Wooden Spoon | ceiling |  |
+Microplane | hotshot |  |
+Mandoline | hotshot |  |
+Mezzaluna | hotshot |  |
+Chinois | hotshot |  |
+Bench Scraper | hotshot |  |
+Ricer | hotshot |  |
+Spider Strainer | hotshot |  |
+Spurtle | orbit |  |
+Ulu Knife | orbit |  |
+Suribachi | orbit |  |
+Citrus Reamer | orbit |  |
+Fish Spatula | orbit |  |
+Tamagoyaki Pan | orbit |  |
+Chasen | apex |  | gem
+Tamis | apex |  |
+Comal | apex |  |
+Tawa | apex |  |
+Idli Mold | apex |  |
+Poi Pounder | apex |  |
+---
+id: hand-clothing
+text: Name an item of clothing
+category: everyday
+Shirt | pad |  |
+Pants | pad |  |
+Jeans | pad |  |
+Dress | pad |  |
+Socks | pad |  |
+Shoes | pad |  |
+Jacket | pad |  |
+T-Shirt | pad |  |
+Shorts | ascent |  |
+Skirt | ascent |  |
+Sweater | ascent |  |
+Hoodie | ascent |  |
+Coat | ascent |  |
+Hat | ascent |  |
+Scarf | ascent |  |
+Gloves | ascent |  |
+Suit | ceiling |  |
+Tie | ceiling |  |
+Belt | ceiling |  |
+Pajamas | ceiling |  |
+Swimsuit | ceiling |  |
+Blouse | ceiling |  |
+Cardigan | ceiling |  |
+Kimono | hotshot |  |
+Sari | hotshot |  |
+Kilt | hotshot |  |
+Tuxedo | hotshot |  |
+Overalls | hotshot |  |
+Parka | hotshot |  |
+Turtleneck | hotshot |  |
+Lederhosen | orbit |  |
+Poncho | orbit |  |
+Anorak | orbit |  |
+Waistcoat | orbit |  |
+Jumpsuit | orbit |  |
+Sundress | orbit |  |
+Dirndl | apex |  | gem
+Hanbok | apex |  |
+Dashiki | apex |  |
+Ao Dai | apex |  |
+Barong Tagalog | apex |  |
+Kente Cloth | apex |  |
+---
+id: hand-candy
+text: Name a kind of candy
+category: food
+Chocolate | pad |  |
+Lollipop | pad |  |
+Gummy Bears | pad |  |
+Caramel | pad |  |
+Fudge | pad |  |
+Jelly Beans | pad |  |
+Licorice | pad |  |
+Peppermint | pad |  |
+Taffy | ascent |  |
+Marshmallow | ascent |  |
+Candy Corn | ascent |  |
+Toffee | ascent |  |
+Peanut Brittle | ascent |  |
+Gumdrop | ascent |  |
+Hard Candy | ascent |  |
+Chocolate Bar | ascent |  |
+Truffle | ceiling |  |
+Praline | ceiling |  |
+Nougat | ceiling |  |
+Marzipan | ceiling |  |
+Turkish Delight | ceiling |  |
+Rock Candy | ceiling |  |
+Cotton Candy | ceiling |  |
+Mochi | hotshot |  |
+Halva | hotshot |  |
+Barfi | hotshot |  |
+Laddu | hotshot |  |
+Gulab Jamun | hotshot |  |
+Tanghulu | hotshot |  |
+Konpeito | hotshot | konpeitō |
+Calisson | orbit |  |
+Pastille | orbit |  |
+Dragee | orbit | dragée |
+Kendal Mint Cake | orbit |  |
+Humbug | orbit |  |
+Anise Drop | orbit |  |
+Pocky | apex |  | gem
+Botan Rice Candy | apex |  |
+Aplets | apex |  |
+Churchkhela | apex |  |
+Mazapan | apex |  |
+Kalamay | apex |  |
+---
+id: hand-condiment
+text: Name a sauce or condiment
+category: food
+Ketchup | pad |  |
+Mustard | pad |  |
+Mayonnaise | pad |  |
+Hot Sauce | pad |  |
+Soy Sauce | pad |  |
+Barbecue Sauce | pad |  |
+Ranch | pad |  |
+Salsa | pad |  |
+Gravy | ascent |  |
+Relish | ascent |  |
+Honey | ascent |  |
+Butter | ascent |  |
+Jam | ascent |  |
+Vinegar | ascent |  |
+Olive Oil | ascent |  |
+Pesto | ascent |  |
+Hummus | ceiling |  |
+Guacamole | ceiling |  |
+Aioli | ceiling |  |
+Chutney | ceiling |  |
+Teriyaki | ceiling |  |
+Hoisin | ceiling |  |
+Fish Sauce | ceiling |  |
+Sriracha | hotshot |  |
+Harissa | hotshot |  |
+Gochujang | hotshot |  |
+Tahini | hotshot |  |
+Chimichurri | hotshot |  |
+Romesco | hotshot |  |
+Zaatar | hotshot | za'atar |
+Sambal | orbit |  |
+Doubanjiang | orbit |  |
+Xo Sauce | orbit |  |
+Furikake | orbit |  |
+Gremolata | orbit |  |
+Mojo | orbit |  |
+Nam Prik | apex |  | gem
+Shito | apex |  |
+Ajvar | apex |  |
+Muhammara | apex |  |
+Toum | apex |  |
+Zhug | apex |  |
+---
+id: hand-vegetable
+text: Name a vegetable
+category: food
+Carrot | pad |  |
+Potato | pad |  |
+Tomato | pad |  |
+Onion | pad |  |
+Lettuce | pad |  |
+Corn | pad |  |
+Broccoli | pad |  |
+Cucumber | pad |  |
+Peas | ascent |  |
+Beans | ascent |  |
+Spinach | ascent |  |
+Cabbage | ascent |  |
+Celery | ascent |  |
+Pepper | ascent |  |
+Squash | ascent |  |
+Garlic | ascent |  |
+Zucchini | ceiling | courgette |
+Eggplant | ceiling | aubergine |
+Cauliflower | ceiling |  |
+Kale | ceiling |  |
+Radish | ceiling |  |
+Asparagus | ceiling |  |
+Beet | ceiling | beetroot |
+Brussels Sprouts | hotshot |  |
+Artichoke | hotshot |  |
+Leek | hotshot |  |
+Fennel | hotshot |  |
+Bok Choy | hotshot |  |
+Okra | hotshot |  |
+Turnip | hotshot |  |
+Kohlrabi | orbit |  |
+Celeriac | orbit |  |
+Salsify | orbit |  |
+Cardoon | orbit |  |
+Rutabaga | orbit |  |
+Jicama | orbit |  |
+Romanesco | apex |  | gem
+Fiddlehead | apex |  |
+Samphire | apex |  |
+Crosnes | apex |  |
+Oca | apex |  |
+Mashua | apex |  |
+---
+id: hand-tree
+text: Name a kind of tree
+category: nature
+Oak | pad |  |
+Pine | pad |  |
+Maple | pad |  |
+Birch | pad |  |
+Palm | pad |  |
+Willow | pad |  |
+Apple | pad |  |
+Cherry | pad |  |
+Elm | ascent |  |
+Cedar | ascent |  |
+Spruce | ascent |  |
+Fir | ascent |  |
+Redwood | ascent |  |
+Walnut | ascent |  |
+Pear | ascent |  |
+Peach | ascent |  |
+Beech | ceiling |  |
+Ash | ceiling |  |
+Poplar | ceiling |  |
+Cypress | ceiling |  |
+Magnolia | ceiling |  |
+Dogwood | ceiling |  |
+Sycamore | ceiling |  |
+Sequoia | hotshot |  |
+Jacaranda | hotshot |  |
+Ginkgo | hotshot |  |
+Eucalyptus | hotshot |  |
+Banyan | hotshot |  |
+Mangrove | hotshot |  |
+Joshua Tree | hotshot |  |
+Hornbeam | orbit |  |
+Larch | orbit |  |
+Alder | orbit |  |
+Hawthorn | orbit |  |
+Linden | orbit |  |
+Ironwood | orbit |  |
+Baobab | apex |  | gem
+Dragon Blood Tree | apex |  |
+Kauri | apex |  |
+Wollemi Pine | apex |  |
+Monkey Puzzle | apex |  |
+Quiver Tree | apex |  |
+---
+id: hand-flower
+text: Name a flower
+category: nature
+Rose | pad |  |
+Tulip | pad |  |
+Daisy | pad |  |
+Sunflower | pad |  |
+Lily | pad |  |
+Daffodil | pad |  |
+Orchid | pad |  |
+Carnation | pad |  |
+Violet | ascent |  |
+Iris | ascent |  |
+Poppy | ascent |  |
+Lavender | ascent |  |
+Marigold | ascent |  |
+Peony | ascent |  |
+Hibiscus | ascent |  |
+Jasmine | ascent |  |
+Lotus | ceiling |  |
+Dahlia | ceiling |  |
+Zinnia | ceiling |  |
+Pansy | ceiling |  |
+Bluebell | ceiling |  |
+Hyacinth | ceiling |  |
+Chrysanthemum | ceiling | mum |
+Bird of Paradise | hotshot |  |
+Protea | hotshot |  |
+Wisteria | hotshot |  |
+Snapdragon | hotshot |  |
+Foxglove | hotshot |  |
+Edelweiss | hotshot |  |
+Ranunculus | hotshot |  |
+Ghost Orchid | orbit |  |
+Chocolate Cosmos | orbit |  |
+Jade Vine | orbit |  |
+Lady's Slipper | orbit |  |
+Parrot Beak | orbit |  |
+Night Jasmine | orbit |  |
+Corpse Flower | apex |  | gem
+Middlemist Red | apex |  |
+Kadupul | apex |  |
+Franklinia | apex |  |
+Gibraltar Campion | apex |  |
+Kokio | apex | koki'o |
+---
+id: hand-job
+text: Name a job people do
+category: everyday
+Teacher | pad |  |
+Doctor | pad |  |
+Nurse | pad |  |
+Farmer | pad |  |
+Chef | pad |  |
+Driver | pad |  |
+Cashier | pad |  |
+Police Officer | pad |  |
+Lawyer | ascent |  |
+Engineer | ascent |  |
+Firefighter | ascent |  |
+Pilot | ascent |  |
+Mechanic | ascent |  |
+Plumber | ascent |  |
+Electrician | ascent |  |
+Carpenter | ascent |  |
+Accountant | ceiling |  |
+Architect | ceiling |  |
+Journalist | ceiling |  |
+Artist | ceiling |  |
+Dentist | ceiling |  |
+Pharmacist | ceiling |  |
+Librarian | ceiling |  |
+Astronaut | hotshot |  |
+Veterinarian | hotshot |  |
+Paramedic | hotshot |  |
+Translator | hotshot |  |
+Curator | hotshot |  |
+Sommelier | hotshot |  |
+Actuary | hotshot |  |
+Cartographer | orbit |  |
+Glassblower | orbit |  |
+Falconer | orbit |  |
+Cooper | orbit |  |
+Fletcher | orbit |  |
+Milliner | orbit |  |
+Luthier | apex |  | gem
+Horologist | apex |  |
+Perfumer | apex |  |
+Taxidermist | apex |  |
+Pyrotechnician | apex |  |
+Cryptographer | apex |  |
+---
+id: hand-subject
+text: Name a school subject
+category: everyday
+Math | pad | mathematics |
+English | pad |  |
+Science | pad |  |
+History | pad |  |
+Art | pad |  |
+Music | pad |  |
+Geography | pad |  |
+Physical Education | pad | PE |
+Biology | ascent |  |
+Chemistry | ascent |  |
+Physics | ascent |  |
+Spanish | ascent |  |
+French | ascent |  |
+Literature | ascent |  |
+Computer Science | ascent |  |
+Drama | ascent |  |
+Algebra | ceiling |  |
+Geometry | ceiling |  |
+Economics | ceiling |  |
+Civics | ceiling |  |
+Health | ceiling |  |
+German | ceiling |  |
+Latin | ceiling |  |
+Psychology | hotshot |  |
+Philosophy | hotshot |  |
+Calculus | hotshot |  |
+Sociology | hotshot |  |
+Creative Writing | hotshot |  |
+Robotics | hotshot |  |
+Environmental Science | hotshot |  |
+Anthropology | orbit |  |
+Archaeology | orbit |  |
+Astronomy | orbit |  |
+Geology | orbit |  |
+Accounting | orbit |  |
+Debate | orbit |  |
+Etymology | apex |  | gem
+Rhetoric | apex |  |
+Cartography | apex |  |
+Paleontology | apex |  |
+Logic | apex |  |
+Navigation | apex |  |
+---
+id: hand-holiday
+text: Name a holiday or festival
+category: culture
+Christmas | pad |  |
+Halloween | pad |  |
+Easter | pad |  |
+New Year | pad | new years day |
+Thanksgiving | pad |  |
+Valentine's Day | pad |  |
+Independence Day | pad |  |
+Diwali | pad |  |
+Hanukkah | ascent |  |
+Holi | ascent |  |
+Eid | ascent | eid al-fitr |
+Passover | ascent |  |
+Lunar New Year | ascent |  |
+Mardi Gras | ascent |  |
+St Patrick's Day | ascent |  |
+Boxing Day | ascent |  |
+Ramadan | ceiling |  |
+Vesak | ceiling |  |
+Nowruz | ceiling |  |
+Day of the Dead | ceiling | dia de los muertos |
+Kwanzaa | ceiling |  |
+Juneteenth | ceiling |  |
+Bastille Day | ceiling |  |
+Songkran | hotshot |  |
+Oktoberfest | hotshot |  |
+Carnival | hotshot |  |
+Midsummer | hotshot |  |
+Guy Fawkes Night | hotshot |  |
+Burns Night | hotshot |  |
+Purim | hotshot |  |
+Loy Krathong | orbit |  |
+Onam | orbit |  |
+Pongal | orbit |  |
+Timkat | orbit |  |
+Las Fallas | orbit |  |
+Up Helly Aa | orbit |  |
+Inti Raymi | apex |  | gem
+Gion Matsuri | apex |  |
+Naadam | apex |  |
+Esala Perahera | apex |  |
+Hogmanay | apex |  |
+Setsubun | apex |  |
+---
+id: hand-myth
+text: Name a creature from myth
+category: culture
+Dragon | pad |  |
+Unicorn | pad |  |
+Phoenix | pad |  |
+Mermaid | pad |  |
+Vampire | pad |  |
+Werewolf | pad |  |
+Ghost | pad |  |
+Fairy | pad |  |
+Griffin | ascent |  |
+Pegasus | ascent |  |
+Cyclops | ascent |  |
+Minotaur | ascent |  |
+Kraken | ascent |  |
+Yeti | ascent |  |
+Bigfoot | ascent |  |
+Elf | ascent |  |
+Basilisk | ceiling |  |
+Chimera | ceiling |  |
+Hydra | ceiling |  |
+Cerberus | ceiling |  |
+Sphinx | ceiling |  |
+Goblin | ceiling |  |
+Troll | ceiling |  |
+Kitsune | hotshot |  |
+Wendigo | hotshot |  |
+Banshee | hotshot |  |
+Kelpie | hotshot |  |
+Selkie | hotshot |  |
+Rakshasa | hotshot |  |
+Naga | hotshot |  |
+Amarok | orbit |  |
+Encantado | orbit |  |
+Aswang | orbit |  |
+Tikbalang | orbit |  |
+Manticore | orbit |  |
+Dobhar-chu | orbit |  |
+Baku | apex |  | gem
+Qilin | apex |  |
+Nue | apex |  |
+Bai Ze | apex |  |
+Puca | apex |  |
+Adlet | apex |  |
+---
+id: hand-hat
+text: Name a kind of hat
+category: everyday
+Baseball Cap | pad |  |
+Beanie | pad |  |
+Cowboy Hat | pad |  |
+Sun Hat | pad |  |
+Top Hat | pad |  |
+Helmet | pad |  |
+Beret | pad |  |
+Bucket Hat | pad |  |
+Fedora | ascent |  |
+Sombrero | ascent |  |
+Visor | ascent |  |
+Hard Hat | ascent |  |
+Santa Hat | ascent |  |
+Party Hat | ascent |  |
+Newsboy Cap | ascent |  |
+Flat Cap | ascent |  |
+Bowler | ceiling |  |
+Panama Hat | ceiling |  |
+Trilby | ceiling |  |
+Cloche | ceiling |  |
+Bonnet | ceiling |  |
+Turban | ceiling |  |
+Fez | ceiling |  |
+Deerstalker | hotshot |  |
+Porkpie | hotshot |  |
+Boater | hotshot |  |
+Homburg | hotshot |  |
+Pith Helmet | hotshot |  |
+Mortarboard | hotshot |  |
+Fascinator | hotshot |  |
+Kepi | orbit |  |
+Shako | orbit |  |
+Glengarry | orbit |  |
+Tam o Shanter | orbit |  |
+Bicorne | orbit |  |
+Tricorne | orbit |  |
+Ushanka | apex |  | gem
+Papakha | apex |  |
+Gat | apex |  |
+Salakot | apex |  |
+Karakul | apex |  |
+Akubra | apex |  |
+---
+id: hand-travel
+text: Name a way to travel
+category: travel
+Car | pad |  |
+Bus | pad |  |
+Train | pad |  |
+Plane | pad |  |
+Bike | pad | bicycle |
+Walking | pad |  |
+Taxi | pad |  |
+Subway | pad | metro |
+Boat | ascent |  |
+Ferry | ascent |  |
+Truck | ascent |  |
+Motorcycle | ascent |  |
+Scooter | ascent |  |
+Tram | ascent |  |
+Helicopter | ascent |  |
+RV | ascent | recreational vehicle |
+Sailboat | ceiling |  |
+Canoe | ceiling |  |
+Kayak | ceiling |  |
+Skateboard | ceiling |  |
+Roller Skates | ceiling |  |
+Horse | ceiling |  |
+Cable Car | ceiling |  |
+Hot Air Balloon | hotshot |  |
+Zeppelin | hotshot |  |
+Gondola | hotshot |  |
+Rickshaw | hotshot |  |
+Dog Sled | hotshot |  |
+Snowmobile | hotshot |  |
+Jet Ski | hotshot |  |
+Catamaran | orbit |  |
+Hovercraft | orbit |  |
+Monorail | orbit |  |
+Funicular | orbit |  |
+Segway | orbit |  |
+Unicycle | orbit |  |
+Hydrofoil | apex |  | gem
+Gyrocopter | apex |  |
+Velomobile | apex |  |
+Troika | apex |  |
+Junk Boat | apex |  |
+Pirogue | apex |  |
+---
+id: hand-fabric
+text: Name a kind of fabric
+category: everyday
+Cotton | pad |  |
+Wool | pad |  |
+Silk | pad |  |
+Denim | pad |  |
+Leather | pad |  |
+Polyester | pad |  |
+Linen | pad |  |
+Nylon | pad |  |
+Velvet | ascent |  |
+Satin | ascent |  |
+Fleece | ascent |  |
+Canvas | ascent |  |
+Corduroy | ascent |  |
+Flannel | ascent |  |
+Lace | ascent |  |
+Felt | ascent |  |
+Cashmere | ceiling |  |
+Tweed | ceiling |  |
+Chiffon | ceiling |  |
+Jersey | ceiling |  |
+Tulle | ceiling |  |
+Suede | ceiling |  |
+Rayon | ceiling |  |
+Brocade | hotshot |  |
+Damask | hotshot |  |
+Organza | hotshot |  |
+Taffeta | hotshot |  |
+Seersucker | hotshot |  |
+Herringbone | hotshot |  |
+Gabardine | hotshot |  |
+Kente | orbit |  |
+Batik | orbit |  |
+Ikat | orbit |  |
+Shibori | orbit |  |
+Toile | orbit |  |
+Boucle | orbit | bouclé |
+Pina Cloth | apex | piña cloth | gem
+Barkcloth | apex |  |
+Mohair | apex |  |
+Qiviut | apex |  |
+Sea Silk | apex |  |
+Lampas | apex |  |
+---
+id: hand-color
+text: Name a color
+category: everyday
+Red | pad |  |
+Blue | pad |  |
+Green | pad |  |
+Yellow | pad |  |
+Black | pad |  |
+White | pad |  |
+Orange | pad |  |
+Pink | pad |  |
+Purple | ascent |  |
+Brown | ascent |  |
+Gray | ascent | grey |
+Gold | ascent |  |
+Silver | ascent |  |
+Teal | ascent |  |
+Navy | ascent |  |
+Beige | ascent |  |
+Maroon | ceiling |  |
+Turquoise | ceiling |  |
+Lavender | ceiling |  |
+Magenta | ceiling |  |
+Cyan | ceiling |  |
+Olive | ceiling |  |
+Indigo | ceiling |  |
+Chartreuse | hotshot |  |
+Periwinkle | hotshot |  |
+Cerulean | hotshot |  |
+Ochre | hotshot |  |
+Mauve | hotshot |  |
+Fuchsia | hotshot |  |
+Sepia | hotshot |  |
+Glaucous | orbit |  |
+Sarcoline | orbit |  |
+Wenge | orbit |  |
+Falu Red | orbit |  |
+Zaffre | orbit |  |
+Fulvous | orbit |  |
+Vermilion | apex |  | gem
+Amaranth | apex |  |
+Smalt | apex |  |
+Dragon's Blood | apex |  |
+Coquelicot | apex |  |
+Smaragdine | apex |  |
+---
+id: hand-feeling
+text: Name an emotion
+category: everyday
+Happy | pad | happiness |
+Sad | pad | sadness |
+Angry | pad | anger |
+Scared | pad | fear |
+Love | pad |  |
+Excited | pad | excitement |
+Calm | pad |  |
+Bored | pad | boredom |
+Joy | ascent |  |
+Grief | ascent |  |
+Pride | ascent |  |
+Shame | ascent |  |
+Guilt | ascent |  |
+Hope | ascent |  |
+Jealousy | ascent |  |
+Surprise | ascent |  |
+Anxiety | ceiling |  |
+Relief | ceiling |  |
+Gratitude | ceiling |  |
+Loneliness | ceiling |  |
+Confusion | ceiling |  |
+Curiosity | ceiling |  |
+Contentment | ceiling |  |
+Nostalgia | hotshot |  |
+Melancholy | hotshot |  |
+Euphoria | hotshot |  |
+Angst | hotshot |  |
+Ennui | hotshot |  |
+Awe | hotshot |  |
+Ambivalence | hotshot |  |
+Sehnsucht | orbit |  |
+Saudade | orbit |  |
+Hiraeth | orbit |  |
+Mono no Aware | orbit |  |
+Litost | orbit |  |
+Awumbuk | orbit |  |
+Schadenfreude | apex |  | gem
+Fremdscham | apex |  |
+Mudita | apex |  |
+Kilig | apex |  |
+Gezellig | apex |  |
+Tarab | apex |  |
+---
+id: hand-weather
+text: Name a kind of weather
+category: nature
+Rain | pad |  |
+Snow | pad |  |
+Sun | pad | sunshine |
+Wind | pad |  |
+Clouds | pad |  |
+Storm | pad |  |
+Fog | pad |  |
+Hail | pad |  |
+Thunderstorm | ascent |  |
+Drizzle | ascent |  |
+Sleet | ascent |  |
+Blizzard | ascent |  |
+Heatwave | ascent | heat wave |
+Frost | ascent |  |
+Lightning | ascent |  |
+Overcast | ascent |  |
+Tornado | ceiling |  |
+Hurricane | ceiling |  |
+Monsoon | ceiling |  |
+Mist | ceiling |  |
+Rainbow | ceiling |  |
+Drought | ceiling |  |
+Ice Storm | ceiling |  |
+Derecho | hotshot |  |
+Dust Devil | hotshot |  |
+Virga | hotshot |  |
+Graupel | hotshot |  |
+Whiteout | hotshot |  |
+Squall | hotshot |  |
+Chinook | hotshot |  |
+Katabatic Wind | orbit |  |
+Foehn | orbit |  |
+Sirocco | orbit |  |
+Mistral | orbit |  |
+Buran | orbit |  |
+Williwaw | orbit |  |
+Haboob | apex |  | gem
+Pogonip | apex |  |
+Thundersnow | apex |  |
+Pyrocumulus | apex |  |
+Blood Rain | apex |  |
+Diamond Dust | apex |  |
+---
+id: hand-ball
+text: Name a sport played with a ball
+category: play
+Soccer | pad | football |
+Basketball | pad |  |
+Baseball | pad |  |
+Tennis | pad |  |
+Golf | pad |  |
+Volleyball | pad |  |
+American Football | pad |  |
+Bowling | pad |  |
+Rugby | ascent |  |
+Cricket | ascent |  |
+Softball | ascent |  |
+Ping Pong | ascent | table tennis |
+Billiards | ascent |  |
+Handball | ascent |  |
+Dodgeball | ascent |  |
+Kickball | ascent |  |
+Water Polo | ceiling |  |
+Field Hockey | ceiling |  |
+Lacrosse | ceiling |  |
+Squash | ceiling |  |
+Racquetball | ceiling |  |
+Polo | ceiling |  |
+Netball | ceiling |  |
+Pelota | hotshot |  |
+Jai Alai | hotshot |  |
+Bossaball | hotshot |  |
+Cycle Ball | hotshot |  |
+Fistball | hotshot |  |
+Tchoukball | hotshot |  |
+Korfball | hotshot |  |
+Lapta | orbit |  |
+Ulama | orbit |  |
+Jorkyball | orbit |  |
+Tamburello | orbit |  |
+Camogie | orbit |  |
+Hurling | orbit |  |
+Sepak Takraw | apex |  | gem
+Jeu de Paume | apex |  |
+Pok-ta-Pok | apex |  |
+Valencian Pilota | apex |  |
+Fives | apex |  |
+Trapball | apex |  |
+---
+id: hand-hero
+text: Name a superhero
+category: culture
+Superman | pad |  |
+Batman | pad |  |
+Spider-Man | pad | spiderman |
+Wonder Woman | pad |  |
+Iron Man | pad | ironman |
+Hulk | pad |  |
+Thor | pad |  |
+Captain America | pad |  |
+Flash | ascent |  |
+Wolverine | ascent |  |
+Black Panther | ascent |  |
+Aquaman | ascent |  |
+Green Lantern | ascent |  |
+Daredevil | ascent |  |
+Storm | ascent |  |
+Robin | ascent |  |
+Black Widow | ceiling |  |
+Hawkeye | ceiling |  |
+Captain Marvel | ceiling |  |
+Supergirl | ceiling |  |
+Batgirl | ceiling |  |
+Nightwing | ceiling |  |
+Cyclops | ceiling |  |
+Moon Knight | hotshot |  |
+Martian Manhunter | hotshot |  |
+Swamp Thing | hotshot |  |
+Constantine | hotshot |  |
+Animal Man | hotshot |  |
+Doctor Fate | hotshot |  |
+Blue Beetle | hotshot |  |
+Ms Marvel | orbit | ms. marvel |
+Spider-Gwen | orbit |  |
+Jessica Jones | orbit |  |
+Luke Cage | orbit |  |
+Iron Fist | orbit |  |
+Hellboy | orbit |  |
+Squirrel Girl | apex |  | gem
+Moon Girl | apex |  |
+Arm-Fall-Off-Boy | apex |  |
+Matter-Eater Lad | apex |  |
+Bouncing Boy | apex |  |
+Triplicate Girl | apex |  |
+---
+id: hand-olympus
+text: Name a figure from Greek myth
+category: culture
+Zeus | pad |  |
+Hera | pad |  |
+Poseidon | pad |  |
+Hades | pad |  |
+Athena | pad |  |
+Apollo | pad |  |
+Ares | pad |  |
+Aphrodite | pad |  |
+Hermes | ascent |  |
+Artemis | ascent |  |
+Demeter | ascent |  |
+Dionysus | ascent |  |
+Hercules | ascent | heracles |
+Perseus | ascent |  |
+Medusa | ascent |  |
+Achilles | ascent |  |
+Odysseus | ceiling |  |
+Theseus | ceiling |  |
+Orpheus | ceiling |  |
+Icarus | ceiling |  |
+Pandora | ceiling |  |
+Prometheus | ceiling |  |
+Helen | ceiling |  |
+Persephone | hotshot |  |
+Cassandra | hotshot |  |
+Andromeda | hotshot |  |
+Circe | hotshot |  |
+Medea | hotshot |  |
+Atalanta | hotshot |  |
+Bellerophon | hotshot |  |
+Chiron | orbit |  |
+Eurydice | orbit |  |
+Ariadne | orbit |  |
+Penelope | orbit |  |
+Antigone | orbit |  |
+Pygmalion | orbit |  |
+Arachne | apex |  | gem
+Niobe | apex |  |
+Callisto | apex |  |
+Io | apex |  |
+Danae | apex |  |
+Acrisius | apex |  |
+---
+id: hand-tale
+text: Name a fairy tale
+category: culture
+Cinderella | pad |  |
+Snow White | pad |  |
+Sleeping Beauty | pad |  |
+Little Red Riding Hood | pad |  |
+Hansel and Gretel | pad |  |
+Rapunzel | pad |  |
+Jack and the Beanstalk | pad |  |
+Beauty and the Beast | pad |  |
+The Frog Prince | ascent |  |
+Rumpelstiltskin | ascent |  |
+Goldilocks | ascent |  |
+The Three Little Pigs | ascent |  |
+Aladdin | ascent |  |
+Thumbelina | ascent |  |
+Puss in Boots | ascent |  |
+The Little Mermaid | ascent |  |
+Bluebeard | ceiling |  |
+The Snow Queen | ceiling |  |
+The Ugly Duckling | ceiling |  |
+The Emperor's New Clothes | ceiling |  |
+Stone Soup | ceiling |  |
+East of the Sun | ceiling |  |
+Vasilisa | ceiling |  |
+The Twelve Dancing Princesses | hotshot |  |
+The Six Swans | hotshot |  |
+Donkeyskin | hotshot |  |
+Cap o Rushes | hotshot |  |
+Molly Whuppie | hotshot |  |
+The Fisherman and His Wife | hotshot |  |
+The Goose Girl | hotshot |  |
+Mossycoat | orbit |  |
+Kate Crackernuts | orbit |  |
+The Laidly Worm | orbit |  |
+Tam Lin | orbit |  |
+Childe Rowland | orbit |  |
+Yallery Brown | orbit |  |
+Tatterhood | apex |  | gem
+The Armless Maiden | apex |  |
+Soria Moria | apex |  |
+The Lindworm | apex |  |
+Mother Holle | apex |  |
+Fundevogel | apex |  |
+---
+id: hand-bone
+text: Name a bone in the human body
+category: science
+Skull | pad |  |
+Rib | pad |  |
+Femur | pad |  |
+Spine | pad | vertebra |
+Pelvis | pad |  |
+Tibia | pad |  |
+Fibula | pad |  |
+Humerus | pad |  |
+Radius | ascent |  |
+Ulna | ascent |  |
+Clavicle | ascent |  |
+Scapula | ascent |  |
+Patella | ascent |  |
+Sternum | ascent |  |
+Mandible | ascent |  |
+Coccyx | ascent |  |
+Sacrum | ceiling |  |
+Calcaneus | ceiling |  |
+Talus | ceiling |  |
+Maxilla | ceiling |  |
+Frontal Bone | ceiling |  |
+Parietal Bone | ceiling |  |
+Occipital Bone | ceiling |  |
+Nasal Bone | hotshot |  |
+Zygomatic | hotshot |  |
+Sphenoid | hotshot |  |
+Ethmoid | hotshot |  |
+Temporal Bone | hotshot |  |
+Vomer | hotshot |  |
+Lacrimal Bone | hotshot |  |
+Malleus | orbit |  |
+Incus | orbit |  |
+Stapes | orbit |  |
+Navicular | orbit |  |
+Cuboid | orbit |  |
+Hamate | orbit |  |
+Hyoid | apex |  | gem
+Pisiform | apex |  |
+Triquetrum | apex |  |
+Capitate | apex |  |
+Lunate | apex |  |
+Scaphoid | apex |  |
+---
+id: hand-unit
+text: Name a unit of measurement
+category: science
+Meter | pad | metre |
+Kilogram | pad |  |
+Second | pad |  |
+Liter | pad | litre |
+Mile | pad |  |
+Inch | pad |  |
+Foot | pad |  |
+Pound | pad |  |
+Kilometer | ascent | kilometre |
+Centimeter | ascent | centimetre |
+Gram | ascent |  |
+Ounce | ascent |  |
+Gallon | ascent |  |
+Quart | ascent |  |
+Hour | ascent |  |
+Minute | ascent |  |
+Yard | ceiling |  |
+Ton | ceiling |  |
+Celsius | ceiling |  |
+Fahrenheit | ceiling |  |
+Acre | ceiling |  |
+Hectare | ceiling |  |
+Watt | ceiling |  |
+Joule | hotshot |  |
+Newton | hotshot |  |
+Pascal | hotshot |  |
+Kelvin | hotshot |  |
+Hertz | hotshot |  |
+Volt | hotshot |  |
+Ampere | hotshot |  |
+Furlong | orbit |  |
+Fathom | orbit |  |
+League | orbit |  |
+Stone | orbit |  |
+Dram | orbit |  |
+Gill | orbit |  |
+Smoot | apex |  | gem
+Barn | apex |  |
+Hand | apex |  |
+Cubit | apex |  |
+Parsec | apex |  |
+Angstrom | apex |  |
+---
+id: hand-soda
+text: Name a soft drink
+category: food
+Cola | pad | coca-cola |
+Pepsi | pad |  |
+Sprite | pad |  |
+Lemonade | pad |  |
+Root Beer | pad |  |
+Ginger Ale | pad |  |
+Orange Soda | pad |  |
+Dr Pepper | pad |  |
+Mountain Dew | ascent |  |
+Fanta | ascent |  |
+Seven Up | ascent | 7up;7 up |
+Cream Soda | ascent |  |
+Club Soda | ascent |  |
+Tonic Water | ascent |  |
+Sparkling Water | ascent |  |
+Iced Tea | ascent |  |
+Ginger Beer | ceiling |  |
+Seltzer | ceiling |  |
+Ramune | ceiling |  |
+Jarritos | ceiling |  |
+Orangina | ceiling |  |
+Shirley Temple | ceiling |  |
+Italian Soda | ceiling |  |
+Inca Kola | hotshot |  |
+Barqs | hotshot | barq's |
+Vimto | hotshot |  |
+Cheerwine | hotshot |  |
+Moxie | hotshot |  |
+Big Red | hotshot |  |
+Faygo | hotshot |  |
+Thums Up | orbit |  |
+Limca | orbit |  |
+Bovonto | orbit |  |
+Guarana Antarctica | orbit |  |
+Kvass | orbit |  |
+Ting | orbit |  |
+Irn-Bru | apex |  | gem
+Kinnie | apex |  |
+Stoney | apex |  |
+Appletiser | apex |  |
+Passiona | apex |  |
+Maaza | apex |  |
+---
+id: hand-cereal
+text: Name a breakfast cereal
+category: food
+Cheerios | pad |  |
+Corn Flakes | pad |  |
+Frosted Flakes | pad |  |
+Rice Krispies | pad |  |
+Oatmeal | pad |  |
+Granola | pad |  |
+Raisin Bran | pad |  |
+Froot Loops | pad |  |
+Lucky Charms | ascent |  |
+Cocoa Puffs | ascent |  |
+Special K | ascent |  |
+Wheaties | ascent |  |
+Shredded Wheat | ascent |  |
+Honey Nut Cheerios | ascent |  |
+Cinnamon Toast Crunch | ascent |  |
+Life Cereal | ascent | life |
+Grape-Nuts | ceiling |  |
+Chex | ceiling |  |
+Kix | ceiling |  |
+Trix | ceiling |  |
+Cap'n Crunch | ceiling | capn crunch |
+Honey Bunches of Oats | ceiling |  |
+Muesli | ceiling |  |
+Weetabix | hotshot |  |
+Shreddies | hotshot |  |
+All-Bran | hotshot |  |
+Cookie Crisp | hotshot |  |
+Count Chocula | hotshot |  |
+Golden Grahams | hotshot |  |
+Apple Jacks | hotshot |  |
+Franken Berry | orbit |  |
+Boo Berry | orbit |  |
+Waffle Crisp | orbit |  |
+French Toast Crunch | orbit |  |
+Alpha-Bits | orbit |  |
+Cracklin Oat Bran | orbit |  |
+Quisp | apex |  | gem
+King Vitaman | apex |  |
+Urkel-Os | apex |  |
+Crazy Cow | apex |  |
+Hidden Treasures | apex |  |
+Mr T Cereal | apex |  |
+---
+id: hand-takeout
+text: Name a fast food dish
+category: food
+Hamburger | pad |  |
+Cheeseburger | pad |  |
+French Fries | pad |  |
+Hot Dog | pad |  |
+Pizza | pad |  |
+Fried Chicken | pad |  |
+Taco | pad |  |
+Burrito | pad |  |
+Chicken Nuggets | ascent |  |
+Onion Rings | ascent |  |
+Milkshake | ascent |  |
+Nachos | ascent |  |
+Sandwich | ascent |  |
+Sub | ascent | submarine sandwich |
+Quesadilla | ascent |  |
+Chili Dog | ascent |  |
+Mozzarella Sticks | ceiling |  |
+Chicken Wings | ceiling |  |
+Fish and Chips | ceiling |  |
+Gyro | ceiling |  |
+Kebab | ceiling |  |
+Falafel | ceiling |  |
+Spring Roll | ceiling |  |
+Poutine | hotshot |  |
+Elote | hotshot |  |
+Corn Dog | hotshot |  |
+Soft Pretzel | hotshot |  |
+Tater Tots | hotshot |  |
+Curly Fries | hotshot |  |
+Potato Wedges | hotshot |  |
+Arepa | orbit |  |
+Empanada | orbit |  |
+Banh Mi | orbit |  |
+Jianbing | orbit |  |
+Kati Roll | orbit |  |
+Pupusa | orbit |  |
+Churro | apex |  | gem
+Loukoumades | apex |  |
+Picarones | apex |  |
+Youtiao | apex |  |
+Mandazi | apex |  |
+Zeppole | apex |  |
+---
+id: hand-yoga
+text: Name a yoga pose
+category: everyday
+Downward Dog | pad | downward facing dog |
+Warrior | pad |  |
+Tree Pose | pad |  |
+Child's Pose | pad |  |
+Cobra | pad |  |
+Plank | pad |  |
+Mountain Pose | pad |  |
+Bridge | pad |  |
+Chair Pose | ascent |  |
+Cat Pose | ascent |  |
+Happy Baby | ascent |  |
+Pigeon | ascent |  |
+Triangle | ascent |  |
+Boat Pose | ascent |  |
+Corpse Pose | ascent | savasana |
+Lotus | ascent |  |
+Camel | ceiling |  |
+Fish Pose | ceiling |  |
+Bow Pose | ceiling |  |
+Crane Pose | ceiling | bakasana |
+Eagle | ceiling |  |
+Half Moon | ceiling |  |
+Seated Forward Bend | ceiling |  |
+Wheel | hotshot |  |
+Handstand | hotshot |  |
+Headstand | hotshot |  |
+Shoulder Stand | hotshot |  |
+Scorpion | hotshot |  |
+King Pigeon | hotshot |  |
+Wild Thing | hotshot |  |
+Compass Pose | orbit |  |
+Little Thunderbolt | orbit |  |
+Flying Lizard | orbit |  |
+Dancer Pose | orbit | natarajasana |
+Moon Pose | orbit |  |
+Bird of Paradise Pose | orbit |  |
+Firefly Pose | apex | tittibhasana | gem
+Eight Angle Pose | apex | astavakrasana |
+Grasshopper Pose | apex |  |
+Elephant Trunk Pose | apex |  |
+Visvamitrasana | apex |  |
+Pendant Pose | apex | lolasana |
+---
+id: hand-tool
+text: Name a hand tool
+category: everyday
+Hammer | pad |  |
+Screwdriver | pad |  |
+Wrench | pad |  |
+Pliers | pad |  |
+Saw | pad |  |
+Tape Measure | pad |  |
+Drill | pad |  |
+Level | pad |  |
+Chisel | ascent |  |
+File | ascent |  |
+Clamp | ascent |  |
+Utility Knife | ascent |  |
+Socket Wrench | ascent |  |
+Allen Key | ascent | hex key |
+Mallet | ascent |  |
+Hacksaw | ascent |  |
+Hand Plane | ceiling | plane |
+Awl | ceiling |  |
+Pry Bar | ceiling |  |
+Coping Saw | ceiling |  |
+Tin Snips | ceiling |  |
+Staple Gun | ceiling |  |
+Caulk Gun | ceiling |  |
+Drawknife | hotshot |  |
+Spokeshave | hotshot |  |
+Block Plane | hotshot |  |
+Marking Gauge | hotshot |  |
+Sliding Bevel | hotshot |  |
+Gimlet | hotshot |  |
+Bradawl | hotshot |  |
+Inshave | orbit |  |
+Froe | orbit |  |
+Scorper | orbit |  |
+Burnisher | orbit |  |
+Wood Float | orbit |  |
+Croze | orbit |  |
+Adze | apex |  | gem
+Twibil | apex |  |
+Lump Hammer | apex |  |
+Race Knife | apex |  |
+Travisher | apex |  |
+Beetle Mallet | apex |  |
+---
+id: hand-appliance
+text: Name a household appliance
+category: everyday
+Refrigerator | pad | fridge |
+Oven | pad |  |
+Microwave | pad |  |
+Dishwasher | pad |  |
+Washing Machine | pad |  |
+Dryer | pad |  |
+Toaster | pad |  |
+Blender | pad |  |
+Vacuum | ascent | vacuum cleaner |
+Coffee Maker | ascent |  |
+Kettle | ascent |  |
+Stove | ascent |  |
+Freezer | ascent |  |
+Air Conditioner | ascent |  |
+Fan | ascent |  |
+Iron | ascent |  |
+Mixer | ceiling | stand mixer |
+Food Processor | ceiling |  |
+Slow Cooker | ceiling |  |
+Air Fryer | ceiling |  |
+Rice Cooker | ceiling |  |
+Humidifier | ceiling |  |
+Dehumidifier | ceiling |  |
+Espresso Machine | hotshot |  |
+Bread Maker | hotshot |  |
+Ice Cream Maker | hotshot |  |
+Sous Vide | hotshot |  |
+Waffle Iron | hotshot |  |
+Panini Press | hotshot |  |
+Juicer | hotshot |  |
+Carpet Beater | orbit |  |
+Wringer | orbit |  |
+Sad Iron | orbit |  |
+Wash Board | orbit | washboard |
+Butter Churn | orbit |  |
+Dough Trough | orbit |  |
+Mangle | apex |  | gem
+Copper Boiler | apex |  |
+Box Mangle | apex |  |
+Gooseneck Kettle | apex |  |
+Samovar | apex |  |
+Hibachi | apex |  |
+---
+id: hand-dessert
+text: Name a dessert
+category: food
+Cake | pad |  |
+Ice Cream | pad |  |
+Cookie | pad |  |
+Brownie | pad |  |
+Pie | pad |  |
+Pudding | pad |  |
+Donut | pad | doughnut |
+Cupcake | pad |  |
+Cheesecake | ascent |  |
+Chocolate Cake | ascent |  |
+Apple Pie | ascent |  |
+Gelato | ascent |  |
+Sorbet | ascent |  |
+Custard | ascent |  |
+Tiramisu | ascent |  |
+Brownie Sundae | ascent |  |
+Pavlova | ceiling |  |
+Baklava | ceiling |  |
+Cannoli | ceiling |  |
+Eclair | ceiling |  |
+Macaron | ceiling |  |
+Churro | ceiling |  |
+Creme Brulee | ceiling | crème brûlée |
+Affogato | hotshot |  |
+Panna Cotta | hotshot |  |
+Mochi Ice | hotshot | mochi |
+Kulfi | hotshot |  |
+Halo-Halo | hotshot |  |
+Tres Leches | hotshot |  |
+Banoffee | hotshot |  |
+Clafoutis | orbit |  |
+Financier | orbit |  |
+Canele | orbit | canelé |
+Kouign-Amann | orbit |  |
+Sfogliatella | orbit |  |
+Pastel de Nata | orbit |  |
+Spotted Dick | apex |  | gem
+Clootie Dumpling | apex |  |
+Syllabub | apex |  |
+Eton Mess | apex |  |
+Trifle | apex |  |
+Summer Pudding | apex |  |
+---
+id: hand-dance
+text: Name a style of dance
+category: culture
+Waltz | pad |  |
+Salsa | pad |  |
+Ballet | pad |  |
+Hip Hop | pad | hip-hop |
+Tango | pad |  |
+Breakdance | pad |  |
+Swing | pad |  |
+Tap Dance | pad | tap |
+Foxtrot | ascent |  |
+Cha Cha | ascent | cha-cha |
+Rumba | ascent |  |
+Samba | ascent |  |
+Jazz Dance | ascent |  |
+Contemporary | ascent |  |
+Line Dance | ascent |  |
+Square Dance | ascent |  |
+Flamenco | ceiling |  |
+Bachata | ceiling |  |
+Merengue | ceiling |  |
+Kizomba | ceiling |  |
+Bollywood | ceiling |  |
+Irish Dance | ceiling |  |
+Pole Dance | ceiling |  |
+Krump | hotshot |  |
+Voguing | hotshot | vogue |
+Waacking | hotshot |  |
+Locking | hotshot |  |
+Popping | hotshot |  |
+Lindy Hop | hotshot |  |
+Charleston | hotshot |  |
+Kathak | orbit |  |
+Bharatanatyam | orbit |  |
+Butoh | orbit |  |
+Capoeira | orbit |  |
+Contact Improv | orbit |  |
+Gumboot | orbit |  |
+Schuhplattler | apex |  | gem
+Kalbelia | apex |  |
+Tinikling | apex |  |
+Adumu | apex |  |
+Fandango | apex |  |
+Joropo | apex |  |
+---
+id: hand-cards
+text: Name a card game
+category: play
+Poker | pad |  |
+Blackjack | pad |  |
+Solitaire | pad |  |
+Go Fish | pad |  |
+Crazy Eights | pad |  |
+War | pad |  |
+Rummy | pad |  |
+Hearts | pad |  |
+Spades | ascent |  |
+Bridge | ascent |  |
+Euchre | ascent |  |
+Canasta | ascent |  |
+Cribbage | ascent |  |
+Uno | ascent |  |
+Old Maid | ascent |  |
+Gin Rummy | ascent |  |
+Pinochle | ceiling |  |
+Whist | ceiling |  |
+Baccarat | ceiling |  |
+President | ceiling |  |
+Speed | ceiling |  |
+Slapjack | ceiling |  |
+Freecell | ceiling |  |
+Hanabi | hotshot |  |
+Love Letter | hotshot |  |
+Exploding Kittens | hotshot |  |
+Magic the Gathering | hotshot | magic |
+Yu-Gi-Oh | hotshot |  |
+Phase 10 | hotshot |  |
+Skip-Bo | hotshot |  |
+Durak | orbit |  |
+Big Two | orbit |  |
+Belote | orbit |  |
+Klaverjas | orbit |  |
+Preferans | orbit |  |
+Oh Hell | orbit |  |
+Skat | apex |  | gem
+Schafkopf | apex |  |
+Jass | apex |  |
+Mus | apex |  |
+Briscola | apex |  |
+Scopa | apex |  |
+---
+id: hand-insect
+text: Name an insect
+category: nature
+Ant | pad |  |
+Bee | pad |  |
+Butterfly | pad |  |
+Mosquito | pad |  |
+Fly | pad |  |
+Beetle | pad |  |
+Grasshopper | pad |  |
+Ladybug | pad | ladybird |
+Wasp | ascent |  |
+Moth | ascent |  |
+Dragonfly | ascent |  |
+Cricket | ascent |  |
+Cockroach | ascent |  |
+Termite | ascent |  |
+Firefly | ascent |  |
+Flea | ascent |  |
+Hornet | ceiling |  |
+Cicada | ceiling |  |
+Mantis | ceiling | praying mantis |
+Weevil | ceiling |  |
+Aphid | ceiling |  |
+Earwig | ceiling |  |
+Silverfish | ceiling |  |
+Katydid | hotshot |  |
+Walking Stick | hotshot | stick insect |
+Lacewing | hotshot |  |
+Mayfly | hotshot |  |
+Dobsonfly | hotshot |  |
+Antlion | hotshot |  |
+Scarab | hotshot |  |
+Scorpionfly | orbit |  |
+Caddisfly | orbit |  |
+Stonefly | orbit |  |
+Snakefly | orbit |  |
+Owlfly | orbit |  |
+Webspinner | orbit |  |
+Velvet Ant | apex |  | gem
+Jerusalem Cricket | apex |  |
+Gladiator Insect | apex |  |
+Ice Crawler | apex |  |
+Hangingfly | apex |  |
+Mantidfly | apex |  |
+---
+id: hand-genre
+text: Name a video game genre
+category: play
+Shooter | pad |  |
+Racing | pad |  |
+Sports | pad |  |
+Puzzle | pad |  |
+Platformer | pad |  |
+Fighting | pad |  |
+Adventure | pad |  |
+Strategy | pad |  |
+RPG | ascent | role playing game |
+Simulation | ascent |  |
+Horror | ascent |  |
+Rhythm | ascent |  |
+Sandbox | ascent |  |
+Survival | ascent |  |
+MOBA | ascent |  |
+Open World | ascent |  |
+Stealth | ceiling |  |
+Tower Defense | ceiling |  |
+Battle Royale | ceiling |  |
+Visual Novel | ceiling |  |
+Idle Game | ceiling |  |
+Party Game | ceiling |  |
+Card Game | ceiling |  |
+Roguelike | hotshot |  |
+Metroidvania | hotshot |  |
+Soulslike | hotshot |  |
+Walking Simulator | hotshot |  |
+Deckbuilder | hotshot |  |
+Auto Battler | hotshot |  |
+Immersive Sim | hotshot |  |
+Dungeon Crawler | orbit |  |
+Tactical RPG | orbit |  |
+Grand Strategy | orbit |  |
+4X | orbit |  |
+Farming Sim | orbit |  |
+Bullet Heaven | orbit |  |
+Boomer Shooter | apex |  | gem
+Hero Shooter | apex |  |
+Sokoban | apex |  |
+Twin Stick Shooter | apex |  |
+Incremental Game | apex |  |
+Extract Shooter | apex |  |
