@@ -20,7 +20,10 @@ Ollama on this machine should already be serving the model:
 export PIPELINE_LLM_URL=http://127.0.0.1:11434
 export PIPELINE_LLM_MODEL=qwen3.8:27b
 python -m pipeline llm --ping
+python -m pipeline llm --count 8 --verbose
 ```
+
+`--verbose` prints why an idea was rejected. A run that adds nothing still leaves the raw replies in `pipeline/cache/llm/raw/` for inspection. Publish after a run that adds prompts you want on the site.
 
 `think` is sent as `false`. If a build of Ollama rejects that field, the client retries once without it.
 
@@ -28,16 +31,18 @@ python -m pipeline llm --ping
 
 ```bash
 python -m pipeline wikidata --target 280
-python -m pipeline llm --count 8
+python -m pipeline curated
+python -m pipeline llm --count 8 --verbose
 python -m pipeline report
 python -m pipeline publish
 python -m pipeline check
 ```
 
-- `wikidata` builds prompts from English Wikipedia categories (top incoming links) plus Wikidata sitelinks and aliases. Popularity is `log1p(sitelinks) * 2 + 0.15 * wordfreq zipf`. Pageviews are not fetched by default; one HTTP call per answer is too slow for a bulk run. Finished ids are cached in `pipeline/cache/` (gitignored) and skipped. Ids already in `data/index.json` are also skipped, so a weekly run adds new prompts instead of redoing the bank. Pass `--only wd-film-2019` to rebuild one job even if it is already published. `--retry-failed` clears the fail list for another attempt.
-- `llm` asks the local model for new prompts, answer lists, a keep/drop check, then looks up the obscure names on English Wikipedia. Prompts under 40 solid answers, or missing a tier, are discarded. Results land in the same cache as Wikidata.
+- `wikidata` builds prompts from every main-namespace page in the English Wikipedia category (paginated category members, not a top-70 sample). Thin categories also walk subcategories. Sitelink counts and English aliases come from Wikidata. Popularity is `log1p(sitelinks) * 2 + 0.15 * wordfreq zipf`, then percentile tiers, so most of a long list lands in STALL and APOGEE. Pageviews are not fetched. Finished ids are cached in `pipeline/cache/` (gitignored) and skipped. Ids already in `data/index.json` are also skipped, so a weekly run adds new prompts instead of redoing the bank. Pass `--only wd-film-2019` to rebuild one job even if it is already published. `--refresh` rebuilds every job, including published ones. `--retry-failed` clears the fail list for another attempt.
+- `curated` expands the hand lists from the same exhaustive category harvest, for prompts whose category is a real set (spices, pasta, films of a kind, and so on). A failed harvest leaves the hand list alone.
+- `llm` asks the local model for new prompts with large answer spaces, three batches of answers, and a keep/drop check, then looks up the obscure names on English Wikipedia. Ideas that repeat the bank, or name a tiny closed set, are dropped. Tiers are percentile ranks, so a flat familiarity spread still fills every tier. Raw replies are cached under `pipeline/cache/llm/raw/` and reused; a reply that did not parse is not treated as a hit. `--verbose` prints cache hits, batch sizes, and each rejected idea. Skip lines always include a familiarity histogram. Prompts under 40 solid answers are discarded. Accepted prompts land in `pipeline/cache/accepted/` and are not in the live bank until `publish`.
 - `report` prints a spread of prompts (the published bank, or the cache if you have not published yet) plus any gem that looks like junk.
-- `publish` writes `data/prompts/NNNN.json` and `data/index.json`. Curated prompts always overwrite the same id. Cached generations overwrite on a machine that has the cache, which is how a fix gets into the bank. A clone with no cache keeps the published prompts frozen. The version number changes only when the content hash changes. New ids append to the last shard (about 45 prompts) and then open a new file, so existing shard membership stays put.
+- `publish` writes `data/prompts/NNNN.json` and `data/index.json`. Shard files are packed to about 1.2 MB, and a single oversized prompt gets its own file. A cached copy replaces a published prompt only when it is not a much shorter list, so an old 70-answer cache cannot shrink an exhaustive bank. Hand lists fill gaps and replace a prompt only when they are longer. Once a film, game, album, television, or city kind has an exhaustive bank, leftover prompts of that kind that are still at the old ~70 cap are dropped. A clone with no cache keeps the published prompts frozen. The version number changes only when the content hash changes.
 - `check` lints the published bank and exits non-zero on a problem.
 - `import-judged` folds answers the live judge accepted. See below. It does not retier the prompt. A judged answer is never the gem.
 
@@ -85,7 +90,7 @@ node --test tests/*.test.mjs
 
 The game ships with the judge **off**. No Netlify env vars are set. The site scores from the bank only until you turn the judge on.
 
-When a typed answer is not in the bank, the browser asks `POST /api/judge`. The Netlify Function looks up the prompt text itself (the client prompt text is ignored), then calls your model. Familiarity 10 is something almost everyone knows. The mapping is TAXI 9–10, CLIMB 7–8, BURN 5–6, STALL 3–4, APOGEE 1–2. The function never awards ESCAPE. If the model's canonical name is actually in the bank, the bank tier is returned instead, gem included, and it is not marked as judged.
+When a typed answer is not in the bank, the browser asks `POST /api/judge`. The Netlify Function looks up the prompt text itself (the client prompt text is ignored), then calls your model. Familiarity 10 is something almost everyone knows. Validity is separate: an obscure real member is still valid and scores a low familiarity (Joseph is a city in Oregon). The mapping is TAXI 9–10, CLIMB 7–8, BURN 5–6, STALL 3–4, APOGEE 1–2. The function never awards ESCAPE. If the model's canonical name is actually in the bank, the bank tier is returned instead, gem included, and it is not marked as judged.
 
 If `JUDGE_URL` is unset, `GET /api/judge` returns `{"enabled": false}` and the page does not call it. If a call times out (about 4 seconds in the browser, 3.5 seconds in the function) or errors, the input just shakes, same as a bank miss. The 25 second clock is not paused.
 

@@ -76,6 +76,8 @@ def junk_title(title: str, ban: list[str] | None = None) -> bool:
         return True
     if "disambiguation" in low or BROADCAST.search(low):
         return True
+    if re.match(r"^\d{4} in ", low) or re.match(r"^list of ", low):
+        return True
     for needle in ban or []:
         if needle.lower() in low:
             return True

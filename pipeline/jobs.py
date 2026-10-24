@@ -1,8 +1,9 @@
 """Template catalog. Year slices use flat English Wikipedia categories.
 
 A full-table SPARQL scan by year exceeds the public endpoint deadline, so the
-candidate pool is the most-linked articles in that category. Sitelink counts
-and English aliases still come from Wikidata.
+candidate pool is every main-namespace page in the English Wikipedia category
+(paginated category members, not a top-70 sample). Sitelink counts and English
+aliases still come from Wikidata. Thin categories walk one level of subcategories.
 """
 
 from __future__ import annotations
@@ -18,9 +19,11 @@ def _job(id_, text, category, kind, categories, **extra):
         "categories": categories,
         "ban": extra.get("ban") or [],
         "must": extra.get("must") or [],
-        "cap": extra.get("cap", 80),
         "min_links": extra.get("min_links", 1),
     }
+    for key in ("cap", "follow_subcats", "subcat_below", "places_from_subcats"):
+        if extra.get(key) is not None:
+            job[key] = extra[key]
     return job
 
 
@@ -79,6 +82,8 @@ def _cities():
             [category],
             must=[must],
             ban=["list of", "metropolitan", "census"],
+            places_from_subcats=True,
+            subcat_below=40,
         )
         for code, text, category, must in rows
     ]
@@ -95,6 +100,7 @@ def specials():
         ("wd-boyband", "Name an American boy band", "music", ["American boy bands"], ["Backstreet Boys"], []),
         ("wd-element", "Name a chemical element", "science", ["Chemical elements"], ["Oxygen", "Gold"], ["periodic table", "chemical element"]),
         ("wd-cat", "Name a cat breed", "nature", ["Cat breeds"], ["Siamese"], ["list of"]),
+        ("wd-dog", "Name a dog breed", "nature", ["FCI breeds"], ["Labrador", "Beagle"], ["list of", "crossbreed"]),
         ("wd-horse", "Name a horse breed", "nature", ["Horse breeds"], ["Arabian"], ["list of"]),
         ("wd-opera", "Name an opera", "music", ["Operas"], ["Carmen"], ["list of operas"]),
         ("wd-nobel-physics", "Name a Nobel physics laureate", "science", ["Nobel laureates in Physics"], ["Albert Einstein"], ["nobel prize", "list of"]),
@@ -139,7 +145,6 @@ def sparql_jobs():
             "category": "geography",
             "kind": "closed",
             "mode": "sparql",
-            "cap": 200,
             "min_links": 12,
             "must": ["France", "Japan", "Brazil"],
             "ban": ["list of"],
@@ -153,27 +158,6 @@ def sparql_jobs():
               FILTER NOT EXISTS { ?item wdt:P576 ?ended }
             }
             LIMIT 240
-            """,
-        },
-        {
-            "id": "wd-dog",
-            "text": "Name a dog breed",
-            "category": "nature",
-            "kind": "closed",
-            "mode": "sparql",
-            "cap": 100,
-            "min_links": 8,
-            "must": ["Labrador", "Beagle"],
-            "ban": ["list of", "dog type", "dog breed"],
-            "query": """
-            SELECT ?item ?itemLabel ?sitelinks WHERE {
-              ?item wdt:P31 wd:Q39367 ;
-                    wikibase:sitelinks ?sitelinks ;
-                    rdfs:label ?itemLabel .
-              FILTER(LANG(?itemLabel)="en")
-              FILTER(?sitelinks >= 8)
-            }
-            LIMIT 180
             """,
         },
     ]
