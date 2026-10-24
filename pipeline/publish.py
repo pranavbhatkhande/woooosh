@@ -11,6 +11,7 @@ from pipeline.curated_loader import load_curated
 from pipeline.net import CACHE
 from pipeline.quality import lint_prompt
 from pipeline.scrub import scrub_prompt
+from pipeline.audience import apply_audience, kept_prompt
 from pipeline.cores import apply_known_cores
 from pipeline.year_pin import year_pinned
 
@@ -70,7 +71,11 @@ def content_hash(prompts: dict[str, dict]) -> str:
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()
 
 
-def pack_shards(prompts: dict[str, dict], max_bytes: int = MAX_SHARD_BYTES) -> list[dict]:
+def pack_shards(
+    prompts: dict[str, dict],
+    max_bytes: int = MAX_SHARD_BYTES,
+    directory: str = "data/prompts",
+) -> list[dict]:
     """Pack prompts into files of about `max_bytes`. One oversized prompt stays in its own file."""
     groups: list[list[str]] = []
     current: list[str] = []
@@ -86,7 +91,7 @@ def pack_shards(prompts: dict[str, dict], max_bytes: int = MAX_SHARD_BYTES) -> l
         current_size += size
     if current:
         groups.append(current)
-    return [{"file": f"data/prompts/{index:04d}.json", "ids": ids} for index, ids in enumerate(groups, start=1)]
+    return [{"file": f"{directory}/{index:04d}.json", "ids": ids} for index, ids in enumerate(groups, start=1)]
 
 
 def prefer_answer_list(current: dict | None, incoming: dict) -> dict:
@@ -172,6 +177,9 @@ def drop_rejected(prompts: dict[str, dict]) -> dict[str, dict]:
     if len(fat) >= THIN_KEEP_UNLESS:
         for prompt_id in thin:
             prompt = kept[prompt_id]
+            if kept_prompt(prompt_id):
+                fat[prompt_id] = prompt
+                continue
             print(
                 f"drop thin {prompt_id}: {len(prompt.get('answers') or [])} answers "
                 f"({prompt.get('text')})",
@@ -199,16 +207,42 @@ def assemble() -> tuple[dict, dict[str, dict]]:
     merged = drop_capped_samples(merged, set(load_accepted()))
     merged = apply_known_cores(merged)
     merged = drop_rejected(merged)
+    merged = apply_audience(merged)
     return old_index, merged
 
 
+def _points_at_live_shards(index: dict) -> bool:
+    files = [str(shard.get("file") or "") for shard in index.get("shards") or []]
+    return bool(files) and all(path.startswith("data/prompts/") for path in files)
+
+
+def archive_legacy(old_index: dict) -> None:
+    """Keep the pre-swap index so a browser that already loaded it can still score.
+
+    Only the first move off data/prompts/ is archived. Later publishes must not
+    overwrite that snapshot with the new deck.
+    """
+    legacy = DATA / "legacy" / "index.json"
+    if legacy.exists() or not _points_at_live_shards(old_index):
+        return
+    _atomic(legacy, json.dumps(old_index, ensure_ascii=False, indent=2) + "\n")
+    print(f"archived legacy index ({old_index.get('promptCount')} prompts)", flush=True)
+
+
 def write_bank(old_index: dict, prompts: dict[str, dict]) -> dict:
+    # Snapshot the shards a live session is already fetching before replacing the index.
+    archive_legacy(old_index)
     digest = content_hash(prompts)
     version = int(old_index.get("version") or 0)
     if digest != old_index.get("hash"):
         version += 1
-    groups = pack_shards(prompts)
-    PROMPTS.mkdir(parents=True, exist_ok=True)
+    # New shards live beside the old ones. data/prompts/ stays byte-stable.
+    directory = f"data/bank/v{version}"
+    if directory.startswith("data/prompts"):
+        raise RuntimeError("refusing to overwrite the shards a live game is fetching")
+    groups = pack_shards(prompts, directory=directory)
+    shard_root = ROOT / directory
+    shard_root.mkdir(parents=True, exist_ok=True)
     used: set[str] = set()
     shards = []
     for group in groups:
@@ -219,11 +253,10 @@ def write_bank(old_index: dict, prompts: dict[str, dict]) -> dict:
         payload = [prompts[prompt_id] for prompt_id in group["ids"]]
         _atomic(path, json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
         shards.append({"file": rel, "count": len(group["ids"]), "ids": group["ids"]})
-    if PROMPTS.exists():
-        for path in PROMPTS.glob("*.json"):
-            rel = path.relative_to(ROOT).as_posix()
-            if rel not in used:
-                path.unlink()
+    for path in shard_root.glob("*.json"):
+        rel = path.relative_to(ROOT).as_posix()
+        if rel not in used:
+            path.unlink()
     answer_count = sum(len(prompts[prompt_id]["answers"]) for prompt_id in prompts)
     index = {
         "version": version,

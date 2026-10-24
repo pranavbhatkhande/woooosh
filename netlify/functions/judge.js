@@ -112,10 +112,18 @@ async function loadIndex(event) {
   return index;
 }
 
-async function loadPrompt(event, promptId) {
-  const memory = state().prompts || (state().prompts = new Map());
-  if (memory.has(promptId)) return memory.get(promptId);
-  const index = await loadIndex(event);
+// A game opened before this deploy still has the previous prompt ids. Those
+// shards stay on disk; this lookup is separate from the current-index cache.
+async function loadLegacy(event) {
+  if (state().legacy !== undefined) return state().legacy;
+  const legacy =
+    (await readJsonFile("data/legacy/index.json")) ||
+    (await fetchJson(originOf(event), "data/legacy/index.json"));
+  state().legacy = legacy || null;
+  return state().legacy;
+}
+
+async function promptFromIndex(event, index, promptId) {
   if (!index) return null;
   const shard = (index.shards || []).find((entry) => (entry.ids || []).includes(promptId));
   if (!shard) return null;
@@ -126,7 +134,15 @@ async function loadPrompt(event, promptId) {
     if (!prompts) return null;
     loaded.set(shard.file, prompts);
   }
-  const prompt = prompts.find((entry) => entry.id === promptId) || null;
+  return prompts.find((entry) => entry.id === promptId) || null;
+}
+
+export async function loadPrompt(event, promptId) {
+  const memory = state().prompts || (state().prompts = new Map());
+  if (memory.has(promptId)) return memory.get(promptId);
+  const prompt =
+    (await promptFromIndex(event, await loadIndex(event), promptId)) ||
+    (await promptFromIndex(event, await loadLegacy(event), promptId));
   if (prompt) memory.set(promptId, prompt);
   return prompt;
 }

@@ -207,7 +207,7 @@ def _extra_aliases(label: str, wiki: str) -> list[str]:
     return aliases
 
 
-def build_prompt(job: dict, raw_items: list[dict]) -> tuple[dict | None, str]:
+def build_prompt(job: dict, raw_items: list[dict], *, retain_stats: bool = False) -> tuple[dict | None, str]:
     ban = job.get("ban") or []
     prepared = []
     for item in raw_items:
@@ -220,7 +220,10 @@ def build_prompt(job: dict, raw_items: list[dict]) -> tuple[dict | None, str]:
         if is_profane(label) or len(label) < 2 or len(label) > 60:
             continue
         sitelinks = int(item.get("sitelinks") or 0)
-        if sitelinks < int(job.get("min_links") or 1):
+        floor_links = job.get("min_links")
+        if floor_links is None:
+            floor_links = 1
+        if sitelinks < int(floor_links):
             continue
         aliases = [alias for alias in (item.get("aliases") or []) if alias and not is_profane(alias)]
         aliases.extend(
@@ -262,4 +265,12 @@ def build_prompt(job: dict, raw_items: list[dict]) -> tuple[dict | None, str]:
     cleaned, errors = publishable(prompt)
     if errors:
         return None, "; ".join(errors[:6])
+    if retain_stats:
+        stats = {answer["name"].strip(): answer for answer in prompt["answers"]}
+        for answer in cleaned["answers"]:
+            src = stats.get(answer["name"])
+            if not src:
+                continue
+            answer["pop"] = float(src.get("pop") or 0)
+            answer["sitelinks"] = int(src.get("sitelinks") or 0)
     return cleaned, ""
