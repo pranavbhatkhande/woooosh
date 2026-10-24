@@ -44,7 +44,6 @@ python -m pipeline check
 - `report` prints a spread of prompts (the published bank, or the cache if you have not published yet) plus any gem that looks like junk.
 - `publish` writes `data/prompts/NNNN.json` and `data/index.json`. Shard files are packed to about 1.2 MB, and a single oversized prompt gets its own file. A cached copy replaces a published prompt only when it is not a much shorter list, so an old 70-answer cache cannot shrink an exhaustive bank. Hand lists fill gaps and replace a prompt only when they are longer. Once a film, game, album, television, or city kind has an exhaustive bank, leftover prompts of that kind that are still at the old ~70 cap are dropped. A clone with no cache keeps the published prompts frozen. The version number changes only when the content hash changes.
 - `check` lints the published bank and exits non-zero on a problem.
-- `import-judged` folds answers the live judge accepted. See below. It does not retier the prompt. A judged answer is never the gem.
 
 Generate, look at `report`, then:
 
