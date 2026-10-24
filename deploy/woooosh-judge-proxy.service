@@ -1,0 +1,13 @@
+[Unit]
+Description=WOOOOSH token proxy in front of local Ollama
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/woooosh/.venv/bin/python %h/woooosh/deploy/judge_proxy.py
+EnvironmentFile=%h/.config/woooosh/judge.env
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

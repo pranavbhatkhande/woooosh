@@ -1,7 +1,7 @@
-/* Clears the previous app's offline cache and steps aside.
-   The old Starting Strength page registered this URL. Once this
-   script activates, cached pages are deleted and the worker unregisters
-   so the recomp site loads from the network. */
+/* Clears earlier offline caches and steps aside.
+   Starting Strength and the recomp planner both registered this URL.
+   Once this script activates, cached pages are deleted and the worker
+   unregisters so WOOOOSH loads from the network. */
 self.addEventListener("install", (event) => {
   event.waitUntil(self.skipWaiting());
 });
