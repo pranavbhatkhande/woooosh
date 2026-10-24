@@ -11,6 +11,8 @@ from pipeline.curated_loader import load_curated
 from pipeline.net import CACHE
 from pipeline.quality import lint_prompt
 from pipeline.scrub import scrub_prompt
+from pipeline.cores import apply_known_cores
+from pipeline.year_pin import year_pinned
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -22,6 +24,10 @@ MAX_SHARD_BYTES = 1_200_000
 STALE_CAP = 75
 EXHAUSTIVE_MARK = 200
 CAPPED_PREFIXES = ("wd-film-", "wd-game-", "wd-album-", "wd-tvuk-", "wd-tv-", "wd-city-")
+# A list under this size does not give rarity anything to do. Drop those only
+# when the remaining bank is still well above the old 280-prompt catalog.
+THIN_FLOOR = 80
+THIN_KEEP_UNLESS = 300
 
 
 def _read_json(path: Path):
@@ -149,6 +155,38 @@ def _keep(prompt: dict, label: str) -> dict | None:
     return cleaned
 
 
+def drop_rejected(prompts: dict[str, dict]) -> dict[str, dict]:
+    """Drop year-pinned trivia, then thin lists when the fat bank can stand alone."""
+    kept: dict[str, dict] = {}
+    for prompt_id, prompt in prompts.items():
+        if year_pinned(prompt):
+            print(f"drop year-pinned {prompt_id}: {prompt.get('text')}", flush=True)
+            continue
+        kept[prompt_id] = prompt
+    fat = {
+        prompt_id: prompt
+        for prompt_id, prompt in kept.items()
+        if len(prompt.get("answers") or []) >= THIN_FLOOR
+    }
+    thin = [prompt_id for prompt_id in kept if prompt_id not in fat]
+    if len(fat) >= THIN_KEEP_UNLESS:
+        for prompt_id in thin:
+            prompt = kept[prompt_id]
+            print(
+                f"drop thin {prompt_id}: {len(prompt.get('answers') or [])} answers "
+                f"({prompt.get('text')})",
+                flush=True,
+            )
+        return fat
+    if thin:
+        print(
+            f"keep {len(thin)} prompts under {THIN_FLOOR} answers; "
+            f"only {len(fat)} have {THIN_FLOOR} or more",
+            flush=True,
+        )
+    return kept
+
+
 def assemble() -> tuple[dict, dict[str, dict]]:
     """Published bank, then cache when it is not a smaller stale copy, then larger hand lists."""
     old_index = load_index()
@@ -159,6 +197,8 @@ def assemble() -> tuple[dict, dict[str, dict]]:
             merged[prompt_id] = prefer_answer_list(merged.get(prompt_id), kept)
     apply_hand(merged, load_curated())
     merged = drop_capped_samples(merged, set(load_accepted()))
+    merged = apply_known_cores(merged)
+    merged = drop_rejected(merged)
     return old_index, merged
 
 

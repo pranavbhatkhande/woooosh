@@ -184,7 +184,7 @@ Eurydice
     },
     {
         "id": "cur-park",
-        "text": "Name a US national park",
+        "text": "Name a national park",
         "category": "geography",
         "gem": "Dry Tortugas",
         "answers": """

@@ -1,9 +1,10 @@
-"""Template catalog. Year slices use flat English Wikipedia categories.
+"""Template catalog.
 
-A full-table SPARQL scan by year exceeds the public endpoint deadline, so the
-candidate pool is every main-namespace page in the English Wikipedia category
-(paginated category members, not a top-70 sample). Sitelink counts and English
-aliases still come from Wikidata. Thin categories walk one level of subcategories.
+The candidate pool is every main-namespace page in the English Wikipedia
+category (paginated category members, not a top-70 sample). Sitelink counts
+and English aliases still come from Wikidata. Thin categories walk one level
+of subcategories when a job asks for that. Year slices ("released in 1999")
+are not generated: they made a dull bank, and publish drops any that remain.
 """
 
 from __future__ import annotations
@@ -21,25 +22,18 @@ def _job(id_, text, category, kind, categories, **extra):
         "must": extra.get("must") or [],
         "min_links": extra.get("min_links", 1),
     }
-    for key in ("cap", "follow_subcats", "subcat_below", "places_from_subcats"):
+    for key in (
+        "cap",
+        "follow_subcats",
+        "subcat_below",
+        "places_from_subcats",
+        "by_links",
+        "drop_binomial",
+        "min_answers",
+    ):
         if extra.get(key) is not None:
             job[key] = extra[key]
     return job
-
-
-def _years(kind, prefix, text, category_name, start, end, topic):
-    jobs = []
-    for year in range(end, start - 1, -1):
-        jobs.append(
-            _job(
-                f"wd-{prefix}-{year}",
-                text.format(year=year),
-                topic,
-                kind,
-                [category_name.format(year=year)],
-            )
-        )
-    return jobs
 
 
 def _cities():
@@ -164,32 +158,10 @@ def sparql_jobs():
 
 
 def all_jobs():
+    from pipeline.catalog import general_jobs
+
     jobs = []
-    jobs.extend(_years("film", "film", "Name a film released in {year}", "{year} films", 1976, 2025, "film"))
-    jobs.extend(_years("game", "game", "Name a video game released in {year}", "{year} video games", 1992, 2025, "game"))
-    jobs.extend(_years("album", "album", "Name an album released in {year}", "{year} albums", 1972, 2024, "music"))
-    jobs.extend(
-        _years(
-            "tv",
-            "tv",
-            "Name a TV series that premiered in {year}",
-            "{year} American television series debuts",
-            1992,
-            2024,
-            "tv",
-        )
-    )
-    jobs.extend(
-        _years(
-            "tvuk",
-            "tvuk",
-            "Name a British TV series that premiered in {year}",
-            "{year} British television series debuts",
-            2000,
-            2024,
-            "tv",
-        )
-    )
+    jobs.extend(general_jobs())
     jobs.extend(_cities())
     jobs.extend(specials())
     jobs.extend(sparql_jobs())
@@ -201,7 +173,7 @@ def iter_jobs():
     buckets: dict[str, list] = {}
     for job in all_jobs():
         buckets.setdefault(job["kind"], []).append(job)
-    order = ["film", "game", "album", "tv", "special", "place", "tvuk", "closed"]
+    order = ["gk", "special", "place", "closed", "film", "game", "album", "tv", "tvuk"]
     while any(buckets.values()):
         for kind in order:
             if buckets.get(kind):

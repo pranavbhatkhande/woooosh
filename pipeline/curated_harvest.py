@@ -26,20 +26,109 @@ HARVEST = [
     {"id": "cur-vegetable", "categories": ["Leaf vegetables", "Root vegetables"], "must": ["Carrot"], "follow_geo": True},
     {"id": "cur-cheese", "categories": ["Types of cheese"], "must": ["Cheddar"], "follow_geo": True},
     {"id": "cur-cocktail", "categories": ["IBA official cocktails"], "must": ["Martini"]},
-    {"id": "cur-candy", "categories": ["Confectionery"], "must": ["Chocolate"]},
+    {
+        "id": "cur-candy",
+        "categories": [
+            "Brand name confectionery",
+            "Chocolate bars",
+            "British confectionery",
+            "American confectionery",
+        ],
+        "must": ["Baby Ruth"],
+        "follow_subcats": False,
+        "min_answers": 80,
+        "cap": 1800,
+        "ban": ["list of", "company", "industry", "manufacturer"],
+    },
     {"id": "cur-soda", "categories": ["Soft drinks"], "must": ["Coca-Cola"]},
-    {"id": "cur-instrument", "categories": ["Musical instruments"], "must": ["Piano"]},
+    {
+        "id": "cur-instrument",
+        "categories": [
+            "String instruments",
+            "Electronic musical instruments",
+            "Keyboard instruments",
+            "Brass instruments",
+            "Woodwind instruments",
+            "Percussion instruments",
+            "Plucked string instruments",
+        ],
+        "must": ["Piano"],
+        "follow_subcats": False,
+        "min_answers": 80,
+        "cap": 1800,
+        "ban": ["list of", "tuning", "notation", "technique", "repertoire", "manufacturer"],
+    },
     {"id": "cur-board", "categories": ["Board games", "Abstract strategy games"], "must": ["Chess"]},
     {"id": "cur-language", "categories": ["Programming languages"], "must": ["Python"]},
-    {"id": "cur-flower", "categories": ["Flowers"], "must": ["Rose"]},
-    {"id": "cur-tree", "categories": ["Trees"], "must": ["Oak"]},
+    {
+        "id": "cur-flower",
+        "categories": [
+            "Roses",
+            "Iris (plant)",
+            "Begonia",
+            "Hibiscus",
+            "Peonies",
+            "Orchids",
+            "Rose cultivars",
+        ],
+        "must": ["Rose"],
+        "follow_subcats": False,
+        "drop_binomial": True,
+        "min_answers": 80,
+        "cap": 1800,
+        "ban": ["list of", "festival", "society", "rose hip", "rose water", "rose oil", "attar", "gardens", " list"],
+    },
+    {
+        "id": "cur-tree",
+        "categories": [
+            "Fruit trees",
+            "Trees of Europe",
+        ],
+        "must": ["Almond"],
+        "follow_subcats": False,
+        "drop_binomial": True,
+        "min_answers": 80,
+        "cap": 1800,
+        "ban": ["list of", "arborist", "forestry", "timber", "of the year", "orchard"],
+    },
     {"id": "cur-gemstone", "categories": ["Gemstones"], "must": ["Diamond"]},
     {"id": "cur-phobia", "categories": ["Phobias"], "must": ["Arachnophobia"]},
     {"id": "cur-greek", "categories": ["Greek mythological heroes"], "must": ["Heracles"]},
     {"id": "cur-moon", "categories": ["Moons of Jupiter", "Moons of Saturn", "Moons of Uranus", "Moons of Neptune"], "must": ["Europa"]},
     {"id": "cur-unit", "categories": ["Units of measurement"], "must": ["Metre"]},
     {"id": "cur-breakfast", "categories": ["Breakfast dishes"], "must": ["Pancake"]},
-    {"id": "cur-park", "categories": ["National parks of the United States"], "must": ["Yellowstone"]},
+    {
+        "id": "cur-park",
+        "categories": [
+            "National parks of the United States",
+            "National parks of Canada",
+            "National parks of Australia",
+            "National parks of Japan",
+            "National parks of China",
+            "National parks of Thailand",
+            "National parks of Brazil",
+            "National parks of Mexico",
+            "National parks of Indonesia",
+            "National parks of Kenya",
+            "National parks of Argentina",
+            "National parks of Norway",
+            "National parks of Spain",
+            "National parks of France",
+            "National parks of Germany",
+            "National parks of Italy",
+            "National parks of India",
+            "National parks of South Africa",
+            "National parks of New Zealand",
+            "National parks of South Korea",
+            "National parks of the United Kingdom",
+            "National parks of Chile",
+        ],
+        "must": ["Inthanon"],
+        "follow_subcats": False,
+        "min_answers": 80,
+        "cap": 1800,
+        "ban": ["list of", "people", "superintendent", "in fiction", "highest", "building", "former", "service", "ranger"],
+    },
 ]
 
 
@@ -96,22 +185,30 @@ def harvest(only: list[str] | None = None) -> int:
             "category": base.get("category") or "general",
             "source": "curated",
             "must": spec["must"],
-            "ban": ["list of"],
+            "ban": spec.get("ban") or ["list of"],
             "min_links": 1,
+            "min_answers": spec.get("min_answers", 30),
+            "drop_binomial": bool(spec.get("drop_binomial")),
         }
+        if spec.get("cap"):
+            job["cap"] = spec["cap"]
         items = collect_categories(
             spec["categories"],
             ban=job["ban"],
             follow_geo=bool(spec.get("follow_geo")),
-            follow_subcats=True,
+            follow_subcats=bool(spec.get("follow_subcats", True)),
+            subcat_below=int(spec.get("subcat_below") or 80),
         )
         if len(items) < 40:
             print(f"  keep hand list: only {len(items)} category pages", flush=True)
             continue
         items = enrich_entities(items)
-        probe, reason = build_prompt(job, items)
-        if not probe:
-            print(f"  keep hand list: {reason}", flush=True)
+        blob = "\n".join(
+            f"{item.get('label') or ''} {item.get('wiki') or ''}" for item in items
+        ).lower()
+        missing = [name for name in spec["must"] if name.lower() not in blob]
+        if missing:
+            print(f"  keep hand list: missing {', '.join(missing)}", flush=True)
             continue
         extras = missing_hand_items(items, base["answers"])
         if extras:

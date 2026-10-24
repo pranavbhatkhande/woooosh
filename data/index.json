@@ -1,13 +1,13 @@
 {
-  "version": 2,
+  "version": 4,
   "updated": "2026-10-24",
-  "promptCount": 280,
-  "answerCount": 252427,
-  "hash": "e94a0403b340a5296c6a0d51b6e4ab8fb51f88acb654d0d8154d54990d5eb65d",
+  "promptCount": 315,
+  "answerCount": 129770,
+  "hash": "e27d12fe336c3b32bc4ba24cda0f489d27419c2033f815d15b8fed899f6e2006",
   "shards": [
     {
       "file": "data/prompts/0001.json",
-      "count": 39,
+      "count": 40,
       "ids": [
         "cur-appliance",
         "cur-board",
@@ -41,113 +41,6 @@
         "cur-unit",
         "cur-vegetable",
         "cur-weather",
-        "wd-album-1972",
-        "wd-album-1973",
-        "wd-album-1974",
-        "wd-album-1975",
-        "wd-album-1976",
-        "wd-album-1977",
-        "wd-album-1978"
-      ]
-    },
-    {
-      "file": "data/prompts/0002.json",
-      "count": 10,
-      "ids": [
-        "wd-album-1979",
-        "wd-album-1980",
-        "wd-album-1981",
-        "wd-album-1982",
-        "wd-album-1983",
-        "wd-album-1984",
-        "wd-album-1985",
-        "wd-album-1986",
-        "wd-album-1987",
-        "wd-album-1988"
-      ]
-    },
-    {
-      "file": "data/prompts/0003.json",
-      "count": 7,
-      "ids": [
-        "wd-album-1989",
-        "wd-album-1990",
-        "wd-album-1991",
-        "wd-album-1992",
-        "wd-album-1993",
-        "wd-album-1994",
-        "wd-album-1995"
-      ]
-    },
-    {
-      "file": "data/prompts/0004.json",
-      "count": 5,
-      "ids": [
-        "wd-album-1996",
-        "wd-album-1997",
-        "wd-album-1998",
-        "wd-album-1999",
-        "wd-album-2000"
-      ]
-    },
-    {
-      "file": "data/prompts/0005.json",
-      "count": 4,
-      "ids": [
-        "wd-album-2001",
-        "wd-album-2002",
-        "wd-album-2003",
-        "wd-album-2004"
-      ]
-    },
-    {
-      "file": "data/prompts/0006.json",
-      "count": 3,
-      "ids": [
-        "wd-album-2005",
-        "wd-album-2006",
-        "wd-album-2007"
-      ]
-    },
-    {
-      "file": "data/prompts/0007.json",
-      "count": 3,
-      "ids": [
-        "wd-album-2008",
-        "wd-album-2009",
-        "wd-album-2010"
-      ]
-    },
-    {
-      "file": "data/prompts/0008.json",
-      "count": 4,
-      "ids": [
-        "wd-album-2011",
-        "wd-album-2012",
-        "wd-album-2013",
-        "wd-album-2014"
-      ]
-    },
-    {
-      "file": "data/prompts/0009.json",
-      "count": 6,
-      "ids": [
-        "wd-album-2015",
-        "wd-album-2016",
-        "wd-album-2017",
-        "wd-album-2018",
-        "wd-album-2019",
-        "wd-album-2020"
-      ]
-    },
-    {
-      "file": "data/prompts/0010.json",
-      "count": 17,
-      "ids": [
-        "wd-album-2021",
-        "wd-album-2022",
-        "wd-album-2023",
-        "wd-album-2024",
         "wd-alps",
         "wd-best-picture",
         "wd-boyband",
@@ -155,18 +48,18 @@
         "wd-cat",
         "wd-city-al",
         "wd-city-az",
-        "wd-city-co",
+        "wd-city-co"
+      ]
+    },
+    {
+      "file": "data/prompts/0002.json",
+      "count": 34,
+      "ids": [
         "wd-city-ct",
         "wd-city-fl",
         "wd-city-ga",
         "wd-city-il",
-        "wd-city-in"
-      ]
-    },
-    {
-      "file": "data/prompts/0011.json",
-      "count": 30,
-      "ids": [
+        "wd-city-in",
         "wd-city-ky",
         "wd-city-la",
         "wd-city-ma",
@@ -195,180 +88,314 @@
         "wd-disney",
         "wd-dog",
         "wd-element",
-        "wd-film-1976",
-        "wd-film-1977"
+        "wd-gk-actor-de"
+      ]
+    },
+    {
+      "file": "data/prompts/0003.json",
+      "count": 8,
+      "ids": [
+        "wd-gk-actor-es",
+        "wd-gk-actor-fr",
+        "wd-gk-actor-in",
+        "wd-gk-actor-it",
+        "wd-gk-actor-jp",
+        "wd-gk-actor-kr",
+        "wd-gk-actor-uk-f",
+        "wd-gk-actor-uk-m"
+      ]
+    },
+    {
+      "file": "data/prompts/0004.json",
+      "count": 18,
+      "ids": [
+        "wd-gk-actor-us-f",
+        "wd-gk-actor-us-m",
+        "wd-gk-alkaloid",
+        "wd-gk-anime",
+        "wd-gk-anthem",
+        "wd-gk-antibiotic",
+        "wd-gk-apple",
+        "wd-gk-arch-style",
+        "wd-gk-architect",
+        "wd-gk-art-move",
+        "wd-gk-astronaut",
+        "wd-gk-bball",
+        "wd-gk-bird",
+        "wd-gk-boxer-us",
+        "wd-gk-bread",
+        "wd-gk-britpop",
+        "wd-gk-broadway",
+        "wd-gk-cake"
+      ]
+    },
+    {
+      "file": "data/prompts/0005.json",
+      "count": 26,
+      "ids": [
+        "wd-gk-castle-be",
+        "wd-gk-castle-ir",
+        "wd-gk-castle-pt",
+        "wd-gk-cattle",
+        "wd-gk-chef",
+        "wd-gk-chicken",
+        "wd-gk-city-ak",
+        "wd-gk-city-ar",
+        "wd-gk-city-ch",
+        "wd-gk-city-cl",
+        "wd-gk-city-dk",
+        "wd-gk-city-dz",
+        "wd-gk-city-eg",
+        "wd-gk-city-hr",
+        "wd-gk-city-ia",
+        "wd-gk-city-id",
+        "wd-gk-city-it-abr",
+        "wd-gk-city-it-apu",
+        "wd-gk-city-it-cal",
+        "wd-gk-city-it-cam",
+        "wd-gk-city-it-emi",
+        "wd-gk-city-it-fri",
+        "wd-gk-city-it-laz",
+        "wd-gk-city-it-lig",
+        "wd-gk-city-it-lom",
+        "wd-gk-city-it-mar"
+      ]
+    },
+    {
+      "file": "data/prompts/0006.json",
+      "count": 29,
+      "ids": [
+        "wd-gk-city-it-pie",
+        "wd-gk-city-it-sar",
+        "wd-gk-city-it-sic",
+        "wd-gk-city-it-tus",
+        "wd-gk-city-it-ven",
+        "wd-gk-city-ks",
+        "wd-gk-city-nd",
+        "wd-gk-city-ne",
+        "wd-gk-city-ng",
+        "wd-gk-city-nl",
+        "wd-gk-city-no",
+        "wd-gk-city-ok",
+        "wd-gk-city-pt",
+        "wd-gk-city-ro",
+        "wd-gk-city-sd",
+        "wd-gk-city-tx",
+        "wd-gk-club-at",
+        "wd-gk-club-be",
+        "wd-gk-club-cn",
+        "wd-gk-club-cz",
+        "wd-gk-club-de",
+        "wd-gk-club-dk",
+        "wd-gk-club-efl",
+        "wd-gk-club-fi",
+        "wd-gk-club-fr",
+        "wd-gk-club-hu",
+        "wd-gk-club-il",
+        "wd-gk-club-it",
+        "wd-gk-club-jp"
+      ]
+    },
+    {
+      "file": "data/prompts/0007.json",
+      "count": 17,
+      "ids": [
+        "wd-gk-club-nl",
+        "wd-gk-club-no",
+        "wd-gk-club-pe",
+        "wd-gk-club-pt",
+        "wd-gk-club-rs",
+        "wd-gk-club-ru",
+        "wd-gk-club-sco",
+        "wd-gk-club-sk",
+        "wd-gk-club-th",
+        "wd-gk-club-tr",
+        "wd-gk-club-wal",
+        "wd-gk-coffee-brand",
+        "wd-gk-comic",
+        "wd-gk-comic-strip",
+        "wd-gk-cricket-au",
+        "wd-gk-cricket-en",
+        "wd-gk-cricket-in"
+      ]
+    },
+    {
+      "file": "data/prompts/0008.json",
+      "count": 19,
+      "ids": [
+        "wd-gk-cricket-pk",
+        "wd-gk-cricket-za",
+        "wd-gk-crypto",
+        "wd-gk-currency",
+        "wd-gk-dc",
+        "wd-gk-dino",
+        "wd-gk-dir-fr",
+        "wd-gk-dir-in",
+        "wd-gk-dir-it",
+        "wd-gk-dir-jp",
+        "wd-gk-dir-uk",
+        "wd-gk-disease",
+        "wd-gk-dish",
+        "wd-gk-dumpling",
+        "wd-gk-enzyme",
+        "wd-gk-explorer",
+        "wd-gk-fabric",
+        "wd-gk-fashion",
+        "wd-gk-fast-dish"
+      ]
+    },
+    {
+      "file": "data/prompts/0009.json",
+      "count": 18,
+      "ids": [
+        "wd-gk-ferrari",
+        "wd-gk-fighting",
+        "wd-gk-film-action",
+        "wd-gk-film-comedy-uk",
+        "wd-gk-film-comedy-us",
+        "wd-gk-film-crime",
+        "wd-gk-film-drama",
+        "wd-gk-film-drama-uk",
+        "wd-gk-film-genre",
+        "wd-gk-film-horror",
+        "wd-gk-fish",
+        "wd-gk-flatbread",
+        "wd-gk-ford",
+        "wd-gk-fps",
+        "wd-gk-franchise",
+        "wd-gk-franchise-game",
+        "wd-gk-furniture",
+        "wd-gk-game-genre"
+      ]
+    },
+    {
+      "file": "data/prompts/0010.json",
+      "count": 28,
+      "ids": [
+        "wd-gk-genre-lit",
+        "wd-gk-genre-music",
+        "wd-gk-god-egypt",
+        "wd-gk-god-greek",
+        "wd-gk-god-roman",
+        "wd-gk-golf-us",
+        "wd-gk-grammy",
+        "wd-gk-hat",
+        "wd-gk-herb",
+        "wd-gk-heritage-cn",
+        "wd-gk-heritage-es",
+        "wd-gk-heritage-fr",
+        "wd-gk-heritage-in",
+        "wd-gk-heritage-it",
+        "wd-gk-house",
+        "wd-gk-icecream",
+        "wd-gk-igneous",
+        "wd-gk-inventor",
+        "wd-gk-ios",
+        "wd-gk-isle-ak",
+        "wd-gk-isle-in",
+        "wd-gk-isle-mv",
+        "wd-gk-jazz",
+        "wd-gk-kami",
+        "wd-gk-kpop-singer",
+        "wd-gk-la-hood",
+        "wd-gk-lake-ch",
+        "wd-gk-lake-fl"
+      ]
+    },
+    {
+      "file": "data/prompts/0011.json",
+      "count": 18,
+      "ids": [
+        "wd-gk-lake-mi",
+        "wd-gk-lake-mn",
+        "wd-gk-lake-ny",
+        "wd-gk-lake-wi",
+        "wd-gk-lang-in",
+        "wd-gk-manga",
+        "wd-gk-marvel",
+        "wd-gk-messier",
+        "wd-gk-mtn-by",
+        "wd-gk-mtn-ch",
+        "wd-gk-mtn-it",
+        "wd-gk-mtn-kr",
+        "wd-gk-mtn-ny",
+        "wd-gk-mtn-wa",
+        "wd-gk-nobel-chem",
+        "wd-gk-nobel-med",
+        "wd-gk-nobel-peace",
+        "wd-gk-novel-uk"
       ]
     },
     {
       "file": "data/prompts/0012.json",
-      "count": 7,
+      "count": 12,
       "ids": [
-        "wd-film-1978",
-        "wd-film-1979",
-        "wd-film-1980",
-        "wd-film-1981",
-        "wd-film-1982",
-        "wd-film-1983",
-        "wd-film-1984"
+        "wd-gk-novel-us",
+        "wd-gk-painter-nl",
+        "wd-gk-park-fl",
+        "wd-gk-park-ny",
+        "wd-gk-park-tx",
+        "wd-gk-physicist",
+        "wd-gk-pig",
+        "wd-gk-pitcher",
+        "wd-gk-poet-uk",
+        "wd-gk-poet-us",
+        "wd-gk-pope",
+        "wd-gk-ps4"
       ]
     },
     {
       "file": "data/prompts/0013.json",
-      "count": 6,
+      "count": 12,
       "ids": [
-        "wd-film-1985",
-        "wd-film-1986",
-        "wd-film-1987",
-        "wd-film-1988",
-        "wd-film-1989",
-        "wd-film-1990"
+        "wd-gk-qb",
+        "wd-gk-rice",
+        "wd-gk-river-de",
+        "wd-gk-river-es",
+        "wd-gk-river-fr",
+        "wd-gk-river-it",
+        "wd-gk-river-jp",
+        "wd-gk-river-nz",
+        "wd-gk-river-pl",
+        "wd-gk-river-ro",
+        "wd-gk-river-us-mn",
+        "wd-gk-river-us-mo"
       ]
     },
     {
       "file": "data/prompts/0014.json",
-      "count": 6,
+      "count": 17,
       "ids": [
-        "wd-film-1991",
-        "wd-film-1992",
-        "wd-film-1993",
-        "wd-film-1994",
-        "wd-film-1995",
-        "wd-film-1996"
+        "wd-gk-river-us-nc",
+        "wd-gk-river-us-ny",
+        "wd-gk-river-us-pa",
+        "wd-gk-rock-us",
+        "wd-gk-rpg",
+        "wd-gk-salad",
+        "wd-gk-sauce",
+        "wd-gk-sediment",
+        "wd-gk-sheep",
+        "wd-gk-singer-uk",
+        "wd-gk-singer-us",
+        "wd-gk-social",
+        "wd-gk-soul",
+        "wd-gk-speech",
+        "wd-gk-star",
+        "wd-gk-statepark-ca",
+        "wd-gk-street"
       ]
     },
     {
       "file": "data/prompts/0015.json",
-      "count": 5,
+      "count": 15,
       "ids": [
-        "wd-film-1997",
-        "wd-film-1998",
-        "wd-film-1999",
-        "wd-film-2000",
-        "wd-film-2001"
-      ]
-    },
-    {
-      "file": "data/prompts/0016.json",
-      "count": 4,
-      "ids": [
-        "wd-film-2002",
-        "wd-film-2003",
-        "wd-film-2004",
-        "wd-film-2005"
-      ]
-    },
-    {
-      "file": "data/prompts/0017.json",
-      "count": 3,
-      "ids": [
-        "wd-film-2006",
-        "wd-film-2007",
-        "wd-film-2008"
-      ]
-    },
-    {
-      "file": "data/prompts/0018.json",
-      "count": 3,
-      "ids": [
-        "wd-film-2009",
-        "wd-film-2010",
-        "wd-film-2011"
-      ]
-    },
-    {
-      "file": "data/prompts/0019.json",
-      "count": 3,
-      "ids": [
-        "wd-film-2012",
-        "wd-film-2013",
-        "wd-film-2014"
-      ]
-    },
-    {
-      "file": "data/prompts/0020.json",
-      "count": 2,
-      "ids": [
-        "wd-film-2015",
-        "wd-film-2016"
-      ]
-    },
-    {
-      "file": "data/prompts/0021.json",
-      "count": 3,
-      "ids": [
-        "wd-film-2017",
-        "wd-film-2018",
-        "wd-film-2019"
-      ]
-    },
-    {
-      "file": "data/prompts/0022.json",
-      "count": 3,
-      "ids": [
-        "wd-film-2020",
-        "wd-film-2021",
-        "wd-film-2022"
-      ]
-    },
-    {
-      "file": "data/prompts/0023.json",
-      "count": 4,
-      "ids": [
-        "wd-film-2023",
-        "wd-film-2024",
-        "wd-film-2025",
-        "wd-game-1992"
-      ]
-    },
-    {
-      "file": "data/prompts/0024.json",
-      "count": 12,
-      "ids": [
-        "wd-game-1993",
-        "wd-game-1994",
-        "wd-game-1995",
-        "wd-game-1996",
-        "wd-game-1997",
-        "wd-game-1998",
-        "wd-game-1999",
-        "wd-game-2000",
-        "wd-game-2001",
-        "wd-game-2002",
-        "wd-game-2003",
-        "wd-game-2004"
-      ]
-    },
-    {
-      "file": "data/prompts/0025.json",
-      "count": 11,
-      "ids": [
-        "wd-game-2005",
-        "wd-game-2006",
-        "wd-game-2007",
-        "wd-game-2008",
-        "wd-game-2009",
-        "wd-game-2010",
-        "wd-game-2011",
-        "wd-game-2012",
-        "wd-game-2013",
-        "wd-game-2014",
-        "wd-game-2015"
-      ]
-    },
-    {
-      "file": "data/prompts/0026.json",
-      "count": 18,
-      "ids": [
-        "wd-game-2016",
-        "wd-game-2017",
-        "wd-game-2018",
-        "wd-game-2019",
-        "wd-game-2020",
-        "wd-game-2021",
-        "wd-game-2022",
-        "wd-game-2023",
-        "wd-game-2024",
-        "wd-game-2025",
+        "wd-gk-studio",
+        "wd-gk-tennis-us",
+        "wd-gk-toyota",
+        "wd-gk-tv-genre",
+        "wd-gk-volc-active",
+        "wd-gk-windows",
+        "wd-gk-writer-us",
         "wd-grammy-album",
         "wd-greek-island",
         "wd-horse",
@@ -380,76 +407,12 @@
       ]
     },
     {
-      "file": "data/prompts/0027.json",
-      "count": 26,
+      "file": "data/prompts/0016.json",
+      "count": 4,
       "ids": [
         "wd-opera",
         "wd-president",
         "wd-sportscar",
-        "wd-tv-1992",
-        "wd-tv-1993",
-        "wd-tv-1994",
-        "wd-tv-1995",
-        "wd-tv-1996",
-        "wd-tv-1997",
-        "wd-tv-1998",
-        "wd-tv-1999",
-        "wd-tv-2000",
-        "wd-tv-2001",
-        "wd-tv-2002",
-        "wd-tv-2003",
-        "wd-tv-2004",
-        "wd-tv-2005",
-        "wd-tv-2006",
-        "wd-tv-2007",
-        "wd-tv-2008",
-        "wd-tv-2009",
-        "wd-tv-2010",
-        "wd-tv-2011",
-        "wd-tv-2012",
-        "wd-tv-2013",
-        "wd-tv-2014"
-      ]
-    },
-    {
-      "file": "data/prompts/0028.json",
-      "count": 36,
-      "ids": [
-        "wd-tv-2015",
-        "wd-tv-2016",
-        "wd-tv-2017",
-        "wd-tv-2018",
-        "wd-tv-2019",
-        "wd-tv-2020",
-        "wd-tv-2021",
-        "wd-tv-2022",
-        "wd-tv-2023",
-        "wd-tv-2024",
-        "wd-tvuk-2000",
-        "wd-tvuk-2001",
-        "wd-tvuk-2002",
-        "wd-tvuk-2003",
-        "wd-tvuk-2004",
-        "wd-tvuk-2005",
-        "wd-tvuk-2006",
-        "wd-tvuk-2007",
-        "wd-tvuk-2008",
-        "wd-tvuk-2009",
-        "wd-tvuk-2010",
-        "wd-tvuk-2011",
-        "wd-tvuk-2012",
-        "wd-tvuk-2013",
-        "wd-tvuk-2014",
-        "wd-tvuk-2015",
-        "wd-tvuk-2016",
-        "wd-tvuk-2017",
-        "wd-tvuk-2018",
-        "wd-tvuk-2019",
-        "wd-tvuk-2020",
-        "wd-tvuk-2021",
-        "wd-tvuk-2022",
-        "wd-tvuk-2023",
-        "wd-tvuk-2024",
         "wd-us-state"
       ]
     }

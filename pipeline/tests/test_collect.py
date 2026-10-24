@@ -6,10 +6,25 @@ import unittest
 from unittest import mock
 
 from pipeline.collect import collect_categories, place_answer_category
-from pipeline.make_prompt import build_prompt
+from pipeline.make_prompt import _has_name, build_prompt, latin_binomial, taxonomic_name
 
 
 class CollectTests(unittest.TestCase):
+    def test_latin_binomials_drop_and_common_names_stay(self) -> None:
+        self.assertTrue(latin_binomial("Rosa acicularis"))
+        self.assertTrue(latin_binomial("Abies alba"))
+        self.assertTrue(latin_binomial("Acer campestre"))
+        self.assertFalse(latin_binomial("Japanese iris"))
+        self.assertFalse(latin_binomial("Red maple"))
+        self.assertFalse(latin_binomial("Rose"))
+        self.assertFalse(latin_binomial("Baby Ruth"))
+        self.assertFalse(latin_binomial("Great white shark"))
+        self.assertTrue(taxonomic_name("Iris x germanica"))
+        self.assertTrue(taxonomic_name("Hibiscus ×rosa-sinensis"))
+        self.assertTrue(taxonomic_name("Iris sect. Scorpiris"))
+        self.assertFalse(taxonomic_name("Japanese iris"))
+
+
     def test_thin_category_does_not_walk_subcategories(self) -> None:
         def pages(title: str) -> list[dict]:
             if title.endswith("Parent"):
@@ -88,6 +103,19 @@ class CollectTests(unittest.TestCase):
         names = [answer["name"] for answer in prompt["answers"]]
         self.assertIn("After Hours", names)
         self.assertNotIn("Afterhours", names)
+
+    def test_required_name_matches_without_accents(self) -> None:
+        answers = [
+            {"name": "Kīlauea"},
+            {"name": "Ferencvárosi TC"},
+            {"name": "Malé"},
+            {"name": "FK Crvena zvezda", "aliases": ["Red Star Belgrade"]},
+        ]
+        self.assertTrue(_has_name(answers, "Kilauea"))
+        self.assertTrue(_has_name(answers, "Ferencvaros"))
+        self.assertTrue(_has_name(answers, "Male"))
+        self.assertTrue(_has_name(answers, "Red Star"))
+        self.assertFalse(_has_name(answers, "Etna"))
 
 
 if __name__ == "__main__":

@@ -36,6 +36,7 @@ export function judgePreferred(saved, available) {
 
 // Fire and forget. Starting a round loads the model during the preview
 // so the first real answer is less likely to pay the cold-start cost.
+// This request does not pause the play clock. Only an answer in flight does.
 export function warmJudge() {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), JUDGE_MS);

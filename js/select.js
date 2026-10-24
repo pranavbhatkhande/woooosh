@@ -1,4 +1,4 @@
-// Daily is a date-seeded pick, stable for a given bank of ids.
+// Daily rotates a stable deck, one block of seven per UTC day.
 // Unlimited walks an unseen deck, then restarts oldest-first.
 
 export function fnv1a(text) {
@@ -11,17 +11,40 @@ export function fnv1a(text) {
   return hash >>> 0;
 }
 
-export function dailyPromptIds(ids, date, count = 7) {
+// One shared daily for every player. The day rolls at 00:00 UTC, which is
+// evening in the Americas and morning in Asia. The order of ids does not
+// depend on the date, so consecutive days take the next block and a prompt
+// does not return until the deck has been used. Nothing here calls a model.
+const DAILY_EPOCH_MS = Date.UTC(2026, 0, 1);
+
+export function utcDayNumber(iso) {
+  const [y, m, d] = String(iso).split("-").map(Number);
+  const utc = Date.UTC(y, m - 1, d);
+  return Math.round((utc - DAILY_EPOCH_MS) / 86_400_000);
+}
+
+export function rotationOrder(ids) {
   const unique = [...new Set(ids)];
   unique.sort((a, b) => {
-    const ha = fnv1a(`${date}|${a}`);
-    const hb = fnv1a(`${date}|${b}`);
+    const ha = fnv1a(`woooosh-deck|${a}`);
+    const hb = fnv1a(`woooosh-deck|${b}`);
     if (ha !== hb) return ha < hb ? -1 : 1;
     if (a < b) return -1;
     if (a > b) return 1;
     return 0;
   });
-  return unique.slice(0, Math.max(0, count));
+  return unique;
+}
+
+export function dailyPromptIds(ids, date, count = 7) {
+  const order = rotationOrder(ids);
+  const size = Math.max(0, count);
+  const blocks = Math.floor(order.length / size);
+  if (blocks < 1) return order.slice(0, size);
+  const day = utcDayNumber(date);
+  const index = ((day % blocks) + blocks) % blocks;
+  const start = index * size;
+  return order.slice(start, start + size);
 }
 
 export function createRng(seed) {

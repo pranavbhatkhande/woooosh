@@ -21,6 +21,8 @@ function finish(state, round, now) {
   const rounds = state.rounds.concat(round);
   return {
     ...state,
+    paused: false,
+    remainingMs: 0,
     phase: "reveal",
     phaseEndsAt: now,
     altitude: state.altitude + (round.points || 0),
@@ -32,8 +34,22 @@ function current(state) {
   return state.prompts[state.index];
 }
 
+export function pauseClock(state, now) {
+  // One in-flight judge request. A second call does not stack extra time.
+  if (!state || state.phase !== "play" || state.paused) return state;
+  if (now >= state.phaseEndsAt) return state;
+  return { ...state, paused: true, remainingMs: state.phaseEndsAt - now };
+}
+
+export function resumeClock(state, now) {
+  if (!state || !state.paused) return state;
+  const remaining = Math.max(0, state.remainingMs || 0);
+  return { ...state, paused: false, remainingMs: 0, phaseEndsAt: now + remaining };
+}
+
 export function tick(state, now) {
   if (!state || state.phase === "done" || state.phase === "reveal") return state;
+  if (state.paused) return state;
   if (now < state.phaseEndsAt) return state;
   if (state.phase === "preview") {
     return { ...state, phase: "play", phaseEndsAt: now + PLAY_MS };
@@ -53,7 +69,8 @@ export function tick(state, now) {
 }
 
 export function lockAnswer(state, now, hit) {
-  if (!state || state.phase !== "play" || now >= state.phaseEndsAt) return state;
+  if (!state || state.phase !== "play") return state;
+  if (!state.paused && now >= state.phaseEndsAt) return state;
   const prompt = current(state);
   const points = hit.points ?? pointsFor(hit.tier);
   return finish(state, {
@@ -100,5 +117,6 @@ export function nextPrompt(state, now) {
 
 export function secondsLeft(state, now) {
   if (!state || state.phase !== "play") return 0;
+  if (state.paused) return Math.max(0, Math.ceil((state.remainingMs || 0) / 1000));
   return Math.max(0, Math.ceil((state.phaseEndsAt - now) / 1000));
 }
