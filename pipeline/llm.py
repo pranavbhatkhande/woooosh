@@ -330,6 +330,9 @@ def overlaps(text: str, existing: list[set[str]]) -> bool:
     return False
 
 
+_YEAR_NUM = re.compile(r"\b(?:1[89]\d{2}|20\d{2})\b")
+
+
 def filter_ideas(ideas: list[dict], existing_texts: set[str], existing_sets: list[set[str]]) -> tuple[list[dict], Counter]:
     """Drop duplicates, tiny closed sets, and topics already in the bank."""
     reasons: Counter = Counter()
@@ -347,6 +350,11 @@ def filter_ideas(ideas: list[dict], existing_texts: set[str], existing_sets: lis
             reasons["wording"] += 1
             if VERBOSE:
                 print(f"  reject wording: {text}", flush=True)
+            continue
+        if _YEAR_NUM.search(text):
+            reasons["year"] += 1
+            if VERBOSE:
+                print(f"  reject year: {text}", flush=True)
             continue
         if norm in texts:
             reasons["duplicate"] += 1

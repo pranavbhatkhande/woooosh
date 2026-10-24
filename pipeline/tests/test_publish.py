@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import unittest
 
+from pipeline.cores import ensure_cores, token_present
 from pipeline.import_judged import fold_answer
 from pipeline.llm import slug_for
 from pipeline.curated_harvest import missing_hand_items
-from pipeline.publish import apply_hand, drop_capped_samples, pack_shards, prefer_answer_list
+from pipeline.publish import apply_hand, drop_capped_samples, drop_rejected, pack_shards, prefer_answer_list
+from pipeline.year_pin import year_pinned
 from pipeline.scrub import scrub_prompt
 
 
@@ -58,6 +60,34 @@ class PublishTests(unittest.TestCase):
         self.assertIn("wd-city-ny", kept)
         self.assertNotIn("wd-city-mi", kept)
 
+    def test_year_pin_keeps_award_names_and_drops_release_years(self) -> None:
+        self.assertFalse(year_pinned({"id": "wd-best-picture", "text": "Name a Best Picture winner"}))
+        self.assertFalse(year_pinned({"id": "wd-grammy-album", "text": "Name an Album of the Year winner"}))
+        self.assertTrue(year_pinned({"id": "wd-film-2015", "text": "Name a film released in 2015"}))
+        self.assertTrue(year_pinned({"id": "wd-film-2015", "text": "Name a film"}))
+        self.assertTrue(year_pinned({"id": "wd-gk-x", "text": "Name a Best Picture of 1994"}))
+        kept = drop_rejected(
+            {
+                "wd-film-2015": {"id": "wd-film-2015", "text": "Name a film released in 2015", "answers": [{}] * 900},
+                "wd-best-picture": {"id": "wd-best-picture", "text": "Name a Best Picture winner", "answers": [{}] * 90},
+                "wd-us-state": {"id": "wd-us-state", "text": "Name a US state", "answers": [{}] * 50},
+                "wd-gk-a": {"id": "wd-gk-a", "text": "Name a city in Texas", "answers": [{}] * 200},
+            }
+        )
+        self.assertNotIn("wd-film-2015", kept)
+        self.assertIn("wd-best-picture", kept)
+        self.assertIn("wd-us-state", kept)
+
+    def test_thin_lists_drop_only_when_the_fat_bank_is_large(self) -> None:
+        prompts = {
+            f"p{i}": {"id": f"p{i}", "text": f"Name a thing {i}", "answers": [{}] * 100}
+            for i in range(300)
+        }
+        prompts["tiny"] = {"id": "tiny", "text": "Name a US state", "answers": [{}] * 50}
+        kept = drop_rejected(prompts)
+        self.assertNotIn("tiny", kept)
+        self.assertEqual(len(kept), 300)
+
     def test_hand_list_does_not_shrink_a_harvest(self) -> None:
         merged = {"cur-spice": {"id": "cur-spice", "answers": [{}] * 400}}
         apply_hand(merged, [{"id": "cur-spice", "answers": [{}] * 50}])
@@ -105,6 +135,57 @@ class PublishTests(unittest.TestCase):
         self.assertTrue(prompt["answers"][-1]["gem"])
         self.assertEqual(fold_answer(prompt, {"canonical": "black pepper", "tier": "taxi"}), "skipped")
         self.assertEqual(fold_answer(prompt, {"canonical": "shit", "tier": "taxi"}), "rejected")
+
+    def test_core_names_are_real_entries_not_substrings(self) -> None:
+        answers = [
+            {"name": "Hermanubis", "aliases": [], "tier": "taxi", "gem": False},
+            {"name": "Osiris myth", "aliases": [], "tier": "stall", "gem": False},
+            {"name": "Horus", "aliases": [], "tier": "taxi", "gem": False},
+            {"name": "Homer", "aliases": [], "tier": "taxi", "gem": False},
+            {"name": "Thor Girl", "aliases": ["Thor"], "tier": "stall", "gem": False},
+        ]
+        self.assertFalse(token_present(answers, "Anubis"))
+        self.assertTrue(token_present(answers, "Horus"))
+        self.assertTrue(token_present([{"name": "Ferencvárosi TC", "aliases": []}], "Ferencvaros"))
+        prompt = ensure_cores({"id": "wd-gk-god-egypt", "text": "Name an Egyptian god", "answers": answers})
+        names = [answer["name"] for answer in prompt["answers"]]
+        self.assertIn("Anubis", names)
+        self.assertIn("Isis", names)
+        self.assertIn("Osiris", names)
+        self.assertIn("Osiris myth", names)
+        self.assertIn("Hermanubis", names)
+        added = {answer["name"]: answer for answer in prompt["answers"]}
+        self.assertEqual(added["Anubis"]["tier"], "taxi")
+        self.assertFalse(added["Anubis"]["gem"])
+        self.assertTrue(token_present(prompt["answers"], "Anubis"))
+        greek = ensure_cores({"id": "wd-gk-god-greek", "text": "Name a Greek god", "answers": answers})
+        greek_names = [answer["name"] for answer in greek["answers"]]
+        self.assertNotIn("Homer", greek_names)
+        self.assertIn("Hera", greek_names)
+        self.assertIn("Poseidon", greek_names)
+        self.assertEqual(added["Horus"]["tier"], "taxi")
+        marvel = ensure_cores({"id": "wd-gk-marvel", "text": "Name a Marvel superhero", "answers": answers})
+        thor_girl = next(answer for answer in marvel["answers"] if answer["name"] == "Thor Girl")
+        self.assertNotIn("Thor", thor_girl["aliases"])
+        self.assertTrue(any(answer["name"] == "Thor" and answer["tier"] == "taxi" for answer in marvel["answers"]))
+        france = ensure_cores(
+            {
+                "id": "wd-gk-heritage-fr",
+                "text": "Name a World Heritage Site in France",
+                "answers": [{"name": "Palace of Versailles", "aliases": ["Versailles Palace"], "tier": "taxi", "gem": False}],
+            }
+        )
+        palace = france["answers"][0]
+        self.assertIn("Versailles", palace["aliases"])
+        roman = ensure_cores(
+            {
+                "id": "wd-gk-god-roman",
+                "text": "Name a Roman god",
+                "answers": [{"name": "Jupiter", "aliases": [], "tier": "taxi", "gem": False}],
+            }
+        )
+        self.assertIn("Juno", [answer["name"] for answer in roman["answers"]])
+        self.assertIn("Venus", [answer["name"] for answer in roman["answers"]])
 
     def test_slug(self) -> None:
         self.assertEqual(slug_for("Name a breakfast pastry"), "breakfast-pastry")

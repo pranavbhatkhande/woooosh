@@ -1,6 +1,7 @@
 #!/bin/sh
 # Add a handful of new prompts, publish shards, and push main.
 # Keeps the pipeline cache on this machine so finished jobs are not redone.
+# The daily ascent does not wait on this timer. It rotates in the browser.
 set -eu
 
 cd "$(dirname "$0")/.."

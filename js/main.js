@@ -1,5 +1,5 @@
 import { loadIndex, loadPrompts, allIds } from "./bank.js";
-import { lockAnswer, nextPrompt, passPrompt, secondsLeft, startRun, tick } from "./engine.js";
+import { lockAnswer, nextPrompt, passPrompt, pauseClock, resumeClock, secondsLeft, startRun, tick } from "./engine.js";
 import { askJudge, judgePreferred, probeJudge, warmJudge } from "./judge-client.js";
 import { compileAnswers, normalize } from "./match.js";
 import { scoreAttempt } from "./scoring.js";
@@ -29,6 +29,7 @@ let judgeToken = 0;
 let judgeAbort = null;
 let judging = false;
 let view = "";
+let homeStamp = "";
 let nodes = null;
 let lastSecond = -1;
 
@@ -93,7 +94,7 @@ function syncSettings() {
   judgeToggle.checked = useJudge();
   judgeToggle.disabled = !available;
   judgeNote.textContent = available
-    ? "Close spellings and real answers that are not in the bank go to the judge. A bank match keeps its tier. Judged answers are marked and never earn ESCAPE. If the judge is unavailable, the bank is used instead. The clock keeps running."
+    ? "Close spellings and real answers that are not in the bank go to the judge. A bank match keeps its tier. Judged answers are marked and never earn ESCAPE. If the judge is unavailable, the bank is used instead. The clock pauses only while that answer is being judged."
     : "The judge is offline, so scoring stays on the bank, including close spellings.";
 }
 
@@ -122,6 +123,7 @@ function showHome() {
   abortJudge();
   const stats = store.stats || {};
   const date = utcDate();
+  homeStamp = date;
   screen.replaceChildren(
     el("section", { class: "home" }, [
       el("p", { class: "eyebrow", text: "THE DAILY ASCENT" }),
@@ -258,10 +260,10 @@ function renderPlay() {
     renderPhase();
   });
   const ring = ringSvg();
-  const judgingNote = el("p", { class: "judging", role: "status", text: "Judging" });
+  const judgingNote = el("p", { class: "judging", role: "status", text: "judging…" });
   judgingNote.hidden = true;
   const live = el("p", { class: "sr", "aria-live": "polite" });
-  nodes = { field, ringValue: ring.querySelector(".value"), seconds: ring.querySelector("text"), live, judgingNote, pass };
+  nodes = { field, submit, ringValue: ring.querySelector(".value"), seconds: ring.querySelector("text"), live, judgingNote, pass };
   const preview = run.phase === "preview";
   field.disabled = preview;
   submit.disabled = preview;
@@ -321,14 +323,15 @@ function updateClock(now) {
     nodes.live.textContent = preview ? `Starting in ${second}` : `${second} seconds`;
   }
   if (!preview && nodes.ringValue) {
-    const remain = Math.max(0, run.phaseEndsAt - now);
+    const remain = run.paused ? Math.max(0, run.remainingMs || 0) : Math.max(0, run.phaseEndsAt - now);
     const frac = Math.min(1, remain / 25000);
     nodes.ringValue.style.strokeDashoffset = String(RING * (1 - frac));
-    nodes.ringValue.classList.toggle("low", second <= 5);
+    nodes.ringValue.classList.toggle("low", second <= 5 && !run.paused);
   }
   nodes.judgingNote.hidden = !judging;
   if (run.phase === "play") {
-    nodes.field.disabled = false;
+    nodes.field.disabled = judging;
+    if (nodes.submit) nodes.submit.disabled = judging;
     nodes.pass.disabled = false;
   }
 }
@@ -349,9 +352,11 @@ function lock(hit, typed) {
 }
 
 async function submitAnswer(raw) {
-  if (!run || run.phase !== "play") return;
+  if (!run || run.phase !== "play" || judging) return;
   const typed = raw.trim();
   if (!typed) return;
+  const started = Date.now();
+  if (!run.paused && started >= run.phaseEndsAt) return;
   const prompt = run.prompts[run.index];
   const compiled = answersFor(prompt);
   const norm = normalize(typed);
@@ -367,18 +372,37 @@ async function submitAnswer(raw) {
   abortJudge();
   const token = judgeToken;
   judgeAbort = new AbortController();
+  run = pauseClock(run, started);
   judging = true;
-  if (nodes) nodes.judgingNote.hidden = false;
-  const result = await askJudge(prompt.id, typed, judgeAbort.signal);
-  if (token !== judgeToken || !run || run.phase !== "play") return;
-  judging = false;
+  if (nodes) {
+    nodes.judgingNote.hidden = false;
+    nodes.field.disabled = true;
+    if (nodes.submit) nodes.submit.disabled = true;
+    nodes.live.textContent = "judging";
+  }
+  let result;
+  try {
+    result = await askJudge(prompt.id, typed, judgeAbort.signal);
+  } catch {
+    result = { status: "fallback" };
+  }
+  if (token !== judgeToken || !run || run.phase !== "play") {
+    judging = false;
+    if (nodes) nodes.judgingNote.hidden = true;
+    return;
+  }
   const decision = scoreAttempt(compiled, typed, result);
   if (decision.action === "lock") {
     lock(decision.hit, typed);
     return;
   }
+  judging = false;
+  run = resumeClock(run, Date.now());
+  if (nodes) nodes.judgingNote.hidden = true;
+  lastSecond = -1;
   if (decision.remember && norm) rejected.add(norm);
   shake();
+  updateClock(Date.now());
 }
 
 function renderReveal() {
@@ -493,6 +517,7 @@ function frame() {
       updateClock(now);
     }
   }
+  if (view === "home" && homeStamp && utcDate() !== homeStamp) showHome();
   requestAnimationFrame(frame);
 }
 

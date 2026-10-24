@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { nextPrompt, passPrompt, secondsLeft, startRun, tick, lockAnswer } from "../js/engine.js";
-import { dailyPromptIds, planUnlimited, previousUtcDate } from "../js/select.js";
+import { nextPrompt, passPrompt, pauseClock, resumeClock, secondsLeft, startRun, tick, lockAnswer } from "../js/engine.js";
+import { dailyPromptIds, planUnlimited, previousUtcDate, utcDate, utcDayNumber } from "../js/select.js";
 import { shareText } from "../js/share.js";
 import { pointsFor, tierForFamiliarity, zoneFor } from "../js/tiers.js";
 
@@ -47,9 +47,29 @@ test("daily selection is stable and order-independent", () => {
   assert.equal(new Set(a).size, 7);
   const other = dailyPromptIds(ids, "2026-10-25");
   assert.notDeepEqual(a, other);
+  assert.equal(new Set([...a, ...other]).size, 14);
+  const blocks = Math.floor(ids.length / 7);
+  const later = dailyPromptIds(ids, "2026-10-24");
+  const cycled = dailyPromptIds(ids, isoPlus("2026-10-24", blocks));
+  assert.deepEqual(later, cycled);
   assert.equal(previousUtcDate("2026-10-24"), "2026-10-23");
   assert.equal(previousUtcDate("2026-03-01"), "2026-02-28");
+  assert.equal(utcDayNumber("2026-10-25") - utcDayNumber("2026-10-24"), 1);
+  assert.equal(utcDate(new Date("2026-10-24T23:30:00Z")), "2026-10-24");
+  assert.equal(utcDate(new Date("2026-10-25T00:30:00Z")), "2026-10-25");
+  assert.equal(utcDate(new Date("2026-10-24T18:30:00-07:00")), "2026-10-25");
+  const before = dailyPromptIds(ids, "2025-12-31");
+  const epoch = dailyPromptIds(ids, "2026-01-01");
+  assert.equal(before.length, 7);
+  assert.notDeepEqual(before, epoch);
 });
+
+function isoPlus(iso, days) {
+  const [y, m, d] = iso.split("-").map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
 
 test("unlimited deck does not repeat until everything is seen, then oldest first", () => {
   const ids = ["a", "b", "c", "d"];
@@ -67,6 +87,72 @@ test("unlimited deck does not repeat until everything is seen, then oldest first
   const again = planUnlimited(ids, { seen, deck, seed: 7 });
   const oldest = Object.entries(seen).sort((x, y) => x[1] - y[1])[0][0];
   assert.equal(again.id, oldest);
+});
+
+function onePrompt(now) {
+  const prompts = [
+    {
+      id: "p",
+      text: "Name a city",
+      answers: [
+        { name: "Alpha", tier: "taxi", gem: false },
+        { name: "Zed", tier: "escape", gem: true },
+      ],
+    },
+  ];
+  let state = startRun({ mode: "daily", date: "2026-10-24", prompts, now });
+  state = tick(state, now + 2000);
+  return state;
+}
+
+test("the play clock pauses for one judge request and a late verdict still scores", () => {
+  const now = 1_000_000;
+  let state = onePrompt(now);
+  const end = state.phaseEndsAt;
+  const submitAt = end - 1000;
+  assert.equal(secondsLeft(state, submitAt), 1);
+  state = pauseClock(state, submitAt);
+  assert.equal(state.paused, true);
+  assert.equal(state.remainingMs, 1000);
+  const later = end + 5000;
+  state = tick(state, later);
+  assert.equal(state.phase, "play");
+  assert.equal(secondsLeft(state, later), 1);
+  const stacked = pauseClock(state, later);
+  assert.equal(stacked, state);
+  assert.equal(stacked.remainingMs, 1000);
+  state = lockAnswer(state, later, { name: "Alpha", tier: "taxi", typed: "alpha", judged: true });
+  assert.equal(state.phase, "reveal");
+  assert.equal(state.paused, false);
+  assert.equal(state.rounds.at(-1).kind, "hit");
+  assert.equal(state.rounds.at(-1).points, 5);
+  assert.equal(state.altitude, 5);
+});
+
+test("time expiring with no judge in flight scores zero, and a resume keeps the leftover second", () => {
+  const now = 1_000_000;
+  let state = onePrompt(now);
+  const end = state.phaseEndsAt;
+  const expired = tick(state, end);
+  assert.equal(expired.phase, "reveal");
+  assert.equal(expired.rounds.at(-1).kind, "miss");
+  assert.equal(expired.rounds.at(-1).points, 0);
+  const late = lockAnswer(expired, end + 10, { name: "Alpha", tier: "taxi", typed: "alpha" });
+  assert.equal(late.rounds.at(-1).kind, "miss");
+  const tooLate = pauseClock(state, end);
+  assert.equal(tooLate, state);
+
+  state = pauseClock(state, end - 1000);
+  const after = end + 4000;
+  state = resumeClock(state, after);
+  assert.equal(state.paused, false);
+  assert.equal(secondsLeft(state, after), 1);
+  assert.equal(state.phaseEndsAt, after + 1000);
+  state = tick(state, after + 999);
+  assert.equal(state.phase, "play");
+  state = tick(state, after + 1000);
+  assert.equal(state.phase, "reveal");
+  assert.equal(state.rounds.at(-1).points, 0);
 });
 
 test("a run is seven locks, misses score zero, and the share grid matches", () => {

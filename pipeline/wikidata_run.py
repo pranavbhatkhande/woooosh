@@ -6,7 +6,9 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from pipeline.collect import collect_categories, enrich_entities, sparql_items
+from pipeline.clean import junk_title
+from pipeline.collect import collect_categories, enrich_entities, search_category, sparql_items
+from pipeline.cores import CORES
 from pipeline.jobs import iter_jobs
 from pipeline.make_prompt import build_prompt
 from pipeline.net import CACHE
@@ -57,23 +59,48 @@ def _counts(done: set[str], jobs_by_id: dict) -> Counter:
 
 
 def _gather(job: dict) -> tuple[list[dict] | None, str]:
+    floor = max(30, int(job.get("min_answers") or 30))
     if job.get("mode") == "sparql":
         try:
             items = sparql_items(job["query"])
         except Exception as exc:
             return None, f"sparql {type(exc).__name__}: {exc}"
-        if len(items) < 30:
+        if len(items) < floor:
             return None, f"sparql returned {len(items)}"
         items = enrich_entities(items)
         return items, ""
-    items = collect_categories(
-        job.get("categories") or [],
-        ban=job.get("ban") or [],
-        follow_subcats=bool(job.get("follow_subcats")),
-        subcat_below=int(job.get("subcat_below") or 80),
-        places_from_subcats=bool(job.get("places_from_subcats")),
-    )
-    if len(items) < 30:
+    ban = job.get("ban") or []
+    if job.get("by_links"):
+        cap = int(job.get("cap") or 1200)
+        items = []
+        seen: set[str] = set()
+        cats = job.get("categories") or []
+        share = cap if len(cats) <= 1 else max(floor, cap // len(cats))
+        for category in cats:
+            batch = search_category(category, limit=share)
+            print(f"  {category}: {len(batch)} by links", flush=True)
+            for item in batch:
+                title = item.get("wiki") or ""
+                if junk_title(title, ban):
+                    continue
+                qid = item.get("qid")
+                if not qid or qid in seen:
+                    continue
+                seen.add(qid)
+                items.append(item)
+                if len(items) >= cap:
+                    break
+            if len(items) >= cap:
+                break
+    else:
+        items = collect_categories(
+            job.get("categories") or [],
+            ban=ban,
+            follow_subcats=bool(job.get("follow_subcats")),
+            subcat_below=int(job.get("subcat_below") or 80),
+            places_from_subcats=bool(job.get("places_from_subcats")),
+        )
+    if len(items) < floor:
         return None, f"only {len(items)} category pages"
     items = enrich_entities(items)
     return items, ""
@@ -83,7 +110,12 @@ def _run_job(job: dict) -> tuple[dict | None, str]:
     items, reason = _gather(job)
     if items is None:
         return None, reason
-    return build_prompt(job, items)
+    prompt, reason = build_prompt(job, items)
+    # A category can be a real set and still omit the one famous page Wikipedia
+    # filed elsewhere. Keep the list; publish inserts that name by hand.
+    if prompt is None and job["id"] in CORES and str(reason).startswith("missing expected"):
+        prompt, reason = build_prompt({**job, "must": []}, items)
+    return prompt, reason
 
 
 def generate(target: int = 210, only: list[str] | None = None, retry_failed: bool = False, refresh: bool = False) -> int:

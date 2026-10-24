@@ -61,6 +61,19 @@ class LlmTests(unittest.TestCase):
         self.assertEqual(reasons["tiny"], 1)
         self.assertEqual(reasons["duplicate"], 1)
 
+    def test_filter_rejects_a_calendar_year(self) -> None:
+        ideas = [
+            {"text": "Name a film released in 1999", "category": "film"},
+            {"text": "Name an Album of the Year winner", "category": "music"},
+            {"text": "Name a roofing material", "category": "building"},
+        ]
+        kept, reasons = filter_ideas(ideas, set(), [])
+        self.assertEqual(reasons["year"], 1)
+        self.assertEqual(
+            [idea["text"] for idea in kept],
+            ["Name an Album of the Year winner", "Name a roofing material"],
+        )
+
     def test_flat_familiarity_still_fills_every_tier(self) -> None:
         rows = [{"name": f"Herb {index:02d}", "aliases": [], "familiarity": 7} for index in range(48)]
         tiered = _tier_rows(rows)
