@@ -21,10 +21,23 @@ import {
   withoutThink,
 } from "../lib/judge-core.js";
 
-const HERE = path.dirname(fileURLToPath(import.meta.url));
+// Netlify's esbuild bundle is CommonJS, so import.meta.url can be missing.
+// fileURLToPath(undefined) throws while the module is loading, which would
+// 502 even the "judge disabled" response.
+function moduleDir() {
+  try {
+    const url = import.meta.url;
+    if (!url) return "";
+    return path.dirname(fileURLToPath(url));
+  } catch {
+    return "";
+  }
+}
+
+const HERE = moduleDir();
 const ROOTS = [
   process.cwd(),
-  path.resolve(HERE, "../.."),
+  HERE ? path.resolve(HERE, "../..") : "",
   process.env.LAMBDA_TASK_ROOT || "",
   "/var/task",
 ].filter(Boolean);
