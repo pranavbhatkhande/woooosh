@@ -158,6 +158,7 @@ def sparql_jobs():
 
 
 def all_jobs():
+    from pipeline.audience import kept_prompt
     from pipeline.catalog import general_jobs
 
     jobs = []
@@ -165,7 +166,9 @@ def all_jobs():
     jobs.extend(_cities())
     jobs.extend(specials())
     jobs.extend(sparql_jobs())
-    return jobs
+    # Weekly harvests only prompts the live bank still asks. Dropped foreign
+    # and specialist jobs stay out so they are not written back into the deck.
+    return [job for job in jobs if kept_prompt(job["id"])]
 
 
 def iter_jobs():

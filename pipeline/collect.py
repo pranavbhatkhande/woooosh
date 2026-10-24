@@ -76,7 +76,7 @@ def bad_subcategory(title: str, *, follow_geo: bool = False) -> bool:
     return any(needle in low for needle in needles)
 
 
-def search_category(category: str, limit: int = 70) -> list[dict]:
+def search_category(category: str, limit: int = 70, *, deep: bool = False) -> list[dict]:
     found: list[dict] = []
     seen: set[str] = set()
     cont: dict = {}
@@ -85,7 +85,7 @@ def search_category(category: str, limit: int = 70) -> list[dict]:
             "action": "query",
             "format": "json",
             "generator": "search",
-            "gsrsearch": f'incategory:"{category}"',
+            "gsrsearch": f'{"deepcat" if deep else "incategory"}:"{category}"',
             "gsrnamespace": "0",
             "gsrlimit": "50",
             "gsrsort": "incoming_links_desc",

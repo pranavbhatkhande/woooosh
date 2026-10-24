@@ -1,4 +1,6 @@
 // Lazy shards. The index is small; a round only fetches the shards it needs.
+// A tab keeps this index in memory, so a bank swap must leave the old shard
+// files in place. The next page load is what picks up data/index.json.
 
 export async function loadIndex() {
   const response = await fetch("/data/index.json", { cache: "no-cache" });

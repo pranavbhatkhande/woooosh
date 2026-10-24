@@ -24,7 +24,8 @@ def main(argv: list[str] | None = None) -> int:
     curated.add_argument("--only", action="append", default=[], help="Expand just this curated id (repeatable)")
 
     sub.add_parser("report", help="Print sample prompts from the published bank").add_argument("--count", type=int, default=8)
-    sub.add_parser("publish", help="Write data/prompts shards and data/index.json")
+    sub.add_parser("fill", help="Expand open American prompts to their full answer sets")
+    sub.add_parser("publish", help="Write versioned bank shards and data/index.json. Leaves data/prompts in place.")
     judged = sub.add_parser("import-judged", help="Fold accepted AI-judge answers into the bank")
     judged.add_argument("--file", default="")
     sub.add_parser("check", help="Lint the published bank and exit non-zero on problems")
@@ -48,6 +49,11 @@ def main(argv: list[str] | None = None) -> int:
         from pipeline.report import run_report
 
         run_report(count=args.count)
+        return 0
+    if args.cmd == "fill":
+        from pipeline.fill_sets import fill
+
+        fill()
         return 0
     if args.cmd == "publish":
         from pipeline.publish import publish

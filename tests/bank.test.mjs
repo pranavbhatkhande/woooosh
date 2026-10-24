@@ -9,8 +9,7 @@ const TIERS = ["taxi", "climb", "burn", "stall", "apogee", "escape"];
 
 test("published bank clears the seed bar", async () => {
   const index = JSON.parse(await readFile(new URL("../data/index.json", import.meta.url), "utf8"));
-  assert.ok(index.promptCount >= 300, `only ${index.promptCount} prompts`);
-  assert.equal(index.version >= 1, true);
+  assert.equal(index.version >= 5, true);
   const ids = [];
   const counts = [];
   let curated = 0;
@@ -50,13 +49,99 @@ test("published bank clears the seed bar", async () => {
   assert.equal(new Set(ids).size, ids.length);
   assert.equal(ids.length, index.promptCount);
   assert.equal(answers, index.answerCount);
-  assert.ok(curated >= 30, curated);
-  assert.ok(wikidata >= 250, wikidata);
+  assert.ok(curated >= 40, curated);
+  assert.ok(wikidata >= 100, wikidata);
+  assert.ok(index.promptCount >= 160, `only ${index.promptCount} prompts`);
+  for (const shard of index.shards) {
+    assert.match(shard.file, /^data\/bank\/v\d+\//);
+  }
   counts.sort((a, b) => a - b);
   const median = counts[Math.floor(counts.length / 2)];
-  assert.ok(median >= 200, `median ${median}`);
+  assert.ok(median >= 180, `median ${median}`);
   assert.ok(counts[0] >= 30, `min ${counts[0]}`);
   const daily = dailyPromptIds(ids, utcDate(), 7);
   assert.equal(daily.length, 7);
   assert.equal(new Set(daily).size, 7);
+
+  const banned = [
+    "wd-gk-castle-ir",
+    "wd-gk-club-hu",
+    "wd-gk-lang-in",
+    "wd-gk-cricket-pk",
+    "wd-alps",
+    "wd-opera",
+    "wd-kpop",
+    "cur-language",
+    "cur-phobia",
+    "cur-constellation",
+    "cur-unit",
+    "cur-moon",
+    "wd-gk-alkaloid",
+  ];
+  for (const id of banned) assert.equal(ids.includes(id), false, id);
+  const loaded = new Map();
+  for (const shard of index.shards) {
+    const prompts = JSON.parse(await readFile(new URL(`../${shard.file}`, import.meta.url), "utf8"));
+    for (const prompt of prompts) loaded.set(prompt.id, prompt);
+  }
+  const texts = [...loaded.values()].map((prompt) => prompt.text);
+  const bannedText = [
+    /in Iran/i,
+    /Hungarian/i,
+    /language of India/i,
+    /K-pop/i,
+    /cricketer/i,
+    /Bundesliga/i,
+    /La Liga/i,
+    /Serie A/i,
+    /Ligue 1/i,
+    /the Alps/i,
+    /state park/i,
+    /Name a phobia/i,
+    /Name a constellation/i,
+    /Name an alkaloid/i,
+    /Shinto/i,
+    /Roman god/i,
+    /programming language/i,
+  ];
+  for (const pattern of bannedText) {
+    const hit = texts.find((text) => pattern.test(text));
+    assert.equal(hit, undefined, String(pattern));
+  }
+  const floors = {
+    "cur-pokemon": 800,
+    "cur-starwars": 200,
+    "cur-potter": 120,
+    "cur-simpsons": 150,
+    "cur-game-char": 200,
+    "cur-animated": 200,
+    "cur-director": 400,
+    "cur-tv": 400,
+    "cur-channel": 40,
+    "cur-cereal": 80,
+    "cur-snack": 80,
+    "cur-clothes-brand": 150,
+    "cur-disney-char": 200,
+    "cur-city-ca": 150,
+  };
+  for (const [id, floor] of Object.entries(floors)) {
+    const prompt = loaded.get(id);
+    assert.ok(prompt, id);
+    assert.ok(prompt.answers.length >= floor, `${id} ${prompt.answers.length}`);
+  }
+  const tierOf = (id, name) => {
+    const key = name.toLowerCase();
+    const answer = loaded.get(id).answers.find((item) => item.name.toLowerCase() === key);
+    return answer && answer.tier;
+  };
+  assert.equal(tierOf("cur-pokemon", "Pikachu"), "taxi");
+  assert.equal(tierOf("cur-starwars", "Luke Skywalker"), "taxi");
+  assert.equal(tierOf("cur-city-ca", "Los Angeles"), "taxi");
+  assert.equal(loaded.get("cur-nfl").answers.length, 32);
+  assert.equal(loaded.get("cur-nba").answers.length, 30);
+  assert.equal(loaded.get("cur-mlb").answers.length, 30);
+  assert.ok(loaded.get("cur-holiday").answers.length >= 30);
+  assert.ok(loaded.get("cur-holiday").answers.length <= 80);
+  assert.equal(loaded.get("wd-us-state").answers.length, 50);
+  assert.equal(loaded.get("wd-president").answers.length, 51);
 });
