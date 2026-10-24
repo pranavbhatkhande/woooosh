@@ -1,5 +1,5 @@
-// Optional live judge. Ships disabled until JUDGE_URL is set on Netlify.
-// A timeout or upstream error is the client's cue to keep the normal bank.
+// The public site scores from the static bank only. This function stays
+// inert even when JUDGE_URL is set, so a miss never calls a model.
 
 import { readFile } from "node:fs/promises";
 import path from "node:path";
@@ -66,7 +66,8 @@ function json(status, body) {
 }
 
 function enabled() {
-  return Boolean(process.env.JUDGE_URL && String(process.env.JUDGE_URL).trim());
+  // Hard off. Do not consult JUDGE_URL. The bank is the only scorer.
+  return false;
 }
 
 async function readJsonFile(rel) {

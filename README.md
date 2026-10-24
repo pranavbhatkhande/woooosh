@@ -17,7 +17,7 @@ Rarer answers score more height. One point is one kilometer.
 
 Daily is the same seven prompts for every player, chosen from the UTC date. Open sky shuffles prompts you have not seen, then starts over from the oldest. Streak, best altitude, and the seen list stay in this browser.
 
-An optional judge can score an answer that is not in the bank. It is off until the server is configured. Judged answers are marked and never receive the gem. See [pipeline/README.md](pipeline/README.md) for the owner's commands, the weekly timer, and how to expose a local model without leaving Ollama open.
+Answers score only when they are in the bank. There is no live model on the site. See [pipeline/README.md](pipeline/README.md) for the owner's commands and the weekly timer.
 
 The bank is static JSON in `data/`, built offline.
 

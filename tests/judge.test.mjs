@@ -76,6 +76,26 @@ test("obscure real members stay valid and familiarity is separate", () => {
   assert.doesNotMatch(text, /valid is true only when/);
 });
 
+test("the public judge ignores JUDGE_URL and never enables", async () => {
+  const previous = process.env.JUDGE_URL;
+  process.env.JUDGE_URL = "https://example.invalid/v1";
+  try {
+    const { handler } = await import("../netlify/functions/judge.js");
+    const get = await handler({ httpMethod: "GET", headers: {} });
+    assert.equal(JSON.parse(get.body).enabled, false);
+    const post = await handler({
+      httpMethod: "POST",
+      headers: {},
+      body: JSON.stringify({ promptId: "wd-country", answer: "France" }),
+    });
+    assert.equal(post.statusCode, 200);
+    assert.equal(JSON.parse(post.body).enabled, false);
+  } finally {
+    if (previous === undefined) delete process.env.JUDGE_URL;
+    else process.env.JUDGE_URL = previous;
+  }
+});
+
 test("upstream body asks for JSON and disables thinking", () => {
   const body = requestBody("ollama", "qwen3.8:27b", []);
   assert.equal(body.think, false);
