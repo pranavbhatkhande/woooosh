@@ -6,7 +6,7 @@ import re
 
 from pipeline.clean import clean_title, junk_title
 from pipeline.profanity import is_profane
-from pipeline.quality import publishable, repair_answers
+from pipeline.quality import drop_key_collisions, publishable, repair_answers
 from pipeline.tiers import assign_by_popularity, popularity_score
 
 try:
@@ -62,8 +62,12 @@ def build_prompt(job: dict, raw_items: list[dict]) -> tuple[dict | None, str]:
         sitelinks = int(item.get("sitelinks") or 0)
         if sitelinks < int(job.get("min_links") or 1):
             continue
-        aliases = list(item.get("aliases") or [])
-        aliases.extend(_extra_aliases(label, clean_title(item.get("wiki") or "")))
+        aliases = [alias for alias in (item.get("aliases") or []) if alias and not is_profane(alias)]
+        aliases.extend(
+            alias
+            for alias in _extra_aliases(label, clean_title(item.get("wiki") or ""))
+            if not is_profane(alias)
+        )
         prepared.append(
             {
                 "name": label,
@@ -73,12 +77,12 @@ def build_prompt(job: dict, raw_items: list[dict]) -> tuple[dict | None, str]:
                 "qid": item.get("qid"),
             }
         )
-    prepared = repair_answers(prepared)
+    prepared = drop_key_collisions(repair_answers(prepared))
     prepared.sort(key=lambda answer: (-float(answer["pop"]), answer["name"].lower()))
-    cap = int(job.get("cap") or 80)
-    if len(prepared) > cap:
-        prepared = prepared[:cap]
-    if len(prepared) < 40:
+    cap = job.get("cap")
+    if cap and len(prepared) > int(cap):
+        prepared = prepared[: int(cap)]
+    if len(prepared) < 30:
         return None, f"only {len(prepared)} usable answers"
     missing = [name for name in job.get("must") or [] if not _has_name(prepared, name)]
     if missing:
@@ -91,7 +95,7 @@ def build_prompt(job: dict, raw_items: list[dict]) -> tuple[dict | None, str]:
         "id": job["id"],
         "text": job["text"],
         "category": job.get("category") or "general",
-        "source": "wikidata",
+        "source": job.get("source") or "wikidata",
         "answers": tiered,
     }
     cleaned, errors = publishable(prompt)

@@ -6,12 +6,13 @@ TIER_ORDER = ["taxi", "climb", "burn", "stall", "apogee", "escape"]
 TIER_POINTS = {"taxi": 5, "climb": 10, "burn": 25, "stall": 40, "apogee": 60, "escape": 100}
 
 # Rarity 0 is the most common answer. Cuts are exclusive upper bounds.
+# The head stays small so a long, exhaustive tail lands in STALL and APOGEE.
 TIER_CUTS = (
-    (0.18, "taxi"),
-    (0.40, "climb"),
-    (0.62, "burn"),
-    (0.78, "stall"),
-    (0.97, "apogee"),
+    (0.07, "taxi"),
+    (0.18, "climb"),
+    (0.36, "burn"),
+    (0.52, "stall"),
+    (0.995, "apogee"),
     (1.01, "escape"),
 )
 

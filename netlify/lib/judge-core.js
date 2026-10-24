@@ -97,9 +97,16 @@ export function judgeMessages(promptText, answer) {
       role: "system",
       content:
         "You judge one short answer to a category prompt. Reply with JSON only. " +
-        "valid is true only when the answer is a real, specific member of the category. " +
-        "familiarity is 10 when almost everyone knows it and 1 when only specialists do. " +
-        "canonical is the usual English name, or an empty string when invalid.",
+        "Decide validity and familiarity separately. " +
+        "valid is true when the answer is a real, specific member of the category, " +
+        "including obscure, small, local, historical, or specialist examples. " +
+        "Not being famous does not make it invalid. " +
+        "valid is false only when it is the wrong category, too vague to be one member, " +
+        "or not a real member of that category. " +
+        "familiarity is 10 when almost everyone knows it and 1 or 2 when only specialists or locals do. " +
+        "An obscure real member stays valid and gets a low familiarity. " +
+        "canonical is the usual English name, or an empty string when invalid. " +
+        'Example: for "Name a city in Oregon", Joseph is valid with familiarity 1 or 2, and Portland is valid with familiarity 9 or 10.',
     },
     {
       role: "user",

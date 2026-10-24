@@ -6,7 +6,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from pipeline.collect import attach_aliases, collect_categories, enrich_sitelinks, sparql_items
+from pipeline.collect import collect_categories, enrich_entities, sparql_items
 from pipeline.jobs import iter_jobs
 from pipeline.make_prompt import build_prompt
 from pipeline.net import CACHE
@@ -62,13 +62,20 @@ def _gather(job: dict) -> tuple[list[dict] | None, str]:
             items = sparql_items(job["query"])
         except Exception as exc:
             return None, f"sparql {type(exc).__name__}: {exc}"
-        if len(items) < 40:
+        if len(items) < 30:
             return None, f"sparql returned {len(items)}"
+        items = enrich_entities(items)
         return items, ""
-    items = collect_categories(job.get("categories") or [], limit=72, ban=job.get("ban") or [])
-    if len(items) < 40:
+    items = collect_categories(
+        job.get("categories") or [],
+        ban=job.get("ban") or [],
+        follow_subcats=bool(job.get("follow_subcats")),
+        subcat_below=int(job.get("subcat_below") or 80),
+        places_from_subcats=bool(job.get("places_from_subcats")),
+    )
+    if len(items) < 30:
         return None, f"only {len(items)} category pages"
-    items = enrich_sitelinks(items)
+    items = enrich_entities(items)
     return items, ""
 
 
@@ -76,11 +83,10 @@ def _run_job(job: dict) -> tuple[dict | None, str]:
     items, reason = _gather(job)
     if items is None:
         return None, reason
-    items = attach_aliases(items)
     return build_prompt(job, items)
 
 
-def generate(target: int = 210, only: list[str] | None = None, retry_failed: bool = False) -> int:
+def generate(target: int = 210, only: list[str] | None = None, retry_failed: bool = False, refresh: bool = False) -> int:
     ACCEPTED.mkdir(parents=True, exist_ok=True)
     jobs = list(iter_jobs())
     by_id = {job["id"]: job for job in jobs}
@@ -90,10 +96,12 @@ def generate(target: int = 210, only: list[str] | None = None, retry_failed: boo
         missing = wanted - {job["id"] for job in jobs}
         for job_id in missing:
             print(f"unknown job {job_id}")
-    done = {path.stem for path in ACCEPTED.glob("wd-*.json")}
-    if not only:
-        done |= published_wd_ids()
-    fails = {} if retry_failed else _load_fails()
+    done: set[str] = set()
+    if not refresh:
+        done = {path.stem for path in ACCEPTED.glob("wd-*.json")}
+        if not only:
+            done |= published_wd_ids()
+    fails = {} if retry_failed or refresh else _load_fails()
     counts = _counts(done, by_id)
     made = len(done)
 
@@ -115,6 +123,10 @@ def generate(target: int = 210, only: list[str] | None = None, retry_failed: boo
             prompt, reason = None, f"{type(exc).__name__}: {exc}"
         if not prompt:
             print(f"  skip {reason}", flush=True)
+            if refresh:
+                stale = ACCEPTED / f"{job['id']}.json"
+                if stale.exists():
+                    stale.unlink()
             _save_fail(fails, job["id"], reason)
             return
         (ACCEPTED / f"{prompt['id']}.json").write_text(json.dumps(prompt, ensure_ascii=False, indent=2))

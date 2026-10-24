@@ -5,6 +5,7 @@ import {
   allowRequest,
   cacheKey,
   judgeEndpoint,
+  judgeMessages,
   parseVerdict,
   requestBody,
   scoreJudged,
@@ -62,6 +63,17 @@ test("cache key and rate limit", () => {
   assert.equal(third.ok, false);
   const later = allowRequest(third.hits, 2000, 2, 500);
   assert.equal(later.ok, true);
+});
+
+test("obscure real members stay valid and familiarity is separate", () => {
+  const text = judgeMessages("Name a city in Oregon", "Joseph")
+    .map((message) => message.content)
+    .join("\n");
+  assert.match(text, /separately/);
+  assert.match(text, /Not being famous does not make it invalid/);
+  assert.match(text, /Joseph is valid with familiarity 1 or 2/);
+  assert.match(text, /Portland is valid with familiarity 9 or 10/);
+  assert.doesNotMatch(text, /valid is true only when/);
 });
 
 test("upstream body asks for JSON and disables thinking", () => {

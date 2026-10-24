@@ -16,7 +16,12 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 PROMPTS = DATA / "prompts"
 ACCEPTED = CACHE / "accepted"
-SHARD_SIZE = 45
+# A round fetches whole shard files. Keep each file small enough to stay quick on a phone.
+MAX_SHARD_BYTES = 1_200_000
+# Old category samples stopped around 70 answers. A sibling with hundreds means those are leftovers.
+STALE_CAP = 75
+EXHAUSTIVE_MARK = 200
+CAPPED_PREFIXES = ("wd-film-", "wd-game-", "wd-album-", "wd-tvuk-", "wd-tv-", "wd-city-")
 
 
 def _read_json(path: Path):
@@ -59,31 +64,80 @@ def content_hash(prompts: dict[str, dict]) -> str:
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()
 
 
-def assign_shards(old_index: dict, ids: set[str]) -> list[dict]:
-    """Keep each id in its current shard. New ids fill the last shard, then a new file."""
-    groups: list[dict] = []
-    placed: set[str] = set()
-    for shard in old_index.get("shards") or []:
-        kept = [prompt_id for prompt_id in shard.get("ids") or [] if prompt_id in ids]
-        placed.update(kept)
-        groups.append({"file": shard["file"], "ids": kept})
-    fresh = sorted(prompt_id for prompt_id in ids if prompt_id not in placed)
-    used = {group["file"] for group in groups}
+def pack_shards(prompts: dict[str, dict], max_bytes: int = MAX_SHARD_BYTES) -> list[dict]:
+    """Pack prompts into files of about `max_bytes`. One oversized prompt stays in its own file."""
+    groups: list[list[str]] = []
+    current: list[str] = []
+    current_size = 2
+    for prompt_id in sorted(prompts):
+        encoded = json.dumps(prompts[prompt_id], ensure_ascii=False, indent=2).encode("utf-8")
+        size = len(encoded) + 2
+        if current and current_size + size > max_bytes:
+            groups.append(current)
+            current = []
+            current_size = 2
+        current.append(prompt_id)
+        current_size += size
+    if current:
+        groups.append(current)
+    return [{"file": f"data/prompts/{index:04d}.json", "ids": ids} for index, ids in enumerate(groups, start=1)]
 
-    def fresh_file() -> str:
-        number = 1
-        while True:
-            rel = f"data/prompts/{number:04d}.json"
-            if rel not in used:
-                used.add(rel)
-                return rel
-            number += 1
 
-    for prompt_id in fresh:
-        if not groups or len(groups[-1]["ids"]) >= SHARD_SIZE:
-            groups.append({"file": fresh_file(), "ids": []})
-        groups[-1]["ids"].append(prompt_id)
-    return [group for group in groups if group["ids"]]
+def prefer_answer_list(current: dict | None, incoming: dict) -> dict:
+    """Keep the longer bank. A stale ~70-answer cache must not replace an exhaustive one."""
+    if current is None:
+        return incoming
+    current_n = len(current.get("answers") or [])
+    incoming_n = len(incoming.get("answers") or [])
+    if incoming_n + 5 < current_n:
+        print(
+            f"keep {current['id']}: {current_n} answers beats cached {incoming_n}",
+            flush=True,
+        )
+        return current
+    return incoming
+
+
+def _capped_kind(prompt_id: str) -> str | None:
+    for prefix in CAPPED_PREFIXES:
+        if prompt_id.startswith(prefix):
+            return prefix
+    return None
+
+
+def drop_capped_samples(prompts: dict[str, dict], fresh_ids: set[str] | None = None) -> dict[str, dict]:
+    """Drop leftover top-N samples once the same kind has a real exhaustive bank.
+
+    A prompt rebuilt in this run is kept even when the real set is small
+    (New York has 62 cities). Only an old sample that was not rebuilt is dropped.
+    """
+    fresh = fresh_ids or set()
+    exhaustive = {
+        _capped_kind(prompt["id"])
+        for prompt in prompts.values()
+        if _capped_kind(prompt["id"]) and len(prompt.get("answers") or []) >= EXHAUSTIVE_MARK
+    }
+    exhaustive.discard(None)
+    if not exhaustive:
+        return prompts
+    kept: dict[str, dict] = {}
+    for prompt_id, prompt in prompts.items():
+        kind = _capped_kind(prompt_id)
+        count = len(prompt.get("answers") or [])
+        if kind in exhaustive and count <= STALE_CAP and prompt_id not in fresh:
+            print(f"drop {prompt_id}: {count} answers still at the old cap", flush=True)
+            continue
+        kept[prompt_id] = prompt
+    return kept
+
+
+def apply_hand(merged: dict[str, dict], hand_prompts: list[dict]) -> dict[str, dict]:
+    """Hand lists fill gaps. They do not shrink a harvested bank."""
+    for prompt in hand_prompts:
+        current = merged.get(prompt["id"])
+        if current is None or len(prompt.get("answers") or []) > len(current.get("answers") or []):
+            merged[prompt["id"]] = prompt
+    return merged
 
 
 def _keep(prompt: dict, label: str) -> dict | None:
@@ -96,15 +150,15 @@ def _keep(prompt: dict, label: str) -> dict | None:
 
 
 def assemble() -> tuple[dict, dict[str, dict]]:
-    """Published bank, then cache (scrubbed), then curated. Curated always wins."""
+    """Published bank, then cache when it is not a smaller stale copy, then larger hand lists."""
     old_index = load_index()
     merged = dict(load_published())
     for prompt_id, prompt in load_accepted().items():
         kept = _keep(prompt, prompt_id)
         if kept:
-            merged[prompt_id] = kept
-    for prompt in load_curated():
-        merged[prompt["id"]] = prompt
+            merged[prompt_id] = prefer_answer_list(merged.get(prompt_id), kept)
+    apply_hand(merged, load_curated())
+    merged = drop_capped_samples(merged, set(load_accepted()))
     return old_index, merged
 
 
@@ -113,7 +167,7 @@ def write_bank(old_index: dict, prompts: dict[str, dict]) -> dict:
     version = int(old_index.get("version") or 0)
     if digest != old_index.get("hash"):
         version += 1
-    groups = assign_shards(old_index, set(prompts))
+    groups = pack_shards(prompts)
     PROMPTS.mkdir(parents=True, exist_ok=True)
     used: set[str] = set()
     shards = []

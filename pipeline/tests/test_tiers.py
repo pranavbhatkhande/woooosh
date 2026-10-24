@@ -32,10 +32,20 @@ class TierTests(unittest.TestCase):
 
     def test_rarity_cuts_cover_the_common_end(self):
         self.assertEqual(tier_for_rarity(0), "taxi")
-        self.assertEqual(tier_for_rarity(0.2), "climb")
-        self.assertEqual(tier_for_rarity(0.7), "stall")
-        self.assertEqual(tier_for_rarity(0.9), "apogee")
-        self.assertEqual(tier_for_rarity(0.99), "escape")
+        self.assertEqual(tier_for_rarity(0.1), "climb")
+        self.assertEqual(tier_for_rarity(0.2), "burn")
+        self.assertEqual(tier_for_rarity(0.4), "stall")
+        self.assertEqual(tier_for_rarity(0.8), "apogee")
+        self.assertEqual(tier_for_rarity(0.999), "escape")
+
+    def test_most_of_a_long_list_is_in_the_deeper_tiers(self):
+        answers = [
+            {"name": f"Answer {index:04d}", "aliases": [], "pop": 1000 - index, "sitelinks": max(1, 400 - index)}
+            for index in range(200)
+        ]
+        ranked = assign_by_popularity(answers)
+        deep = sum(1 for answer in ranked if answer["tier"] in {"stall", "apogee", "escape"})
+        self.assertGreater(deep, len(ranked) / 2)
 
     def test_popularity_assignment_has_one_recognizable_gem(self):
         answers = []

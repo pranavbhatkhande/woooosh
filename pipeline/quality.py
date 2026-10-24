@@ -8,7 +8,7 @@ from pipeline.normalize import keys_for, normalize, plural_root
 from pipeline.profanity import is_profane
 from pipeline.tiers import TIER_ORDER
 
-MIN_ANSWERS = 40
+MIN_ANSWERS = 30
 MAX_ANSWER_CHARS = 60
 MAX_PROMPT_CHARS = 90
 
@@ -95,6 +95,29 @@ def repair_answers(answers: list[dict]) -> list[dict]:
             seen_alias.add(norm)
         answer["aliases"] = kept
     return merged
+
+
+def drop_key_collisions(answers: list[dict]) -> list[dict]:
+    """Keep the more familiar answer when two names share a key, including spaced vs compact."""
+    ranked = sorted(answers, key=lambda answer: (-float(answer.get("pop") or 0), answer.get("name") or ""))
+    claimed: set[str] = set()
+    kept: list[dict] = []
+    for answer in ranked:
+        name_keys = keys_for(answer.get("name") or "", [])
+        if not name_keys or any(key in claimed for key in name_keys):
+            continue
+        aliases: list[str] = []
+        used = set(name_keys)
+        for alias in answer.get("aliases") or []:
+            alias_keys = keys_for(alias, [])
+            if not alias_keys or any(key in claimed or key in used for key in alias_keys):
+                continue
+            aliases.append(alias)
+            used.update(alias_keys)
+        item = {**answer, "aliases": aliases}
+        claimed.update(keys_for(item["name"], item["aliases"]))
+        kept.append(item)
+    return kept
 
 
 def lint_prompt(prompt: dict) -> list[str]:
