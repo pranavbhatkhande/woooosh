@@ -1,0 +1,20 @@
+# Optional alternative to deploy/judge_proxy.py.
+# Caddy still binds localhost. Funnel or cloudflared points at this port,
+# not at Ollama on 11434.
+#
+#   caddy run --config deploy/Caddyfile.example
+#
+# Replace the bearer token before use. Do not commit a real token.
+
+:11435 {
+	@authed header Authorization "Bearer replace-with-the-same-secret-as-JUDGE_TOKEN"
+	handle /healthz {
+		respond `{"ok":true}` 200
+	}
+	handle @authed {
+		reverse_proxy 127.0.0.1:11434
+	}
+	handle {
+		respond `{"error":"unauthorized"}` 401
+	}
+}

@@ -1,0 +1,9 @@
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+pipeline/cache/
+pipeline/work/
+.DS_Store
+*.log
+.netlify/

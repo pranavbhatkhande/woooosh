@@ -1,0 +1,9 @@
+[Unit]
+Description=Add WOOOOSH prompts and publish the bank
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/woooosh
+ExecStart=%h/woooosh/deploy/weekly.sh
+Environment=PIPELINE_LLM_URL=http://127.0.0.1:11434
+Environment=PIPELINE_LLM_MODEL=qwen3.8:27b
