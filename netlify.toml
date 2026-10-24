@@ -7,6 +7,11 @@
   node_bundler = "esbuild"
   included_files = ["data/**"]
 
+# Cold model load is about 5s. The judge waits 8s, so the platform limit
+# has to stay at least 10s or that call is dropped.
+[functions.judge]
+  timeout = 10
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
